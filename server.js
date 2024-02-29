@@ -21,11 +21,11 @@ for (let i = 0; i < routeFiles.length; i++) {
 
    // add each route handler to the global map
    let requriedProperties = ['method', 'path', 'handler'];
-   for (let handler of currentHandlers) {
+   for (let route of currentHandlers) {
       // check if the handler has the required properties
       let valid = true;
       requriedProperties.forEach(p => {
-         if (!handler.hasOwnProperty(p)) {
+         if (!route.hasOwnProperty(p)) {
             console.warn(routeFile + ": missing " + p);
             valid = false;
          }
@@ -35,11 +35,11 @@ for (let i = 0; i < routeFiles.length; i++) {
       }
 
       // add the route to the map/list
-      let handlerPath = handler.path
-      if (handlerPath instanceof RegExp) {
-         dynamicRoutes.dynamic.push(handler);
-      } else if (typeof handlerPath === 'string') {
-         staticRoutes[handlerPath] = handler;
+      let routePath = route.path
+      if (routePath instanceof RegExp) {
+         dynamicRoutes.push(route);
+      } else if (typeof routePath === 'string') {
+         staticRoutes[routePath] = route;
       }
    }
 }
@@ -79,21 +79,10 @@ async function handleRequest(req, res) {
    return route.handler(req, res);
 }
 
-// console.log(__dirname)
-// let reg = /^\/delivery\/[\d]{1,6}\/[/]?$/
-// console.log(typeof(reg))
-// console.log(reg instanceof RegExp)
-// let inputStr = "/delivery/123/"
-// console.log(inputStr.match(reg));
-// if (inputStr.match(reg)) {
-//    console.log("matched")
-// } else {
-//    console.log("didn't match")
-// }
-
 const server = http.createServer(handleRequest)
 
 if (require.main === module) {
+   console.log('Listening on port 8080');
    server.listen(8080);
 }
 
