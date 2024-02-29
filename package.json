@@ -1,0 +1,18 @@
+{
+  "name": "mr-pizza",
+  "version": "1.0.0",
+  "description": "To clone the repository: - Navigate to the directory you want the project to be in - run \"git clone https://github.com/Wingo206/Mr-Pizza.git\" - input your github credentials",
+  "main": "index.js",
+  "scripts": {
+    "test": "jasmine"
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "jasmine": "^5.1.0"
+  },
+  "dependencies": {
+    "mysql2": "^3.9.2",
+    "supertest": "^6.3.4"
+  }
+}
