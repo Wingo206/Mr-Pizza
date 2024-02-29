@@ -3,6 +3,15 @@ const fs = require('node:fs');
 const path = require('path');
 const querystring = require('querystring');
 
+// wrap console.log
+// const DEBUG = true;
+// const old_log = console.log;
+// console.log = function() {
+//    if (DEBUG) {
+//       old_log.apply(this, arguments);
+//    }
+// }
+
 // setup router by using all files from the "routes/" directory
 let routesDir = __dirname + '/routes';
 let routeFiles = fs.readdirSync(routesDir).map(file => path.join(routesDir, file));
@@ -11,17 +20,17 @@ let staticRoutes = {};
 let dynamicRoutes = [];
 for (let i = 0; i < routeFiles.length; i++) {
    let routeFile = routeFiles[i];
-   let currentHandlers = require(routeFile);
+   let currentRoutes = require(routeFile);
 
    // check for proper export
-   if (!Array.isArray(currentHandlers)) {
+   if (!Array.isArray(currentRoutes)) {
       console.warn('File did not export list: ' + routeFile);
       continue;
    }
 
    // add each route handler to the global map
    let requriedProperties = ['method', 'path', 'handler'];
-   for (let route of currentHandlers) {
+   for (let route of currentRoutes) {
       // check if the handler has the required properties
       let valid = true;
       requriedProperties.forEach(p => {
@@ -67,7 +76,7 @@ async function handleRequest(req, res) {
    // check method matches the route
    let method = req.method;
    if (method != route.method) {
-      res.writeHead(415, {'Content-type': 'text/plain'});
+      res.writeHead(405, {'Content-type': 'text/plain'});
       res.end('Method ' + route.method + " required for route " + url + '.')
       return;
    }
@@ -86,5 +95,5 @@ if (require.main === module) {
    server.listen(8080);
 }
 
-module.exports = {server}
+module.exports = server;
 

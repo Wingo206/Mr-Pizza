@@ -6,6 +6,6 @@ module.exports = [{
    handler: handleTestApi
 }, {
    method: "POST",
-   path: /^\/test\/[\d]{1,6}$/, // starts (^), then "/test/", then 0-6 digits ([\d]{1,6}), then ends ($)
+   path: /^\/test\/[\d]+$/, // starts (^), then "/test/", then 0-6 digits ([\d]{1,6}), then ends ($)
    handler: handleTestApiWithInput
 }];
