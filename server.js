@@ -3,15 +3,6 @@ const fs = require('node:fs');
 const path = require('path');
 const querystring = require('querystring');
 
-// wrap console.log
-// const DEBUG = true;
-// const old_log = console.log;
-// console.log = function() {
-//    if (DEBUG) {
-//       old_log.apply(this, arguments);
-//    }
-// }
-
 // setup router by using all files from the "routes/" directory
 let routesDir = __dirname + '/routes';
 let routeFiles = fs.readdirSync(routesDir).map(file => path.join(routesDir, file));
