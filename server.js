@@ -9,6 +9,7 @@ let routeFiles = fs.readdirSync(routesDir).map(file => path.join(routesDir, file
 
 let staticRoutes = {};
 let dynamicRoutes = [];
+console.log('Loading routes')
 for (let i = 0; i < routeFiles.length; i++) {
    let routeFile = routeFiles[i];
    let currentRoutes = require(routeFile);
@@ -38,8 +39,14 @@ for (let i = 0; i < routeFiles.length; i++) {
       let routePath = route.path
       if (routePath instanceof RegExp) {
          dynamicRoutes.push(route);
+         console.log(routePath);
       } else if (typeof routePath === 'string') {
+         if (staticRoutes.hasOwnProperty(routePath)) {
+            console.warn('Duplicate route ' + routePath + ' in file ' + routeFile);
+            continue;
+         }
          staticRoutes[routePath] = route;
+         console.log(routePath);
       }
    }
 }
@@ -59,6 +66,7 @@ async function handleRequest(req, res) {
       }
    }
    if (route === undefined) {
+      console.warn('404 on route ' + url)
       res.writeHead(404, {'Content-type': 'text/plain'});
       res.end('Resource not found for route ' + url + '.')
       return;
@@ -67,6 +75,7 @@ async function handleRequest(req, res) {
    // check method matches the route
    let method = req.method;
    if (method != route.method) {
+      console.warn('405 on route ' + url);
       res.writeHead(405, {'Content-type': 'text/plain'});
       res.end('Method ' + route.method + " required for route " + url + '.')
       return;

@@ -24,10 +24,8 @@ Directory Structure:
 
 routing:
 - api routes eg: "/stores/72/delete" -> routes to a function being run
-- page routes eg: "/views/test.html" -> ending in .html routes to a file in the views folder (/Mr-Pizza/views/homepage.html)
-- public file routes eg: "/public/scripts/testScript.js" -> routes to the public folder
-
-<!-- if a route starts with "/views/" or "/public/", then those folders will be prioritized. Then, it will check if it matches an api route. Otherwise, it will return 404 resource not found. -->
+- public file routes eg: "/html/test.html" -> routes to a file in the public folder
+- *anything that is put into "/public/" will be automatically given a route, relative to /Mr-Pizza/public/*
 
 To add a route:
 - Create a file in the "routes/" directory
@@ -37,6 +35,12 @@ To add a route:
         - can be either a string (exact match), or a regex (use for when an input is added to the url, like "/delivery/123")
     - handler (async function/lambda with inputs (req, res))
     - <optional> validator (function (req) => {true/false}). If present, the server will run the validator on req before running your handler. Use your own, or one of the validators from utils/validators.js (TODO) 
-- *anything that is put into /views/ and /public/ will be handled automatically*
+
+# TODO
+framework:
+- authentication handling
+- utilities to extract parameters from the path when matched with regex
+- unit testability for loading routes (low prio)
+- path redirects (low prio)
 
 # Mr Pizza
