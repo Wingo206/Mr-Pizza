@@ -38,7 +38,8 @@ To add a route:
 
 # TODO
 framework:
-- authentication handling
+- authentication handling with login page and JWT tokens
+- sql server setup with schema and permissions
 - utilities to extract parameters from the path when matched with regex
 - unit testability for loading routes (low prio)
 - path redirects (low prio)

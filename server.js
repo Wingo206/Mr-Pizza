@@ -4,7 +4,7 @@ const path = require('path');
 const querystring = require('querystring');
 
 // setup router by using all files from the "routes/" directory
-let routesDir = __dirname + '/routes';
+let routesDir = path.join(__dirname, 'routes');
 let routeFiles = fs.readdirSync(routesDir).map(file => path.join(routesDir, file));
 
 let staticRoutes = {};

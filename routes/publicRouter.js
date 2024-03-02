@@ -1,5 +1,5 @@
 /*
- * Routes static files, such as html files, scripts, the webpage icon,
+ * Routes public files, such as html files, scripts, the webpage icon,
  * images, etc.
  */
 const fs = require('node:fs');
@@ -8,7 +8,6 @@ const path = require('path');
 let splitPath = __dirname.split(path.sep)
 splitPath.pop();
 splitPath.push('public');
-// const mrPizzaDir = path.join(splitPath.join(path.sep))
 const publicDir = splitPath.join(path.sep);
 
 // create routes for each file in views
