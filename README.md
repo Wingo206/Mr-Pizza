@@ -18,9 +18,8 @@ Setup node environemnt
 Directory Structure:
 - server.js: entry point. Run "node server.js" from the Mr-Pizza/ directory.
 - lib: backend code.
-- public: files which are accessable for the frontend to request. Eg: front-end script, css, images that display on the webpages.
+- public: files which are accessable for the frontend to request. Eg: html files, front-end script, css, images that display on the webpages.
 - routes: files that specify how to route api calls and fetching resources.
-- views: HTML files
 
 routing:
 - api routes eg: "/stores/72/delete" -> routes to a function being run
@@ -38,6 +37,7 @@ To add a route:
 
 # TODO
 framework:
+- validators for routes
 - authentication handling with login page and JWT tokens
 - sql server setup with schema and permissions
 - utilities to extract parameters from the path when matched with regex

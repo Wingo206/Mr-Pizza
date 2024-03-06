@@ -3,4 +3,4 @@
  * an html file is loaded, front-end scripts can be run as well
  */
 
-console.log("test public script working")
+console.log("example public script working")
