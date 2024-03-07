@@ -1,4 +1,4 @@
-# Collaboration Instructions
+# Setup Instructions
 
 To clone the repository:
 - Navigate to the directory you want the project to be in
@@ -9,7 +9,6 @@ required node modules:
 - jasmine
 - mysql2
 - supertest
-- dotenv
 
 Setup node environemnt
 - cd into the project directory
@@ -17,7 +16,7 @@ Setup node environemnt
 - run unit tests to ensure everything is working (npm test)
 
 Setup MySQL Database
-To ensure that sql passwords and other sensitive information is specific to your computer and never uploaded to git, these details are kept in a separate config folder which is on the .gitignore. When you clone the repository, you will need to setup the config values and the database.
+- To ensure that sql passwords and other sensitive information is specific to your computer and never uploaded to git, these details are kept in a separate config folder which is on the .gitignore. When you clone the repository, you will need to setup the config values and the database.
 - make a copy of /lib/util/config_template.js
 - rename it to "config.js", keep it in /lib/util/
 - Set any values that are empty strings to the appropriate values (eg: choose a password for the different sql accounts)
@@ -25,12 +24,25 @@ To ensure that sql passwords and other sensitive information is specific to your
 - run "node substitute.js". This will take the template sql script and substitute in all the config values into the script, and make a copy called "setup.sql" in the temp folder
 - open the /models/temp/setup.sql file and run it (I am doing it by running "sudo mysql -u root" inside the temp/ folder and "source ./setup.sql". you can use mysqlWorkbench if you want.)
 
+Setup HTTPS SSL Certificate
+- To encrypt all data in requests, HTTPS is used. This requires an SSL certificate, which we also don't want to upload to git, so you need to generate one for your own copy of the repository.
+- navigate to the ssl/ directory. If it's not there, make one directly under the Mr-Pizza directory.
+- run "openssl req -x509 -newkey rsa:2048 -nodes -sha256 -subj '/CN=localhost' \
+-keyout server.key -out server.crt" to generate the certificate and key. These will be read when the server is started.
 
 Directory Structure:
 - server.js: entry point. Run "node server.js" from the Mr-Pizza/ directory.
 - lib: backend code.
 - public: files which are accessable for the frontend to request. Eg: html files, front-end script, css, images that display on the webpages.
 - routes: files that specify how to route api calls and fetching resources.
+
+Running the server:
+- navigate to Mr-Pizza/
+- run "node server.js"
+- to view the server, open your web browser and go to "https://127.0.0.1/html/example.html".
+- There will likely be a prompt saying that the server is not secure which is fine, go to advanced and click proceed.
+
+# Collaboration Instructions
 
 routing:
 - api routes eg: "/stores/72/delete" -> routes to a function being run

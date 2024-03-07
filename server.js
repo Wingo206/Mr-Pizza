@@ -1,3 +1,4 @@
+const https = require('https');
 const http = require('http');
 const fs = require('node:fs');
 const path = require('path');
@@ -80,7 +81,7 @@ async function handleRequest(req, res) {
       res.end('Method ' + route.method + " required for route " + url + '.')
       return;
    }
-   
+
    // run the req validator
    // TODO
 
@@ -88,11 +89,24 @@ async function handleRequest(req, res) {
    return route.handler(req, res);
 }
 
-const server = http.createServer(handleRequest)
+// const server = http.createServer(handleRequest)
+
+let sslPath = path.join(__dirname, 'ssl')
+const options = {
+   key: fs.readFileSync(path.join(sslPath, 'server.key')),
+   cert: fs.readFileSync(path.join(sslPath, 'server.crt'))
+}
+
+const server = https.createServer(options, handleRequest)
+// const httpServer = http.createServer((req, res) => {
+//   res.writeHead(301, { Location: `https://${req.headers.host}${req.url}` });
+//   res.end();
+// });
 
 if (require.main === module) {
    console.log('Listening on port 8080');
    server.listen(8080);
+   // httpServer.listen(8090);
 }
 
 module.exports = server;

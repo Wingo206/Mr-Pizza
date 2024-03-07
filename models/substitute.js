@@ -8,7 +8,7 @@ async function substitute() {
    let template = await fs.readFileSync(templatePath, 'utf8')
    // console.log(template)
    for (const [key, value] of Object.entries(config)) {
-      template = template.replaceAll('{{{' + key + '}}}', value);
+      template = template.replaceAll('{{' + key + '}}', value);
    }
    let tempPath = __dirname + path.sep + 'temp'
    if (!fs.existsSync(tempPath)) {

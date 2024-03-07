@@ -129,8 +129,9 @@ dist
 .yarn/install-state.gz
 .pnp.*
 
-# sensitive config file
+# sensitive files
 lib/util/config.js
+ssl/*
 
 # sql script after substitution with environment variables
 models/temp/*
