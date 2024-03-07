@@ -9,11 +9,22 @@ required node modules:
 - jasmine
 - mysql2
 - supertest
+- dotenv
 
 Setup node environemnt
 - cd into the project directory
 - run "npm ci". This will install the exact same versions of each required module, as specified in the package-lock.json file.
 - run unit tests to ensure everything is working (npm test)
+
+Setup MySQL Database
+To ensure that sql passwords and other sensitive information is specific to your computer and never uploaded to git, these details are kept in a separate config folder which is on the .gitignore. When you clone the repository, you will need to setup the config values and the database.
+- make a copy of /lib/util/config_template.js
+- rename it to "config.js", keep it in /lib/util/
+- Set any values that are empty strings to the appropriate values (eg: choose a password for the different sql accounts)
+- navigate to models/
+- run "node substitute.js". This will take the template sql script and substitute in all the config values into the script, and make a copy called "setup.sql" in the temp folder
+- open the /models/temp/setup.sql file and run it (I am doing it by running "sudo mysql -u root" inside the temp/ folder and "source ./setup.sql". you can use mysqlWorkbench if you want.)
+
 
 Directory Structure:
 - server.js: entry point. Run "node server.js" from the Mr-Pizza/ directory.

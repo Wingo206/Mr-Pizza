@@ -128,3 +128,9 @@ dist
 .yarn/build-state.yml
 .yarn/install-state.gz
 .pnp.*
+
+# sensitive config file
+lib/util/config.js
+
+# sql script after substitution with environment variables
+models/temp/*
