@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>Customer Login</title>
+</head>
+
+<body>
+    <script src="/scripts/customerLoginScript.js"></script>
+
+    <style type="text/css">
+        .fieldset-auto-width {
+            display: inline-block;
+        }
+
+    </style>
+    <fieldset class="fieldset-auto-width">
+        <legend>Customer Register</legend>
+        <label for="username">Username:</label>
+        <input type="text" id="registerUsername">
+        <br>
+        <br>
+
+        <label for="password">Password:</label>
+        <input type="text" id="registerPassword">
+        <br>
+        <br>
+
+        <button onclick="fetchRegister()">Submit</button>
+    </fieldset>
+
+    <br>
+    <br>
+
+    <fieldset class="fieldset-auto-width">
+        <legend>Customer Login</legend>
+        <!-- <form action="/customer/login" method="POST"> -->
+        <label for="username">Username:</label>
+        <input type="text" id="loginUsername">
+        <br>
+        <br>
+
+        <label for="password">Password:</label>
+        <input type="text" id="loginPassword">
+        <br>
+        <br>
+
+        <button onclick="fetchLogin()">Submit</button>
+            <!-- <input type="submit"> -->
+        <!-- </form> -->
+    </fieldset>
+
+    <br>
+    <br>
+
+    <button onclick="signOut()">Sign Out</button>
+</body>
+
+</html>

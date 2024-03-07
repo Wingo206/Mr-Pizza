@@ -9,6 +9,8 @@ required node modules:
 - jasmine
 - mysql2
 - supertest
+- cookie
+- jsonwebtoken
 
 Setup node environemnt
 - cd into the project directory
