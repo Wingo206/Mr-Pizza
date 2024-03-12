@@ -15,7 +15,7 @@ required node modules:
 Setup node environemnt
 - cd into the project directory
 - run "npm ci". This will install the exact same versions of each required module, as specified in the package-lock.json file.
-- run unit tests to ensure everything is working (npm test)
+<!-- - run unit tests to ensure everything is working (npm test) -->
 
 Setup MySQL Database
 - To ensure that sql passwords and other sensitive information is specific to your computer and never uploaded to git, these details are kept in a separate config folder which is on the .gitignore. When you clone the repository, you will need to setup the config values and the database.
@@ -34,8 +34,8 @@ Setup HTTPS SSL Certificate
 
 Running the server:
 - navigate to Mr-Pizza/
-- run "node server.js"
-- to view the server, open your web browser and go to "https://127.0.0.1:8080/html/example.html".
+- run "node ./server.js"
+- to view the webpage, open your web browser and go to "https://127.0.0.1:8080/html/example.html".
 - There will likely be a prompt saying that the server is not secure which is fine, go to advanced and click proceed.
 
 # Collaboration Instructions
@@ -43,13 +43,19 @@ Directory Structure:
 - lib: backend code.
 - models: setup for sql database
 - public: files which are accessable for the frontend to request. Eg: html files, front-end script, css, images that display on the webpages.
-- routes: files that specify how to route api calls and fetching resources.
+- spec: jasmine tests
 - ssl: (Secure Sockets Layer) keys used for https secure communication
 
 General Workflow:
+- Create a .js backend file and place this in the lib/ directory.
+- Implement a function that takes (req, res) as the inputs and sends a response inside the body.
+- Add the route to the module exports (follow instructions below).
 - Create a .html frontend page and place this in the public/html/ directory.
 - Create a .js frontend script and place this in the public/scripts/ directory.
 - Include the frontend script in the html file by using a <script src = "..."> tag.
+- Add frontend code that will send a request to your Api route using fetch when desired (eg: on load, clicking a button)
+- Example workflow: exampleApi.js, example.html, examplePublicScript.js.
+- Calling Apis using fetch example: customerLoginScript.js
 
 routing:
 - api routes eg: "/stores/72/delete" -> routes to a function being run
@@ -57,8 +63,8 @@ routing:
 - *anything that is put into "/public/" will be automatically given a route, relative to /Mr-Pizza/public/*
 
 To add a route:
-- Create a file in the "routes/" directory
-- export a list of JSON objects with the following properties:
+- Within a file in the lib/ directory:
+- add the the exports the routes property, which is a list of JSON objects with the following properties:
     - method (GET, POST, etc)
     - path (eg: "/stores", "/delivery/123")
         - can be either a string (exact match), or a regex (use for when an input is added to the url, like "/delivery/123")

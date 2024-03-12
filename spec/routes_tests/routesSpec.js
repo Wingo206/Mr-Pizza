@@ -16,6 +16,7 @@ describe('routing', () => {
    it('should get 404 for undefined route', (done) => {
       request(server)
          .get('/thisisundefined')
+         .trustLocalhost(true)
          .set('Accept', 'text/plain')
          .expect('Content-type', 'text/plain')
          .expect(404)
@@ -26,6 +27,7 @@ describe('routing', () => {
       it('should require GET for /example', (done) => {
          request(server)
             .patch('/example')
+            .trustLocalhost(true)
             .set('Accept', 'text/plain')
             .expect('Content-type', 'text/plain')
             .expect(405)
@@ -35,6 +37,7 @@ describe('routing', () => {
       it('should allow /example with GET', (done) => {
          request(server)
             .get('/example')
+            .trustLocalhost(true)
             .set('Accept', 'text/plain')
             .expect('Content-type', 'text/plain')
             .expect(200)
@@ -46,6 +49,7 @@ describe('routing', () => {
       it('should require post', (done) => {
          request(server)
             .get('/example/123')
+            .trustLocalhost(true)
             .set('Accept', 'text/plain')
             .expect('Content-type', 'text/plain')
             .expect(405)
@@ -55,6 +59,7 @@ describe('routing', () => {
       it('should match with dynamic path\'s regex', (done) => {
          request(server)
             .post('/example/123')
+            .trustLocalhost(true)
             .set('Accept', 'text/plain')
             .expect('Content-type', 'text/plain')
             .expect(200)
@@ -64,6 +69,7 @@ describe('routing', () => {
       it('should only match with digits', (done) => {
          request(server)
             .post('/example/asdf')
+            .trustLocalhost(true)
             .set('Accept', 'text/plain')
             .expect('Content-type', 'text/plain')
             .expect(404)
@@ -79,10 +85,11 @@ describe('routing', () => {
          examplehtmlpath.push('public');
          examplehtmlpath.push('html');
          examplehtmlpath.push('example.html');
-         
+
          let fileContents = fs.readFileSync(path.sep + path.join(...examplehtmlpath), 'utf8')
          request(server)
             .get('/html/example.html')
+            .trustLocalhost(true)
             .set('Accept', 'text/plain')
             .expect(200)
             .expect(fileContents)
@@ -91,6 +98,7 @@ describe('routing', () => {
       it('should not route directories', (done) => {
          request(server)
             .get('/html')
+            .trustLocalhost(true)
             .set('Accept', 'text/plain')
             .expect(404)
             .expect('Resource not found for route /html.')

@@ -2,22 +2,30 @@ const https = require('https');
 const http = require('http');
 const fs = require('node:fs');
 const path = require('path');
-const querystring = require('querystring');
 
-// setup router by using all files from the "routes/" directory
-let routesDir = path.join(__dirname, 'routes');
-let routeFiles = fs.readdirSync(routesDir).map(file => path.join(routesDir, file));
+// setup router by using all files from the "lib/" directory
+let dir = path.join(__dirname, 'lib');
+let files = fs.readdirSync(dir).map(f => path.join(dir, f));
 
 let staticRoutes = {};
 let dynamicRoutes = [];
 console.log('Loading routes')
-for (let i = 0; i < routeFiles.length; i++) {
-   let routeFile = routeFiles[i];
-   let currentRoutes = require(routeFile);
+for (let i = 0; i < files.length; i++) {
+   let file = files[i];
+   // if file is a directory, then add to the queue.
+   if (fs.lstatSync(file).isDirectory()) {
+      files = files.concat(fs.readdirSync(file).map(f => path.join(file, f)));
+      continue;
+   }
+   let fileExports = require(file);
 
-   // check for proper export
+   // check for routes export
+   if (fileExports === undefined || !fileExports.hasOwnProperty('routes')) {
+      continue; // file does not export any routes
+   }
+   let currentRoutes = fileExports.routes;
    if (!Array.isArray(currentRoutes)) {
-      console.warn('File did not export list: ' + routeFile);
+      console.warn('Exported routes is list: ' + file);
       continue;
    }
 
@@ -28,7 +36,7 @@ for (let i = 0; i < routeFiles.length; i++) {
       let valid = true;
       requriedProperties.forEach(p => {
          if (!route.hasOwnProperty(p)) {
-            console.warn(routeFile + ": missing " + p);
+            console.warn(file + ": missing " + p);
             valid = false;
          }
       })
@@ -43,7 +51,7 @@ for (let i = 0; i < routeFiles.length; i++) {
          console.log(routePath);
       } else if (typeof routePath === 'string') {
          if (staticRoutes.hasOwnProperty(routePath)) {
-            console.warn('Duplicate route ' + routePath + ' in file ' + routeFile);
+            console.warn('Duplicate route ' + routePath + ' in file ' + file);
             continue;
          }
          staticRoutes[routePath] = route;
@@ -52,8 +60,7 @@ for (let i = 0; i < routeFiles.length; i++) {
    }
 }
 
-console.log();
-console.log("Loaded " + (Object.keys(staticRoutes).length + dynamicRoutes.length) + " routes from " + routeFiles.length + " files.")
+console.log("Loaded " + (Object.keys(staticRoutes).length + dynamicRoutes.length) + " routes from " + files.length + " files.")
 
 async function handleRequest(req, res) {
    let url = req.url;
