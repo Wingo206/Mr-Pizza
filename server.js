@@ -98,10 +98,6 @@ const options = {
 }
 
 const server = https.createServer(options, handleRequest)
-// const httpServer = http.createServer((req, res) => {
-//   res.writeHead(301, { Location: `https://${req.headers.host}${req.url}` });
-//   res.end();
-// });
 
 if (require.main === module) {
    console.log('Listening on port 8080');

@@ -32,19 +32,24 @@ Setup HTTPS SSL Certificate
 - run "openssl req -x509 -newkey rsa:2048 -nodes -sha256 -subj '/CN=localhost' \
 -keyout server.key -out server.crt" to generate the certificate and key. These will be read when the server is started.
 
-Directory Structure:
-- server.js: entry point. Run "node server.js" from the Mr-Pizza/ directory.
-- lib: backend code.
-- public: files which are accessable for the frontend to request. Eg: html files, front-end script, css, images that display on the webpages.
-- routes: files that specify how to route api calls and fetching resources.
-
 Running the server:
 - navigate to Mr-Pizza/
 - run "node server.js"
-- to view the server, open your web browser and go to "https://127.0.0.1/html/example.html".
+- to view the server, open your web browser and go to "https://127.0.0.1:8080/html/example.html".
 - There will likely be a prompt saying that the server is not secure which is fine, go to advanced and click proceed.
 
 # Collaboration Instructions
+Directory Structure:
+- lib: backend code.
+- models: setup for sql database
+- public: files which are accessable for the frontend to request. Eg: html files, front-end script, css, images that display on the webpages.
+- routes: files that specify how to route api calls and fetching resources.
+- ssl: (Secure Sockets Layer) keys used for https secure communication
+
+General Workflow:
+- Create a .html frontend page and place this in the public/html/ directory.
+- Create a .js frontend script and place this in the public/scripts/ directory.
+- Include the frontend script in the html file by using a <script src = "..."> tag.
 
 routing:
 - api routes eg: "/stores/72/delete" -> routes to a function being run
