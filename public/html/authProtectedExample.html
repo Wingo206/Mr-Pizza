@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>Mr Pizza</title>
+</head>
+
+<body>
+    <p>If you are seeing this, you are signed in!</p>
+    <p id="test"></p>
+    <script>
+        async function test() {
+            let resp = await fetch('/loggedInTest', {
+                method: 'GET',
+            })
+            console.log(resp);
+            if (resp.status == 200) {
+                document.getElementById("test").innerHTML = await resp.text();
+            }
+        }
+        test();
+    </script>
+</body>
+
+</html>

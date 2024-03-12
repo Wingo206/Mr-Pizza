@@ -71,6 +71,12 @@ To add a route:
     - handler (async function/lambda with inputs (req, res))
     - <optional> validator (function (req) => {true/false}). If present, the server will run the validator on req before running your handler. Use your own, or one of the validators from utils/validators.js (TODO) 
 
+Enforce Authentication:
+- Wrap your handler with handleAuth to ensure that the request has a valid authorization cookie before running your handler.
+    - example: authApi.js, /loggedInTest route.
+- If you want to require authorization for a public/ file, then add the route of the file and the required authorization in the publicRouter.js file (See example: authProtectedExample.html).
+
+
 # TODO
 framework:
 - validators for routes
