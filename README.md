@@ -29,8 +29,7 @@ Setup MySQL Database
 Setup HTTPS SSL Certificate
 - To encrypt all data in requests, HTTPS is used. This requires an SSL certificate, which we also don't want to upload to git, so you need to generate one for your own copy of the repository.
 - navigate to the ssl/ directory. If it's not there, make one directly under the Mr-Pizza directory.
-- run "openssl req -x509 -newkey rsa:2048 -nodes -sha256 -subj '/CN=localhost' \
--keyout server.key -out server.crt" to generate the certificate and key. These will be read when the server is started.
+- run ```openssl req -x509 -newkey rsa:2048 -nodes -sha256 -subj '/CN=localhost' -keyout server.key -out server.crt``` to generate the certificate and key. These will be read when the server is started.
 
 Running the server:
 - navigate to Mr-Pizza/
