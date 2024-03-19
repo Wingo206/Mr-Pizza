@@ -68,7 +68,6 @@ To add a route:
     - path (eg: "/stores", "/delivery/123")
         - can be either a string (exact match), or a regex (use for when an input is added to the url, like "/delivery/123")
     - handler (async function/lambda with inputs (req, res))
-    - <optional> validator (function (req) => {true/false}). If present, the server will run the validator on req before running your handler. Use your own, or one of the validators from utils/validators.js (TODO) 
 
 Enforce Authentication:
 - Wrap your handler with handleAuth to ensure that the request has a valid authorization cookie before running your handler.
@@ -78,9 +77,7 @@ Enforce Authentication:
 
 # TODO
 framework:
-- validators for routes
-- authentication handling with login page and JWT tokens
-- sql server setup with schema and permissions
+- database permissions for each table
 - utilities to extract parameters from the path when matched with regex
 - unit testability for loading routes (low prio)
 - path redirects (low prio)
