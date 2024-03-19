@@ -34,8 +34,9 @@ Setup HTTPS SSL Certificate
 Running the server:
 - navigate to Mr-Pizza/
 - run "node ./server.js"
-- to view the webpage, open your web browser and go to "https://127.0.0.1:8080/html/example.html".
+- to view the webpage, open your web browser and go to "https://127.0.0.1:8080/home/home.html".
 - There will likely be a prompt saying that the server is not secure which is fine, go to advanced and click proceed.
+- You can also try any of the other routes that are printed to the console.
 
 # Collaboration Instructions
 Directory Structure:
@@ -62,6 +63,7 @@ routing:
 - *anything that is put into "/public/" will be automatically given a route, relative to /Mr-Pizza/public/*
 
 To add a route:
+- **check the example in /lib/exampleApi.js**
 - Within a file in the lib/ directory:
 - add the the exports the routes property, which is a list of JSON objects with the following properties:
     - method (GET, POST, etc)
@@ -69,10 +71,33 @@ To add a route:
         - can be either a string (exact match), or a regex (use for when an input is added to the url, like "/delivery/123")
     - handler (async function/lambda with inputs (req, res))
 
-Enforce Authentication:
+Enforce Authorization:
 - Wrap your handler with handleAuth to ensure that the request has a valid authorization cookie before running your handler.
     - example: authApi.js, /loggedInTest route.
 - If you want to require authorization for a public/ file, then add the route of the file and the required authorization in the publicRouter.js file (See example: authProtectedExample.html).
+
+How to use git:
+- This is assuming you are using git on the command line, but you can use the vscode sidebar if you would like instead of typing the commands. 
+- You start with cloning a repository from an online source or creating a new one, which makes a local copy of the project on your computer.
+- Before making changes, you should use ```git fetch``` to get any new changes that other people have committed.
+- When you make changes on your computer, these changes are only for you, and you can continue to change things until you have something that is in a good state that doesn't break anything else.
+- When you want to upload your changes, you can create a commit. Use the gui on vscode, or follow the command-line instructions below:
+- First, you need to designate which files you want to include in the commit. Use ```git status``` to see what files you've changed, then use ```git add filepath``` to add one file or ```git add -A``` to add all. If you run git status again you will see that your files are now staged to be committed.
+- Once you add the files to the staging area, then you can create a commit by running ```git commit -m "insert commit message here"```. Make sure to include an appropriate commit message.
+- Now, the changes are committed on your local copy of the repository.
+- Lastly, run ```git push``` to upload your changes to the remote repository.
+
+Branches
+- When two people try to create a commit that edits the same lines of a file, this creates a "merge conflict". We will eventually need to resolve these, but it is much easier for each group to develop their features on their own branches, and then once they are ready then we can merge that branch with main.
+- to view the branches, you can go to the github website, and select the dropdown at the top left. You can also view local branches by using ```git branch```.
+- To create a branch, run ```git branch nameOfBranch```.
+- Next, you need to switch to the branch by running ```git checkout nameOfBranch```. If you run ```git status```, you should see that you are on the branch that you switched to.
+- Now when you create commits, they will be committed to the branch you are currently on.
+- If you made changes on one branch and you realize that you wanted to put them on another branch, you can do ```git stash```, then checkout, then ```git stash pop``, and then commit as usual.
+
+Merging
+- To merge your branch with main, start by being on your branch, and then run ```git fetch``` and then ```git merge main```. This will add the changes that were made to main into your branch.
+- Next, go to the github website, branches, and then on your branch click "Create Pull Request".
 
 
 # TODO
