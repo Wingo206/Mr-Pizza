@@ -49,8 +49,8 @@ General Workflow:
 - Create a .js backend file and place this in the lib/ directory.
 - Implement a function that takes (req, res) as the inputs and sends a response inside the body.
 - Add the route to the module exports (follow instructions below).
-- Create a .html frontend page and place this in the public/html/ directory.
-- Create a .js frontend script and place this in the public/scripts/ directory.
+- Create a .html frontend page and place this in the public/ directory.
+- Create a .js frontend script and place this in the public/ directory.
 - Include the frontend script in the html file by using a <script src = "..."> tag.
 - Add frontend code that will send a request to your Api route using fetch when desired (eg: on load, clicking a button)
 - Example workflow: exampleApi.js, example.html, examplePublicScript.js.
@@ -83,3 +83,5 @@ framework:
 - path redirects (low prio)
 
 # Mr Pizza
+pages:
+- 
