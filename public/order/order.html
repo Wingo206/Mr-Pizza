@@ -1,19 +1,39 @@
 <!DOCTYPE html>
 
 <html>
-
+    <style>
+        table, th, td {
+          border:1px solid black;
+        }
+        </style>
 <head>
     <meta charset="UTF-8">
-    <title>Ordder html file</title>
+    <title>Order html file</title>
     <!-- <link rel=stylesheet href="style/style.css"> -->
 </head>
 
 <body>
     <p>Order contents</p>
+    <div id="cartDiv"></div>
+    <table id="cart" style="width:50%">
+        <thead>
+            <tr>
+            <td>Item</td>
+            <td>Quantity</td>
+            <td>Price per Item</td>
+            <td>Total Price</td>
+            </tr>
+        </thead>
+        <tbody>
+        </tbody>
+        </table>
+      </table> 
+
     
     <!-- very important: make sure you have: "/public/scripts/..." 
         instead of: "public/scripts/..."  -->
     <script src="/order/orderPublicScript.js"></script>
+    <button onclick="checkoutButtonOnClick()">Checkout</button>
 </body>
 
 </html>
