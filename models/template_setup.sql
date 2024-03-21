@@ -23,7 +23,7 @@ create table customer_account(cid int primary key auto_increment, username varch
 
 create table admin_account(aid int primary key auto_increment, email varchar(40), password_hash varchar(50));
 
-create table store (store_id int primary key auto_increment, address varchar(40), image_url varchar(1000));
+create table store (store_id int primary key auto_increment, address varchar(40), latitude decimal(20, 15) not null, longitude decimal(20, 15) not null, image_url varchar(1000));
 
 create table employee_account(eid int primary key auto_increment, name varchar(50), employee_type varchar(20), email varchar(50), password_hash varchar(50), works_at int,
 foreign key(works_at) references store(store_id));
@@ -81,8 +81,8 @@ foreign key(mid) references menu_item(mid),
 foreign key(store_id) references store(store_id));
 
 -- TODO
-grant select, insert, update, delete on {{database}}.customer_account to '{{sqlAuthUser}}'@'{{sqlHost}}';
-grant select, insert, update, delete on {{database}}.customer_account to '{{sqlVisitorUser}}'@'{{sqlHost}}';
-grant select, insert, update, delete on {{database}}.customer_account to '{{sqlCustomerUser}}'@'{{sqlHost}}';
-grant select, insert, update, delete on {{database}}.customer_account to '{{sqlEmployeeUser}}'@'{{sqlHost}}';
-grant select, insert, update, delete on {{database}}.customer_account to '{{sqlAdminUser}}'@'{{sqlHost}}';
+grant select, insert, update, delete on {{database}}.* to '{{sqlAuthUser}}'@'{{sqlHost}}';
+grant select, insert, update, delete on {{database}}.* to '{{sqlVisitorUser}}'@'{{sqlHost}}';
+grant select, insert, update, delete on {{database}}.* to '{{sqlCustomerUser}}'@'{{sqlHost}}';
+grant select, insert, update, delete on {{database}}.* to '{{sqlEmployeeUser}}'@'{{sqlHost}}';
+grant select, insert, update, delete on {{database}}.* to '{{sqlAdminUser}}'@'{{sqlHost}}';
