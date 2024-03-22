@@ -108,5 +108,5 @@ framework:
 - path redirects (low prio)
 
 # Mr Pizza
-pages:
-- 
+- Example employee account login: employee1@mrpizza.com, pw: employee1
+- Example admin account login: admin@mrpizza.com, pw: admin

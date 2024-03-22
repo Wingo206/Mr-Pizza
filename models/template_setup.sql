@@ -22,11 +22,13 @@ use {{database}};
 create table customer_account(cid int primary key auto_increment, username varchar(30), default_delivery_address varchar(40), phone_num varchar(15), password_hash varchar(50), email varchar(40), default_credit_card varchar(20));
 
 create table admin_account(aid int primary key auto_increment, email varchar(40), password_hash varchar(50));
+insert into admin_account(email, password_hash) values ('admin@mrpizza.com', 'admin');
 
 create table store (store_id int primary key auto_increment, address varchar(40), latitude decimal(20, 15) not null, longitude decimal(20, 15) not null, image_url varchar(1000));
 
 create table employee_account(eid int primary key auto_increment, name varchar(50), employee_type varchar(20), email varchar(50), password_hash varchar(50), works_at int,
 foreign key(works_at) references store(store_id));
+insert into employee_account(name, email, password_hash) values ('mr pizza', 'employee1@mrpizza.com', 'employee1');
 
 create table help_ticket(tid int auto_increment primary key, asked_by int not null, answered_by int, date_created date, question varchar(200), answer varchar(200), quality_rating boolean, original_tid int, DTSTAMP datetime,
 foreign key(asked_by) references customer_account(cid),
