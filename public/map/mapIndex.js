@@ -1,5 +1,7 @@
 let map;
 
+let selectedStoreId = -1;
+
 async function initMap() {
    const {Map} = await google.maps.importLibrary("maps");
 
@@ -8,7 +10,12 @@ async function initMap() {
       zoom: 15,
       mapId: '5f088c2dddf9c012'
    });
+   map.addListener('click', (event) => {
+      event.stop();
+      updateStoreInfoDisplay(-1);
+   })
 }
+
 window.loadLocations = async () => {
    const {AdvancedMarkerElement} = await google.maps.importLibrary("marker");
 
@@ -25,20 +32,42 @@ window.loadLocations = async () => {
       for (let i = 0; i < storesArr.length; i++) {
          let store = storesArr[i];
 
-         console.log(store)
          let marker = new AdvancedMarkerElement({
             map,
             position: {lat: Number(store.latitude), lng: Number(store.longitude)},
          });
+         marker.addListener("click", () => {
+            map.panTo(marker.position);
+            updateStoreInfoDisplay(store.store_id);
+         });
+
       }
    } else {
       alert('Error.')
    }
-   // const marker = new AdvancedMarkerElement({
-   //    map,
-   //    position: {lat: 40.523421858838276, lng: -74.45823918823967},
-   // });
 }
+
+async function updateStoreInfoDisplay(storeId) {
+   selectedStoreId = storeId;
+   // hide the div if storeId is -1
+   if (storeId == -1) {
+      document.getElementById('storeInfo').hidden = true;
+      return;
+   }
+   // fetch the detailed info and show the div
+   let resp = await fetch('/stores/' + storeId);
+   if (resp.status == 200) {
+      let info = await resp.json();
+      console.log(info)
+      document.getElementById('storeInfo').hidden = false;
+      document.getElementById('storeAddress').innerHTML = info.address;
+      document.getElementById('storeId').innerHTML = 'Store id: ' + info.store_id;
+
+   } else {
+      alert(await resp.text());
+   }
+}
+
 
 initMap();
 
