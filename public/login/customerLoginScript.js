@@ -29,7 +29,7 @@ async function fetchLogin() {
    console.log(resp);
    if (resp.status == 200) {
       // alert('logged in successfully. Redirecting to home page.')
-      window.location.href = '/html/loginSuccess.html'
+      window.location.href = 'loginSuccess.html'
    } else if (resp.status == 401) {
       alert(await resp.text())
    } else {
