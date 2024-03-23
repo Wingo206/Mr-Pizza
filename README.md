@@ -106,6 +106,7 @@ framework:
 - utilities to extract parameters from the path when matched with regex
 - unit testability for loading routes (low prio)
 - path redirects (low prio)
+- Twilio API
 
 # Mr Pizza
 - Example employee account login: employee1@mrpizza.com, pw: employee1
