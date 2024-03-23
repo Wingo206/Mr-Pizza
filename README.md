@@ -110,3 +110,9 @@ framework:
 # Mr Pizza
 - Example employee account login: employee1@mrpizza.com, pw: employee1
 - Example admin account login: admin@mrpizza.com, pw: admin
+
+# Map
+- After cloning the repo, make sure that you are in the map branch
+- Run the commands from "Setup MySQL Database"
+ - Also make sure to run `node .\lib\map\addTestStores.js` to load the test store data to the map
+- Run the server normally and navigate to the map view and then press "Load map locations".
