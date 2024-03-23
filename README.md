@@ -5,12 +5,14 @@ To clone the repository:
 - run "git clone https://github.com/Wingo206/Mr-Pizza.git"
 - input your github credentials
 
-required node modules:
-- jasmine
-- mysql2
-- supertest
-- cookie
-- jsonwebtoken
+Install Required Node Modules:
+- run ```npm ci```
+- This will install the following packages
+    - jasmine
+    - mysql2
+    - supertest
+    - cookie
+    - jsonwebtoken
 
 Setup node environemnt
 - cd into the project directory
