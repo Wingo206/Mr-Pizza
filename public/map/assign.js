@@ -2,6 +2,10 @@ let store_id
 
 window.addEventListener("load", async (event) => {
    console.log("page is fully loaded");
+   refresh();
+});
+
+async function refresh() {
    // fetch which store the currently logged in employee works for
 
    let resp = await fetch('/employeeStoreInfo', {
@@ -14,13 +18,21 @@ window.addEventListener("load", async (event) => {
 
    // fetch the unassigned orders
    store_id = esInfo.store_id;
-   let resp2 = await fetch(`/unassigned/${store_id}`, {
+   resp = await fetch(`/unassigned/${store_id}`, {
       method: 'GET'
    })
-   let unassignedOrders = await resp2.json();
+   let unassignedOrders = await resp.json();
    console.log(unassignedOrders);
    document.getElementById('unassignedOrdersTable').innerHTML = tableFromJSONArray(unassignedOrders)
-});
+
+   // fetch the available drivers
+   resp = await fetch(`/availableDrivers/${store_id}`, {
+      method: 'GET'
+   })
+   let availableDrivers = await resp.json();
+   console.log(availableDrivers);
+   document.getElementById('availableDriversTable').innerHTML = tableFromJSONArray(availableDrivers)
+}
 
 /**
  * generates the contents of a table given an array of json objects
