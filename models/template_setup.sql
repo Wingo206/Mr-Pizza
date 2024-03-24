@@ -87,4 +87,4 @@ grant select, insert, update, delete on {{database}}.* to '{{sqlAuthUser}}'@'{{s
 grant select, insert, update, delete on {{database}}.* to '{{sqlVisitorUser}}'@'{{sqlHost}}';
 grant select, insert, update, delete on {{database}}.* to '{{sqlCustomerUser}}'@'{{sqlHost}}';
 grant select, insert, update, delete on {{database}}.* to '{{sqlEmployeeUser}}'@'{{sqlHost}}';
-grant select, insert, update, delete on {{database}}.* to '{{sqlAdminUser}}'@'{{sqlHost}}';
+grant select, insert, update, delete, alter on {{database}}.* to '{{sqlAdminUser}}'@'{{sqlHost}}';
