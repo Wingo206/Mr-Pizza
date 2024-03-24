@@ -8,7 +8,7 @@
 </head>
 
 <body>
-    <script src="/login/customerLoginScript.js"></script>
+    <script src="/login/empAdminLoginScript.js"></script>
 
     <style type="text/css">
         .fieldset-auto-width {
@@ -21,36 +21,36 @@
     <br>
 
     <fieldset class="fieldset-auto-width">
-        <legend>Customer Register</legend>
-        <label for="registerUsername">Username:</label>
-        <input type="text" id="registerUsername">
+        <legend>Employee Login</legend>
+        <label for="empEmail">Email:</label>
+        <input type="text" id="empEmail">
         <br>
         <br>
 
-        <label for="registerPassword">Password:</label>
-        <input type="text" id="registerPassword">
+        <label for="empPassword">Password:</label>
+        <input type="text" id="empPassword">
         <br>
         <br>
 
-        <button onclick="fetchRegister()">Submit</button>
+        <button onclick="fetchEmployeeLogin()">Submit</button>
     </fieldset>
 
     <br>
     <br>
 
     <fieldset class="fieldset-auto-width">
-        <legend>Customer Login</legend>
-        <label for="loginUsername">Username:</label>
-        <input type="text" id="loginUsername">
+        <legend>Admin Login</legend>
+        <label for="adminEmail">Email:</label>
+        <input type="text" id="adminEmail">
         <br>
         <br>
 
-        <label for="loginPassword">Password:</label>
-        <input type="text" id="loginPassword">
+        <label for="adminPassword">Password:</label>
+        <input type="text" id="adminPassword">
         <br>
         <br>
 
-        <button onclick="fetchLogin()">Submit</button>
+        <button onclick="fetchAdminLogin()">Submit</button>
             <!-- <input type="submit"> -->
         <!-- </form> -->
     </fieldset>
