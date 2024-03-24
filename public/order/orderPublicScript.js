@@ -34,10 +34,6 @@ else {
     alert("Total cost of cart: " + calculateTotalCost(cart));
  }
 
- async function checkoutButtonOnClick() {
-  alert("Total cost of cart: " + calculateTotalCost(cart));
-}
-
 initialize();
 
 // Fetch Checkout Session and retrieve the client secret
