@@ -34,6 +34,17 @@ async function refresh() {
    document.getElementById('availableDriversTable').innerHTML = tableFromJSONArray(availableDrivers)
 }
 
+window.fetchAssign = async () => {
+   let resp = await fetch(`/optimalAssignment/${store_id}`, {
+      method: 'POST',
+      headers: {
+         "Content-type": 'application/json',
+      },
+      body: JSON.stringify({numDrivers: 2, maxPerDriver: 3})
+   })
+   console.log(await resp.json());
+}
+
 /**
  * generates the contents of a table given an array of json objects
  */
