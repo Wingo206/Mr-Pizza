@@ -4,3 +4,4 @@ const cart = [new cartEntry("pizza", 2, 11.99, 11.99 * 2), new cartEntry('wings'
 console.log(cart);
 
 window.addEventListener('load', populateCartTable("#cart tbody", cart));
+//add order to database 
