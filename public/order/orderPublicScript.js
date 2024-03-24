@@ -8,6 +8,14 @@ const cart = [new cartEntry("pizza", 2, 11.99, 11.99 * 2), new cartEntry('wings'
 const stripe = Stripe('pk_test_51OxFUuP5gIWmEZ1PniORZnxF5lBrVHSaZzQeI836MWHDsr2cjqRsiFOoolY5yP9zQse5Sar1T0s0hwpy6QwKbfhX00MVSoX1UQ')
 console.log(cart);
 
+//replace conditionals with checking if user is employee or admin,
+if (true) {
+  document.getElementById("pastOrderButton").removeAttribute("hidden");
+}
+else {
+  document.getElementById("pastOrderButton").setAttribute("hidden", "hidden");
+
+}
 
 // const cartDiv = document.getElementById('cartDiv');
 // const item1 = document.getElementById('item1');
@@ -25,6 +33,10 @@ console.log(cart);
  async function checkoutButtonOnClick() {
     alert("Total cost of cart: " + calculateTotalCost(cart));
  }
+
+ async function checkoutButtonOnClick() {
+  alert("Total cost of cart: " + calculateTotalCost(cart));
+}
 
 initialize();
 

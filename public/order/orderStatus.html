@@ -8,11 +8,11 @@
         </style>
 <head>
     <meta charset="UTF-8">
-    <title>Order html file</title>
+    <title>Order status html</title>
     <!-- <link rel=stylesheet href="style/style.css"> -->
 </head>
 <body>
-    <p>Order contents</p>
+    <p>Order Summary</p>
     <div id="cartDiv"></div>
     <table id="cart" style="width:50%">
         <thead>
@@ -31,17 +31,7 @@
     
     <!-- very important: make sure you have: "/public/scripts/..." 
         instead of: "public/scripts/..."  -->
-    <script type = "module" src="/order/orderPublicScript.js"></script>
-    <button onclick="checkoutButtonOnClick()">Checkout</button>
-    <button  id="pastOrderButton" name="pastOrderButton" onclick="window.location.href='pastOrder.html'">Past Orders</button>
-</body>
-<head>
-  <script src="https://js.stripe.com/v3/"></script>
-</head>
-<body>
-  <div id="checkout">
-    <!-- Checkout will insert the payment form here -->
-  </div>
+    <script type = "module" src="/order/orderStatusScript.js"></script>
 </body>
 
 </html>
