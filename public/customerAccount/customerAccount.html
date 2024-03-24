@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>Customer Account</title>
+    </head>
+
+    <body>
+        <script src="/customerAccount/customerAccountScript.js"></script>
+
+        <style type="text/css">
+            .fieldset-auto-width {
+                display: inline-block;
+            }
+        </style>
+    
+        <fieldset class="field-auto-width">
+            <legend>Customer Information</legend>
+            <label for="deliveryAddress">Delivery Address:</label>
+            <input type="text" id="addDeliveryAddress">
+
+            <br>
+            <br>
+
+            <label for="phoneNumber"> Phone Number:</label>
+            <input type="text" id="addPhoneNumber">
+
+            <br>
+            <br>
+
+            <label for="email">Email:</label>
+            <input type="text" id="addEmail">
+
+            <br>
+            <br>
+
+            <label for="paymentInfo">Payment Method:</label>
+            <input type="text" id="addPaymentMethod">
+
+            <br>
+            <br>
+
+            <button onClick="addAccountInfo()">Enter</button>
+
+        </fieldset>
+    </body>
+</html>

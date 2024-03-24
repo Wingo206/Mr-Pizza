@@ -1,3 +1,6 @@
+const {customerPool, runQuery} = require("../../lib/util/database_util.js");
+
+
 async function fetchRegister() {
    let username = document.getElementById('registerUsername').value;
    let password = document.getElementById('registerPassword').value;
@@ -29,7 +32,11 @@ async function fetchLogin() {
    console.log(resp);
    if (resp.status == 200) {
       // alert('logged in successfully. Redirecting to home page.')
-      window.location.href = '/html/loginSuccess.html'
+      // let query = `SELECT cid FROM customer_account WHERE username = '${username}' AND password = '${password_hash}'`;
+      // let customerCid = await runQuery(customerPool, query);
+      // console.log(customerCid);
+      window.location.href = '../customerAccount/customerAccount.html'
+
    } else if (resp.status == 401) {
       alert(await resp.text())
    } else {
