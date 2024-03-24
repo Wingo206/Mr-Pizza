@@ -11,7 +11,6 @@
     <title>Order html file</title>
     <!-- <link rel=stylesheet href="style/style.css"> -->
 </head>
-
 <body>
     <p>Order contents</p>
     <div id="cartDiv"></div>
@@ -32,8 +31,16 @@
     
     <!-- very important: make sure you have: "/public/scripts/..." 
         instead of: "public/scripts/..."  -->
-    <script src="/order/orderPublicScript.js"></script>
+    <script type = "module" src="/order/orderPublicScript.js"></script>
     <button onclick="checkoutButtonOnClick()">Checkout</button>
+</body>
+<head>
+  <script src="https://js.stripe.com/v3/"></script>
+</head>
+<body>
+  <div id="checkout">
+    <!-- Checkout will insert the payment form here -->
+  </div>
 </body>
 
 </html>

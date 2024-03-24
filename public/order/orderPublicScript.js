@@ -3,16 +3,11 @@
  * an html file is loaded, front-end scripts can be run as well
  */
 
-// make an array or list of somekind where each entry has an item, quantity, price per item, and total per item
-
-function cartEntry(itemName, quantity, pricePerItem, totalCostOfEntry) {
-    this.itemName = itemName;
-    this.quantity = quantity;
-    this.pricePerItem = pricePerItem;
-    this.totalCostOfEntry = totalCostOfEntry;
- }
-
+import {cartEntry, populateCartTable, calculateTotalCost, displayCart} from './orderFunctions.js';
 const cart = [new cartEntry("pizza", 2, 11.99, 11.99 * 2), new cartEntry('wings', 1, 6.99, 6.99)];
+const stripe = Stripe('pk_test_51OxFUuP5gIWmEZ1PniORZnxF5lBrVHSaZzQeI836MWHDsr2cjqRsiFOoolY5yP9zQse5Sar1T0s0hwpy6QwKbfhX00MVSoX1UQ')
+console.log(cart);
+
 
 // const cartDiv = document.getElementById('cartDiv');
 // const item1 = document.getElementById('item1');
@@ -25,41 +20,30 @@ const cart = [new cartEntry("pizza", 2, 11.99, 11.99 * 2), new cartEntry('wings'
 // pricePerItem1.innerHTML = cart[0].pricePerItem;
 // totalPrice1.innerHTML = cart[0].totalCostOfEntry;
 
- function calculateTotalCost(cart) {
-    let total = 0;
-    for (let i = 0; i < cart.length; i++) {
-       total += cart[i].totalCostOfEntry;
-    }
-    return total;
- }
-
- function displayCart(cart) {
-    let showCart = "";
-    for (let i = 0; i < cart.length; i++) {
-       let entry = cart[i];
-       showCart += entry.itemName + " " + entry.quantity + " " + entry.pricePerItem + " " + entry.totalCostOfEntry + "\n";
-    }
-    return showCart;
- }
-
- function populateCartTable() {
-    const tableBody = document.querySelector('#cart tbody');
-
-    tableBody.innerHTML = '';
-
-    cart.forEach(entry => {
-        const row = tableBody.insertRow();
-        row.insertCell().textContent = entry.itemName;
-        row.insertCell().textContent = entry.quantity;
-        row.insertCell().textContent = entry.pricePerItem;
-        row.insertCell().textContent = entry.totalCostOfEntry;
-    });
- }
-
- window.addEventListener('load', populateCartTable);
+ window.addEventListener('load', populateCartTable("#cart tbody", cart));
 
  async function checkoutButtonOnClick() {
     alert("Total cost of cart: " + calculateTotalCost(cart));
  }
 
-console.log("example public script working")
+initialize();
+
+// Fetch Checkout Session and retrieve the client secret
+async function initialize() {
+  const fetchClientSecret = async () => {
+   console.log('lol');
+   const response = await fetch("/order/createCheckoutSession", {
+      method: "POST",
+    });
+    const { client_secret } = await response.json();
+    return client_secret;
+  };
+
+  // Initialize Checkout
+  const checkout = await stripe.initEmbeddedCheckout({
+    fetchClientSecret,
+  });
+
+  // Mount Checkout
+  checkout.mount('#checkout');
+}
