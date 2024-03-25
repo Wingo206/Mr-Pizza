@@ -1,58 +1,32 @@
-const open = document.getElementById('open');
-const modal_container = document.getElementById('menu_item_container');
-const close = document.getElementById('close');
+document.addEventListener("DOMContentLoaded", function() {
+    const menuItemsContainer = document.getElementById("menu-items-container");
+    const modalContainer = document.getElementById('menu_item_container');
 
-open.addEventListener('click', () => {
-    modal_container.classList.add('show');  
+    // Sample menu items array (replace with actual data fetched from the backend)
+    const menuItems = [
+        { mid: 1, price: 10, image_url: "image1.jpg", description: "Description 1" },
+        { mid: 2, price: 15, image_url: "image2.jpg", description: "Description 2" },
+        { mid: 3, price: 20, image_url: "image3.jpg", description: "Description 3" }
+    ];
+
+    menuItems.forEach(item => {
+        const button = document.createElement("button");
+        button.textContent = `Item ${item.mid}: $${item.price}`;
+        button.addEventListener("click", function() {
+            // Handle button click (e.g., display item details)
+            console.log(`Clicked on item ${item.mid}`);
+            // Display the modal container with item details
+            modalContainer.innerHTML = `
+                <h2>Item ${item.mid}</h2>
+                <p>${item.description}</p>
+                <button id="close">Close</button>`;
+            modalContainer.classList.add('show');
+            // Add event listener for the "Close" button
+            const closeButton = document.getElementById("close");
+            closeButton.addEventListener("click", function() {
+                modalContainer.classList.remove('show');
+            });
+        });
+        menuItemsContainer.appendChild(button);
+    });
 });
-
-close.addEventListener('click', () => {
-    modal_container.classList.remove('show');
-});
-
-// async function fetchMenu() {
-//     try {
-//         let resp = await fetch('/menu', {
-//             method: 'GET',
-//             headers: {
-//                 "Content-type": 'application/json',
-//             }
-//         });
-
-//         if (resp.status == 200) {
-//             let menuData = await resp.json();
-//             displayMenu(menuData);
-//         } else if (resp.status == 404) {
-//             throw new Error('Menu not found.');
-//         } else {
-//             throw new Error(`Failed to fetch menu. Status: ${resp.status}`);
-//         }
-//     } catch (error) {
-//         console.error('Error fetching menu:', error.message);
-//     }
-// }
-
-// function displayMenu(menuData) {
-//     const menuContainer = document.getElementById('menu-container');
-
-//     menuData.forEach(item => {
-//         const menuItem = document.createElement('div');
-//         menuItem.classList.add('menu-item');
-
-//         const itemName = document.createElement('h3');
-//         itemName.textContent = item.description; // Assuming description is the name of the item
-
-//         const itemPrice = document.createElement('p');
-//         itemPrice.textContent = `$${item.price}`;
-
-//         const itemImage = document.createElement('img');
-//         itemImage.src = item.image_url; // Assuming 'image_url' is the property containing the URL of the image
-
-//         menuItem.appendChild(itemImage); // Append the image element
-//         menuItem.appendChild(itemName);
-//         menuItem.appendChild(itemPrice);
-//         menuContainer.appendChild(menuItem);
-//     });
-// }
-
-// fetchMenu();
