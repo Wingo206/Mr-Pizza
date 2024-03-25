@@ -2,7 +2,7 @@ use mrpizza;
 
 INSERT INTO store (store_id, address, image_url)
 VALUES
-('0','340 Ryders Ln, Milltown, NJ 08850','https://cdn.iconscout.com/icon/premium/png-256-thumb/pizza-shop-3-1104611.png?f=webp');
+('1','340 Ryders Ln, Milltown, NJ 08850','https://cdn.iconscout.com/icon/premium/png-256-thumb/pizza-shop-3-1104611.png?f=webp');
 
 INSERT INTO menu_item (mid, price, image_url, description)
 VALUES
@@ -12,9 +12,9 @@ VALUES
 
 INSERT INTO item_availability (mid, store_id, available)
 VALUES
-('1','0','1'),
-('2','0','0'),
-('3','0','1');
+('1','1','1'),
+('2','1','0'),
+('3','1','1');
 
 INSERT INTO topping (topping_name, mid, price)
 VALUES
@@ -26,8 +26,8 @@ VALUES
 
 INSERT INTO topping_availability (topping_name, mid, store_id, available)
 VALUES
-('Pepperoni', '1','0','1'),
-('Pineapple', '2','0','1'),
-('Watermelon', '3','0','1'),
-('Ice-Cream', '4','0','0'),
-('French-Fry', '5','0','1');
+('Pepperoni', '4','1','1'),
+('Pineapple', '5','1','1'),
+('Watermelon', '6','1','1'),
+('Ice-Cream', '7','1','0'),
+('French-Fry', '8','1','1');
