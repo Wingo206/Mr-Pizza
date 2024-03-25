@@ -13,9 +13,13 @@ document.addEventListener("DOMContentLoaded", function() {
                     'Content-Type': 'application/json'
                 }
             });
-            const menuItems = await response.json();
-            console.log("Menu items:", menuItems);
-            displayMenuItems(menuItems);
+            if (response.ok) {
+                const menuItems = await response.json();
+                console.log("Menu items:", menuItems);
+                displayMenuItems(menuItems);
+            } else {
+                console.error("Error fetching menu items:", response.statusText);
+            }
         } catch (error) {
             console.error("Error fetching menu items:", error);
         }

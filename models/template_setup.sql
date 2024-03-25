@@ -84,7 +84,7 @@ foreign key(store_id) references store(store_id));
 
 -- TODO
 grant select, insert, update, delete on {{database}}.* to '{{sqlAuthUser}}'@'{{sqlHost}}';
-grant select, insert, update, delete on {{database}}.customer_account to '{{sqlVisitorUser}}'@'{{sqlHost}}';
-grant select, insert, update, delete on {{database}}.customer_account to '{{sqlCustomerUser}}'@'{{sqlHost}}';
-grant select, insert, update, delete on {{database}}.customer_account to '{{sqlEmployeeUser}}'@'{{sqlHost}}';
-grant select, insert, update, delete on {{database}}.customer_account to '{{sqlAdminUser}}'@'{{sqlHost}}';
+grant select, insert, update, delete on {{database}}.* to '{{sqlVisitorUser}}'@'{{sqlHost}}';
+grant select, insert, update, delete on {{database}}.* to '{{sqlCustomerUser}}'@'{{sqlHost}}';
+grant select, insert, update, delete on {{database}}.* to '{{sqlEmployeeUser}}'@'{{sqlHost}}';
+grant select, insert, update, delete, alter on {{database}}.* to '{{sqlAdminUser}}'@'{{sqlHost}}';
