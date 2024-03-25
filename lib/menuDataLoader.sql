@@ -19,15 +19,15 @@ VALUES
 INSERT INTO topping (topping_name, mid, price)
 VALUES
 ('Pepperoni', '1','0.25'),
-('Pineapple', '2','0.25'),
-('Watermelon', '3','0.25'),
-('Ice-Cream', '4','0.25'),
-('French-Fry', '5','0.25');
+('Pineapple', '1','0.25'),
+('Watermelon', '1','0.25'),
+('Ice-Cream', '1','0.25'),
+('French-Fry', '1','0.25');
 
 INSERT INTO topping_availability (topping_name, mid, store_id, available)
 VALUES
-('Pepperoni', '4','1','1'),
-('Pineapple', '5','1','1'),
-('Watermelon', '6','1','1'),
-('Ice-Cream', '7','1','0'),
-('French-Fry', '8','1','1');
+('Pepperoni', '1','1','1'),
+('Pineapple', '1','1','1'),
+('Watermelon', '1','1','1'),
+('Ice-Cream', '1','1','0'),
+('French-Fry', '1','1','1');
