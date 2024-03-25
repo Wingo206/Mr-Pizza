@@ -15,6 +15,7 @@
     "cookie": "^0.6.0",
     "jsonwebtoken": "^9.0.2",
     "mysql2": "^3.9.2",
+    "nodemailer": "^6.9.13",
     "stripe": "^14.22.0",
     "supertest": "^6.3.4"
   }

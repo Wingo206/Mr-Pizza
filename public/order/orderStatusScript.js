@@ -5,3 +5,17 @@ console.log(cart);
 
 window.addEventListener('load', populateCartTable("#cart tbody", cart));
 //add order to database 
+
+
+// window.addEventListener('load', populateCartTable("#cart tbody", cart));
+// //there would be calls to database here instead
+await initialize();
+
+// Fetch SQL datbase order items
+async function initialize() {
+     console.log('lol');
+     let response = await fetch("/order/emailOrderConf", {
+        method: "GET",
+      });
+     console.log(response);
+}
