@@ -4,9 +4,9 @@ document.addEventListener("DOMContentLoaded", function() {
 
     // Sample menu items array (replace with actual data fetched from the backend)
     const menuItems = [
-        { mid: 1, price: 10, image_url: "image1.jpg", description: "Description 1" },
-        { mid: 2, price: 15, image_url: "image2.jpg", description: "Description 2" },
-        { mid: 3, price: 20, image_url: "image3.jpg", description: "Description 3" }
+        { mid: 1, price: 7.99, image_url: "https://t4.ftcdn.net/jpg/02/11/55/17/360_F_211551718_Ol7eOQYNDK5S8pbEHMkagk9kbdYTJ2iX.jpg", description: "Pizza" },
+        { mid: 2, price: 7.99, image_url: "https://t4.ftcdn.net/jpg/01/38/44/27/360_F_138442706_pFbCaNfUlo0pDbnVEq7tId7WWT8E0o8f.jpg", description: "Antipasta" },
+        { mid: 3, price: 2.00, image_url: "https://cdn-icons-png.freepik.com/256/8765/8765032.png", description: "Soda" }
     ];
 
     menuItems.forEach(item => {
@@ -17,9 +17,12 @@ document.addEventListener("DOMContentLoaded", function() {
             console.log(`Clicked on item ${item.mid}`);
             // Display the modal container with item details
             modalContainer.innerHTML = `
-                <h2>Item ${item.mid}</h2>
-                <p>${item.description}</p>
-                <button id="close">Close</button>`;
+                <div class="modal-content">
+                    <h2>${item.description}</h2>
+                    <img src="${item.image_url}" alt="${item.description}">
+                    <p>Price: $${item.price}</p>
+                    <button id="close">Close</button>
+                </div>`;
             modalContainer.classList.add('show');
             // Add event listener for the "Close" button
             const closeButton = document.getElementById("close");
