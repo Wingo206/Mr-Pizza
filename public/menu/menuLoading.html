@@ -1,30 +1,26 @@
 <!DOCTYPE html>
-<html lang = "en">
-
+<html lang="en">
 <head>
-    <meta charset = "UTF-8">
-    <meta name = "viewpoint" content = "width=device-width, initial-scale=1.0">
-    <link rel = "stylesheet" href = "menuLoading.css">
-    <title>Mr Pizza</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="menuLoading.css">
+    <title>Mr Pizza's Menu</title>
 </head>
-
 <body>
-    <h1>Welcome to Mr. Pizza's Menu!</h1>
-    <p>Order an item. Now.</p>
-
-    <button id = "open">
-        Pizza
-    </button>
-
-    <div class = "menu-item-container" id = "menu_item_container">
-        <div class = "menu-item">
-            <h1>Pepperoni Pizza</h1>
-            <p>
-                This pizza costs $100. You got trolled.
-            </p>
-            <button id = "close">Close</button>
-        </div>
+    <div class="menu-header">
+        <h1>Welcome to Mr. Pizza's Menu</h1>
+        <p>Order now!</p>
     </div>
-    <script src = "menuLoading.js"></script>
+
+    <div id="menu-items-container" class="menu-items">
+        <!-- Menu items will be added here dynamically -->
+    </div>
+
+    <div class="menu-item-container" id="menu_item_container">
+        <!-- This is the container for displaying menu item details -->
+        <!-- We'll add the content dynamically when a button is clicked -->
+    </div>
+
+    <script src="menuLoading.js"></script>
 </body>
 </html>
