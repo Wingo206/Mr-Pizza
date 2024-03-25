@@ -3,11 +3,10 @@
 <html>
     <head>
         <meta charset="UTF-8">
-        <title>Customer Account</title>
+        <title>Edit Customer Account Information</title>
     </head>
 
     <body>
-        <script src="/customerAccount/customerAccountScript.js"></script>
 
         <style type="text/css">
             .fieldset-auto-width {
@@ -16,7 +15,7 @@
         </style>
     
         <fieldset class="field-auto-width">
-            <legend>Customer Information</legend>
+            <legend>Customer Preferences</legend>
             <label for="deliveryAddress">Delivery Address:</label>
             <input type="text" id="addDeliveryAddress">
 
@@ -41,8 +40,11 @@
             <br>
             <br>
 
-            <button onClick="addAccountInfo()">Enter</button>
+            <button onclick="addAccountInfo()">Submit</button>
 
         </fieldset>
+        
+        <script src="/customerAccount/customerAccountScript.js"></script>
+
     </body>
 </html>

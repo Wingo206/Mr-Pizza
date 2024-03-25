@@ -4,3 +4,5 @@
  */
 
 console.log("example public script working")
+
+window.location.href = 'authProtectedExample.html';
