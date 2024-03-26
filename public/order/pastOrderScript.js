@@ -2,6 +2,7 @@
 import {cartEntry, populateCartTable, calculateTotalCost, displayCart} from './orderFunctions.js';
 const cart = [new cartEntry("pizza", 2, 11.99, 11.99 * 2), new cartEntry('wings', 1, 6.99, 6.99)];
 console.log(cart);
+let statusUpdated = new Array();
 
 // window.addEventListener('load', populateCartTable("#cart tbody", cart));
 // //there would be calls to database here instead
@@ -59,12 +60,23 @@ function displayOrders(query, orders) {
   const tableBody = document.querySelector(query); 
 
   tableBody.innerHTML = '';
-
+  let orderStatusCell;
   for (let i = 0; i < orders.length; i++) {
+       let j = -1;
        const row = tableBody.insertRow();
        const order = orders[i];
        row.insertCell().textContent = order.order_id;
-       row.insertCell().textContent = order.status;
+        const statusCell = row.insertCell();
+        statusCell.textContent = order.status;
+        statusCell.setAttribute('contenteditable', 'true');
+        statusCell.addEventListener('blur', function() {
+            const newStatus = this.textContent.trim();
+            if (newStatus !== order.status) {
+                const changeMessage = "Changed status of " + order.item_description + " to " + newStatus;
+                statusUpdated.push(changeMessage);
+                order.status = newStatus;
+            }
+        });
        row.insertCell().textContent = order.date_created;
        row.insertCell().textContent = order.total_price.toFixed(2);
        row.insertCell().textContent = order.item_num;
@@ -89,5 +101,8 @@ const button1 = document.getElementById("changeStatusButton");
 button1.addEventListener("click", function() {
     //prolly have to make a call to the backend and call path back to this same page, just so we can quickly connect to the database and update the status of the order in the table
     //vineal do this pls
-    alert("Changed Status");
+    alert("Order Status Changed!");
+    console.log(statusUpdated);
+    statusUpdated = [];
+
 });
