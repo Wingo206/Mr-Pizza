@@ -1,0 +1,107 @@
+@import url('https://fonts.googleapis.com/css?family=Montserrat|Open+Sans|Roboto');
+
+/* Reset default browser styles */
+* {
+  margin: 0;
+  padding: 0;
+  outline: 0;
+  box-sizing: border-box;
+}
+
+body { 
+  background: linear-gradient(90deg, rgba(2,0,36,1) 0%, rgba(255,255,255,1) 0%, rgba(255,71,77,1) 100%);
+  font-family: 'Roboto', sans-serif;
+}
+
+/* Styling the "Order contents" text to add more space above the table */
+p {
+  text-align: center;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 3.5em;
+  font-weight: bold;
+  text-shadow: 5px 5px 5px rgba(0,0,0,0.5);
+  padding-top: 20px;
+  padding-bottom: 40px; /* Increased padding to add space above the table */
+  color: #FFFFFF;
+}
+
+/* Container adjustments */
+.container {
+  display: flex;
+  flex-direction: column; /* Changed to stack elements vertically */
+  align-items: center; /* Center aligns children */
+  padding: 20px;
+}
+
+.table-container {
+  width: 100%; /* Full container width, adjust as needed */
+}
+
+/* Table styling */
+table {
+  width: 50%; /* Table width to occupy half of the container */
+  border-collapse: collapse;
+  box-shadow: 0 2px 15px rgba(64,64,64,.7);
+  border-radius: 12px 12px 0 0;
+  overflow: hidden;
+  margin-bottom: 20px; /* Space between table and buttons */
+  font-weight: bold;
+}
+
+td, th {
+  padding: 15px 20px;
+  text-align: center;
+}
+
+th {
+  background-color: #ba68c8;
+  color: #fafafa;
+  font-family: 'Open Sans', Sans-serif;
+  font-weight: 300;
+  text-transform: uppercase;
+}
+
+tr {
+  background-color: #fafafa;
+  font-family: 'Montserrat', sans-serif;
+}
+
+tr:nth-child(even) {
+  background-color: #eeeeee;
+}
+
+/* Adjustments for buttons to be side by side */
+.order-buttons {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start; /* Aligns buttons to the left */
+    width: 100%; /* Makes the button container match the table width */
+    margin-top: 20px; /* Adds space between the table and the first button */
+  }
+
+/* Button styling to match previous setup */
+.order-buttons button {
+    font-family: 'Montserrat', sans-serif; /* Ensuring font family consistency */
+    background-color: #ffffff; /* Background color similar to the table header */
+    color: #000000; /* Text color for readability */
+    padding: 15px 20px; /* Padding to make buttons larger */
+    margin-top: 10px; /* Space between buttons when stacked */
+    border: none;
+    border-radius: 4px; /* Rounded corners for aesthetic */
+    box-shadow: 0 2px 5px rgba(0,0,0,0.2); /* Shadow for depth */
+    text-transform: uppercase; /* Stylistic choice for text */
+    cursor: pointer;
+    transition: background-color 0.3s; /* Smooth transition for hover effect */
+    display: block; /* Ensures buttons are stacked */
+    width: auto; /* Adjusts button width to content */
+    font-weight: bold; /* Makes the text thicker */
+    text-align: center; /* Centers the text within the button */
+  }
+  
+  .order-buttons button:hover {
+    background-color: #eec4ff; /* Lighter shade for hover effect */
+  }
+  
+
+
+  

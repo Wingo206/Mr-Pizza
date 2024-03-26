@@ -1,6 +1,6 @@
+<html>
 <!DOCTYPE html>
 
-<html>
     <style>
         table, th, td {
           border:1px solid black;
@@ -9,32 +9,48 @@
 <head>
     <meta charset="UTF-8">
     <title>Order html file</title>
-      <link rel="stylesheet" href="styles.css">
-    <!-- <link rel=stylesheet href="style/style.css"> -->
+    <link rel="stylesheet" href="Style.css"> 
 </head>
 <body>
     <p>Order contents</p>
-    <div id="cartDiv"></div>
-    <table id="cart" style="width:50%">
-        <thead>
-            <tr>
-            <td>Item</td>
-            <td>Quantity</td>
-            <td>Price per Item</td>
-            <td>Total Price</td>
-            </tr>
-        </thead>
-        <tbody>
-        </tbody>
-        </table>
-      </table> 
+    <!-- Wrapping table and buttons in a container for flex layout -->
+    <div class="container">
+      <!-- Table container to make it half of the page and on the left -->
+      <div class="table-container">
+          <table id="cart" style="width:100%">
+              <thead>
+                  <tr>
+                      <td>Item</td>
+                      <td>Quantity</td>
+                      <td>Price per Item</td>
+                      <td>Total Price</td>
+                  </tr>
+              </thead>
+              <tbody>
+              <!-- Table body content -->
+              </tbody>
+          </table>
+          <div class="order-buttons">
+            <button  id="checkoutButton" name="checkoutButton">Checkout</button>
+            <button  id="pastOrderButton" name="pastOrderButton" onclick="window.location.href='pastOrder.html'">Past Orders</button>
+          </div>
+      </div>
 
-    
     <!-- very important: make sure you have: "/public/scripts/..." 
         instead of: "public/scripts/..."  -->
+        <!--Right side of the page-->
+        <div class="right-side">
+          <div class="speech-bubble">
+            <!-- Update the src attribute to the path of your speech bubble GIF -->
+            <img src="https://i.pixelspeechbubble.com/a/WiZvjLUC/pixel-speech-bubble.gif" alt="", style = "margin-right:80px; width:165% ; height: 43%; ; " />
+          </div>
+        </div>
+          <div class="image-container">
+            <!-- The src attribute should point to the location of your GIF image -->
+            <img src="https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExeG92cDc5anh2eDV6cGM1bnR4Z3E3bWtyOHlxNmh5dWJxb2k1OHpnNCZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9cw/lmEkeRtZAj59tWYSqF/giphy.gif" alt="" style="margin-left: 40px; width: 75%; height: 100%;"/>
+          </div>
+        </div>
     <script type = "module" src="/order/orderPublicScript.js"></script>
-    <button  id="checkoutButton" name="checkoutButton">Checkout</button>
-    <button  id="pastOrderButton" name="pastOrderButton" onclick="window.location.href='pastOrder.html'">Past Orders</button>
 </body>
 <head>
   <script src="https://js.stripe.com/v3/"></script>
