@@ -25,8 +25,7 @@ document.addEventListener("DOMContentLoaded", function() {
         menuItemsContainer.innerHTML = ''; // Clear previous menu items
         menuItems.forEach(item => {
             const button = document.createElement("button");
-            button.textContent = `${item.description}: $${item.price}`;
-            button.style.backgroundImage = `url('${item.image}')`;
+            button.textContent = item.description;
             button.addEventListener("click", function() {
                 // Handle button click (e.g., display item details)
                 console.log(`Clicked on item ${item.mid}`);
