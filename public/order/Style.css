@@ -1,0 +1,135 @@
+@import url('https://fonts.googleapis.com/css?family=Montserrat|Open+Sans|Roboto');
+
+/* Reset default browser styles */
+* {
+  margin: 0;
+  padding: 0;
+  outline: 0;
+  box-sizing: border-box; /* Ensures padding does not affect the total width or height */
+}
+
+body { 
+    background: linear-gradient(90deg, rgba(2,0,36,1) 0%, rgba(255,255,255,1) 0%, rgba(255,71,77,1) 100%);
+    font-family: 'Roboto', sans-serif; /* Apply a default font for the body */
+}
+
+
+/* Styling the "Order contents" text */
+p {
+    text-align: center;
+    font-family: 'FLIX', sans-serif; /* Makes font consistent with the table */
+    font-size: 3.5em; /* Adjust size as needed */
+    font-weight: bold; /* Makes the text thicker */
+    text-shadow: 5px 5px 5px rgba(0,0,0,0.5); /* Gives the text a shadow */
+    padding-top: 20px; /* Add padding to space out from the top of the page */
+    color: #FFFFFF; /* Optional: Change text color if needed for better visibility */
+  }
+
+/* Flex container for side-by-side layout of table and buttons */
+.container {
+    display: flex;
+    justify-content: space-between;
+    padding: 20px;
+  }
+  
+  /* Container for the table to take up half of the width */
+  .table-container {
+    width: 50%;
+  }
+  
+  /* Table styling */
+  table {
+    width: 100%; /* Full width of its container */
+    border-collapse: collapse;
+    box-shadow: 0 2px 15px rgba(64,64,64,.7);
+    border-radius: 12px 12px 0 0;
+    overflow: hidden;
+    font-weight: bold;
+  }
+  
+  td, th {
+    padding: 15px 20px;
+    text-align: center;
+  }
+  
+  th {
+    background-color: #ba68c8;
+    color: #fafafa;
+    font-family: 'Open Sans', Sans-serif;
+    font-weight: 300;
+    text-transform: uppercase;
+  }
+  
+  tr {
+    background-color: #fafafa;
+    font-family: 'Montserrat', sans-serif;
+  }
+  
+  tr:nth-child(even) {
+    background-color: #eeeeee;
+  }
+
+  .order-buttons button {
+    font-family: 'Montserrat', sans-serif; /* Matching the table's font family */
+    background-color: #ffffff; /* Matching the table header background color */
+    color: #000000; /* Matching the table header font color */
+    padding: 20px 20px; /* Similar padding to table cells for a uniform look */
+    margin-top: 5px; /* Space between buttons, adjust as needed */
+    border: none;
+    border-radius: 4px; /* Similar border-radius to table for consistent appearance */
+    box-shadow: 0 2px 5px rgba(0,0,0,0.2); /* Optional: Adds depth like the table's box-shadow */
+    text-transform: uppercase; /* If the table headers are uppercase */
+    cursor: pointer;
+    transition: background-color 0.3s; /* For a smooth hover effect */
+    text-align: center; /* Ensures text is centered like in table cells */
+    display: block; /* Ensures buttons stack on top of each other */
+    width: 100%; /* Adjust width as necessary, or set to auto for content-based width */
+    height: 200%
+  }
+  
+  /* Hover effect for buttons to slightly change background color */
+  .order-buttons button:hover {
+    background-color: #eec4ff; /* A lighter or darker shade for the hover state */
+  }
+
+  .order-buttons {
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* Center buttons horizontally */
+    width:100%
+  }
+  
+  .order-buttons button {
+    margin-top: 15px; /* Space between the buttons */
+    /* Additional button styles (font, padding, border, etc.) go here */
+  }
+  
+  .container {
+    display: flex;
+    justify-content: space-between;
+  }
+  
+  .table-container, .right-side {
+    flex: 1;
+  }
+  
+  /* Adjust the table-container to not take full width if necessary */
+  .table-container {
+    max-width: 50%; /* Adjust based on your layout needs */
+  }
+  
+  .right-side {
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* Center-aligns the children */
+    max-width: 50%; /* Adjust based on your layout needs */
+  }
+  
+  .order-buttons {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  
+
+  
