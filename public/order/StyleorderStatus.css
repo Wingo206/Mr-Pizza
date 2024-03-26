@@ -102,8 +102,8 @@ tr:nth-child(even) {
 }
 
 .right-side-image img {
-  max-width: 80%; /* Corrected to ensure the image fits within its container */
-  height: 80%;
+  max-width: 120%; /* Corrected to ensure the image fits within its container */
+  height: 30%;
 }
 
   
