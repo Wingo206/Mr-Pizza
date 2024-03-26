@@ -1,66 +1,11 @@
-// /**
-//  * Interesting example of using the Directions API with a panel to display the route.
-//  * https://developers.google.com/maps/documentation/javascript/examples/directions-complex
-//  */
-
-// /**
-//  * @license
-//  * Copyright 2019 Google LLC. All Rights Reserved.
-//  * SPDX-License-Identifier: Apache-2.0
-//  */
-// // [START maps_directions_panel]
-// function initMap() {
-//     const directionsRenderer = new google.maps.DirectionsRenderer();
-//     const directionsService = new google.maps.DirectionsService();
-//     const map = new google.maps.Map(document.getElementById("map"), {
-//       zoom: 7,
-//       center: { lat: 41.85, lng: -87.65 },
-//       disableDefaultUI: true,
-//       mapId: '5f088c2dddf9c012',
-//     });
-  
-//     directionsRenderer.setMap(map);
-//     directionsRenderer.setPanel(document.getElementById("sidebar"));
-  
-//     const control = document.getElementById("floating-panel");
-  
-//     map.controls[google.maps.ControlPosition.TOP_CENTER].push(control);
-  
-//     const onChangeHandler = function () {
-//       calculateAndDisplayRoute(directionsService, directionsRenderer);
-//     };
-  
-//     document.getElementById("start").addEventListener("change", onChangeHandler);
-//     document.getElementById("end").addEventListener("change", onChangeHandler);
-//   }
-  
-//   function calculateAndDisplayRoute(directionsService, directionsRenderer) {
-//     const start = document.getElementById("start").value;
-//     const end = document.getElementById("end").value;
-  
-//     directionsService
-//       .route({
-//         origin: start,
-//         destination: end,
-//         travelMode: google.maps.TravelMode.DRIVING,
-//       })
-//       .then((response) => {
-//         directionsRenderer.setDirections(response);
-//       })
-//       .catch((e) => window.alert("Directions request failed due to " + status));
-//   }
-  
-//   window.initMap = initMap;
-//   // [END maps_directions_panel]
-
 let map;
 let destLat = 40.52362753497832;
 let destLng = -74.43692635431962;
 let srcLat = 40.523421858838276;
 let srcLng = -74.45823918823967;
 
-let eId = -1;
-let storeId = -1;
+// let eId = -1;
+// let storeId = -1;
 // let currLat;
 // let currLng;
 
@@ -88,9 +33,12 @@ async function initMap() {
     // new AutocompleteDirectionsHandler(map);
 }
 
-async function fetchOrder() {
-  let resp = await fetch(`/directions/order/${storeId}/${eId}`, {
-      method: 'GET'
+async function fetchAssignedOrder() {
+  let resp = await fetch(`/directions/assignedOrder/${eid}`, {
+      method: 'POST',
+      headers: {
+        'Content-type': 'application/json'
+      },
   })
   console.log(resp);
   if (resp.status == 200) {
@@ -226,7 +174,7 @@ window.confirmDone = async () => {
  * fetches the assigned orders for the currently logged in driver,
  * then fetches the route to display from the list of orders.
  */
-async function displayRoute() {
+async function displayRoute(waypoints) {
     let resp = await fetch(`/directions/waypoints/${storeId}`, {
         method: 'GET',
         headers: {
