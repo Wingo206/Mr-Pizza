@@ -31,7 +31,7 @@ async function fetchLogin() {
    })
    console.log(resp);
    if (resp.status == 200) {
-      window.location.href = "../customerAccount/customerAccount.html";
+      window.location.href = "../customerAccount/customerAccountDisplay.html";
       // window.location.href = '../customerAccount/customerAccount.html'
       // window.location.href = 'loginSuccess.html';
    } else if (resp.status == 401) {

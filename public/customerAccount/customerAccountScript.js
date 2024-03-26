@@ -1,20 +1,26 @@
-const {customerPool, runQuery} = require("../../lib/util/database_util.js");
+// let cid;
 
-let cid;
+// window.addEventListener("load", async (event) => {
+//     console.log("page is fully loaded");
+//     refresh();
+//  });
 
-window.addEventListener("load", async (event) => {
-    console.log("page is fully loaded");
-    refresh();
- });
+//  async function refresh(){
+//     // let resp = await fetch('/customerInfo', {
+//     //     method: 'GET'
+//     // })
+//     // let caInfo = await resp.json();
+//     // console.log(caInfo);
+//     // cid = caInfo.cid;
 
- async function refresh(){
-    let resp = await fetch('/custumerInfo', {
-        method: 'GET'
-    })
-    let caInfo = await resp.json();
-    console.log(caInfo);
-    cid = caInfo.cid;
- }
+//     // resp = await fetch('/getCustomerInfo', {
+//     //     method: 'GET'
+//     // })
+//     // let caAccountInfo = await resp.json();
+//     // document.getElementById('customerInfoTable').innerHTML = tableFromJSONArray(caAccountInfo);
+//  }
+
+
 
 async function addAccountInfo(){
     let default_delivery_address = document.getElementById('addDeliveryAddress').value;
@@ -34,6 +40,10 @@ async function addAccountInfo(){
         alert('Updated succesfully');
     }
     else {
-        alert('Error');
+        alert('No information to update');
     }
+}
+
+async function fetchCustomerInfo(){
+    window.location.href = "customerAccount.html";
 }
