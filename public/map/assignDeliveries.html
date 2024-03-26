@@ -1,0 +1,44 @@
+<html>
+
+<head>
+    <title>Assign Deliveries to Drivers Dashboard</title>
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
+
+    <link rel="stylesheet" type="text/css" href="./mapStyle.css" />
+    <script type="module" src="./assign.js"></script>
+    <style type="text/css">
+        .fieldset-auto-width {
+            display: inline-block;
+        }
+
+    </style>
+</head>
+
+<body>
+    <h1>Assign Deliveries to Drivers</h1>
+    <a href="/home/home.html">Back to Home</a>
+    <br>
+    <br>
+    <p id="userInfo"></p>
+    <h3>Unassigned orders</h3>
+    <table border='1' id="unassignedOrdersTable"></table>
+    <br>
+    <h3>Available Drivers</h3>
+    <table border='1' id="availableDriversTable"></table>
+    <br>
+    <fieldset class="fieldset-auto-width">
+        <legend>Assign deliveries</legend>
+        <label for="maxPerDriver">Max Orders Per Driver: </label>
+        <input type="number" value="3" id="maxPerDriver">
+        <br>
+
+        <p id="currentlyAssigning"></p>
+
+        <button onclick="fetchAssign()">Assign orders</button>
+    </fieldset>
+
+
+    <script></script>
+</body>
+
+</html>

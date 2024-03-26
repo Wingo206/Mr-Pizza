@@ -9,6 +9,7 @@ required node modules:
 - jasmine
 - mysql2
 - supertest
+- superagent
 - cookie
 - jsonwebtoken
 

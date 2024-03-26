@@ -34,7 +34,11 @@ window.loadLocations = async () => {
 
          let marker = new AdvancedMarkerElement({
             map,
+<<<<<<< HEAD
             position: { lat: Number(store.latitude), lng: Number(store.longitude) },
+=======
+            position: {lat: Number(store.latlng.x), lng: Number(store.latlng.y)},
+>>>>>>> 1ed2e811d2ecef897f8ef8d97c3b24b3c1a164a5
          });
          marker.addListener("click", () => {
             map.panTo(marker.position);
