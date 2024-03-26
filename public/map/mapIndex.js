@@ -1,6 +1,7 @@
 let map;
 
 let selectedStoreId = -1;
+let markers = [];
 
 async function initMap() {
    const { Map } = await google.maps.importLibrary("maps");
@@ -29,21 +30,21 @@ window.loadLocations = async () => {
       console.log('success');
       let storesArr = await resp.json();
       console.log(storesArr);
+      for (let i = 0; i < markers.length; i++) {
+         markers[i].setMap(null);
+      }
       for (let i = 0; i < storesArr.length; i++) {
          let store = storesArr[i];
 
          let marker = new AdvancedMarkerElement({
             map,
-<<<<<<< HEAD
-            position: { lat: Number(store.latitude), lng: Number(store.longitude) },
-=======
             position: {lat: Number(store.latlng.x), lng: Number(store.latlng.y)},
->>>>>>> 1ed2e811d2ecef897f8ef8d97c3b24b3c1a164a5
          });
          marker.addListener("click", () => {
             map.panTo(marker.position);
             updateStoreInfoDisplay(store.store_id);
          });
+         markers.push(marker);
 
       }
    } else {
@@ -66,6 +67,10 @@ async function updateStoreInfoDisplay(storeId) {
       document.getElementById('storeInfo').className = "show";
       document.getElementById('storeAddress').innerHTML = info.address;
       document.getElementById('storeId').innerHTML = 'Store id: ' + info.store_id;
+      // update info for the edit form
+      document.getElementById('editStoreAddress').value = info.address;
+      document.getElementById('editStoreLatitude').value = info.latlng.x;
+      document.getElementById('editStoreLongitude').value = info.latlng.y;
 
    } else {
       alert(await resp.text());
@@ -125,14 +130,42 @@ window.addStore = async () => {
 
    if (resp.status == 200) {
       console.log(await resp.text())
-      alert('New Store Added.')
+      // alert('New Store Added.')
       // refresh the map
-      window.loadLocations();
+      await window.loadLocations();
    } else {
       alert(await resp.text());
    }
 }
 
+window.editStore = async () => {
+
+   let body = {
+      address: document.getElementById('editStoreAddress').value,
+      latitude: document.getElementById('editStoreLatitude').value,
+      longitude: document.getElementById('editStoreLongitude').value,
+   }
+
+   let resp = await fetch(`/stores/${selectedStoreId}/edit`, 
+      {
+         method: 'POST',
+         headers: {
+            "Content-type": 'application/json',
+         },
+         body: JSON.stringify(body)
+      }
+   )
+
+   if (resp.status == 200) {
+      console.log(await resp.text())
+      // alert('Store info updated')
+      // refresh the map
+      await window.loadLocations();
+      await updateStoreInfoDisplay(selectedStoreId);
+   } else {
+      alert(await resp.text());
+   }
+}
 
 
 initMap();
