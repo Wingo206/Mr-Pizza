@@ -35,6 +35,10 @@ document.addEventListener("DOMContentLoaded", function() {
                         <h2>${item.description}</h2>
                         <img src="${item.image}" alt="${item.description}">
                         <p>Price: $${item.price}</p>
+                        <p>Toppings:</p>
+                        <ul>
+                            ${item.toppings.map(topping => `<li>${topping.topping_name}: $${topping.price}</li>`).join('')}
+                        </ul>
                         <button id="close">Close</button>
                     </div>`;
                 modalContainer.classList.add('show');
@@ -47,4 +51,5 @@ document.addEventListener("DOMContentLoaded", function() {
             menuItemsContainer.appendChild(button);
         });
     }
+    
 });
