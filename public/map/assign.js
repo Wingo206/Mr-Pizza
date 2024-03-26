@@ -1,4 +1,6 @@
-let store_id
+let store_id;
+let checkboxIds;
+let eidsToAssign = [];
 
 window.addEventListener("load", async (event) => {
    console.log("page is fully loaded");
@@ -31,18 +33,46 @@ async function refresh() {
    })
    let availableDrivers = await resp.json();
    console.log(availableDrivers);
+   // kind of a hack: add in a checkbox for each one
+   checkboxIds = [];
+   for (let i = 0; i < availableDrivers.length; i++) {
+      let entry = availableDrivers[i];
+      checkboxIds.push(entry.eid);
+      entry["Assign?"] = `<input type=checkbox id=assignCheckbox${entry.eid} onclick=onCheckboxClicked()>`
+   }
    document.getElementById('availableDriversTable').innerHTML = tableFromJSONArray(availableDrivers)
+   window.onCheckboxClicked();
+}
+
+window.onCheckboxClicked = () => {
+   // iterate through the checkboxIds and see which ones are checked
+   eidsToAssign = [];
+   for (let i = 0; i < checkboxIds.length; i++) {
+      let checkbox = document.getElementById('assignCheckbox' + checkboxIds[i]);
+      if (checkbox.checked) {
+         eidsToAssign.push(checkboxIds[i]);
+      }
+   }
+   // update the form display
+   document.getElementById('currentlyAssigning').innerHTML =
+      `Currently assigning (${eidsToAssign.length}) drivers: ${JSON.stringify(eidsToAssign)}`
 }
 
 window.fetchAssign = async () => {
+   let maxPerDriver = document.getElementById('maxPerDriver').value;
    let resp = await fetch(`/optimalAssignment/${store_id}`, {
       method: 'POST',
       headers: {
          "Content-type": 'application/json',
       },
-      body: JSON.stringify({numDrivers: 2, maxPerDriver: 3})
+      body: JSON.stringify({drivers: eidsToAssign, maxPerDriver: maxPerDriver})
    })
-   console.log(await resp.json());
+   if (resp.status == 200) {
+      console.log("yay");
+      console.log(await resp.json());
+   } else {
+      alert(await resp.text());
+   }
 }
 
 /**
@@ -63,7 +93,10 @@ function tableFromJSONArray(array) {
       let entry = array[i];
       for (let j = 0; j < keys.length; j++) {
          output += `<td>`
-         output += `${JSON.stringify(entry[keys[j]])}`
+         let str = JSON.stringify(entry[keys[j]]);
+         str = str.replace(/^"/, '');
+         str = str.replace(/"$/, '');
+         output += `${str}`
          output += `</td>`
       }
       output += `</tr>`
