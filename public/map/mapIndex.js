@@ -22,6 +22,7 @@ window.loadLocations = async () => {
 
    console.log("Loading locations");
 
+   console.log("fetching from /stores...");
    let resp = await fetch('/stores', {
       method: 'GET'
    })
@@ -29,7 +30,7 @@ window.loadLocations = async () => {
    if (resp.status == 200) {
       console.log('success');
       let storesArr = await resp.json();
-      console.log(storesArr);
+      console.log("stores: " + JSON.stringify(storesArr));
       for (let i = 0; i < markers.length; i++) {
          markers[i].setMap(null);
       }
@@ -60,10 +61,11 @@ async function updateStoreInfoDisplay(storeId) {
       return;
    }
    // fetch the detailed info and show the div
+   console.log("fetching from /stores/" + storeId + "...");
    let resp = await fetch('/stores/' + storeId);
    if (resp.status == 200) {
       let info = await resp.json();
-      console.log(info)
+      console.log("info:" + JSON.stringify(info));
       document.getElementById('storeInfo').className = "show";
       document.getElementById('storeAddress').innerHTML = info.address;
       document.getElementById('storeId').innerHTML = 'Store id: ' + info.store_id;
@@ -84,10 +86,12 @@ window.addEventListener("load", async (event) => {
    let editStore = document.getElementById('editStore');
 
    //let ifAdmin = false;
+   console.log("fetching from /authRole...");
    let authResp = await fetch('/authRole', {
       method: 'GET'
    })
    let authJson = await authResp.json();
+   console.log("authJson: " + JSON.stringify(authJson));
    let ifAdmin = (authJson.authRole == 'admin');
 
    //some code relating to logging into the admin account. 
@@ -118,6 +122,7 @@ window.addStore = async () => {
       longitude: document.getElementById('addStoreLongitude').value,
    }
 
+   console.log("fetching from /stores/add, body: " + JSON.stringify(body) + "...");
    let resp = await fetch('/stores/add',
       {
          method: 'POST',
@@ -146,6 +151,7 @@ window.editStore = async () => {
       longitude: document.getElementById('editStoreLongitude').value,
    }
 
+   console.log("fetching from /stores/" + selectedStoreId + "/edit, body: " + JSON.stringify(body) + "...");
    let resp = await fetch(`/stores/${selectedStoreId}/edit`, 
       {
          method: 'POST',
