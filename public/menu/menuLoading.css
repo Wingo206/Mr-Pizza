@@ -16,12 +16,12 @@ body {
 }
 
 .menu-header h1 {
-  font-size: 40px; /* Adjust the font size as needed */
+  font-size: 48px; /* Adjust the font size as needed */
   margin: 0;
 }
 
 .menu-header p {
-  font-size: 20px; /* Adjust the font size as needed */
+  font-size: 28px; /* Adjust the font size as needed */
   margin: 0;
   opacity: 0.7;
 }
@@ -39,8 +39,8 @@ button {
   border-radius: 5px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
   color: #fff;
-  font-size: 14px;
-  padding: 10px 25px;
+  font-size: 18px;
+  padding: 20px 35px;
 }
 
 .menu-item-container {
@@ -54,17 +54,25 @@ button {
 }
 
 .modal-content {
-  /* Other styles */
+  font-size: 18px;
   background-color: #fff;
   width: 80%;
   max-width: 600px;
   padding: 30px;
-  border-radius: 5px; /* Add this line to create rounded corners */
+  border-radius: 5px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
   position: absolute;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
+}
+
+.modal-content h2 {
+  font-size: 28px;
+}
+
+.modal-content p {
+  font-size: 18px; /* Increase the font size of paragraphs */
 }
 
 .modal-content img {
@@ -77,6 +85,7 @@ button {
 
 .modal-content ul {
   text-align: left;
+  font-size: 18px;
 }
 
 .modal-content img {
