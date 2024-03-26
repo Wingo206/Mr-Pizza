@@ -1,15 +1,37 @@
+const {AdvancedMarkerElement} = await google.maps.importLibrary("marker");
 let store_id;
 let checkboxIds;
 let eidsToAssign = [];
+let map;
+let storeMarker;
+let markers = [];
 
 window.addEventListener("load", async (event) => {
    console.log("page is fully loaded");
-   refresh();
+   refreshData();
 });
 
-async function refresh() {
-   // fetch which store the currently logged in employee works for
+async function initMap() {
+   const {Map} = await google.maps.importLibrary("maps");
 
+   map = new Map(document.getElementById("map"), {
+      center: {lat: 40.523421858838276, lng: -74.45823918823967},
+      zoom: 15,
+      mapId: '5f088c2dddf9c012'
+   });
+   map.addListener('click', (event) => {
+      event.stop();
+   })
+}
+initMap();
+
+async function refreshData() {
+   // remove all old markers
+   for (let i = 0; i < markers.length; i++) {
+      markers[i].setMap(null);
+   }
+
+   // fetch which store the currently logged in employee works for
    let resp = await fetch('/employeeStoreInfo', {
       method: 'GET'
    })
@@ -17,6 +39,13 @@ async function refresh() {
    console.log(esInfo)
    document.getElementById('userInfo').innerHTML = `You are signed in as ${esInfo.email}, 
       working for store id ${esInfo.store_id} (${esInfo.address})`
+
+   // add marker for the store
+   markers.push(new AdvancedMarkerElement({
+      map,
+      position: {lat: Number(esInfo.latlng.x), lng: Number(esInfo.latlng.y)},
+   }));
+
 
    // fetch the unassigned orders
    store_id = esInfo.store_id;
@@ -26,6 +55,15 @@ async function refresh() {
    let unassignedOrders = await resp.json();
    console.log(unassignedOrders);
    document.getElementById('unassignedOrdersTable').innerHTML = tableFromJSONArray(unassignedOrders)
+
+   // add marker for each order
+   for (let i = 0; i < unassignedOrders.length; i++) {
+      let order = unassignedOrders[i];
+      markers.push(new AdvancedMarkerElement({
+         map,
+         position: {lat: Number(order.delivery_latlng.x), lng: Number(order.delivery_latlng.y)},
+      }));
+   }
 
    // fetch the available drivers
    resp = await fetch(`/availableDrivers/${store_id}`, {
