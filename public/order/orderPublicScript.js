@@ -14,7 +14,6 @@ if (true) {
 }
 else {
   document.getElementById("pastOrderButton").setAttribute("hidden", "hidden");
-
 }
 
 // const cartDiv = document.getElementById('cartDiv');

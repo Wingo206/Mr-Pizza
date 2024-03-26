@@ -14,24 +14,29 @@
 <body>
     <p>Order Summary</p>
     <div id="cartDiv"></div>
-    <table id="cart" style="width:50%">
+    <table id="cart" style="width:100%">
         <thead>
             <tr>
-            <td>Item</td>
-            <td>Quantity</td>
-            <td>Price per Item</td>
-            <td>Total Price</td>
+                <th>Order ID</th>
+                <th>Status</th>
+                <th>Date Created</th>
+                <th>Total Price</th>
+                <th>Item Number</th>
+                <th>Item Price</th>
+                <th>Item Description</th>
             </tr>
         </thead>
         <tbody>
+
         </tbody>
-        </table>
-      </table> 
+    </table>
 
     
     <!-- very important: make sure you have: "/public/scripts/..." 
         instead of: "public/scripts/..."  -->
     <script type = "module" src="/order/pastOrderScript.js"></script>
+    <button  id="changeStatusButton" name="changeStatusButton" onclick="changeStatus()">Change Status</button>
+    
 </body>
 
 </html>

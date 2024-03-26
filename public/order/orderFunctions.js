@@ -31,9 +31,13 @@ export function populateCartTable(query, cart) {
 
     for (let i = 0; i < cart.length; i++) {
          const row = tableBody.insertRow();
-         row.insertCell().textContent = cart[i].itemName;
+         row.insertCell().textContent = capitalizeFirstLetter(cart[i].itemName);
          row.insertCell().textContent = cart[i].quantity;
          row.insertCell().textContent = cart[i].pricePerItem;
          row.insertCell().textContent = cart[i].totalCostOfEntry;
      }
  }
+
+function capitalizeFirstLetter(string) {
+   return string.charAt(0).toUpperCase() + string.slice(1);
+}
