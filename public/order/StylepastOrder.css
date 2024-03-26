@@ -1,6 +1,5 @@
 @import url('https://fonts.googleapis.com/css?family=Montserrat|Open+Sans|Roboto');
 
-/* Reset default browser styles */
 * {
   margin: 0;
   padding: 0;
@@ -13,7 +12,6 @@ body {
   font-family: 'Roboto', sans-serif;
 }
 
-/* Styling for the order summary text */
 p {
   text-align: center;
   font-family: 'Montserrat', sans-serif;
@@ -21,28 +19,17 @@ p {
   font-weight: bold;
   text-shadow: 10px 10px 10px rgba(0,0,0,0.5);
   padding-top: 20px;
-  padding-bottom: 40px; /* Increased padding to add space above the table */
+  padding-bottom: 40px;
   color: #FFFFFF;
 }
 
-/* Main container adjustments */
-.container {
-  display: flex;
-  justify-content: space-between;
-}
-
-.table-container {
-  width: auto;
-}
-
-/* Table styling */
 table {
   border-collapse: collapse;
-  width:100%;
+  width: 80%; /* Adjust based on your layout needs */
   box-shadow: 0 2px 15px rgba(64,64,64,.7);
   border-radius: 12px 12px 0 0;
   overflow: hidden;
-  margin-bottom: 20px; /* Space between table and buttons */
+  margin: 20px auto; /* Center table and add space around it */
 }
 
 td, th {
@@ -51,7 +38,7 @@ td, th {
 }
 
 th {
-  background-color: #ba68c8;
+  background-color: #fd6b6b;
   color: #fafafa;
   font-family: 'Open Sans', Sans-serif;
   font-weight: 300;
@@ -67,8 +54,7 @@ tr:nth-child(even) {
   background-color: #eeeeee;
 }
 
-
-.order-buttons button {
+button {
   font-family: 'Montserrat', sans-serif;
   background-color: #ffffff;
   color: #000000;
@@ -80,33 +66,9 @@ tr:nth-child(even) {
   cursor: pointer;
   transition: background-color 0.3s;
   font-weight: bold;
+  margin-top: 20px; /* Adjust as needed */
 }
 
-.order-buttons {
-  display: flex;
-  justify-content: center; /* Adjust this if you want to change the alignment */
-  flex-wrap: wrap; /* Allows buttons to wrap in smaller screens */
-  gap: 50px; /* Adjust the spacing between buttons */
-  padding: 20px 0; /* Adds padding above and below the button group */
-}
-
-.order-buttons button:hover {
+button:hover {
   background-color: #eec4ff;
 }
-
-/* Image alignment correction */
-.right-side-image {
-  display: flex;
-  justify-content: center; /* Center the image if needed, or use flex-start for left alignment */
-  width: 50%; /* Ensures the image container takes up half the horizontal space */
-}
-
-.right-side-image img {
-  max-width: 80%; /* Corrected to ensure the image fits within its container */
-  height: 80%;
-}
-
-  
-
-
-  

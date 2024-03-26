@@ -20,7 +20,7 @@ p {
     font-family: 'FLIX', sans-serif; /* Makes font consistent with the table */
     font-size: 3.5em; /* Adjust size as needed */
     font-weight: bold; /* Makes the text thicker */
-    text-shadow: 5px 5px 5px rgba(0,0,0,0.5); /* Gives the text a shadow */
+    text-shadow: 10px 10px 10px rgba(0,0,0,0.5); /* Gives the text a shadow */
     padding-top: 20px; /* Add padding to space out from the top of the page */
     color: #FFFFFF; /* Optional: Change text color if needed for better visibility */
   }
