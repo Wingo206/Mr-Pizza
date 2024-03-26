@@ -58,6 +58,9 @@ let destLat = 40.52362753497832;
 let destLng = -74.43692635431962;
 let srcLat = 40.523421858838276;
 let srcLng = -74.45823918823967;
+
+let eId = -1;
+let storeId = -1;
 // let currLat;
 // let currLng;
 
@@ -86,7 +89,7 @@ async function initMap() {
 }
 
 async function fetchOrder() {
-  let resp = await fetch('/directions/order', {
+  let resp = await fetch(`/directions/order/${storeId}/${eId}`, {
       method: 'GET'
   })
   console.log(resp);
@@ -94,19 +97,8 @@ async function fetchOrder() {
       console.log('success');
       let order = await resp.json();
       console.log(order);
-      for (let i = 0; i < order.length; i++) {
-          let order = order[i];
-
-          let marker = new google.maps.Marker({
-              map,
-              position: {lat: Number(order.delivery_latlng.x), lng: Number(order.delivery_latlng.y)},
-          });
-          marker.addListener("click", () => {
-              map.panTo(marker.position);
-              updateOrderInfoDisplay(order.order_id);
-          });
-
-      }
+      
+      
   } else {
       alert('Error.')
   }
@@ -230,7 +222,19 @@ window.confirmDone = async () => {
 // }
 
 
-async function showRoute() {
+/**
+ * fetches the assigned orders for the currently logged in driver,
+ * then fetches the route to display from the list of orders.
+ */
+async function displayRoute() {
+    let resp = await fetch(`/directions/waypoints/${storeId}`, {
+        method: 'GET',
+        headers: {
+            "Content-type": 'application/json',
+        },
+        
+    })
+
     const {DirectionsService} = google.maps;
     const directionsService = new DirectionsService();
     const directionsRenderer = new google.maps.DirectionsRenderer();
@@ -241,9 +245,9 @@ async function showRoute() {
         origin: {lat: srcLat, lng: srcLng},
         destination: {lat: srcLat, lng: srcLng},
         travelMode: google.maps.TravelMode.DRIVING,
-        waypoints: [
-            {location: {lat: destLat, lng: destLng}}
-        ]
+        waypoints: {
+            location: {lat: destLat, lng: destLng}
+        }
     }
 
     directionsService.route(request, (result, status) => {

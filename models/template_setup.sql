@@ -56,12 +56,12 @@ foreign key(item_num, order_id, mid) references order_item(item_num, order_id, m
 foreign key(mid, topping_name) references topping(mid, topping_name));
 
 create table delivery_batch(batch_id int primary key auto_increment, location varchar(40), DT_stamp datetime, driver_status varchar(20), assignedToEmp int,
-foreign key(assignedToEmp) references employee_account(eid));
+foreign key(assignedToEmp) references employee_account(eid) on delete cascade);
 
-create table in_batch(order_id int, batch_id int,
+create table in_batch(order_id int, batch_id int, order_index int,
 primary key(order_id, batch_id),
-foreign key(order_id) references customer_order(order_id),
-foreign key(batch_id) references delivery_batch(batch_id));
+foreign key(order_id) references customer_order(order_id) on delete cascade,
+foreign key(batch_id) references delivery_batch(batch_id) on delete cascade);
 
 create table review(mid int not null, rid int auto_increment primary key, description varchar(1000), DT_stamp datetime, stars float,
 	reviewedBy int not null,
