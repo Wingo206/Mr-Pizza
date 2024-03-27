@@ -40,6 +40,7 @@ document.addEventListener("DOMContentLoaded", function() {
                             ${item.toppings.map(topping => `<li>${topping.topping_name}: $${topping.price}</li>`).join('')}
                         </ul>
                         <button id="close">Close</button>
+                        <button id="add-to-cart" style="float: right;">Add to Cart</button> <!-- Float to right -->
                     </div>`;
                 modalContainer.classList.add('show');
                 // Add event listener for the "Close" button
@@ -47,9 +48,58 @@ document.addEventListener("DOMContentLoaded", function() {
                 closeButton.addEventListener("click", function() {
                     modalContainer.classList.remove('show');
                 });
+                // Add event listener for the "Add to Cart" button
+                const addButton = document.getElementById("add-to-cart");
+                addButton.addEventListener("click", async function() {
+                    const cartItem = {
+                        mid: item.mid,
+                        description: item.description,
+                        price: item.price,
+                        toppings: item.toppings.map(topping => ({
+                            topping_name: topping.topping_name,
+                            price: topping.price
+                        }))
+                    };
+                    try {
+                        const response = await fetch("/cart", {
+                            method: 'POST',
+                            headers: {
+                                'Content-Type': 'application/json'
+                            },
+                            body: JSON.stringify(cartItem)
+                        });
+                        if (response.ok) {
+                            const result = await response.json();
+                            console.log(result);
+                            modalContainer.classList.remove('show');
+                            showPopup('Item added to cart');
+                        } else {
+                            console.error("Error adding item to cart:", await response.text());
+                        }
+                    } catch (error) {
+                        console.error("Error adding item to cart:", error);
+                    }
+                });
             });
             menuItemsContainer.appendChild(button);
         });
     }
     
+    function showPopup(message) {
+        const popup = document.createElement("div");
+    popup.textContent = message;
+    popup.style.position = "fixed";
+    popup.style.bottom = "20px";
+    popup.style.left = "50%";
+    popup.style.transform = "translateX(-50%)";
+    popup.style.backgroundColor = "green";
+    popup.style.color = "white";
+    popup.style.padding = "10px";
+    popup.style.borderRadius = "5px";
+    popup.style.zIndex = "1000";
+    document.body.appendChild(popup);
+    setTimeout(() => {
+        document.body.removeChild(popup);
+    }, 3000);
+    }
 });
