@@ -1,0 +1,72 @@
+<html>
+
+<head>
+    <title>Simple Map</title>
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
+
+    <link rel="stylesheet" type="text/css" href="./mapStyle.css" />
+    <script type="module" src="./mapIndex.js"></script>
+</head>
+
+<body>
+    <div id="outerDiv">
+        <div id="controlPanel">
+            <h1>Mr Pizza Map</h1>
+            <a href="/home/home.html">Back to Home</a>
+            <br>
+            <br>
+            <button onclick="loadLocations()">Load map locations</button>
+            <br>
+            <div id="storeInfo" class="hide">
+                <h2 id="storeAddress"></h2>
+                <p id="storeId"></p>
+                <div id="editStore" class="hide">
+                    <fieldset class="fieldset-auto-width">
+                        <legend>Edit Store Information</legend>
+                        <label for="editStoreAddress">New Store Address:</label>
+                        <input type="text" id="editStoreAddress">
+                        <br>
+                        <br>
+                        <label for="editStoreLatitude">New Store Latitude:</label>
+                        <input type="text" id="editStoreLatitude">
+                        <br>
+                        <br>
+                        <label for="editStoreLongitude">New Store Longitude:</label>
+                        <input type="text" id="editStoreLongitude">
+                        <br>
+                        <br>
+                        <button onclick="editStore()">Submit</button>
+                </div>
+
+            </div>
+            <br>
+            <div id="addStore" class="hide">
+                <fieldset class="fieldset-auto-width">
+                    <legend>Add Store</legend>
+                    <label for="addStoreAddress">Store Address:</label>
+                    <input type="text" id="addStoreAddress">
+                    <br>
+                    <br>
+                    <label for="addStoreLatitude">Store Latitude:</label>
+                    <input type="text" id="addStoreLatitude">
+                    <br>
+                    <br>
+                    <label for="addStoreLongitude">Store Longitude:</label>
+                    <input type="text" id="addStoreLongitude">
+                    <br>
+                    <br>
+                    <button onclick="addStore()">Submit</button>
+            </div>
+
+
+        </div>
+
+        <div id="map"></div>
+    </div>
+
+    <!-- prettier-ignore -->
+    <script>(g => { var h, a, k, p = "The Google Maps JavaScript API", c = "google", l = "importLibrary", q = "__ib__", m = document, b = window; b = b[c] || (b[c] = {}); var d = b.maps || (b.maps = {}), r = new Set, e = new URLSearchParams, u = () => h || (h = new Promise(async (f, n) => { await (a = m.createElement("script")); e.set("libraries", [...r] + ""); for (k in g) e.set(k.replace(/[A-Z]/g, t => "_" + t[0].toLowerCase()), g[k]); e.set("callback", c + ".maps." + q); a.src = `https://maps.${c}apis.com/maps/api/js?` + e; d[q] = f; a.onerror = () => h = n(Error(p + " could not load.")); a.nonce = m.querySelector("script[nonce]")?.nonce || ""; m.head.append(a) })); d[l] ? console.warn(p + " only loads once. Ignoring:", g) : d[l] = (f, ...n) => r.add(f) && u().then(() => d[l](f, ...n)) })
+            ({ key: "AIzaSyB41DRUbKWJHPxaFjMAwdrzWzbVKartNGg", v: "weekly" });</script>
+</body>
+
+</html>

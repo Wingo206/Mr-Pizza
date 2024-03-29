@@ -1,0 +1,45 @@
+/* 
+ * Always set the map height explicitly to define the size of the div element
+ * that contains the map. 
+ */
+#map {
+  height: 100%;
+  /* width: 75vw; */
+  flex-grow: 100;
+}
+
+#outerDiv {
+  height: 100%;
+  width: 100%;
+  display: flex;
+}
+
+#controlPanel {
+  height: 100%;
+  /* width: 25%; */
+  width: 400px;
+  padding: 5px;
+}
+
+#storeInfo {
+  border-style: solid;
+  padding: 5px 5px 5px 5px;
+}
+
+.hide {
+  display:none;
+}
+
+.show {
+  display:block;
+}
+
+/* 
+ * Optional: Makes the sample page fill the window. 
+ */
+html,
+body {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+}

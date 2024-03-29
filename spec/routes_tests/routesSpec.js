@@ -83,12 +83,12 @@ describe('routing', () => {
          examplehtmlpath.pop();
          examplehtmlpath.pop();
          examplehtmlpath.push('public');
-         examplehtmlpath.push('html');
+         examplehtmlpath.push('example');
          examplehtmlpath.push('example.html');
 
-         let fileContents = fs.readFileSync(path.sep + path.join(...examplehtmlpath), 'utf8')
+         let fileContents = fs.readFileSync(path.join(...examplehtmlpath), 'utf8')
          request(server)
-            .get('/html/example.html')
+            .get('/example/example.html')
             .trustLocalhost(true)
             .set('Accept', 'text/plain')
             .expect(200)
