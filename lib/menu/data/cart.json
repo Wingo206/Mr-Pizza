@@ -1,0 +1,49 @@
+[
+  {
+    "mid": 1,
+    "description": "Pizza",
+    "price": 7.99,
+    "toppings": [
+      {
+        "topping_name": "Bacon",
+        "price": 0.25
+      },
+      {
+        "topping_name": "Baked-Ziti",
+        "price": 0.25
+      },
+      {
+        "topping_name": "Bell-Pepper",
+        "price": 0.25
+      },
+      {
+        "topping_name": "Chicken",
+        "price": 0.25
+      },
+      {
+        "topping_name": "French-Fry",
+        "price": 0.25
+      },
+      {
+        "topping_name": "Mushroom",
+        "price": 0.25
+      },
+      {
+        "topping_name": "Pepperoni",
+        "price": 0.25
+      },
+      {
+        "topping_name": "Pineapple",
+        "price": 0.25
+      },
+      {
+        "topping_name": "Sausage",
+        "price": 0.25
+      },
+      {
+        "topping_name": "Watermelon",
+        "price": 0.25
+      }
+    ]
+  }
+]
