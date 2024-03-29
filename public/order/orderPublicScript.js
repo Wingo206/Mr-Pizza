@@ -13,11 +13,11 @@ import {cartEntry, populateCartTable, calculateTotalCost, displayCart} from './o
 
 // button1.addEventListener("click", function() {
 //   
-      // const fetchCart = async () => {
-      //   console.log('lol');
-      //   const response = await fetch("/order/goToCheckout", {
-      //     method: "POST",
-      //   });
+// const fetchCart = async () => {
+//   console.log('lol');
+//   const response = await fetch("/order/goToCheckout", {
+//     method: "POST",
+//   });
 //     alert("in checkout now");
 // });
 
@@ -35,7 +35,7 @@ import {cartEntry, populateCartTable, calculateTotalCost, displayCart} from './o
 //   });
 
 //   //let decodedData = JSON.parse(body);
-  
+
 //   res.writeHead(200, {'Content-type': 'text/plain'});
 //   res.end(decodedData);
 //THAT WOULD BE THE CART
@@ -54,26 +54,27 @@ import {cartEntry, populateCartTable, calculateTotalCost, displayCart} from './o
 
 const orderData = [
   {
-      credit_card: '1234567890123456',
-      status: 'Processing',
-      total_price: 9.99,
-      delivery_address: '123 Main St, City, Country',
-      DT_created: '2024-03-25 10:00:00',
-      DT_delivered: null,
-      ordered_by: 1
+    made_at: 1,
+    credit_card: '1234567890123456',
+    status: 'Processing',
+    total_price: 9.99,
+    delivery_address: '123 Main St, City, Country',
+    DT_created: '2024-03-25 10:00:00',
+    DT_delivered: null,
+    ordered_by: 1
   }
 ];
 
 const menuItemData = [
   {
-      price: 9.99,
-      image_url: 'https://example.com/image1.jpg',
-      description: 'Pizza Margherita'
+    price: 9.99,
+    image_url: 'https://example.com/image1.jpg',
+    description: 'Pizza Margherita'
   }
 ];
 
 const orderItemData = [
-  { order_id: 0, mid: 1 }
+  {order_id: 0, mid: 1}
 ];
 
 const cart = [new cartEntry("pizza", 2, 11.99, 11.99 * 2), new cartEntry('wings', 1, 6.99, 6.99)];
@@ -120,22 +121,22 @@ function capitalizeFirstLetter(string) {
   return string.charAt(0).toUpperCase() + string.slice(1);
 }
 
- window.addEventListener('load', newCartTable("#cart tbody", orderData, menuItemData, orderItemData));
+window.addEventListener('load', newCartTable("#cart tbody", orderData, menuItemData, orderItemData));
 
- async function checkoutButtonOnClick() {
-    alert("Total cost of cart: " + calculateTotalCost(cart));
- }
+async function checkoutButtonOnClick() {
+  alert("Total cost of cart: " + calculateTotalCost(cart));
+}
 
 initialize();
 
 // Fetch Checkout Session and retrieve the client secret
 async function initialize() {
   const fetchClientSecret = async () => {
-   console.log('lol');
-   const response = await fetch("/order/createCheckoutSession", {
+    console.log('lol');
+    const response = await fetch("/order/createCheckoutSession", {
       method: "POST",
     });
-    const { client_secret } = await response.json();
+    const {client_secret} = await response.json();
     return client_secret;
   };
 
@@ -150,23 +151,23 @@ async function initialize() {
 
 const button1 = document.getElementById("checkoutButton");
 
-button1.addEventListener("click", function() {
-  
-      const fetchReponse = async () => {
-        console.log('lol');
-       
-        const response = await fetch("/order/postOrder", {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json" // Specify the content type as JSON
-          },
-          body: JSON.stringify({ orderData, menuItemData, orderItemData })
-        });
-        const responseData = await response.json();
-        alert(JSON.stringify(responseData));
+button1.addEventListener("click", function () {
 
-      }
+  const fetchReponse = async () => {
+    console.log('lol');
 
-      fetchReponse(); 
+    const response = await fetch("/order/postOrder", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json" // Specify the content type as JSON
+      },
+      body: JSON.stringify({orderData, menuItemData, orderItemData})
+    });
+    const responseData = await response.json();
+    alert(JSON.stringify(responseData));
+
+  }
+
+  fetchReponse();
 });
 
