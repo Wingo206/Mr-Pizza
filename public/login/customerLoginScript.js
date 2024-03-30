@@ -1,3 +1,6 @@
+// const {customerPool, runQuery} = require("../../lib/util/database_util.js");
+
+
 async function fetchRegister() {
    let username = document.getElementById('registerUsername').value;
    let password = document.getElementById('registerPassword').value;
@@ -17,8 +20,10 @@ async function fetchRegister() {
 }
 
 async function fetchLogin() {
+   console.log("hrllobasdfnlk");
    let username = document.getElementById('loginUsername').value;
    let password = document.getElementById('loginPassword').value;
+   console.log(username)
    let resp = await fetch('/customer/login', {
       method: 'POST',
       headers: {
@@ -29,7 +34,10 @@ async function fetchLogin() {
    console.log(resp);
    if (resp.status == 200) {
       // alert('logged in successfully. Redirecting to home page.')
-      window.location.href = 'loginSuccess.html'
+      console.log("hello")
+      window.location.href = "../customerAccount/customerAccountDisplay.html";
+      // window.location.href = '../customerAccount/customerAccount.html'
+      // window.location.href = 'loginSuccess.html';
    } else if (resp.status == 401) {
       alert(await resp.text())
    } else {

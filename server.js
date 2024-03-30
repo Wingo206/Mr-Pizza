@@ -63,14 +63,6 @@ for (let i = 0; i < files.length; i++) {
 console.log("Loaded " + (Object.keys(staticRoutes).length + dynamicRoutes.length) + " routes from " + files.length + " files.")
 
 async function handleRequest(req, res) {
-   if(req.method === 'POST' && req.headers['content-type'].includes('application/json')) {
-      handlePostRequest(req, res)
-   } else {
-      continueHandleRequest(req, res);
-   }
-}
-
-function continueHandleRequest(req, res) {
    let url = req.url;
    // check if matches any static or dynamic routes
    let route = staticRoutes[url];
@@ -105,20 +97,20 @@ function continueHandleRequest(req, res) {
 }
 
 function handlePostRequest(req, res) {
-      let body = '';
-      req.on('data', chunk => {
-         body += chunk.toString();
-      });
-      req.on('end', () => {
-         try {
-            req.body = JSON.parse(body);
-            continueHandleRequest(req, res);
-         } catch (e) {
-            res.writeHead(400, { 'Content-Type': 'application/json'});
-            res.end(JSON.stringify({error: "Could not parse JSON body"}));
-         }
-      });
-   }
+   let body = '';
+   req.on('data', chunk => {
+      body += chunk.toString();
+   });
+   req.on('end', () => {
+      try {
+         req.body = JSON.parse(body);
+         continueHandleRequest(req, res);
+      } catch (e) {
+         res.writeHead(400, {'Content-Type': 'application/json'});
+         res.end(JSON.stringify({error: "Could not parse JSON body"}));
+      }
+   });
+}
 // const server = http.createServer(handleRequest)
 
 let sslPath = path.join(__dirname, 'ssl')
