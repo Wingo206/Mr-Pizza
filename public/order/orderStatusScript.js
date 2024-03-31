@@ -23,8 +23,8 @@ function displayOrders(query, orders) {
         // Insert the order details into the table cells
         row.insertCell().textContent = order.item_description; // Item
         row.insertCell().textContent = order.item_num; // Quantity
-        row.insertCell().textContent = order.item_price.toFixed(2); // Price per Item
-        row.insertCell().textContent = (order.item_num * order.item_price).toFixed(2); // Total Price
+        // row.insertCell().textContent = order.item_price.toFixed(2); // Price per Item
+        // row.insertCell().textContent = (order.item_num * order.item_price).toFixed(2); // Total Price
     });
 }
 
@@ -58,7 +58,7 @@ async function initialize() {
 // right now body is hardcoded but should retrieve from last page 
 async function fillTable() {
     console.log('lol');
-    const requestBody = JSON.stringify({ order_id: 2 });
+    const requestBody = JSON.stringify({ order_id: 1 });
     const response = await fetch("/order/getOrder", {
        method: "POST",
        headers: {

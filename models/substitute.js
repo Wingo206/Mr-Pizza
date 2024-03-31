@@ -1,8 +1,8 @@
 const path = require('path');
 const fs = require('node:fs');
-const config = require('../lib/util/config');
+const conf = require('../lib/util/config');
 
-async function substitute() {
+async function substitute(config, outFilename) {
 
    let templatePath = __dirname + path.sep + 'template_setup.sql';
    let template = await fs.readFileSync(templatePath, 'utf8')
@@ -14,8 +14,12 @@ async function substitute() {
    if (!fs.existsSync(tempPath)) {
       fs.mkdirSync(tempPath)
    }
-   let outPath = tempPath + path.sep + 'setup.sql';
+   let outPath = tempPath + path.sep + outFilename + '.sql';
    fs.writeFileSync(outPath, template);
 }
 
-substitute();
+substitute(conf, 'setup');
+// hack to create a script with the unit test database
+conf2 = JSON.parse(JSON.stringify(conf));
+conf2.database = conf2.unitTestDatabase;
+substitute(conf2, 'unittestSetup');

@@ -43,12 +43,12 @@ create table menu_item(mid int primary key auto_increment, price float, image_ur
 
 create table order_item(item_num int auto_increment, order_id int not null, mid int not null,
 primary key(item_num, order_id, mid),
-foreign key(mid) references menu_item(mid),
+foreign key(mid) references menu_item(mid) on delete cascade,
 foreign key(order_id) references customer_order(order_id));
 
 create table topping(topping_name varchar(30), mid int not null, price float,
 primary key(mid, topping_name),
-foreign key(mid) references menu_item(mid));
+foreign key(mid) references menu_item(mid) on delete cascade);
 
 create table with_topping(order_id int, item_num int, mid int not null, topping_name varchar(30),
 primary key(order_id, mid, item_num, topping_name),
@@ -65,7 +65,7 @@ foreign key(batch_id) references delivery_batch(batch_id) on delete cascade);
 
 create table review(mid int not null, rid int auto_increment primary key, description varchar(1000), DT_stamp datetime, stars float,
 	reviewedBy int not null,
-foreign key(mid) references menu_item(mid),
+foreign key(mid) references menu_item(mid) on delete cascade,
 foreign key(reviewedBy) references customer_account(cid));
 
 create table made_by(order_id int, eid int, 
@@ -80,7 +80,7 @@ foreign key(store_id) references store(store_id));
 
 create table item_availability(mid int, store_id int, available boolean,
 primary key(mid, store_id),
-foreign key(mid) references menu_item(mid),
+foreign key(mid) references menu_item(mid) on delete cascade,
 foreign key(store_id) references store(store_id));
 
 -- TODO

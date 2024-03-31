@@ -96,22 +96,6 @@ async function handleRequest(req, res) {
    return route.handler(req, res);
 }
 
-function handlePostRequest(req, res) {
-   let body = '';
-   req.on('data', chunk => {
-      body += chunk.toString();
-   });
-   req.on('end', () => {
-      try {
-         req.body = JSON.parse(body);
-         continueHandleRequest(req, res);
-      } catch (e) {
-         res.writeHead(400, {'Content-Type': 'application/json'});
-         res.end(JSON.stringify({error: "Could not parse JSON body"}));
-      }
-   });
-}
-// const server = http.createServer(handleRequest)
 
 let sslPath = path.join(__dirname, 'ssl')
 const options = {

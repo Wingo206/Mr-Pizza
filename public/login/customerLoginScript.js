@@ -23,7 +23,6 @@ async function fetchLogin() {
    console.log("hrllobasdfnlk");
    let username = document.getElementById('loginUsername').value;
    let password = document.getElementById('loginPassword').value;
-   console.log(username)
    let resp = await fetch('/customer/login', {
       method: 'POST',
       headers: {
