@@ -86,7 +86,7 @@ describe('routing', () => {
          examplehtmlpath.push('example');
          examplehtmlpath.push('example.html');
 
-         let fileContents = fs.readFileSync(path.join(...examplehtmlpath), 'utf8')
+         let fileContents = fs.readFileSync(path.sep + path.join(...examplehtmlpath), 'utf8')
          request(server)
             .get('/example/example.html')
             .trustLocalhost(true)

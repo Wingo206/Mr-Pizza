@@ -10,9 +10,8 @@ function suppressOutput(before1 = () => {}, before2 = () => {}, after1 = () => {
    beforeAll(() => {
       before1();
 
-      log = console.log;
-      console.log = () => {};
-      for (let m of toSuppress) {
+      for (let i = 0; i < toSuppress.length; i++) {
+         let m = toSuppress[i];
          methods[m] = console[m];
          console[m] = () => {};
       }
@@ -22,7 +21,8 @@ function suppressOutput(before1 = () => {}, before2 = () => {}, after1 = () => {
    afterAll(() => {
       after1();
 
-      for (let m of toSuppress) {
+      for (let i = 0; i < toSuppress.length; i++) {
+         let m = toSuppress[i];
          console[m] = methods[m];
       }
 
