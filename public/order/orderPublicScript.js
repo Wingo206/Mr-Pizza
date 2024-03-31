@@ -70,11 +70,18 @@ const menuItemData = [
     price: 9.99,
     image_url: 'https://example.com/image1.jpg',
     description: 'Pizza Margherita'
+  },
+  {
+    price: 9.99,
+    image_url: 'https://example.com/image2.jpg',
+    description: 'Cheese Pizza'
   }
 ];
 
 const orderItemData = [
-  {order_id: 0, mid: 1}
+  {order_id: 0, mid: 1},
+  {order_id: 0, mid: 2},
+  {order_id: 0, mid: 2},
 ];
 
 const cart = [new cartEntry("pizza", 2, 11.99, 11.99 * 2), new cartEntry('wings', 1, 6.99, 6.99)];
@@ -106,15 +113,19 @@ function newCartTable(query, orderData, menuItemData, orderItemData) {
   tableBody.innerHTML = '';
 
   // Assuming there's only one item in the cart
-  const order = orderData[0];
-  const menuItem = menuItemData[0];
-  const orderItem = orderItemData[0];
+  for (let i = 0; i < orderItemData.length; i++) {
+    const order = orderData[0];
+    const orderItem = orderItemData[i];
+    const menuItem = menuItemData[orderItem.mid-1];
 
-  const row = tableBody.insertRow();
-  row.insertCell().textContent = capitalizeFirstLetter(menuItem.description);
-  row.insertCell().textContent = 1; // Assuming you have a quantity field in orderItemData
-  row.insertCell().textContent = menuItem.price;
-  row.insertCell().textContent = order.total_price;
+  
+    const row = tableBody.insertRow();
+    row.insertCell().textContent = capitalizeFirstLetter(menuItem.description);
+    row.insertCell().textContent = 1; // Assuming you have a quantity field in orderItemData
+    row.insertCell().textContent = menuItem.price;
+    row.insertCell().textContent = order.total_price;
+  }
+  
 }
 
 function capitalizeFirstLetter(string) {
