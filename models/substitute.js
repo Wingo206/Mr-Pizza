@@ -2,7 +2,7 @@ const path = require('path');
 const fs = require('node:fs');
 const conf = require('../lib/util/config');
 
-async function substitute(config, outFilename) {
+async function substitute(config, outFilename, deleteUsers) {
 
    let templatePath = __dirname + path.sep + 'template_setup.sql';
    let template = await fs.readFileSync(templatePath, 'utf8')

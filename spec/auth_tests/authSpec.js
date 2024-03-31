@@ -30,6 +30,19 @@ describe('Auth Api', () => {
          .expect('setting cookie')
       let cookie = res.headers['set-cookie'];
       expect(cookie).not.toEqual(undefined);
-      // extract the actual value of the cookie later
+      // check reject for no auth cookie
+      await request(server)
+         .get('/loggedInTest')
+         .trustLocalhost(true)
+         .expect('Content-type', 'text/plain')
+         .expect(401)
+         .expect('You are not signed in.')
+      // should be allowed after adding auth cookie
+      await request(server)
+         .get('/loggedInTest')
+         .set('cookie', cookie)
+         .trustLocalhost(true)
+         .expect('Content-type', 'text/plain')
+         .expect(200)
    })
 })
