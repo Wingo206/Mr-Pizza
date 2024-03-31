@@ -1,0 +1,112 @@
+@import url('https://fonts.googleapis.com/css?family=Montserrat|Open+Sans|Roboto');
+
+/* Reset default browser styles */
+* {
+  margin: 0;
+  padding: 0;
+  outline: 0;
+  box-sizing: border-box;
+}
+
+body { 
+  background: linear-gradient(90deg, rgba(2,0,36,1) 0%, rgba(255,255,255,1) 0%, rgba(255,71,77,1) 100%);
+  font-family: 'Roboto', sans-serif;
+}
+
+/* Styling for the order summary text */
+p {
+  text-align: center;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 3.5em;
+  font-weight: bold;
+  text-shadow: 10px 10px 10px rgba(0,0,0,0.5);
+  padding-top: 20px;
+  padding-bottom: 40px; /* Increased padding to add space above the table */
+  color: #FFFFFF;
+}
+
+/* Main container adjustments */
+.container {
+  display: flex;
+  justify-content: space-between;
+}
+
+.table-container {
+  width: auto;
+}
+
+/* Table styling */
+table {
+  border-collapse: collapse;
+  width:100%;
+  box-shadow: 0 2px 15px rgba(64,64,64,.7);
+  border-radius: 12px 12px 0 0;
+  overflow: hidden;
+  margin-bottom: 20px; /* Space between table and buttons */
+}
+
+td, th {
+  padding: 15px 20px;
+  text-align: center;
+}
+
+th {
+  background-color: #ba68c8;
+  color: #fafafa;
+  font-family: 'Open Sans', Sans-serif;
+  font-weight: 300;
+  text-transform: uppercase;
+}
+
+tr {
+  background-color: #fafafa;
+  font-family: 'Montserrat', sans-serif;
+}
+
+tr:nth-child(even) {
+  background-color: #eeeeee;
+}
+
+
+.order-buttons button {
+  font-family: 'Montserrat', sans-serif;
+  background-color: #ffffff;
+  color: #000000;
+  padding: 15px 20px;
+  border: none;
+  border-radius: 4px;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: background-color 0.3s;
+  font-weight: bold;
+}
+
+.order-buttons {
+  display: flex;
+  justify-content: center; /* Adjust this if you want to change the alignment */
+  flex-wrap: wrap; /* Allows buttons to wrap in smaller screens */
+  gap: 50px; /* Adjust the spacing between buttons */
+  padding: 20px 0; /* Adds padding above and below the button group */
+}
+
+.order-buttons button:hover {
+  background-color: #eec4ff;
+}
+
+/* Image alignment correction */
+.right-side-image {
+  display: flex;
+  justify-content: center; /* Center the image if needed, or use flex-start for left alignment */
+  width: 50%; /* Ensures the image container takes up half the horizontal space */
+}
+
+.right-side-image img {
+  max-width: 120%; /* Corrected to ensure the image fits within its container */
+  height: 30%;
+}
+
+  
+
+
+  

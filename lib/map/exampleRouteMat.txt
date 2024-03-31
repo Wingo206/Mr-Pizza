@@ -1,0 +1,110 @@
+[
+    {
+        "originIndex": 3,
+        "destinationIndex": 2,
+        "distanceMeters": 35012,
+        "duration": "2317s",
+        "condition": "ROUTE_EXISTS"
+    },
+    {
+        "originIndex": 3,
+        "destinationIndex": 0,
+        "distanceMeters": 32112,
+        "duration": "2221s",
+        "condition": "ROUTE_EXISTS"
+    },
+    {
+        "originIndex": 3,
+        "destinationIndex": 1,
+        "distanceMeters": 29422,
+        "duration": "2153s",
+        "condition": "ROUTE_EXISTS"
+    },
+    {
+        "originIndex": 0,
+        "destinationIndex": 0,
+        "duration": "0s",
+        "condition": "ROUTE_EXISTS"
+    },
+    {
+        "originIndex": 1,
+        "destinationIndex": 1,
+        "duration": "0s",
+        "condition": "ROUTE_EXISTS"
+    },
+    {
+        "originIndex": 2,
+        "destinationIndex": 2,
+        "duration": "0s",
+        "condition": "ROUTE_EXISTS"
+    },
+    {
+        "originIndex": 3,
+        "destinationIndex": 3,
+        "duration": "0s",
+        "condition": "ROUTE_EXISTS"
+    },
+    {
+        "originIndex": 2,
+        "destinationIndex": 1,
+        "distanceMeters": 6015,
+        "duration": "445s",
+        "condition": "ROUTE_EXISTS"
+    },
+    {
+        "originIndex": 2,
+        "destinationIndex": 0,
+        "distanceMeters": 8222,
+        "duration": "615s",
+        "condition": "ROUTE_EXISTS"
+    },
+    {
+        "originIndex": 0,
+        "destinationIndex": 1,
+        "distanceMeters": 3865,
+        "duration": "350s",
+        "condition": "ROUTE_EXISTS"
+    },
+    {
+        "originIndex": 1,
+        "destinationIndex": 0,
+        "distanceMeters": 3898,
+        "duration": "334s",
+        "condition": "ROUTE_EXISTS"
+    },
+    {
+        "originIndex": 2,
+        "destinationIndex": 3,
+        "distanceMeters": 29188,
+        "duration": "2419s",
+        "condition": "ROUTE_EXISTS"
+    },
+    {
+        "originIndex": 0,
+        "destinationIndex": 2,
+        "distanceMeters": 8282,
+        "duration": "635s",
+        "condition": "ROUTE_EXISTS"
+    },
+    {
+        "originIndex": 1,
+        "destinationIndex": 2,
+        "distanceMeters": 4844,
+        "duration": "415s",
+        "condition": "ROUTE_EXISTS"
+    },
+    {
+        "originIndex": 1,
+        "destinationIndex": 3,
+        "distanceMeters": 32639,
+        "duration": "2060s",
+        "condition": "ROUTE_EXISTS"
+    },
+    {
+        "originIndex": 0,
+        "destinationIndex": 3,
+        "distanceMeters": 35388,
+        "duration": "2174s",
+        "condition": "ROUTE_EXISTS"
+    }
+]

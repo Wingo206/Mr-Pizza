@@ -96,7 +96,6 @@ async function handleRequest(req, res) {
    return route.handler(req, res);
 }
 
-// const server = http.createServer(handleRequest)
 
 let sslPath = path.join(__dirname, 'ssl')
 const options = {
