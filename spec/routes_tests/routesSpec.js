@@ -9,8 +9,8 @@ const path = require('path');
 let server;
 
 describe('routing', () => {
+   // Comment this out if you need to view the log outputs.
    suppressOutput(() => {}, () => {
-      // do this after suppressing output
       server = require('../../server');
    });
    it('should get 404 for undefined route', (done) => {

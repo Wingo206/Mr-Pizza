@@ -1,5 +1,4 @@
 const {runQuery, adminPool, resetDatabase, dateToDb} = require("../../lib/util/database_util")
-const {addValues} = require("../../lib/map/addTestValues")
 
 describe('Database util', () => {
    it('should resest the entire database', async () => {
