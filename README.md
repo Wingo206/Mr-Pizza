@@ -96,6 +96,13 @@ Directory Structure:
 - Now when you create commits, they will be committed to the branch you are currently on.
 - If you made changes on one branch and you realize that you wanted to put them on another branch, you can do ```git stash```, then checkout, then ```git stash pop``, and then commit as usual.
 
+## Rebasing
+- When you want to incorporate changes from main onto your branch, do the following:
+- Make sure all your changes on your branch are committed (check by using ```git status```)
+- Make sure the version of main on your computer is updated by running ```git checkout main```, ```git pull```
+- Switch back to your branch ```git checkout nameOfBranch``` and then ```git rebase main```.
+- Fix conflicts if there are any.
+
 ## Merging
 - To merge your branch with main, start by being on your branch, and then run ```git fetch``` and then ```git merge main```. This will add the changes that were made to main into your branch.
 - Next, go to the github website, branches, and then on your branch click "Create Pull Request".
