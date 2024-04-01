@@ -161,9 +161,10 @@ function runSubstitute() {
 
    conf2.database = conf2.unitTestDatabase;
    let testingDatabaseSetup = substitute(conf2, 'template_setup.sql');
+   let testingDatabasePerms = generateUserPermissions(conf2);
 
    // output the full setup into temp folder
-   let fullSetup = [usersSetup, databaseSetup, databasePerms, testingDatabaseSetup, databasePerms].join("\n");
+   let fullSetup = [usersSetup, databaseSetup, databasePerms, testingDatabaseSetup, testingDatabasePerms].join("\n");
 
    let tempPath = __dirname + path.sep + 'temp'
    if (!fs.existsSync(tempPath)) {

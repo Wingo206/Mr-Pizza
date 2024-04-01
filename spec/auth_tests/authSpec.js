@@ -7,16 +7,16 @@ let server;
 
 describe('Auth Api', () => {
    // Comment this out if you need to view the log outputs.
-   suppressOutput(() => {}, () => {
+   // suppressOutput(() => {}, () => {
       server = require('../../server');
-   });
+   // });
    beforeEach(async () => {
       resetDatabase();
       await runQuery(adminPool,
          `insert into customer_account(username, password_hash) values
          ("customer", "test")`);
    })
-   it('should respond with an authorization cookie', async () => {
+   it('should respond with an authorization cookie for customer id=1', async () => {
       let res = await request(server)
          .post('/customer/login')
          .trustLocalhost(true)
@@ -30,6 +30,7 @@ describe('Auth Api', () => {
          .expect('setting cookie')
       let cookie = res.headers['set-cookie'];
       expect(cookie).not.toEqual(undefined);
+      console.log(cookie);
       // check reject for no auth cookie
       await request(server)
          .get('/loggedInTest')
