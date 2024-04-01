@@ -39,11 +39,13 @@ async function refreshData() {
    directionsRenderers = [];
 
    // fetch which store the currently logged in employee works for
+
+   console.log('fetching employee store info from /employeeStoreInfo...')
    let resp = await fetch('/employeeStoreInfo', {
       method: 'GET'
    })
    let esInfo = await resp.json();
-   console.log(esInfo)
+   console.log('esInfo: ' + esInfo);
    document.getElementById('userInfo').innerHTML = `You are signed in as ${esInfo.email}, 
       working for store id ${esInfo.store_id} (${esInfo.address})`
 
@@ -56,6 +58,7 @@ async function refreshData() {
 
    // fetch the unassigned orders
    store_id = esInfo.store_id;
+   console.log('fetching unassigned orders from /unassigned...');
    resp = await fetch(`/unassigned/${store_id}`, {
       method: 'GET'
    })
@@ -73,6 +76,7 @@ async function refreshData() {
    }
 
    // fetch the available drivers
+   console.log('fetching available drivers from /availableDrivers...');
    resp = await fetch(`/availableDrivers/${store_id}`, {
       method: 'GET'
    })
@@ -105,6 +109,7 @@ window.onCheckboxClicked = () => {
 
 window.fetchAssign = async () => {
    let maxPerDriver = document.getElementById('maxPerDriver').value;
+   console.log('fetching optimal assignment from /optimalAssignment...')
    let resp = await fetch(`/optimalAssignment/${store_id}`, {
       method: 'POST',
       headers: {
@@ -115,7 +120,7 @@ window.fetchAssign = async () => {
    if (resp.status == 200) {
       let assignment = await resp.json();
       pendingAssignment = assignment;
-      console.log(assignment);
+      console.log('assignment: ' + JSON.stringify(assignment));
 
       // reset the renders on the map
       directionsRenderers.forEach(dr => dr.setMap(null));
@@ -124,6 +129,7 @@ window.fetchAssign = async () => {
       // fetch the waypoints for each driver's assignment
       for (let i = 0; i < assignment.length; i++) {
          let group = assignment[i];
+         console.log('fetching waypoints for group ' + i + ' from /directions/waypoints...')
          let resp2 = await fetch(`/directions/waypoints/${store_id}`, {
             method: 'POST',
             headers: {
@@ -133,7 +139,7 @@ window.fetchAssign = async () => {
          })
          if (resp2.status == 200) {
             let waypoints = await resp2.json();
-            console.log(waypoints);
+            console.log('waypoints: ' + JSON.stringify(waypoints));
             // get directions and render on map
             displayDirections(waypoints, i);
          } else {
@@ -153,6 +159,7 @@ window.confirmAssignments = async () => {
    for (let i = 0; i < pendingAssignment.length; i++) {
       let singleAssignment = pendingAssignment[i];
 
+      console.log('fetching from /assignOrders, body: ' + JSON.stringify(singleAssignment) + '...')
       let resp = await fetch(`/assignOrders/${store_id}`, {
          method: 'POST',
          headers: {
