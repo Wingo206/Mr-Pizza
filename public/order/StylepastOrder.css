@@ -1,0 +1,74 @@
+@import url('https://fonts.googleapis.com/css?family=Montserrat|Open+Sans|Roboto');
+
+* {
+  margin: 0;
+  padding: 0;
+  outline: 0;
+  box-sizing: border-box;
+}
+
+body { 
+  background: linear-gradient(90deg, rgba(2,0,36,1) 0%, rgba(255,255,255,1) 0%, rgba(255,71,77,1) 100%);
+  font-family: 'Roboto', sans-serif;
+}
+
+p {
+  text-align: center;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 3.5em;
+  font-weight: bold;
+  text-shadow: 10px 10px 10px rgba(0,0,0,0.5);
+  padding-top: 20px;
+  padding-bottom: 40px;
+  color: #FFFFFF;
+}
+
+table {
+  border-collapse: collapse;
+  width: 80%; /* Adjust based on your layout needs */
+  box-shadow: 0 2px 15px rgba(64,64,64,.7);
+  border-radius: 12px 12px 0 0;
+  overflow: hidden;
+  margin: 20px auto; /* Center table and add space around it */
+}
+
+td, th {
+  padding: 15px 20px;
+  text-align: center;
+}
+
+th {
+  background-color: #fd6b6b;
+  color: #fafafa;
+  font-family: 'Open Sans', Sans-serif;
+  font-weight: 300;
+  text-transform: uppercase;
+}
+
+tr {
+  background-color: #fafafa;
+  font-family: 'Montserrat', sans-serif;
+}
+
+tr:nth-child(even) {
+  background-color: #eeeeee;
+}
+
+button {
+  font-family: 'Montserrat', sans-serif;
+  background-color: #ffffff;
+  color: #000000;
+  padding: 15px 20px;
+  border: none;
+  border-radius: 4px;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: background-color 0.3s;
+  font-weight: bold;
+  margin-top: 20px; /* Adjust as needed */
+}
+
+button:hover {
+  background-color: #eec4ff;
+}

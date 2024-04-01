@@ -17,6 +17,7 @@
     "mysql2": "^3.9.2",
     "nodemailer": "^6.9.13",
     "superagent": "^8.1.2",
+    "stripe": "^14.22.0",
     "supertest": "^6.3.4"
   }
 }

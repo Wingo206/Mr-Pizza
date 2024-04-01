@@ -1,0 +1,57 @@
+<html>
+<!DOCTYPE html>
+
+    <style>
+        table, th, td {
+          border:1px solid black;
+        }
+        </style>
+<head>
+    <meta charset="UTF-8">
+    <title>Order html file</title>
+    <link rel="stylesheet" href="Style.css"> 
+</head>
+<body>
+    <p>Order contents</p>
+    <!-- Wrapping table and buttons in a container for flex layout -->
+    <div class="container">
+      <!-- Table container to make it half of the page and on the left -->
+      <div class="table-container">
+          <table id="cart" style="width:100%">
+              <thead>
+                  <tr>
+                      <td>Item</td>
+                      <td>Quantity</td>
+                      <td>Price per Item</td>
+                      <td>Total Price</td>
+                  </tr>
+              </thead>
+              <tbody>
+              <!-- Table body content -->
+              </tbody>
+          </table>
+          <div class="order-buttons">
+            <button  id="checkoutButton" name="checkoutButton">Checkout</button>
+          </div>
+      </div>
+
+    <!-- very important: make sure you have: "/public/scripts/..." 
+        instead of: "public/scripts/..."  -->
+        <!--Right side of the page-->
+        <div class="right-side">
+          <div class="image-container">
+            <img src="https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExeG92cDc5anh2eDV6cGM1bnR4Z3E3bWtyOHlxNmh5dWJxb2k1OHpnNCZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9cw/lmEkeRtZAj59tWYSqF/giphy.gif" alt="" style="width: 90%; height: 60%;"/>
+          </div>
+        </div>
+    <script type = "module" src="/order/orderPublicScript.js"></script>
+</body>
+<head>
+  <script src="https://js.stripe.com/v3/"></script>
+</head>
+<body>
+  <div id="checkout">
+    <!-- Checkout will insert the payment form here -->
+  </div>
+</body>
+
+</html>
