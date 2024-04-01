@@ -64,6 +64,7 @@ console.log("Loaded " + (Object.keys(staticRoutes).length + dynamicRoutes.length
 
 async function handleRequest(req, res) {
    let url = req.url;
+   console.log(url);
    // check if matches any static or dynamic routes
    let route = staticRoutes[url];
    if (route === undefined) {
@@ -89,11 +90,8 @@ async function handleRequest(req, res) {
       return;
    }
 
-   // run the req validator
-   // TODO
-
    // run the route's handler 
-   return route.handler(req, res);
+   await route.handler(req, res);
 }
 
 
