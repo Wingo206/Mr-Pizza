@@ -3,6 +3,31 @@
  * an html file is loaded, front-end scripts can be run as well
  */
 
+/*
+To Do
+For Order Page
+-Get items from the cart (from menu team) //WILL BE DONE WHEN CART IS FIXED 
+-Make sure that stripe total cost is being retrieved from cart
+-Make sure only customers can make orders
+-Combine stripe checkout with the page checkout button 
+-Add option to add rewards (will subtract from total)
+
+For Order Status
+-Show contents of order
+-Fix orderid increments
+-The quantity needs to be fixed, read how many items there are then update quantity
+-The table should display the current order's order id
+-Link check delivery takeout to map page 
+-Check When the Order Status is updated (loop/continously check) Reload the page if status changes
+-make cancel order use runquery instead of new connection (and refund functionality)
+-Show PP earned and total PP
+
+For Past Order
+Make status a button or drop down
+For table, have the rows be order id, then split the rows further for each small item
+Make status update in database
+*/
+
 import {cartEntry, populateCartTable, calculateTotalCost, displayCart} from './orderFunctions.js';
 // here instead of making the cart basically we would get it from a request body from the menu team
 // so they click a button then run some async function like this, which sends the cart, and we will parse it and go to this path 
@@ -67,7 +92,7 @@ const orderData = [
 
 const menuItemData = [
   {
-    price: 9.99,
+    price : 9.99,
     image_url: 'https://example.com/image1.jpg',
     description: 'Pizza Margherita'
   },
@@ -83,6 +108,11 @@ const orderItemData = [
   {order_id: 0, mid: 2},
   {order_id: 0, mid: 2},
 ];
+
+let total = 0;
+for (let i = 0; i < orderItemData.length; i++) {
+  total += menuItemData[orderItemData[i].mid - 1].price; 
+}
 
 const cart = [new cartEntry("pizza", 2, 11.99, 11.99 * 2), new cartEntry('wings', 1, 6.99, 6.99)];
 const stripe = Stripe('pk_test_51OxFUuP5gIWmEZ1PniORZnxF5lBrVHSaZzQeI836MWHDsr2cjqRsiFOoolY5yP9zQse5Sar1T0s0hwpy6QwKbfhX00MVSoX1UQ')
@@ -146,6 +176,10 @@ async function initialize() {
     console.log('lol');
     const response = await fetch("/order/createCheckoutSession", {
       method: "POST",
+      headers: {
+        "Content-Type": "application/json" // Specify the content type as JSON
+      },
+      body: JSON.stringify({ total : total}) 
     });
     const {client_secret} = await response.json();
     return client_secret;

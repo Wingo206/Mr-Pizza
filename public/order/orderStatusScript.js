@@ -58,7 +58,7 @@ async function initialize() {
 // right now body is hardcoded but should retrieve from last page 
 async function fillTable() {
     console.log('lol');
-    const requestBody = JSON.stringify({ order_id: 12 });
+    const requestBody = JSON.stringify({ order_id: 9 });
     const response = await fetch("/order/getOrder", {
        method: "POST",
        headers: {
