@@ -1,5 +1,7 @@
 
 import {cartEntry, populateCartTable, calculateTotalCost, displayCart} from './orderFunctions.js';
+const mysql = require("mysql2");
+const {runQuery, customerPool} = require("../util/database_util");
 // const cart = [new cartEntry("pizza", 2, 11.99, 11.99 * 2), new cartEntry('wings', 1, 6.99, 6.99)];
 // console.log(cart);
 let statusUpdated = new Array();
@@ -68,7 +70,7 @@ function displayOrders(query, orders) {
         row.insertCell().textContent = order.order_id;
         const statusCell = row.insertCell();
         const statusSelect = document.createElement('select');
-        const statusOptions = ['Pending', 'Started', 'Ready (For Pickup)', 'Ready (For Delivery)', 'In-Transit', 'Delivered'];
+        const statusOptions = ['Processing', 'Started', 'Ready (For Pickup)', 'Ready (For Delivery)', 'In-Transit', 'Delivered', 'Canceled', 'Rejected', 'Refunded'];
         statusOptions.forEach(option => {
             const optionElement = document.createElement('option');
             optionElement.value = option;
@@ -83,6 +85,8 @@ function displayOrders(query, orders) {
                 statusUpdated.push(changeMessage);
                 order.status = newStatus;
             }
+            const updateQuery = 'UPDATE customer_order SET status = "' + newStatus + '" WHERE order_id = ?';
+            
         });
         statusCell.appendChild(statusSelect);
         row.insertCell().textContent = order.date_created;
@@ -100,7 +104,6 @@ async function initialize() {
         method: "GET",
       });
       const past_orders = await response.json();
-      //console.log(past_orders);
       return past_orders;
 }
 
@@ -109,8 +112,4 @@ const button1 = document.getElementById("changeStatusButton");
 button1.addEventListener("click", function() {
     //prolly have to make a call to the backend and call path back to this same page, just so we can quickly connect to the database and update the status of the order in the table
     //vineal do this pls
-    alert("Order Status Changed!");
-    console.log(statusUpdated);
-    statusUpdated = [];
-
 });
