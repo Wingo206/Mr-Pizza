@@ -7,6 +7,102 @@ await initialize();
 let orders = await fillTable();
 
 window.addEventListener('load', displayOrders("#cart tbody", orders));
+
+//at the start maybe even before load cart you want to query the database based on the user's login 
+//like using the cid get the order that is not completed and display it, even if there are multiple orders, prolly match it to cid and items ordered, for now cid
+let testingOID = await getOid();
+console.log(testingOID);
+
+//depending on status the image will change 
+//so have a big check to see if it changed based on previous then have multiple chekcs inside what status to change to 
+var pizzaStatus = document.getElementById('pizzaStatus');
+pizzaStatus.src = "/order/orderedPizzaTrack.png";
+
+const savedPizzaImageSrc = getCookie('pizzaImageSrc');
+pizzaStatus.src = savedPizzaImageSrc;
+setCookie('pizzaImageSrc', "/order/orderedPizzaTrack.png", 1); // dead in 1 days
+
+
+const checkStatusInterval = setInterval(async () => {
+    
+//when it reload it needs to send back the status from before to check 
+    let stat = await checkStatus();
+    console.log("Stat: " + stat[0].status);
+    const orderStatus = stat[0].status;
+
+    let savedStatus = getCookie('orderStatus');
+    console.log(savedStatus);
+    
+if (orderStatus != savedStatus) {
+    if (orderStatus === 'Ready (For Pickup)') {
+        pizzaStatus.src = "/order/orderedPizzaTrack2.png";
+        setCookie('pizzaImageSrc', "/order/orderedPizzaTrack2.png", 1); // dead in 1 days
+        window.location.reload(true);
+    } else if (orderStatus === 'Processing') {
+        pizzaStatus.src = "/order/orderedPizzaTrack.png";
+        setCookie('pizzaImageSrc', "/order/orderedPizzaTrack.png", 1); // dead in 1 days
+        window.location.reload(true);
+    } else if (orderStatus === 'Started') {
+        pizzaStatus.src = "/order/orderedPizzaTrack.png";
+        setCookie('pizzaImageSrc', "/order/orderedPizzaTrack.png", 1); // dead in 1 days
+        window.location.reload(true);
+    } else if (orderStatus === 'Ready (For Delivery)') {
+        pizzaStatus.src = "/order/orderedPizzaTrack.png";
+        setCookie('pizzaImageSrc', "/order/orderedPizzaTrack.png", 1); // dead in 1 days
+        window.location.reload(true);
+    } else if (orderStatus === 'In-Transit') {
+        pizzaStatus.src = "/order/orderedPizzaTrack.png";
+        setCookie('pizzaImageSrc', "/order/orderedPizzaTrack.png", 1); // dead in 1 days
+        window.location.reload(true);
+    } else if (orderStatus === 'Delivered') {
+        pizzaStatus.src = "/order/orderedPizzaTrack.png";
+        setCookie('pizzaImageSrc', "/order/orderedPizzaTrack.png", 1); // dead in 1 days
+        window.location.reload(true);
+    } else if (orderStatus === 'Canceled') {
+        pizzaStatus.src = "/order/orderedPizzaTrack.png";
+        setCookie('pizzaImageSrc', "/order/orderedPizzaTrack.png", 1); // dead in 1 days
+        window.location.reload(true);
+    } else if (orderStatus === 'Rejected') {
+        pizzaStatus.src = "/order/orderedPizzaTrack.png";
+        setCookie('pizzaImageSrc', "/order/orderedPizzaTrack.png", 1); // dead in 1 days
+        window.location.reload(true);
+    } else if (orderStatus === 'Refunded') {
+        pizzaStatus.src = "/order/orderedPizzaTrack.png";
+        setCookie('pizzaImageSrc', "/order/orderedPizzaTrack.png", 1); // dead in 1 days
+        window.location.reload(true);
+    }     
+}
+
+setCookie('orderStatus', orderStatus, 1); // Set cookie to expire in 1 days
+
+}, 5000); //this runs every 5 seconds 
+
+
+
+// Function to set a cookie
+function setCookie(name, value, days) {
+    const date = new Date();
+    date.setTime(date.getTime() + (days * 24 * 60 * 60 * 1000));
+    const expires = "expires=" + date.toUTCString();
+    document.cookie = name + "=" + value + ";" + expires + ";path=/";
+}
+
+// Function to get a cookie
+function getCookie(name) {
+    const decodedCookie = decodeURIComponent(document.cookie);
+    const cookies = decodedCookie.split(';');
+    for (let i = 0; i < cookies.length; i++) {
+        let cookie = cookies[i];
+        while (cookie.charAt(0) === ' ') {
+            cookie = cookie.substring(1);
+        }
+        if (cookie.indexOf(name) === 0) {
+            return cookie.substring(name.length + 1, cookie.length);
+        }
+    }
+    return null;
+}
+
 //add order to database 
 
 function displayOrders(query, orders) {
@@ -15,6 +111,11 @@ function displayOrders(query, orders) {
     // Clear the existing table rows
     tableBody.innerHTML = '';
 
+    let totals = 0;
+    for(let i = 0; i < orders.length; i++) {
+        totals += orders[i].item_price;
+    }
+
     // Iterate over each order
     orders.forEach(order => {
         // Create a new row for each order
@@ -22,7 +123,7 @@ function displayOrders(query, orders) {
 
         // Insert the order details into the table cells
         row.insertCell().textContent = order.item_description; // Item
-        row.insertCell().textContent = order.item_num; // Quantity WE DONT ACTUALLY STORE QUANTITY
+        row.insertCell().textContent = 1; // Quantity WE DONT ACTUALLY STORE QUANTITY
         if (order.item_price == undefined) {
             order.item_price = 0;
         }
@@ -30,7 +131,10 @@ function displayOrders(query, orders) {
             order.item_num = 0;
         }
         row.insertCell().textContent = order.item_price.toFixed(2); // Price per Item
-        row.insertCell().textContent = (order.item_num * order.item_price).toFixed(2); // Total Price
+        row.insertCell().textContent = (1 * order.item_price).toFixed(2); // Total Price
+        row.insertCell().textContent = totals; // Order Price
+
+        //Need a total price
     });
 }
 
@@ -48,7 +152,7 @@ function displayOrders(query, orders) {
 async function initialize() {
      console.log('lol');
      const email = "pewdiepie285@gmail.com";
-     const order_id = "2";
+     const order_id = "9";
      const confirmationCode = "YEISBSU1298";
      let response = await fetch("/order/emailOrderConf", {
         method: "POST",
@@ -58,6 +162,22 @@ async function initialize() {
         body: JSON.stringify({ email: email , order_id: order_id , confirmationCode: confirmationCode})
       });
      console.log(response);
+}
+
+//CHANGE THIS ASK BRANDON HOW TO GET CURRENT USER INFO AND BASED ON THAT WE PLUG IN TO QUERY DATABASE
+async function getOid() {
+    console.log('lol');
+    const requestBody = JSON.stringify({ customer_id : 1});
+    const response = await fetch("/order/getOID", {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json"
+        },
+        body: requestBody
+    });
+    const message = await response.json();
+    console.log(message);
+    return message;
 }
 
 // Fetch SQL datbase order items just ordered
@@ -95,7 +215,7 @@ button2.addEventListener("click", async function() {
 
 async function removeOrder() {
     console.log('lol');
-    const requestBody = JSON.stringify({ order_id: 2 });
+    const requestBody = JSON.stringify({ order_id: 9 });
     const response = await fetch("/order/cancelOrder", {
        method: "POST",
        headers: {
@@ -106,4 +226,19 @@ async function removeOrder() {
      const message = await response.json();
      console.log(message);
      return message;
+}
+
+async function checkStatus() {
+    console.log('lol');
+    const requestBody = JSON.stringify({ order_id: 9});
+    const response = await fetch("/order/checkStatus", {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json"
+        },
+        body: requestBody
+    });
+    const message = await response.json();
+    console.log(message);
+    return message;
 }

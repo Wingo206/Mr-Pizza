@@ -21,6 +21,7 @@ For Order Status
 -Check When the Order Status is updated (loop/continously check) Reload the page if status changes
 -make cancel order use runquery instead of new connection (and refund functionality)
 -Show PP earned and total PP
+-email fix for confirmation order
 
 For Past Order
 Make status a button or drop down
