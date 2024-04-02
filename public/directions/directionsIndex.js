@@ -50,7 +50,7 @@ async function fetchWaypoints() {
     console.log('fetching waypoints from /directions/waypoints/' + esInfo.store_id + '...');
     resp = await fetch('/directions/waypoints/' + esInfo.store_id,
         {
-            method: 'POST',
+            method: 'GET',
             headers: {
                 "Content-type": 'application/json',
             },
