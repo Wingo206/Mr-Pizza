@@ -70,8 +70,6 @@ function displayOrders(query, orders) {
         return acc;
     }, {});
 
-    console.log(itemCountPerOrder);
-
     for (let i = 0; i < orders.length; i++) {
         const row = tableBody.insertRow();
         const order = orders[i];
@@ -152,7 +150,7 @@ async function updateStatus(orderId, newStatus) {
         }),
     });
     const result = await response.json();
-    console.log(result);
+    //console.log(result);
 }
 
 const button1 = document.getElementById("changeStatusButton");
