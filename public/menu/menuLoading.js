@@ -17,7 +17,7 @@ document.addEventListener("DOMContentLoaded", function() {
             console.log("Menu items:", menuItems);
             displayMenuItems(menuItems);
         } catch (error) {
-            console.error("Error fetching menu items:", error);
+            console.error("Error fetching menu items.", error);
         }
     }
 
@@ -38,6 +38,10 @@ document.addEventListener("DOMContentLoaded", function() {
                         <p>Toppings:</p>
                         <ul>
                             ${item.toppings.map(topping => `<li>${topping.topping_name}: $${topping.price}</li>`).join('')}
+                        </ul>
+                        <p>Sizes:</p>
+                        <ul>
+                            ${item.size.map(size => `<li>${size.topping_name}: $${size.price}</li>`).join('')}
                         </ul>
                         <button id="close">Close</button>
                         <button id="add-to-cart" style="float: right;">Add to Cart</button> <!-- Float to right -->

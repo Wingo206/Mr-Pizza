@@ -5,9 +5,17 @@
 }
 
 body {
-  background-color: #edeef6;
-  font-family: 'Poppins', sans-serif;
+  background: linear-gradient(135deg, #ffecd2 0%, #fcb69f 100%);
+  font-family: 'Georgia', serif;
+  color: #333;
   margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  text-align: center;
 }
 
 .menu-header {
@@ -17,25 +25,27 @@ body {
 }
 
 .menu-header h1 {
-  font-size: 48px; /* Adjust the font size as needed */
-  margin: 0;
+  font-size: 2.5em;
+  color: #a23e48;
+  text-shadow: 2px 2px 0px #feca57;
+  margin-bottom: 20px;
 }
 
 .menu-header p {
-  font-size: 28px; /* Adjust the font size as needed */
-  margin: 0;
-  opacity: 0.7;
+  font-size: 1.2em;
+  color: #264653;
+  letter-spacing: 0.5px;
 }
 
 .menu-items {
   display: flex;
   flex-wrap: wrap;
   gap: 20px;
-  padding: 20px 40px; /* Adjust the padding as needed */
+  padding: 20px 40px;
 }
 
 button {
-  background-color: #47a386;
+  background-color: #e76f51;
   border: 0;
   border-radius: 5px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
@@ -93,7 +103,7 @@ button {
 .icons {
   position: absolute;
   top: 40%;
-  right: 40px; /* Adjust the position as needed */
+  right: -50%; /* Adjust the position as needed */
   transform: translateY(-50%);
 }
 
