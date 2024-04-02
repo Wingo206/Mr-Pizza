@@ -60,7 +60,6 @@ function displayOrders(query, orders) {
     const tableBody = document.querySelector(query); 
   
     tableBody.innerHTML = '';
-    let orderStatusCell;
     for (let i = 0; i < orders.length; i++) {
         let j = -1;
         const row = tableBody.insertRow();
@@ -83,8 +82,6 @@ function displayOrders(query, orders) {
                 statusUpdated.push(changeMessage);
                 order.status = newStatus;
             }
-            const updateQuery = 'UPDATE customer_order SET status = "' + newStatus + '" WHERE order_id = ?';
-            
         });
         statusCell.appendChild(statusSelect);
         row.insertCell().textContent = order.date_created;
@@ -109,6 +106,21 @@ async function initialize() {
       });
       const past_orders = await response.json();
       return past_orders;
+}
+
+async function updateStatus(orderId, newStatus) {
+    const response = await fetch("/order/setStatus", {
+        method: "POST",
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+            order_id: orderId,
+            newStatus: newStatus,
+        }),
+    });
+    const result = await response.json();
+    console.log(result);
 }
 
 const button1 = document.getElementById("changeStatusButton");
