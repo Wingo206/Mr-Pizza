@@ -1,7 +1,5 @@
 
 import {cartEntry, populateCartTable, calculateTotalCost, displayCart} from './orderFunctions.js';
-const mysql = require("mysql2");
-const {runQuery, customerPool} = require("../util/database_util");
 // const cart = [new cartEntry("pizza", 2, 11.99, 11.99 * 2), new cartEntry('wings', 1, 6.99, 6.99)];
 // console.log(cart);
 let statusUpdated = new Array();
