@@ -198,21 +198,22 @@ const button1 = document.getElementById("checkoutButton");
 
 button1.addEventListener("click", function () {
 
-  const fetchReponse = async () => {
-    console.log('lol');
-
-    const response = await fetch("/order/postOrder", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json" // Specify the content type as JSON
-      },
-      body: JSON.stringify({orderData, menuItemData, orderItemData})
-    });
-    const responseData = await response.json();
-    alert(JSON.stringify(responseData));
-
-  }
-
-  fetchReponse();
+    const fetchReponse = async () => {
+      console.log('lol');
+  
+      const response = await fetch("/order/postOrder", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json" // Specify the content type as JSON
+        },
+        body: JSON.stringify({orderData, menuItemData, orderItemData})
+      });
+      const responseData = await response.json();
+      alert(JSON.stringify(responseData));
+  
+    }
+  
+    fetchReponse();
+  
 });
 

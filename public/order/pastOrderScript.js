@@ -88,6 +88,12 @@ function displayOrders(query, orders) {
         });
         statusCell.appendChild(statusSelect);
         row.insertCell().textContent = order.date_created;
+        if (order.total_price == undefined) {
+            order.total_price = 0;
+        }
+        if (order.item_price == undefined) {
+            order.item_price = 0;
+        }
         row.insertCell().textContent = order.total_price.toFixed(2);
         row.insertCell().textContent = order.item_num;
         row.insertCell().textContent = order.item_price.toFixed(2);

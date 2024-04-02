@@ -23,6 +23,12 @@ function displayOrders(query, orders) {
         // Insert the order details into the table cells
         row.insertCell().textContent = order.item_description; // Item
         row.insertCell().textContent = order.item_num; // Quantity WE DONT ACTUALLY STORE QUANTITY
+        if (order.item_price == undefined) {
+            order.item_price = 0;
+        }
+        if (order.item_num == undefined) {
+            order.item_num = 0;
+        }
         row.insertCell().textContent = order.item_price.toFixed(2); // Price per Item
         row.insertCell().textContent = (order.item_num * order.item_price).toFixed(2); // Total Price
     });
