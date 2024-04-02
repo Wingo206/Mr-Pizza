@@ -57,33 +57,42 @@ window.addEventListener('load', displayOrders("#cart tbody", orders));
 // }
 
 function displayOrders(query, orders) {
-  const tableBody = document.querySelector(query); 
-
-  tableBody.innerHTML = '';
-  let orderStatusCell;
-  for (let i = 0; i < orders.length; i++) {
-       let j = -1;
-       const row = tableBody.insertRow();
-       const order = orders[i];
-       row.insertCell().textContent = order.order_id;
+    const tableBody = document.querySelector(query); 
+  
+    tableBody.innerHTML = '';
+    let orderStatusCell;
+    for (let i = 0; i < orders.length; i++) {
+        let j = -1;
+        const row = tableBody.insertRow();
+        const order = orders[i];
+        row.insertCell().textContent = order.order_id;
         const statusCell = row.insertCell();
-        statusCell.textContent = order.status;
-        statusCell.setAttribute('contenteditable', 'true');
-        statusCell.addEventListener('blur', function() {
-            const newStatus = this.textContent.trim();
+        const statusSelect = document.createElement('select');
+        const statusOptions = ['Pending', 'Started', 'Ready (For Pickup)', 'Ready (For Delivery)', 'In-Transit', 'Delivered'];
+        statusOptions.forEach(option => {
+            const optionElement = document.createElement('option');
+            optionElement.value = option;
+            optionElement.textContent = option;
+            statusSelect.appendChild(optionElement);
+        });
+        statusSelect.value = order.status;
+        statusSelect.addEventListener('change', function() {
+            const newStatus = this.value.trim();
             if (newStatus !== order.status) {
                 const changeMessage = "Changed status of " + order.item_description + " to " + newStatus;
                 statusUpdated.push(changeMessage);
                 order.status = newStatus;
             }
         });
-       row.insertCell().textContent = order.date_created;
-       row.insertCell().textContent = order.total_price.toFixed(2);
-       row.insertCell().textContent = order.item_num;
-       row.insertCell().textContent = order.item_price.toFixed(2);
-       row.insertCell().textContent = order.item_description;
-   }
-}
+        statusCell.appendChild(statusSelect);
+        row.insertCell().textContent = order.date_created;
+        row.insertCell().textContent = order.total_price.toFixed(2);
+        row.insertCell().textContent = order.item_num;
+        row.insertCell().textContent = order.item_price.toFixed(2);
+        row.insertCell().textContent = order.item_description;
+     }
+  }
+  
 
 // Fetch SQL datbase order items
 async function initialize() {
