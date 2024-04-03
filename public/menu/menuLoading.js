@@ -27,39 +27,34 @@ function displayMenuItems(menuItems) {
         const button = document.createElement("button");
         button.textContent = item.description;
         button.addEventListener("click", async function() {
-
             console.log("Clicked item:", item);
-            if (item.toppings.length === 0 && item.size.length !== 0) {
-                console.log(`Item '${item.description}' with MID '${item.mid}' has no toppings.`);
-            } else if (item.size.length === 0 && item.toppings.length !==0) {
-                console.log(`Item '${item.description}' with MID '${item.mid}' has no sizes.`);
-            } else if (item.toppings.length === 0 && item.size.length === 0) {
-                console.log(`Item '${item.description}' with MID '${item.mid}' has no sizes and toppings.`);
-            }
-
             modalContainer.innerHTML = `
                 <div class="modal-content">
                     <h2>${item.description}</h2>
                     <img src="${item.image}" alt="${item.description}">
                     <p>Price: $${item.price}</p>
-                    <p>Toppings:</p>
-                    <ul>
-                        ${item.toppings.map(topping => `<li>${topping.topping_name}: $${topping.price}</li>`).join('')}
-                    </ul>
-                    <p>Sizes:</p>
-                    <ul>
-                        ${item.size.map(size => `<li>${size.topping_name}: $${size.price}</li>`).join('')}
-                    </ul>
+                    <div class="toppings-section">
+                        <p>Toppings:</p>
+                        <ul class="toppings-list">
+                            ${item.toppings.map(topping => `<li>${topping.topping_name}: $${topping.price}</li>`).join('')}
+                        </ul>
+                    </div>
+                    <div class="sizes-section">
+                        <p>Sizes:</p>
+                        <ul class="sizes-list">
+                            ${item.size.map(size => `<li>${size.topping_name}: $${size.price}</li>`).join('')}
+                        </ul>
+                    </div>
                     <button id="close">Close</button>
                     <button id="add-to-cart" style="float: right;">Add to Cart</button> <!-- Float to right -->
                 </div>`;
             modalContainer.classList.add('show');
-
+        
             const closeButton = document.getElementById("close");
             closeButton.addEventListener("click", function() {
                 modalContainer.classList.remove('show');
             });
-    
+        
             const addButton = document.getElementById("add-to-cart");
             addButton.addEventListener("click", async function() {
                 const cartItem = {
@@ -89,6 +84,35 @@ function displayMenuItems(menuItems) {
                     }
                 } catch (error) {
                     console.error("Error adding item to cart:", error);
+                }
+            });
+        
+            const toppingsSection = modalContainer.querySelector('.toppings-section');
+            const sizesSection = modalContainer.querySelector('.sizes-section');
+        
+            toppingsSection.addEventListener('click', function() {
+                if (item.toppings.length === 0) {
+                    console.log(`Item '${item.description}' with MID '${item.mid}' has no toppings.`);
+                }
+
+                const toppingsList = toppingsSection.querySelector('.toppings-list');
+                if (toppingsList.style.display === 'none') {
+                    toppingsList.style.display = 'block';
+                } else {
+                    toppingsList.style.display = 'none';
+                }
+            });
+        
+            sizesSection.addEventListener('click', function() {
+                if (item.size.length === 0) {
+                    console.log(`Item '${item.description}' with MID '${item.mid}' has no sizes.`);
+                }
+
+                const sizesList = sizesSection.querySelector('.sizes-list');
+                if (sizesList.style.display === 'none') {
+                    sizesList.style.display = 'block';
+                } else {
+                    sizesList.style.display = 'none';
                 }
             });
         });
