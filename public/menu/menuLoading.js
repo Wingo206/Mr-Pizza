@@ -13,7 +13,7 @@ document.addEventListener("DOMContentLoaded", function() {
                 }
             });
             const menuItems = await response.json();
-            console.log("Menu items:", menuItems);
+            console.log("Menu items:", JSON.stringify(menuItems));
             displayMenuItems(menuItems);
         } catch (error) {
             console.error("Error fetching menu items.", error);
@@ -28,9 +28,9 @@ function displayMenuItems(menuItems) {
         button.textContent = item.description;
         button.addEventListener("click", async function() {
             if (item.available === 0) {
-                console.log(`Item with MID '${item.mid}' is not available.`);
+                console.log(`Item with MID '${JSON.stringify(item.mid)}' is not available.`);
             } else {
-                console.log("Clicked item:", item);
+                console.log("Clicked item:", JSON.stringify(item));
                 modalContainer.innerHTML = `
                     <div class="modal-content">
                         <h2>${item.description}</h2>
