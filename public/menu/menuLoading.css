@@ -83,7 +83,7 @@ button {
 }
 
 .modal-content p {
-  font-size: 18px; /* Increase the font size of paragraphs */
+  font-size: 18px;
 }
 
 .modal-content img {
@@ -97,20 +97,20 @@ button {
 
 .modal-content img {
   display: block;
-  margin: 0 auto; /* Center the image horizontally */
+  margin: 0 auto;
 }
 
 .icons {
   position: absolute;
   top: 40%;
-  right: -50%; /* Adjust the position as needed */
+  right: -50%;
   transform: translateY(-50%);
 }
 
 .icons i {
-  font-size: 30px; /* Adjust the size of the icons */
-  margin-left: 10px; /* Add some spacing between the icons */
-  cursor: pointer; /* Add pointer cursor for better UX */
+  font-size: 30px;
+  margin-left: 10px;
+  cursor: pointer;
 }
 
 .show {

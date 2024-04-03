@@ -27,94 +27,98 @@ function displayMenuItems(menuItems) {
         const button = document.createElement("button");
         button.textContent = item.description;
         button.addEventListener("click", async function() {
-            console.log("Clicked item:", item);
-            modalContainer.innerHTML = `
-                <div class="modal-content">
-                    <h2>${item.description}</h2>
-                    <img src="${item.image}" alt="${item.description}">
-                    <p>Price: $${item.price}</p>
-                    <div class="toppings-section">
-                        <p>Toppings:</p>
-                        <ul class="toppings-list">
-                            ${item.toppings.map(topping => `<li>${topping.topping_name}: $${topping.price}</li>`).join('')}
-                        </ul>
-                    </div>
-                    <div class="sizes-section">
-                        <p>Sizes:</p>
-                        <ul class="sizes-list">
-                            ${item.size.map(size => `<li>${size.topping_name}: $${size.price}</li>`).join('')}
-                        </ul>
-                    </div>
-                    <button id="close">Close</button>
-                    <button id="add-to-cart" style="float: right;">Add to Cart</button> <!-- Float to right -->
-                </div>`;
-            modalContainer.classList.add('show');
+            if (item.available === 0) {
+                console.log(`Item with MID '${item.mid}' is not available.`);
+            } else {
+                console.log("Clicked item:", item);
+                modalContainer.innerHTML = `
+                    <div class="modal-content">
+                        <h2>${item.description}</h2>
+                        <img src="${item.image}" alt="${item.description}">
+                        <p>Price: $${item.price}</p>
+                        <div class="toppings-section">
+                            <p>Toppings:</p>
+                            <ul class="toppings-list">
+                                ${item.toppings.map(topping => `<li>${topping.topping_name}: $${topping.price}</li>`).join('')}
+                            </ul>
+                        </div>
+                        <div class="sizes-section">
+                            <p>Sizes:</p>
+                            <ul class="sizes-list">
+                                ${item.size.map(size => `<li>${size.topping_name}: $${size.price}</li>`).join('')}
+                            </ul>
+                        </div>
+                        <button id="close">Close</button>
+                        <button id="add-to-cart" style="float: right;">Add to Cart</button> <!-- Float to right -->
+                    </div>`;
+                modalContainer.classList.add('show');
         
-            const closeButton = document.getElementById("close");
-            closeButton.addEventListener("click", function() {
-                modalContainer.classList.remove('show');
-            });
+                const closeButton = document.getElementById("close");
+                closeButton.addEventListener("click", function() {
+                    modalContainer.classList.remove('show');
+                });
         
-            const addButton = document.getElementById("add-to-cart");
-            addButton.addEventListener("click", async function() {
-                const cartItem = {
-                    mid: item.mid,
-                    description: item.description,
-                    price: item.price,
-                    toppings: item.toppings.map(topping => ({
-                        topping_name: topping.topping_name,
-                        price: topping.price
-                    }))
-                };
-                try {
-                    const response = await fetch("/cart", {
-                        method: 'POST',
-                        headers: {
-                            'Content-Type': 'application/json'
-                        },
-                        body: JSON.stringify(cartItem)
-                    });
-                    if (response.ok) {
-                        const result = await response.json();
-                        console.log(result);
-                        modalContainer.classList.remove('show');
-                        showPopup('Item added to cart');
-                    } else {
-                        console.error("Error adding item to cart:", await response.text());
+                const addButton = document.getElementById("add-to-cart");
+                addButton.addEventListener("click", async function() {
+                    const cartItem = {
+                        mid: item.mid,
+                        description: item.description,
+                        price: item.price,
+                        toppings: item.toppings.map(topping => ({
+                            topping_name: topping.topping_name,
+                            price: topping.price
+                        }))
+                    };
+                    try {
+                        const response = await fetch("/cart", {
+                            method: 'POST',
+                            headers: {
+                                'Content-Type': 'application/json'
+                            },
+                            body: JSON.stringify(cartItem)
+                        });
+                        if (response.ok) {
+                            const result = await response.json();
+                            console.log(result);
+                            modalContainer.classList.remove('show');
+                            showPopup('Item added to cart');
+                        } else {
+                            console.error("Error adding item to cart:", await response.text());
+                        }
+                    } catch (error) {
+                        console.error("Error adding item to cart:", error);
                     }
-                } catch (error) {
-                    console.error("Error adding item to cart:", error);
-                }
-            });
+                });
         
-            const toppingsSection = modalContainer.querySelector('.toppings-section');
-            const sizesSection = modalContainer.querySelector('.sizes-section');
+                const toppingsSection = modalContainer.querySelector('.toppings-section');
+                const sizesSection = modalContainer.querySelector('.sizes-section');
         
-            toppingsSection.addEventListener('click', function() {
-                if (item.toppings.length === 0) {
-                    console.log(`Item '${item.description}' with MID '${item.mid}' has no toppings.`);
-                }
-
-                const toppingsList = toppingsSection.querySelector('.toppings-list');
-                if (toppingsList.style.display === 'none') {
-                    toppingsList.style.display = 'block';
-                } else {
-                    toppingsList.style.display = 'none';
-                }
-            });
+                toppingsSection.addEventListener('click', function() {
+                    if (item.toppings.length === 0) {
+                        console.log(`Item '${item.description}' with MID '${item.mid}' has no toppings.`);
+                    }
         
-            sizesSection.addEventListener('click', function() {
-                if (item.size.length === 0) {
-                    console.log(`Item '${item.description}' with MID '${item.mid}' has no sizes.`);
-                }
-
-                const sizesList = sizesSection.querySelector('.sizes-list');
-                if (sizesList.style.display === 'none') {
-                    sizesList.style.display = 'block';
-                } else {
-                    sizesList.style.display = 'none';
-                }
-            });
+                    const toppingsList = toppingsSection.querySelector('.toppings-list');
+                    if (toppingsList.style.display === 'none') {
+                        toppingsList.style.display = 'block';
+                    } else {
+                        toppingsList.style.display = 'none';
+                    }
+                });
+        
+                sizesSection.addEventListener('click', function() {
+                    if (item.size.length === 0) {
+                        console.log(`Item '${item.description}' with MID '${item.mid}' has no sizes.`);
+                    }
+        
+                    const sizesList = sizesSection.querySelector('.sizes-list');
+                    if (sizesList.style.display === 'none') {
+                        sizesList.style.display = 'block';
+                    } else {
+                        sizesList.style.display = 'none';
+                    }
+                });
+            }
         });
         
         menuItemsContainer.appendChild(button);
