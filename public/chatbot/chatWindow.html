@@ -1,0 +1,47 @@
+<div>
+   <style type="text/css" scoped>
+      #chatWindow {
+         position: absolute;
+         width: 300px;
+         height: 400px;
+         z-index: 10;
+         bottom: 10px;
+         right: 10px;
+         border: 2px solid #e76f51;
+         border-radius: 5px;
+         background: rgba(150, 73, 54, 0.2);
+         display: flex;
+         flex-direction: column;
+      }
+
+      #chatTitleDiv {
+         display: flex;
+         flex-direction: row;
+         gap: 5px;
+         padding-left: 10px;
+         padding-right: 10px;
+      }
+
+      .spacer {
+         flex-grow: 1;
+      }
+
+      #chat {
+         width: 100%;
+         background: linear-gradient(135deg, #fcb69f 0%, #fcb69f 100%);
+         flex-grow: 1;
+      }
+
+   </style>
+   <div id="chatWindow">
+      <div id="chatTitleDiv">
+         <p>hello test</p>
+         <div class="spacer"></div>
+
+         <button>V</button>
+      </div>
+      <div id="chat">
+         <p>hello test</p>
+      </div>
+   </div>
+</div>
