@@ -1,0 +1,462 @@
+{
+  "name": "GPT 3.5 QnA",
+  "locale": "en-US",
+  "data": [
+    {
+      "intent": "AccountInformationUpdate",
+      "utterances": [
+        "How can I update my account information?",
+        "Where do I go to change my email address?",
+        "Can I update my password?",
+        "How do I edit my personal details?"
+      ],
+      "answers": [
+        "You can easily update your account information by logging into your Mr. Pizza account and navigating to the 'Account Settings' section. From there, you'll be able to edit your email address, password, and other personal details."
+      ]
+    },
+    {
+      "intent": "MinimumOrderRequirement",
+      "utterances": [
+        "Is there a minimum order requirement for delivery?",
+        "Do I need to meet a minimum order amount for delivery?",
+        "What's the minimum purchase amount for delivery?",
+        "Is there a minimum spend for delivery orders?"
+      ],
+      "answers": [
+        "We don't have a minimum order requirement for delivery. Whether you're ordering a single slice or a full meal, we're here to fulfill your cravings!"
+      ]
+    },
+    {
+      "intent": "FutureOrderScheduling",
+      "utterances": [
+        "Can I schedule a future order for delivery or pickup?",
+        "Is it possible to place an order for a later date?",
+        "How far in advance can I schedule an order?",
+        "Can I pre-order for a specific time?"
+      ],
+      "answers": [
+        "Yes, you can! When placing your order online, simply select the desired date and time for delivery or pickup during checkout. We'll make sure your order arrives at the specified time."
+      ]
+    },
+    {
+      "intent": "PromotionsAndDiscounts",
+      "utterances": [
+        "Are there any promotions or discounts available for online orders?",
+        "Do you offer any deals for ordering online?",
+        "Where can I find current promotions?",
+        "Do you have any discounts for regular customers?"
+      ],
+      "answers": [
+        "We frequently offer promotions and discounts for online orders. Keep an eye on our website or subscribe to our newsletter to stay updated on the latest deals and offers."
+      ]
+    },
+    {
+      "intent": "FoodAllergiesAndDietaryRestrictions",
+      "utterances": [
+        "What should I do if I have food allergies?",
+        "Do you have options for people with dietary restrictions?",
+        "Can I order gluten-free food?",
+        "How can I ensure my meal meets my dietary needs?"
+      ],
+      "answers": [
+        "If you have any food allergies or dietary restrictions, please let us know when placing your order. Our menu includes options for various dietary needs, and we'll do our best to accommodate your preferences."
+      ]
+    },
+    {
+      "intent": "ContactingCustomerSupport",
+      "utterances": [
+        "How can I contact customer support?",
+        "What's the best way to reach your customer service team?",
+        "Is there a phone number I can call for assistance?",
+        "Can I chat with a representative online?"
+      ],
+      "answers": [
+        "You can reach our customer support team by phone, email, or live chat. Our representatives are available to assist you with any questions or concerns you may have about your order or our services."
+      ]
+    },
+    {
+      "intent": "SavingFavoriteMenuItems",
+      "utterances": [
+        "Can I save my favorite menu items?",
+        "Is there a way to bookmark my go-to orders?",
+        "How do I save items for future reference?",
+        "Can I create a list of my favorite dishes?"
+      ],
+      "answers": [
+        "Yes, you can! Simply log into your Mr. Pizza account and add your favorite menu items to your 'Favorites' list. This makes it quick and easy to reorder your go-to items with just a few clicks."
+      ]
+    },
+    {
+      "intent": "CateringServices",
+      "utterances": [
+        "Do you offer catering services?",
+        "Can you provide food for events?",
+        "Are you available for catering large gatherings?",
+        "Do you cater for parties?"
+      ],
+      "answers": [
+        "Yes, we offer catering services for events of all sizes. Whether you're hosting a small gathering or a large party, we can provide delicious pizza, sides, and drinks to satisfy your guests."
+      ]
+    },
+    {
+      "intent": "OrderConfirmation",
+      "utterances": [
+        "How do I know if my order has been confirmed?",
+        "What happens after I place my order?",
+        "Will I receive a confirmation email?",
+        "Can I check the status of my order?"
+      ],
+      "answers": [
+        "Once you've successfully placed your order, you'll receive a confirmation email and/or SMS message containing all the details of your order. You can also check the status of your order online."
+      ]
+    },
+    {
+      "intent": "OrderCancellation",
+      "utterances": [
+        "How can I cancel my order?",
+        "Is it possible to cancel an order after placing it?",
+        "What's the process for canceling an order?",
+        "Can I get a refund if I cancel my order?"
+      ],
+      "answers": [
+        "To cancel your order, please contact our customer support team as soon as possible. Depending on the status of your order, we may be able to assist you with cancellation and provide a refund if necessary."
+      ]
+    },
+    {
+      "intent": "DeliveryTimeEstimation",
+      "utterances": [
+        "How long will it take for my order to be delivered?",
+        "Can I get an estimate of the delivery time?",
+        "When can I expect my order to arrive?",
+        "Is there a way to track the delivery status?"
+      ],
+      "answers": [
+        "Delivery times may vary depending on factors such as order volume and distance from the store. You can track the status of your delivery online or contact our customer support team for an estimated delivery time."
+      ]
+    },
+    {
+      "intent": "SpecialInstructions",
+      "utterances": [
+        "Can I add special instructions to my order?",
+        "Is there a way to customize my order?",
+        "Do you accept special requests?",
+        "How can I specify my preferences for the order?"
+      ],
+      "answers": [
+        "Yes, you can! During the checkout process, you'll have the option to add any special instructions or requests for your order. Whether you prefer extra toppings, specific cooking instructions, or dietary accommodations, we're here to make your meal just the way you like it."
+      ]
+    },
+    {
+      "intent": "PaymentMethods",
+      "utterances": [
+        "What payment methods do you accept?",
+        "Can I pay with credit card?",
+        "Do you accept cash on delivery?",
+        "Is online payment secure?"
+      ],
+      "answers": [
+        "We accept a variety of payment methods, including credit/debit cards, cash on delivery, and online payment gateways. Your online payments are processed securely to ensure the safety of your transactions."
+      ]
+    },
+    {
+      "intent": "DeliveryFee",
+      "utterances": [
+        "Is there a delivery fee?",
+        "How much does delivery cost?",
+        "Do you offer free delivery?",
+        "Are there any additional charges for delivery?"
+      ],
+      "answers": [
+        "Delivery fees may apply depending on factors such as distance from the store and order total. You can view the delivery fee during checkout, and any applicable charges will be clearly displayed before you place your order."
+      ]
+    },
+    {
+      "intent": "OrderPlacementProcess",
+      "utterances": [
+        "How do I place an order?",
+        "What's the process for ordering food?",
+        "Can you guide me through the steps to place an order?",
+        "I'm new to the website. How can I order?"
+      ],
+      "answers": [
+        "Placing an order is easy! Simply browse our menu, add your desired items to the cart, proceed to checkout, provide your delivery or pickup details, select your preferred payment method, and confirm your order. If you encounter any difficulties, feel free to reach out to our customer support team for assistance."
+      ]
+    },
+    {
+      "intent": "MenuBrowsing",
+      "utterances": [
+        "How can I see the menu?",
+        "Where do I find the list of food items available?",
+        "Is there a way to browse the menu?",
+        "Can I view the available dishes before placing an order?"
+      ],
+      "answers": [
+        "You can view our menu directly on our website. Simply navigate to the menu section, and you'll find a wide range of delicious food items categorized for easy browsing. Feel free to explore the options and select your favorites to add to your order."
+      ]
+    },
+    {
+      "intent": "OrderPlacementWebsiteOnly",
+      "utterances": [
+        "Can I place an order through the phone?",
+        "Is it possible to order via email?",
+        "Do you accept orders through social media platforms?",
+        "Can I call to place my order instead of using the website?"
+      ],
+      "answers": [
+        "We apologize, but currently, we only accept orders through our website. Our online ordering system ensures accuracy and efficiency in processing orders. If you need any assistance with placing your order online, please don't hesitate to contact our customer support team."
+      ]
+    },
+    {
+      "intent": "OrderingOnlineOnly",
+      "utterances": [
+        "Are there other ways to order apart from the website?",
+        "Can orders be placed through a mobile app?",
+        "Do you accept orders via text message?",
+        "Can I order over the phone or in person at the store?"
+      ],
+      "answers": [
+        "At the moment, the only method available for placing orders is through our website. We do not have a mobile app, and orders cannot be placed via text message, phone call, or in-person at the store. We appreciate your understanding."
+      ]
+    },
+    {
+      "intent": "WebsiteExclusiveOrders",
+      "utterances": [
+        "Can I order from a third-party delivery service?",
+        "Do you accept orders from food delivery apps?",
+        "Can I use other platforms to place my order?",
+        "Are orders available through external websites?"
+      ],
+      "answers": [
+        "We exclusively accept orders through our official website. While we appreciate the convenience of third-party delivery services and food delivery apps, we encourage customers to order directly from our website to ensure the best experience and access to our full menu offerings."
+      ]
+    },
+    {
+      "intent": "OrderPlacementLocation",
+      "utterances": [
+        "Where can I place an order?",
+        "What are the options for ordering?",
+        "How can I order from Mr. Pizza?",
+        "Where do I go to make an order?"
+      ],
+      "answers": [
+        "You can easily place your order on our official Mr. Pizza website. Simply visit our website and browse through our menu to select your desired items. Once you've made your selection, proceed to the checkout page to complete your order. If you need any assistance or have questions, feel free to reach out to our customer support team."
+      ]
+    },
+    {
+      "intent": "ViewPastOrders",
+      "utterances": [
+        "Where can I see my previous orders?",
+        "How do I access my order history?",
+        "Can I view my past orders?",
+        "Where do I find my order history?"
+      ],
+      "answers": [
+        "You can easily view your past orders by logging into your Mr. Pizza account on our website. Once logged in, navigate to the 'Order History' section, where you'll find a comprehensive list of all your previous orders. From there, you can review details such as order dates, items purchased, and order statuses."
+      ]
+    },
+    {
+      "intent": "TrackOrderStatus",
+      "utterances": [
+        "How can I track my order?",
+        "Where is my order?",
+        "Can I check the status of my order?",
+        "How do I know where my order is?",
+        "Is there a way to see the progress of my order?"
+      ],
+      "answers": [
+        "You can track your order status by logging into your account on our website and navigating to the 'Order Status' section.",
+        "To track your order, visit our website and go to the 'Track Order' page where you can enter your order details.",
+        "You can check the status of your order by clicking on the 'Track Order' option on our website's menu and entering your order information.",
+        "To know where your order is, simply log in to your account and go to the 'Order Status' page to see real-time updates.",
+        "You can see the progress of your order by visiting our website and entering your order details in the 'Track Order' section."
+      ]
+    },
+    {
+      "intent": "CancelOrder",
+      "utterances": [
+        "How do I cancel my order?",
+        "Can I cancel my order?",
+        "What's the process for canceling an order?",
+        "I need to cancel my order, what should I do?",
+        "Is it possible to cancel my order after I've placed it?"
+      ],
+      "answers": [
+        "You can cancel your order by going to the 'Order History' section in your account and selecting the cancel option next to your order.",
+        "Yes, you can cancel your order by accessing your account and navigating to the 'Order History' where you'll find the cancel option.",
+        "To cancel an order, log in to your account, go to 'Order History', and click on the cancel button next to the respective order.",
+        "If you wish to cancel your order, please log in to your account and proceed to the 'Order History' page where you can cancel the order.",
+        "Yes, it's possible to cancel your order after it's been placed. Simply log in to your account and cancel the order from the 'Order History' section."
+      ]
+    },
+    {
+      "intent": "ViewMenu",
+      "utterances": [
+        "Where can I find the menu?",
+        "How do I access the menu?",
+        "Can I see the available menu items?",
+        "Where on the website can I view the menu?",
+        "Is there a way to check what's on the menu?"
+      ],
+      "answers": [
+        "You can find our menu on the website by clicking on the 'Menu' option in the navigation bar.",
+        "To access the menu, simply click on the 'Menu' tab located on the top of our website.",
+        "Yes, you can view all the available menu items by clicking on the 'Menu' section on our website.",
+        "You can easily view our menu by navigating to the 'Menu' tab on our website's homepage.",
+        "To check what's on the menu, visit our website and click on the 'Menu' option in the main menu."
+      ]
+    },
+    {
+      "intent": "ApplyDiscount",
+      "utterances": [
+        "How do I apply a discount to my order?",
+        "Can I use a coupon code for my order?",
+        "Where do I enter a promo code?",
+        "Is there a place to apply a discount before checkout?",
+        "How can I get a discount on my order?"
+      ],
+      "answers": [
+        "You can apply a discount to your order during checkout by entering the promo code in the designated field.",
+        "Yes, you can use a coupon code for your order. Simply enter the code during the checkout process.",
+        "To apply a promo code, enter the code in the 'Promo Code' field during the checkout process.",
+        "Yes, there's a field for applying discounts before checkout. You can enter your promo code there.",
+        "You can get a discount on your order by using a valid promo code during the checkout process."
+      ]
+    },
+    {
+      "intent": "ContactSupport",
+      "utterances": [
+        "How can I contact customer support?",
+        "Is there a way to reach customer service?",
+        "Where can I find help?",
+        "How do I get assistance with an issue?",
+        "Can I talk to a representative for help?"
+      ],
+      "answers": [
+        "You can contact our customer support team by emailing us at support@mrpizza.com or by calling our helpline at 1-800-MRPIZZA.",
+        "Yes, there are multiple ways to reach our customer service. You can email us or call our helpline for assistance.",
+        "If you need help, you can find assistance on our website's 'Support' page or by contacting our customer service.",
+        "To get assistance with an issue, please visit our 'Support' page on the website or contact our customer service team.",
+        "Certainly, you can talk to a representative by calling our customer service hotline or using the live chat option on our website."
+      ]
+    },
+    {
+      "intent": "ChangeAccountDetails",
+      "utterances": [
+        "How do I update my account information?",
+        "Where can I change my account details?",
+        "Can I edit my profile?",
+        "Is there a way to modify my account settings?",
+        "How do I change my password?"
+      ],
+      "answers": [
+        "You can update your account information by logging in to your account and navigating to the 'Account Settings' section.",
+        "To change your account details, go to the 'Profile' section in your account and click on the 'Edit' button.",
+        "Yes, you can edit your profile information by visiting the 'Profile' page in your account settings.",
+        "You can modify your account settings by accessing the 'Account' section on our website and making changes as needed.",
+        "To change your password, log in to your account and go to the 'Change Password' option under 'Account Settings'."
+      ]
+    },
+    {
+      "intent": "RedeemRewards",
+      "utterances": [
+        "How do I redeem my reward points?",
+        "Can I use my loyalty points for discounts?",
+        "Where do I go to redeem my rewards?",
+        "Is there a way to get free items with my reward points?",
+        "How can I use my Pizza Points for benefits?"
+      ],
+      "answers": [
+        "You can redeem your reward points by logging in to your account and visiting the 'Rewards' section where you'll find options to redeem points for discounts or free items.",
+        "Yes, you can use your loyalty points for discounts on your orders. Simply redeem your points during the checkout process.",
+        "To redeem your rewards, go to the 'Rewards' page in your account and follow the instructions to claim your discounts or free items.",
+        "You can get free items or discounts by redeeming your reward points in the 'Rewards' section of your account.",
+        "To use your Pizza Points for benefits, log in to your account and go to the 'Rewards' page where you can redeem points for various perks."
+      ]
+    },
+    {
+      "intent": "CheckDeliveryAvailability",
+      "utterances": [
+        "Is delivery available in my area?",
+        "Can I get delivery to my address?",
+        "Does Mr. Pizza deliver to my location?",
+        "Where can I check if delivery is available?",
+        "How do I know if I'm eligible for delivery?"
+      ],
+      "answers": [
+        "You can check if delivery is available in your area by entering your address on the checkout page.",
+        "Yes, you can get delivery to your address if it falls within our delivery radius. Please enter your address during checkout to confirm.",
+        "Mr. Pizza delivers to various locations. To check if we deliver to your location, enter your address on the checkout page.",
+        "You can verify delivery availability by entering your address in the delivery section during the checkout process.",
+        "To know if you're eligible for delivery, enter your address during checkout and see if delivery options are available for your location."
+      ]
+    },
+    {
+      "intent": "PlacePickupOrder",
+      "utterances": [
+        "How can I place a pickup order?",
+        "Can I order food for pickup?",
+        "Where do I go to place a pickup order?",
+        "Is it possible to pick up my order instead of delivery?",
+        "How do I select pickup as my order option?"
+      ],
+      "answers": [
+        "You can place a pickup order by selecting the 'Pickup' option at checkout and choosing a pickup time.",
+        "Yes, you can order food for pickup. Simply select the 'Pickup' option during checkout.",
+        "To place a pickup order, choose the 'Pickup' option at checkout and select a convenient pickup time.",
+        "Yes, it's possible to pick up your order instead of opting for delivery. Just select the 'Pickup' option during checkout.",
+        "To select pickup as your order option, proceed to the checkout page and choose the 'Pickup' option before completing your order."
+      ]
+    },
+    {
+      "intent": "NotifyDriverUnavailable",
+      "utterances": [
+        "What happens if my driver can't make it?",
+        "How will I know if my driver is unavailable?",
+        "What if there's a problem with the delivery driver?",
+        "What if the driver can't deliver my order?",
+        "How do I get notified if my driver can't make it?"
+      ],
+      "answers": [
+        "If your assigned driver is unavailable, we'll notify you via email or SMS and provide an update on the status of your delivery.",
+        "You'll receive a notification via email or SMS if your driver is unavailable, and we'll work to assign another driver to your order.",
+        "In case of any issues with the delivery driver, we'll inform you promptly through email or SMS and provide alternative arrangements.",
+        "If the assigned driver is unable to deliver your order, we'll send you a notification via email or SMS and take necessary actions to ensure a timely delivery.",
+        "You'll be notified via email or SMS if there's an issue with your assigned driver or if they're unable to make the delivery as scheduled."
+      ]
+    },
+    {
+      "intent": "RescheduleDelivery",
+      "utterances": [
+        "Can I reschedule my delivery if the driver can't make it?",
+        "What should I do if my driver is unavailable?",
+        "Is there an option to change the delivery time?",
+        "Can I choose a different delivery time?",
+        "How do I reschedule my delivery?"
+      ],
+      "answers": [
+        "Yes, if your driver is unavailable, you can reschedule your delivery for a later time. Simply log in to your account and modify the delivery time.",
+        "In case your driver is unavailable, you have the option to reschedule your delivery for a more convenient time.",
+        "If the driver is unavailable, you can change the delivery time by accessing your account and selecting a new time slot for delivery.",
+        "Yes, you can choose a different delivery time if your assigned driver is unavailable. Log in to your account and update the delivery details accordingly.",
+        "To reschedule your delivery due to driver unavailability, log in to your account, go to the 'Order Status' section, and select the option to change the delivery time."
+      ]
+    },
+    {
+      "intent": "RequestAssistance",
+      "utterances": [
+        "What do I do if my driver can't make it?",
+        "Is there a way to get help if my driver is unavailable?",
+        "Who should I contact if there's an issue with the driver?",
+        "Can I get assistance if my driver can't deliver?",
+        "How can I request help for a delivery problem?"
+      ],
+      "answers": [
+        "If your driver can't make it, please contact our customer support team immediately for assistance.",
+        "You can reach out to our customer support team if your driver is unavailable or if there's any issue with the delivery process.",
+        "If there's an issue with the driver or delivery, please contact our customer service hotline for immediate assistance.",
+        "For any problems related to the driver's availability or delivery issues, feel free to contact our customer support team for help.",
+        "If you encounter any issues with the driver's availability or delivery, don't hesitate to request assistance from our customer service team."
+      ]
+    }
+  ]
+}
