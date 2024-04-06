@@ -39,7 +39,7 @@ window.loadLocations = async () => {
 
          let marker = new AdvancedMarkerElement({
             map,
-            position: {lat: Number(store.latlng.x), lng: Number(store.latlng.y)},
+            position: { lat: Number(store.latlng.x), lng: Number(store.latlng.y) },
          });
          marker.addListener("click", () => {
             map.panTo(marker.position);
@@ -104,6 +104,10 @@ window.addEventListener("load", async (event) => {
       addStore.className = "show";
       editStore.className = "show";
    }
+
+   // add the address validation forms
+   window.addAddressForm('editAddressValidationForm', onEditValidationConfirm);
+   window.addAddressForm('addAddressValidationForm', onAddValidationConfirm);
 });
 
 let storeId = selectedStoreId;
@@ -152,7 +156,7 @@ window.editStore = async () => {
    }
 
    console.log("fetching from /stores/" + selectedStoreId + "/edit, body: " + JSON.stringify(body) + "...");
-   let resp = await fetch(`/stores/${selectedStoreId}/edit`, 
+   let resp = await fetch(`/stores/${selectedStoreId}/edit`,
       {
          method: 'POST',
          headers: {
@@ -173,6 +177,17 @@ window.editStore = async () => {
    }
 }
 
+function onEditValidationConfirm(formattedAddress, location) {
+   document.getElementById('editStoreAddress').value = formattedAddress;
+   document.getElementById('editStoreLatitude').value = location.latitude;
+   document.getElementById('editStoreLongitude').value = location.longitude;
+}
+
+function onAddValidationConfirm(formattedAddress, location) {
+   document.getElementById('addStoreAddress').value = formattedAddress;
+   document.getElementById('addStoreLatitude').value = location.latitude;
+   document.getElementById('addStoreLongitude').value = location.longitude;
+}
 
 initMap();
 

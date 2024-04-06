@@ -5,7 +5,10 @@
     <script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
 
     <link rel="stylesheet" type="text/css" href="./mapStyle.css" />
+    <link rel="stylesheet" type="text/css" href="/home/style.css" />
     <script type="module" src="./mapIndex.js"></script>
+    <script type="module" src="/addressValidation/addressForm.js"></script>
+
 </head>
 
 <body>
@@ -21,8 +24,9 @@
                 <h2 id="storeAddress"></h2>
                 <p id="storeId"></p>
                 <div id="editStore" class="hide">
-                    <fieldset class="fieldset-auto-width">
+                    <fieldset>
                         <legend>Edit Store Information</legend>
+                        <div id="editAddressValidationForm"></div>
                         <label for="editStoreAddress">New Store Address:</label>
                         <input type="text" id="editStoreAddress">
                         <br>
@@ -41,8 +45,9 @@
             </div>
             <br>
             <div id="addStore" class="hide">
-                <fieldset class="fieldset-auto-width">
+                <fieldset>
                     <legend>Add Store</legend>
+                    <div id="addAddressValidationForm"></div>
                     <label for="addStoreAddress">Store Address:</label>
                     <input type="text" id="addStoreAddress">
                     <br>
