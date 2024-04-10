@@ -135,3 +135,6 @@ ssl/*
 
 # sql script after substitution with environment variables
 models/temp/*
+
+# cache for webscraping
+lib/scraping/cache/*
