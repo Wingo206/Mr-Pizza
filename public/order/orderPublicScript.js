@@ -199,6 +199,8 @@ const button1 = document.getElementById("checkoutButton");
 
 button1.addEventListener("click", function () {
 
+    document.getElementById("checkout").removeAttribute("hidden");
+
     const fetchReponse = async () => {
       console.log('lol');
   
