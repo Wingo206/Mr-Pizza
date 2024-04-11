@@ -1,0 +1,199 @@
+Getting category item names
+[
+  {
+    category: 'Breads & Oven-Baked Dips',
+    sectionName: 'Breads',
+    itemName: 'Stuffed Cheesy Bread',
+    orderButtonDataQuid: 'F_SCBRD',
+    image: 'https://cache.dominos.com/olo/6_129_3/assets/build/market/US/_en/images/img/products/larges/F_SCBRD.jpg'
+  },
+  {
+    category: 'Breads & Oven-Baked Dips',
+    sectionName: 'Breads',
+    itemName: 'Pepperoni Stuffed Cheesy Bread',
+    orderButtonDataQuid: 'F_SPBRD',
+    image: 'https://cache.dominos.com/olo/6_129_3/assets/build/market/US/_en/images/img/products/larges/F_SPBRD.jpg'
+  },
+  {
+    category: 'Breads & Oven-Baked Dips',
+    sectionName: 'Breads',
+    itemName: 'Spinach & Feta Stuffed Cheesy Bread',
+    orderButtonDataQuid: 'F_SSBRD',
+    image: 'https://cache.dominos.com/olo/6_129_3/assets/build/market/US/_en/images/img/products/larges/F_SSBRD.jpg'
+  },
+  {
+    category: 'Breads & Oven-Baked Dips',
+    sectionName: 'Breads',
+    itemName: 'Bacon & Jalapeno Stuffed Cheesy Bread',
+    orderButtonDataQuid: 'F_SBBRD',
+    image: 'https://cache.dominos.com/olo/6_129_3/assets/build/market/US/_en/images/img/products/larges/F_SBBRD.jpg'
+  },
+  {
+    category: 'Breads & Oven-Baked Dips',
+    sectionName: 'Breads',
+    itemName: 'Parmesan Bread Twists',
+    orderButtonDataQuid: 'F_PARMT',
+    image: 'https://cache.dominos.com/olo/6_129_3/assets/build/market/US/_en/images/img/products/larges/F_PARMT.jpg'
+  },
+  {
+    category: 'Breads & Oven-Baked Dips',
+    sectionName: 'Breads',
+    itemName: 'Garlic Bread Twists',
+    orderButtonDataQuid: 'F_GARLICT',
+    image: 'https://cache.dominos.com/olo/6_129_3/assets/build/market/US/_en/images/img/products/larges/F_GARLICT.jpg'
+  },
+  {
+    category: 'Breads & Oven-Baked Dips',
+    sectionName: 'Breads',
+    itemName: 'Parmesan Bread Bites',
+    orderButtonDataQuid: 'F_PBITES',
+    image: 'https://cache.dominos.com/olo/6_129_3/assets/build/market/US/_en/images/img/products/larges/F_PBITES.jpg'
+  },
+  {
+    category: 'Breads & Oven-Baked Dips',
+    sectionName: 'Breads',
+    itemName: 'Cinnamon Bread Twists',
+    orderButtonDataQuid: 'F_CINNAT',
+    image: 'https://cache.dominos.com/olo/6_129_3/assets/build/market/US/_en/images/img/products/larges/F_CINNAT.jpg'
+  },
+  {
+    category: 'Breads & Oven-Baked Dips',
+    sectionName: 'Oven-baked Dips & Twists combos',
+    itemName: 'Five Cheese Dip & Bread Twists',
+    orderButtonDataQuid: 'P_FVCHPAIR',
+    image: 'https://cache.dominos.com/olo/6_129_3/assets/build/market/US/_en/images/img/products/larges/P_FVCHPAIR.jpg'
+  },
+  {
+    category: 'Breads & Oven-Baked Dips',
+    sectionName: 'Oven-baked Dips & Twists combos',
+    itemName: 'Cheesy Marinara Dip & Bread Twists',
+    orderButtonDataQuid: 'P_MARPAIR',
+    image: 'https://cache.dominos.com/olo/6_129_3/assets/build/market/US/_en/images/img/products/larges/P_MARPAIR.jpg'
+  },
+  {
+    category: 'Breads & Oven-Baked Dips',
+    sectionName: 'Oven-Baked Dips',
+    itemName: 'Cheesy Marinara Dip',
+    orderButtonDataQuid: 'F_MARDIP',
+    image: 'https://cache.dominos.com/olo/6_129_3/assets/build/market/US/_en/images/img/products/larges/F_MARDIP.jpg'
+  },
+  {
+    category: 'Breads & Oven-Baked Dips',
+    sectionName: 'Oven-Baked Dips',
+    itemName: 'Five Cheese Dip',
+    orderButtonDataQuid: 'F_FVCHEDIP',
+    image: 'https://cache.dominos.com/olo/6_129_3/assets/build/market/US/_en/images/img/products/larges/F_FVCHEDIP.jpg'
+  }
+]
+[
+  {
+    category: 'Breads & Oven-Baked Dips',
+    sectionName: 'Breads',
+    itemName: 'Stuffed Cheesy Bread',
+    orderButtonDataQuid: 'F_SCBRD',
+    image: 'https://cache.dominos.com/olo/6_129_3/assets/build/market/US/_en/images/img/products/larges/F_SCBRD.jpg',
+    price: '8.99'
+  },
+  {
+    category: 'Breads & Oven-Baked Dips',
+    sectionName: 'Breads',
+    itemName: 'Pepperoni Stuffed Cheesy Bread',
+    orderButtonDataQuid: 'F_SPBRD',
+    image: 'https://cache.dominos.com/olo/6_129_3/assets/build/market/US/_en/images/img/products/larges/F_SPBRD.jpg',
+    price: '8.99'
+  },
+  {
+    category: 'Breads & Oven-Baked Dips',
+    sectionName: 'Breads',
+    itemName: 'Spinach & Feta Stuffed Cheesy Bread',
+    orderButtonDataQuid: 'F_SSBRD',
+    image: 'https://cache.dominos.com/olo/6_129_3/assets/build/market/US/_en/images/img/products/larges/F_SSBRD.jpg',
+    price: '8.99'
+  },
+  {
+    category: 'Breads & Oven-Baked Dips',
+    sectionName: 'Breads',
+    itemName: 'Bacon & Jalapeno Stuffed Cheesy Bread',
+    orderButtonDataQuid: 'F_SBBRD',
+    image: 'https://cache.dominos.com/olo/6_129_3/assets/build/market/US/_en/images/img/products/larges/F_SBBRD.jpg',
+    price: '8.99'
+  },
+  {
+    category: 'Breads & Oven-Baked Dips',
+    sectionName: 'Breads',
+    itemName: 'Parmesan Bread Twists',
+    orderButtonDataQuid: 'F_PARMT',
+    image: 'https://cache.dominos.com/olo/6_129_3/assets/build/market/US/_en/images/img/products/larges/F_PARMT.jpg',
+    price: '7.99'
+  },
+  {
+    category: 'Breads & Oven-Baked Dips',
+    sectionName: 'Breads',
+    itemName: 'Garlic Bread Twists',
+    orderButtonDataQuid: 'F_GARLICT',
+    image: 'https://cache.dominos.com/olo/6_129_3/assets/build/market/US/_en/images/img/products/larges/F_GARLICT.jpg',
+    price: '7.99'
+  },
+  {
+    category: 'Breads & Oven-Baked Dips',
+    sectionName: 'Breads',
+    itemName: 'Parmesan Bread Bites',
+    orderButtonDataQuid: 'F_PBITES',
+    image: 'https://cache.dominos.com/olo/6_129_3/assets/build/market/US/_en/images/img/products/larges/F_PBITES.jpg',
+    price: '5.99'
+  },
+  {
+    category: 'Breads & Oven-Baked Dips',
+    sectionName: 'Breads',
+    itemName: 'Cinnamon Bread Twists',
+    orderButtonDataQuid: 'F_CINNAT',
+    image: 'https://cache.dominos.com/olo/6_129_3/assets/build/market/US/_en/images/img/products/larges/F_CINNAT.jpg',
+    price: '7.99'
+  },
+  {
+    category: 'Breads & Oven-Baked Dips',
+    sectionName: 'Oven-baked Dips & Twists combos',
+    itemName: 'Five Cheese Dip & Bread Twists',
+    orderButtonDataQuid: 'P_FVCHPAIR',
+    image: 'https://cache.dominos.com/olo/6_129_3/assets/build/market/US/_en/images/img/products/larges/P_FVCHPAIR.jpg',
+    price: '10.99'
+  },
+  {
+    category: 'Breads & Oven-Baked Dips',
+    sectionName: 'Oven-baked Dips & Twists combos',
+    itemName: 'Cheesy Marinara Dip & Bread Twists',
+    orderButtonDataQuid: 'P_MARPAIR',
+    image: 'https://cache.dominos.com/olo/6_129_3/assets/build/market/US/_en/images/img/products/larges/P_MARPAIR.jpg',
+    price: '10.99'
+  },
+  {
+    category: 'Breads & Oven-Baked Dips',
+    sectionName: 'Oven-Baked Dips',
+    itemName: 'Cheesy Marinara Dip',
+    orderButtonDataQuid: 'F_MARDIP',
+    image: 'https://cache.dominos.com/olo/6_129_3/assets/build/market/US/_en/images/img/products/larges/F_MARDIP.jpg',
+    price: '4.99'
+  },
+  {
+    category: 'Breads & Oven-Baked Dips',
+    sectionName: 'Oven-Baked Dips',
+    itemName: 'Five Cheese Dip',
+    orderButtonDataQuid: 'F_FVCHEDIP',
+    image: 'https://cache.dominos.com/olo/6_129_3/assets/build/market/US/_en/images/img/products/larges/F_FVCHEDIP.jpg',
+    price: '4.99'
+  }
+]
+[
+  'Stuffed Cheesy Bread',
+  'Pepperoni Stuffed Cheesy Bread',
+  'Spinach & Feta Stuffed Cheesy Bread',
+  'Bacon & Jalapeno Stuffed Cheesy Bread',
+  'Parmesan Bread Twists',
+  'Garlic Bread Twists',
+  'Parmesan Bread Bites',
+  'Cinnamon Bread Twists',
+  'Five Cheese Dip & Bread Twists',
+  'Cheesy Marinara Dip & Bread Twists',
+  'Cheesy Marinara Dip',
+  'Five Cheese Dip'
+]
