@@ -59,7 +59,7 @@ permissionsTable[conf.sqlCustomerUser] = {
    "item_availability": 1,
    "made_by": 1,
    "menu_item": 1,
-   "order_item": 1,
+   "order_item": 2,
    "review": 2,
    "store": 1,
    "with_custom": 2,

@@ -209,9 +209,9 @@ button1.addEventListener("click", function () {
         },
         body: JSON.stringify({orderData, menuItemData, orderItemData})
       });
-      const responseData = await response.json();
+      const responseData = await response.text();
       alert(JSON.stringify(responseData));
-  
+      
     }
   
     fetchReponse();
