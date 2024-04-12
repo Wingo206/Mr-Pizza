@@ -79,6 +79,10 @@ function displayOrders(query, orders) {
             orderIDCell.rowSpan = itemCountPerOrder[order.order_id];
             previousOrderID = order.order_id;
 
+            const storeIDCell = row.insertCell();
+            storeIDCell.textContent = order.made_at;
+            storeIDCell.rowSpan = itemCountPerOrder[order.order_id];
+
             const statusCell = row.insertCell();
             const statusSelect = document.createElement('select');
             const statusOptions = ['Processing', 'Started', 'Ready (For Pickup)', 'Ready (For Delivery)', 'In-Transit', 'Delivered', 'Canceled', 'Rejected', 'Refunded'];

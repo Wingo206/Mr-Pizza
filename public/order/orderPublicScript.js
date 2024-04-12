@@ -117,6 +117,7 @@ for (let i = 0; i < orderItemData.length; i++) {
 
 const cart = [new cartEntry("pizza", 2, 11.99, 11.99 * 2), new cartEntry('wings', 1, 6.99, 6.99)];
 const stripe = Stripe('pk_test_51OxFUuP5gIWmEZ1PniORZnxF5lBrVHSaZzQeI836MWHDsr2cjqRsiFOoolY5yP9zQse5Sar1T0s0hwpy6QwKbfhX00MVSoX1UQ')
+let isThereTip = false;
 console.log(cart);
 
 // //replace conditionals with checking if user is employee or admin,
@@ -174,13 +175,12 @@ initialize();
 // Fetch Checkout Session and retrieve the client secret
 async function initialize() {
   const fetchClientSecret = async () => {
-    console.log('lol');
     const response = await fetch("/order/createCheckoutSession", {
       method: "POST",
       headers: {
         "Content-Type": "application/json" // Specify the content type as JSON
       },
-      body: JSON.stringify({ total : total}) 
+      body: JSON.stringify({ total : total , tip : isThereTip}) 
     });
     const {client_secret} = await response.json();
     return client_secret;
@@ -196,14 +196,25 @@ async function initialize() {
 }
 
 const button1 = document.getElementById("checkoutButton");
+const button2 = document.getElementById("tipButton");
+button2.addEventListener("click", function () {
+  //document.getElementById("tip").removeAttribute("hidden");
+  isThereTip = true;
+  alert("Tip added");
+});
 
 button1.addEventListener("click", function () {
 
     document.getElementById("checkout").removeAttribute("hidden");
+    //if statement that checks if the time is within 9 am to 4:30 am, if it isnt then print we are closed, please order during opening hours and 30 minutes before the store closes
+    
+    let currentTime = new Date();
+    if(currentTime.getHours() < 9 || currentTime.getHours() > 17){
+      alert("We are closed, please order during within operating hours 9 AM to 5 PM. Please place your order 30 minutes before closing time");
+      return;
+    }
 
     const fetchReponse = async () => {
-      console.log('lol');
-  
       const response = await fetch("/order/postOrder", {
         method: "POST",
         headers: {
