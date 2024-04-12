@@ -208,11 +208,11 @@ button1.addEventListener("click", function () {
     document.getElementById("checkout").removeAttribute("hidden");
     //if statement that checks if the time is within 9 am to 4:30 am, if it isnt then print we are closed, please order during opening hours and 30 minutes before the store closes
     
-    let currentTime = new Date();
-    if(currentTime.getHours() < 9 || currentTime.getHours() > 17){
-      alert("We are closed, please order during within operating hours 9 AM to 5 PM. Please place your order 30 minutes before closing time");
-      return;
-    }
+    // let currentTime = new Date();
+    // if(currentTime.getHours() < 9 || currentTime.getHours() > 17){
+    //   alert("We are closed, please order during within operating hours 9 AM to 5 PM. Please place your order 30 minutes before closing time");
+    //   return;
+    // }
 
     const fetchReponse = async () => {
       const response = await fetch("/order/postOrder", {

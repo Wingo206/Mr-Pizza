@@ -85,7 +85,7 @@ function displayOrders(query, orders) {
 
 // Fetch SQL datbase order items
 async function initialize() {
-     const response = await fetch("/order/getPastOrders", {
+     const response = await fetch("/order/getCustomerOrder", {
         method: "GET",
       });
       const past_orders = await response.json();
