@@ -4,6 +4,7 @@ const cart = [new cartEntry("pizza", 2, 11.99, 11.99 * 2), new cartEntry('wings'
 console.log(cart);
 
 await initialize();
+console.log("FILL TABLE");
 let orders = await fillTable();
 
 window.addEventListener('load', displayOrders("#cart tbody", orders));
@@ -184,7 +185,7 @@ async function getOid() {
 // right now body is hardcoded but should retrieve from last page 
 async function fillTable() {
     console.log('lol');
-    const requestBody = JSON.stringify({ order_id: 9 });
+    const requestBody = JSON.stringify({ order_id: 11 });
     const response = await fetch("/order/getOrder", {
        method: "POST",
        headers: {
