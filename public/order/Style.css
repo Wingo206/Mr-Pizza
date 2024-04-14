@@ -9,7 +9,7 @@
 }
 
 body { 
-    background: linear-gradient(90deg, rgba(2,0,36,1) 0%, rgba(255,255,255,1) 0%, rgba(255,71,77,1) 100%);
+    background:  linear-gradient(135deg, #ffecd2 0%, #fcb69f 100%);;
     font-family: 'Roboto', sans-serif; /* Apply a default font for the body */
 }
 
@@ -20,9 +20,10 @@ p {
     font-family: 'FLIX', sans-serif; /* Makes font consistent with the table */
     font-size: 3.5em; /* Adjust size as needed */
     font-weight: bold; /* Makes the text thicker */
-    text-shadow: 10px 10px 10px rgba(0,0,0,0.5); /* Gives the text a shadow */
+    text-shadow: 2px 2px 0px #feca57; /* Gives the text a shadow */
     padding-top: 20px; /* Add padding to space out from the top of the page */
-    color: #FFFFFF; /* Optional: Change text color if needed for better visibility */
+    color: #a23e48; /* Optional: Change text color if needed for better visibility */
+
   }
 
 /* Flex container for side-by-side layout of table and buttons */
@@ -53,7 +54,7 @@ p {
   }
   
   th {
-    background-color: #ba68c8;
+    background-color: #e76f51;
     color: #fafafa;
     font-family: 'Open Sans', Sans-serif;
     font-weight: 300;
@@ -89,7 +90,8 @@ p {
   
   /* Hover effect for buttons to slightly change background color */
   .order-buttons button:hover {
-    background-color: #eec4ff; /* A lighter or darker shade for the hover state */
+    background-color: #e76f51; /* A lighter or darker shade for the hover state */
+    color: #fff
   }
 
   .order-buttons {
