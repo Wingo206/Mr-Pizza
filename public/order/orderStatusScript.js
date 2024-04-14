@@ -3,7 +3,7 @@ import {cartEntry, populateCartTable, calculateTotalCost, displayCart} from './o
 const cart = [new cartEntry("pizza", 2, 11.99, 11.99 * 2), new cartEntry('wings', 1, 6.99, 6.99)];
 console.log(cart);
 
-await initialize();
+//await initialize();
 console.log("FILL TABLE");
 let orders = await fillTable();
 
@@ -11,8 +11,25 @@ window.addEventListener('load', displayOrders("#cart tbody", orders));
 
 //at the start maybe even before load cart you want to query the database based on the user's login 
 //like using the cid get the order that is not completed and display it, even if there are multiple orders, prolly match it to cid and items ordered, for now cid
-let testingOID = await getOid();
-console.log(testingOID);
+//let testingOID = await getOid();
+//console.log(testingOID);
+
+//CHECK IF THE EMAIL HAS BEEN SENT ALREADY
+const savedEmailSent = getCookie("emailSent");
+const savedEmailOrder = getCookie("emailOrder");
+
+if (savedEmailSent === 'Sent') {
+    let retrievedOID = await getOid();
+    if (savedEmailOrder != retrievedOID) {
+        setCookie('emailSent', "Sent", 1); // dead in 1 days
+        setCookie('emailOrder', retrievedOID, 1); // dead in 1 days
+        await initialize();
+    }
+}
+else {
+    setCookie('emailSent', "Sent", 1); // dead in 1 days
+    await initialize();
+}
 
 //depending on status the image will change 
 //so have a big check to see if it changed based on previous then have multiple chekcs inside what status to change to 
@@ -22,7 +39,7 @@ pizzaStatus.src = "/order/orderedPizzaTrack.png";
 const savedPizzaImageSrc = getCookie('pizzaImageSrc');
 pizzaStatus.src = savedPizzaImageSrc;
 setCookie('pizzaImageSrc', "/order/orderedPizzaTrack.png", 1); // dead in 1 days
-
+let cancelStatus;
 
 const checkStatusInterval = setInterval(async () => {
     
@@ -30,6 +47,11 @@ const checkStatusInterval = setInterval(async () => {
     let stat = await checkStatus();
     console.log("Stat: " + stat[0].status);
     const orderStatus = stat[0].status;
+    cancelStatus = orderStatus;
+
+    if (cancelStatus === 'Delivered') {
+        document.getElementById("notReceivedButton").removeAttribute("hidden");
+    }
 
     let savedStatus = getCookie('orderStatus');
     console.log(savedStatus);
@@ -78,7 +100,7 @@ setCookie('orderStatus', orderStatus, 1); // Set cookie to expire in 1 days
 
 }, 5000); //this runs every 5 seconds 
 
-
+//console.log(cancelStatus);
 
 // Function to set a cookie
 function setCookie(name, value, days) {
@@ -168,13 +190,11 @@ async function initialize() {
 //CHANGE THIS ASK BRANDON HOW TO GET CURRENT USER INFO AND BASED ON THAT WE PLUG IN TO QUERY DATABASE
 async function getOid() {
     console.log('lol');
-    const requestBody = JSON.stringify({ customer_id : 1});
     const response = await fetch("/order/getOID", {
         method: "POST",
         headers: {
             "Content-Type": "application/json"
         },
-        body: requestBody
     });
     const message = await response.json();
     console.log(message);
@@ -209,9 +229,16 @@ const button2 = document.getElementById("cancelOrderButton");
 
 button2.addEventListener("click", async function() {
     //make a call to cancel from database and return home 
-    alert("Cancel Order and return home");
-    let message = await removeOrder();
-    //after removing return home 
+
+    if (cancelStatus === 'Processing') {
+        alert("Cancel Order and return home");
+        let message = await removeOrder();
+        //after removing return home 
+    }
+    else {
+       alert("Too late to cancel Order, submit help request");
+    }
+ 
 });
 
 async function removeOrder() {
