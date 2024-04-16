@@ -60,7 +60,7 @@ button {
   color: #000000;
   padding: 15px 20px;
   border: none;
-  border-radius: 4px;
+  border-radius: 50px / 40px; /* Creates an oval shape */
   box-shadow: 0 2px 5px rgba(0,0,0,0.2);
   text-transform: uppercase;
   cursor: pointer;
