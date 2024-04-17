@@ -9,20 +9,20 @@
 }
 
 body { 
-  background: linear-gradient(90deg, rgba(2,0,36,1) 0%, rgba(255,255,255,1) 0%, rgba(255,71,77,1) 100%);
+  background:  linear-gradient(135deg, #ffecd2 0%, #fcb69f 100%);
   font-family: 'Roboto', sans-serif;
 }
 
 /* Styling for the order summary text */
 p {
   text-align: center;
-  font-family: 'Montserrat', sans-serif;
+  font-family: 'Georgia', serif;
   font-size: 3.5em;
   font-weight: bold;
-  text-shadow: 10px 10px 10px rgba(0,0,0,0.5);
+  text-shadow: 2px 2px 0px #feca57;
   padding-top: 20px;
   padding-bottom: 40px; /* Increased padding to add space above the table */
-  color: #FFFFFF;
+  color: #a23e48;
 }
 
 /* Main container adjustments */
@@ -74,7 +74,7 @@ tr:nth-child(even) {
   color: #000000;
   padding: 15px 20px;
   border: none;
-  border-radius: 4px;
+  border-radius: 50px / 40px;
   box-shadow: 0 2px 5px rgba(0,0,0,0.2);
   text-transform: uppercase;
   cursor: pointer;
@@ -88,10 +88,12 @@ tr:nth-child(even) {
   flex-wrap: wrap; /* Allows buttons to wrap in smaller screens */
   gap: 50px; /* Adjust the spacing between buttons */
   padding: 20px 0; /* Adds padding above and below the button group */
+  border-radius: 50px / 40px; /* Creates an oval shape */
 }
 
 .order-buttons button:hover {
-  background-color: #eec4ff;
+  background-color: #e76f51; /* Fill color on hover */
+  color: #fff; /* White text on hover */
 }
 
 /* Image alignment correction */

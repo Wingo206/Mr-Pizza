@@ -31,15 +31,44 @@
               </tbody>
           </table>
           <div class="order-buttons">
-            <button  id="checkoutButton" name="checkoutButton">Checkout</button>
+            <button id="checkoutButton" name="checkoutButton">Checkout</button>
           </div>
+          <div class="tip-buttons">
+            <button id="tipButton" name="tipButton">Add 15% Tip</button>
+          </div>
+          <!-- <div class="delivery-buttons">
+            <button  id="checkoutButton" name="checkoutButton">Delivery</button>
+          </div> -->
       </div>
+    </div>
+
+    <!-- <div class="address-container">
+      <h2>Shipping Address</h2>
+      <form id="addressForm">
+          <label for="street">Street:</label>
+          <input type="text" id="street" name="street" required><br>
+
+          <label for="city">City:</label>
+          <input type="text" id="city" name="city" required><br>
+
+          <label for="state">State/Province:</label>
+          <input type="text" id="state" name="state" required><br>
+
+          <label for="zipcode">Zip/Postal Code:</label>
+          <input type="text" id="zipcode" name="zipcode" required><br>
+
+          <label for="country">Country:</label>
+          <input type="text" id="country" name="country" required><br>
+
+          <button type="submit">Submit Address</button>
+      </form> -->
 
     <!-- very important: make sure you have: "/public/scripts/..." 
         instead of: "public/scripts/..."  -->
         <!--Right side of the page-->
         <div class="right-side">
           <div class="image-container">
+            <!-- <span>Order Summary</span> -->
             <img src="https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExeG92cDc5anh2eDV6cGM1bnR4Z3E3bWtyOHlxNmh5dWJxb2k1OHpnNCZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9cw/lmEkeRtZAj59tWYSqF/giphy.gif" alt="" style="width: 90%; height: 60%;"/>
           </div>
         </div>
@@ -49,7 +78,7 @@
   <script src="https://js.stripe.com/v3/"></script>
 </head>
 <body>
-  <div id="checkout">
+  <div id="checkout" hidden="hidden">
     <!-- Checkout will insert the payment form here -->
   </div>
 </body>
