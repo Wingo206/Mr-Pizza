@@ -35,7 +35,7 @@ create table custom(custom_name varchar(50), mid int, mutually_exclusive boolean
 primary key(mid, custom_name),
 foreign key(mid) references menu_item(mid) on delete cascade);
 
-create table custom_option(custom_name varchar(50), mid int, option_name varchar(50), price float not null,
+create table custom_option(custom_name varchar(50), mid int, option_name varchar(50), price float not null, default boolean not null,
 primary key(mid, custom_name, option_name),
 foreign key(mid, custom_name) references custom(mid, custom_name) on delete cascade);
 
