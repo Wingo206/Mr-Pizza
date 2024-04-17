@@ -17,10 +17,11 @@ async function initMap() {
 }
 
 async function fetchAssignedOrders() {
+    console.log('fetching assigned orders from /directions/assignedOrder...');
     let resp = await fetch('/directions/assignedOrder', {
         method: 'GET'
     })
-    console.log(resp);
+    console.log('resp: ' + JSON.stringify(resp));
 
     if (resp.status == 200) {
         console.log('success');
@@ -33,6 +34,7 @@ async function fetchAssignedOrders() {
 }
 
 async function fetchWaypoints() {
+    console.log('fetching employee store info from /employeeStoreInfo...');
     // get the info about the currently signed in user
     let resp = await fetch('/employeeStoreInfo', {
         method: 'GET'
@@ -45,9 +47,10 @@ async function fetchWaypoints() {
 
     // make order id array
     let orderIds = assignedOrders.map(o => o.order_id);
+    console.log('fetching waypoints from /directions/waypoints/' + esInfo.store_id + '...');
     resp = await fetch('/directions/waypoints/' + esInfo.store_id,
         {
-            method: 'POST',
+            method: 'GET',
             headers: {
                 "Content-type": 'application/json',
             },
