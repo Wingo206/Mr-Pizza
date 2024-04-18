@@ -30,17 +30,6 @@ Make status update in database
 */
 
 import {cartEntry, populateCartTable, calculateTotalCost, displayCart} from './orderFunctions.js';
-document.addEventListener('DOMContentLoaded', function() {
-  const cartItems = JSON.parse(localStorage.getItem('cart')) || [];
-  const cartEntries = cartItems.map(item => new cartEntry(
-    item.description, item.quantity, item.price, item.price * item.quantity
-  ));
-
-  populateCartTable('#cart tbody', cartEntries);
-  const totalCost = calculateTotalCost(cartEntries);
-  console.log('Total cost:', totalCost);
-});
-
 // here instead of making the cart basically we would get it from a request body from the menu team
 // so they click a button then run some async function like this, which sends the cart, and we will parse it and go to this path 
 // ill put pseudo below
@@ -129,6 +118,8 @@ for (let i = 0; i < orderItemData.length; i++) {
 const cart = [new cartEntry("pizza", 2, 11.99, 11.99 * 2), new cartEntry('wings', 1, 6.99, 6.99)];
 const stripe = Stripe('pk_test_51OxFUuP5gIWmEZ1PniORZnxF5lBrVHSaZzQeI836MWHDsr2cjqRsiFOoolY5yP9zQse5Sar1T0s0hwpy6QwKbfhX00MVSoX1UQ')
 let isThereTip = false;
+const button1 = document.getElementById("checkoutButton");
+const button2 = document.getElementById("tipButton");
 console.log(cart);
 
 // //replace conditionals with checking if user is employee or admin,
@@ -181,42 +172,43 @@ async function checkoutButtonOnClick() {
   alert("Total cost of cart: " + calculateTotalCost(cart));
 }
 
-initialize();
+// initialize();
 
-// Fetch Checkout Session and retrieve the client secret
-async function initialize() {
-  const fetchClientSecret = async () => {
-    const response = await fetch("/order/createCheckoutSession", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json" // Specify the content type as JSON
-      },
-      body: JSON.stringify({ total : total , tip : isThereTip}) 
-    });
-    const {client_secret} = await response.json();
-    return client_secret;
-  };
+// // Fetch Checkout Session and retrieve the client secret
+// async function initialize() {
+//   const fetchClientSecret = async () => {
+//     const response = await fetch("/order/createCheckoutSession", {
+//       method: "POST",
+//       headers: {
+//         "Content-Type": "application/json" // Specify the content type as JSON
+//       },
+//       body: JSON.stringify({ total : total , tip : isThereTip}) 
+//     });
+//     const {client_secret} = await response.json();
+//     return client_secret;
+//   };
 
-  // Initialize Checkout
-  const checkout = await stripe.initEmbeddedCheckout({
-    fetchClientSecret,
-  });
+//   // Initialize Checkout
+//   const checkout = await stripe.initEmbeddedCheckout({
+//     fetchClientSecret,
+//   });
 
-  // Mount Checkout
-  checkout.mount('#checkout');
-}
+//   // Mount Checkout
+//   checkout.mount('#checkout');
+// }
 
-const button1 = document.getElementById("checkoutButton");
-const button2 = document.getElementById("tipButton");
+
 button2.addEventListener("click", function () {
   //document.getElementById("tip").removeAttribute("hidden");
   isThereTip = true;
+  initializeCheckout(); // Reinitialize checkout whenever tip is toggled
   alert("Tip added");
 });
 
 button1.addEventListener("click", function () {
 
     document.getElementById("checkout").removeAttribute("hidden");
+    initializeCheckout();
     //if statement that checks if the time is within 9 am to 4:30 am, if it isnt then print we are closed, please order during opening hours and 30 minutes before the store closes
     
     // let currentTime = new Date();
@@ -242,3 +234,23 @@ button1.addEventListener("click", function () {
   
 });
 
+async function initializeCheckout() {
+  const clientSecret = await fetchClientSecret();
+  const checkout = await stripe.initEmbeddedCheckout({
+    clientSecret,
+  });
+
+  checkout.mount('#checkout');
+}
+
+async function fetchClientSecret() {
+  const response = await fetch("/order/createCheckoutSession", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json"
+    },
+    body: JSON.stringify({ total: total, tip: isThereTip })
+  });
+  const { client_secret } = await response.json();
+  return client_secret;
+}
