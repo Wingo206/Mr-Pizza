@@ -116,3 +116,57 @@ button {
 .show {
   display: block;
 }
+
+.cart-container {
+  display: none; 
+  position: fixed; 
+  right: 0;
+  top: 0;
+  width: 300px; 
+  height: 100%; 
+  overflow: auto; 
+  background-color: #fff;
+  border-left: 1px solid #888;
+  z-index: 100;
+  padding: 20px;
+}
+
+.cart-content h2 {
+  margin: 0;
+  padding-bottom: 20px;
+}
+
+.cart-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 0;
+}
+
+.remove-item {
+  cursor: pointer;
+  color: red;
+  font-size: 20px;
+}
+
+.back-button {
+  cursor: pointer;
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  font-size: 24px;
+  font-weight: bold;
+}
+
+.checkout-button {
+  cursor: pointer;
+  position: absolute;
+  bottom: 20px;
+  right: 20px;
+  padding: 10px 20px;
+  background-color: #2a9d8f;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  font-size: 18px;
+}

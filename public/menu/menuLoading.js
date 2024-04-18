@@ -60,34 +60,7 @@ function displayMenuItems(menuItems) {
         
                 const addButton = document.getElementById("add-to-cart");
                 addButton.addEventListener("click", async function() {
-                    const cartItem = {
-                        mid: item.mid,
-                        description: item.description,
-                        price: item.price,
-                        toppings: item.toppings.map(topping => ({
-                            topping_name: topping.topping_name,
-                            price: topping.price
-                        }))
-                    };
-                    try {
-                        const response = await fetch("/cart", {
-                            method: 'POST',
-                            headers: {
-                                'Content-Type': 'application/json'
-                            },
-                            body: JSON.stringify(cartItem)
-                        });
-                        if (response.ok) {
-                            const result = await response.json();
-                            console.log(result);
-                            modalContainer.classList.remove('show');
-                            showPopup('Item added to cart');
-                        } else {
-                            console.error("Error adding item to cart:", await response.text());
-                        }
-                    } catch (error) {
-                        console.error("Error adding item to cart:", error);
-                    }
+                    addToCart(item);
                 });
         
                 const toppingsSection = modalContainer.querySelector('.toppings-section');
@@ -124,6 +97,81 @@ function displayMenuItems(menuItems) {
         menuItemsContainer.appendChild(button);
     });
 }
+
+function addToCart(item) {
+    let cart = JSON.parse(localStorage.getItem('cart')) || [];
+    let alreadyInCart = cart.find(cartItem => cartItem.mid === item.mid);
+
+    if (alreadyInCart) {
+        alreadyInCart.quantity += 1;
+        alreadyInCart.totalPrice = alreadyInCart.quantity * item.price;
+    }
+    else {
+        cart.push({
+            mid: item.mid,
+            description: item.description,
+            quantity: 1,
+            price: item.price,
+            totalPrice: item.price,
+            toppings: item.toppings.map(topping => ({
+                topping_name: topping.topping_name,
+                price: topping.price
+            })),
+        });
+    }
+    
+    localStorage.setItem('cart', JSON.stringify(cart));
+    modalContainer.classList.remove('show');
+    showPopup(`Item '${item.description}' added to cart`);
+    console.log(`Item '${item.description}' with MID '${item.mid}' added to cart.`);
+}
+
+const cartIcon = document.querySelector('.fa-shopping-cart');
+const cartContainer = document.getElementById('cart-container');
+
+cartIcon.addEventListener('click', function() {
+    const isVisible = cartContainer.style.display === 'block';
+    cartContainer.style.display = isVisible ? 'none' : 'block';
+    if (!isVisible) {
+        displayCartItems();
+    }
+});
+
+// function to display cart items
+function displayCartItems() {
+    const cartItemsElement = document.getElementById('cart-items');
+    let cart = JSON.parse(localStorage.getItem('cart')) || [];
+    cartItemsElement.innerHTML = '';
+
+    cart.forEach((item, index) => {
+        const cartItemElement = document.createElement('div');
+        cartItemElement.classList.add('cart-item');
+        cartItemElement.innerHTML = `
+            <span>${item.description} - Qty:${item.quantity} - $${item.totalPrice}</span>
+            <span class="remove-item" onclick="removeFromCart(${index})">&times;</span>
+        `;
+        cartItemsElement.appendChild(cartItemElement);
+    });
+}
+
+// function to remove item from cart
+function removeFromCart(index) {
+    let cart = JSON.parse(localStorage.getItem('cart')) || [];
+    cart.splice(index, 1);
+    localStorage.setItem('cart', JSON.stringify(cart));
+    displayCartItems(); 
+    showPopup('Item removed from cart');
+}
+
+const backButton = document.getElementById('back-button');
+backButton.addEventListener('click', function() {
+    cartContainer.style.display = 'none';
+});
+
+const checkoutButton = document.getElementById('checkout-button');
+checkoutButton.addEventListener('click', function() {
+    window.location.href = 'https://127.0.0.1:8080/order/order.html';
+});
 
 function showPopup(message) {
     const popup = document.createElement("div");

@@ -4,7 +4,7 @@ export function cartEntry(itemName, quantity, pricePerItem, totalCostOfEntry) {
     this.itemName = itemName;
     this.quantity = quantity;
     this.pricePerItem = pricePerItem;
-    this.totalCostOfEntry = totalCostOfEntry;
+    this.totalCostOfEntry = this.quantity * this.pricePerItem;
  }
 
 export function calculateTotalCost(cart) {
