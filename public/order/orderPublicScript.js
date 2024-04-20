@@ -30,6 +30,26 @@ Make status update in database
 */
 
 import {cartEntry, populateCartTable, calculateTotalCost, displayCart} from './orderFunctions.js';
+
+document.addEventListener('DOMContentLoaded', function() {
+  const cartItems = JSON.parse(localStorage.getItem('cart')) || [];
+  const cartEntries = cartItems.map(item => new cartEntry(
+    item.description, item.quantity, item.price, item.price * item.quantity
+  ));
+
+  let realItems = [];
+  for (const entry of cartEntries) {
+    realItems.push(entry.itemName);
+  }
+
+  console.log("Real Items: " + JSON.stringify(realItems)); // Logging realItems array
+
+  populateCartTable('#cart tbody', cartEntries);
+  const totalCost = calculateTotalCost(cartEntries);
+  console.log('Total cost:', totalCost);
+});
+
+
 // here instead of making the cart basically we would get it from a request body from the menu team
 // so they click a button then run some async function like this, which sends the cart, and we will parse it and go to this path 
 // ill put pseudo below
@@ -78,6 +98,8 @@ import {cartEntry, populateCartTable, calculateTotalCost, displayCart} from './o
 
 //Then in this code we would basically retrieve it somehow 
 
+//We wouldn't have the credit card and stuff so maybe we have to edit the order after the checkout, maybe a new route or a new query to the database 
+//same for made at, or well it needs to update when the status changes REMEMBER 
 const orderData = [
   {
     made_at: 1,
@@ -120,7 +142,7 @@ const stripe = Stripe('pk_test_51OxFUuP5gIWmEZ1PniORZnxF5lBrVHSaZzQeI836MWHDsr2c
 let isThereTip = false;
 const button1 = document.getElementById("checkoutButton");
 const button2 = document.getElementById("tipButton");
-console.log(cart);
+//console.log(cart);
 
 // //replace conditionals with checking if user is employee or admin,
 // //for video just replace it to show customer and employee or admin 
