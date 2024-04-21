@@ -59,41 +59,46 @@ const checkStatusInterval = setInterval(async () => {
 if (orderStatus != savedStatus) {
     if (orderStatus === 'Ready (For Pickup)') {
         pizzaStatus.src = "/order/orderedPizzaTrack2.png";
-        setCookie('pizzaImageSrc', "/order/orderedPizzaTrack2.png", 1); // dead in 1 days
+        setCookie('pizzaImageSrc', "/order/Statuses/Pickup/pickupReady.png", 1); // dead in 1 days
         window.location.reload(true);
     } else if (orderStatus === 'Processing') {
         pizzaStatus.src = "/order/orderedPizzaTrack.png";
-        setCookie('pizzaImageSrc', "/order/orderedPizzaTrack.png", 1); // dead in 1 days
+        setCookie('pizzaImageSrc', "/order/Statuses/Delivery/deliveryProcessing.png", 1); // dead in 1 days
         window.location.reload(true);
     } else if (orderStatus === 'Started') {
         pizzaStatus.src = "/order/orderedPizzaTrack.png";
-        setCookie('pizzaImageSrc', "/order/orderedPizzaTrack.png", 1); // dead in 1 days
+        setCookie('pizzaImageSrc', "/order/Statuses/Delivery/deliveryStarting.png", 1); // dead in 1 days
         window.location.reload(true);
     } else if (orderStatus === 'Ready (For Delivery)') {
         pizzaStatus.src = "/order/orderedPizzaTrack.png";
-        setCookie('pizzaImageSrc', "/order/orderedPizzaTrack.png", 1); // dead in 1 days
+        setCookie('pizzaImageSrc', "/order/Statuses/Delivery/deliveryReady.png", 1); // dead in 1 days
         window.location.reload(true);
     } else if (orderStatus === 'In-Transit') {
         pizzaStatus.src = "/order/orderedPizzaTrack.png";
-        setCookie('pizzaImageSrc', "/order/orderedPizzaTrack.png", 1); // dead in 1 days
+        setCookie('pizzaImageSrc', "/order/Statuses/Delivery/deliveryInTransit.png", 1); // dead in 1 days
         window.location.reload(true);
     } else if (orderStatus === 'Delivered') {
         pizzaStatus.src = "/order/orderedPizzaTrack.png";
-        setCookie('pizzaImageSrc', "/order/orderedPizzaTrack.png", 1); // dead in 1 days
+        setCookie('pizzaImageSrc', "/order/Statuses/Delivery/deliveryDelivered.png", 1); // dead in 1 days
         window.location.reload(true);
     } else if (orderStatus === 'Canceled') {
         pizzaStatus.src = "/order/orderedPizzaTrack.png";
-        setCookie('pizzaImageSrc', "/order/orderedPizzaTrack.png", 1); // dead in 1 days
+        setCookie('pizzaImageSrc', "/order/Statuses/Misc/miscCancelled.png", 1); // dead in 1 days
         window.location.reload(true);
     } else if (orderStatus === 'Rejected') {
         pizzaStatus.src = "/order/orderedPizzaTrack.png";
-        setCookie('pizzaImageSrc', "/order/orderedPizzaTrack.png", 1); // dead in 1 days
+        setCookie('pizzaImageSrc', "/order/Statuses/Misc/miscRejected.png", 1); // dead in 1 days
         window.location.reload(true);
     } else if (orderStatus === 'Refunded') {
         pizzaStatus.src = "/order/orderedPizzaTrack.png";
-        setCookie('pizzaImageSrc', "/order/orderedPizzaTrack.png", 1); // dead in 1 days
+        setCookie('pizzaImageSrc', "/order/Statuses/Misc/miscRefunded.png", 1); // dead in 1 days
         window.location.reload(true);
-    }     
+    } 
+    else if (orderStatus === 'Completed') {
+        pizzaStatus.src = "/order/orderedPizzaTrack.png";
+        setCookie('pizzaImageSrc', "/order/Statuses/Delivery/deliveryComplete.png", 1); // dead in 1 days
+        window.location.reload(true);
+    }       
 }
 
 setCookie('orderStatus', orderStatus, 1); // Set cookie to expire in 1 days
