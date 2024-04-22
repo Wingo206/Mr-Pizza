@@ -34,11 +34,11 @@ else {
 //depending on status the image will change 
 //so have a big check to see if it changed based on previous then have multiple chekcs inside what status to change to 
 var pizzaStatus = document.getElementById('pizzaStatus');
-pizzaStatus.src = "/order/orderedPizzaTrack.png";
+pizzaStatus.src = "/order/Statuses/Delivery/deliveryProcessing.png";
 
 const savedPizzaImageSrc = getCookie('pizzaImageSrc');
 pizzaStatus.src = savedPizzaImageSrc;
-setCookie('pizzaImageSrc', "/order/orderedPizzaTrack.png", 1); // dead in 1 days
+setCookie('pizzaImageSrc', "/order/Statuses/Delivery/deliveryProcessing.png", 1); // dead in 1 days
 let cancelStatus;
 
 const checkStatusInterval = setInterval(async () => {

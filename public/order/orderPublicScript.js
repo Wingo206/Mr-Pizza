@@ -48,6 +48,8 @@ document.addEventListener('DOMContentLoaded', function() {
   const totalCost = calculateTotalCost(cartEntries);
   console.log('Total cost:', totalCost);
 });
+//things i need are the 
+//menu id, store, delivery address, 
 
 
 // here instead of making the cart basically we would get it from a request body from the menu team
