@@ -24,7 +24,7 @@ create table customer_order(order_id int primary key auto_increment, credit_card
 foreign key(ordered_by) references customer_account(cid) on delete cascade,
 foreign key(made_at) references store(store_id) on delete cascade);
 
-create table menu_item(mid int primary key auto_increment, price float, image_url varchar(1000), description varchar(1000));
+create table menu_item(mid int primary key auto_increment, item_name varchar(100), price float, image_url varchar(1000), description varchar(1000), category varchar(100));
 
 create table order_item(item_num int auto_increment, order_id int not null, mid int not null,
 primary key(item_num, order_id),
@@ -35,7 +35,7 @@ create table custom(custom_name varchar(50), mid int, mutually_exclusive boolean
 primary key(mid, custom_name),
 foreign key(mid) references menu_item(mid) on delete cascade);
 
-create table custom_option(custom_name varchar(50), mid int, option_name varchar(50), price float not null, default boolean not null,
+create table custom_option(custom_name varchar(50), mid int, option_name varchar(50), price float not null, isDefault boolean not null,
 primary key(mid, custom_name, option_name),
 foreign key(mid, custom_name) references custom(mid, custom_name) on delete cascade);
 
