@@ -4,6 +4,17 @@
  */
 
 import {cartEntry, populateCartTable, calculateTotalCost, displayCart} from './orderFunctions.js';
+document.addEventListener('DOMContentLoaded', function() {
+  const cartItems = JSON.parse(localStorage.getItem('cart')) || [];
+  const cartEntries = cartItems.map(item => new cartEntry(
+    item.description, item.quantity, item.price, item.price * item.quantity
+  ));
+
+  populateCartTable('#cart tbody', cartEntries);
+  const totalCost = calculateTotalCost(cartEntries);
+  console.log('Total cost:', totalCost);
+});
+
 // here instead of making the cart basically we would get it from a request body from the menu team
 // so they click a button then run some async function like this, which sends the cart, and we will parse it and go to this path 
 // ill put pseudo below
