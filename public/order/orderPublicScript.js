@@ -102,13 +102,13 @@ document.addEventListener('DOMContentLoaded', function() {
 
 //We wouldn't have the credit card and stuff so maybe we have to edit the order after the checkout, maybe a new route or a new query to the database 
 //same for made at, or well it needs to update when the status changes REMEMBER 
-const orderData = [
+let orderData = [
   {
     made_at: 1,
     credit_card: '1234567890123456',
     status: 'Processing',
     total_price: 9.99,
-    delivery_address: '123 Main St, City, Country',
+    delivery_address: undefined,
     DT_created: '2024-03-25 10:00:00',
     DT_delivered: null,
     ordered_by: 1
@@ -191,6 +191,38 @@ function capitalizeFirstLetter(string) {
 }
 
 window.addEventListener('load', newCartTable("#cart tbody", orderData, menuItemData, orderItemData));
+
+window.addEventListener('load', () => {
+  window.addAddressForm('addressInputForm', onAddressConfirm);
+  refreshCheckoutButton();
+})
+
+let currentAddress;
+/**
+ * called once the address form is confirmed
+ */
+function onAddressConfirm(formattedAddress, location) {
+  console.log(formattedAddress);
+  console.log(location);
+  currentAddress = formattedAddress;
+  // update the current order as well
+  orderData[0].delivery_address = currentAddress;
+  document.getElementById('currentAddress').innerHTML = `Current address: ${currentAddress}`;
+
+  refreshCheckoutButton();
+}
+
+/**
+ * disable the checkout button if the address is not confirmed
+ * called once on window load
+ */
+function refreshCheckoutButton() {
+  if (currentAddress == undefined) {
+    button1.disabled = true;
+  } else  {
+    button1.disabled = false;
+  }
+}
 
 async function checkoutButtonOnClick() {
   alert("Total cost of cart: " + calculateTotalCost(cart));

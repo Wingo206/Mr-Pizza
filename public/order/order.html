@@ -10,6 +10,7 @@
     <meta charset="UTF-8">
     <title>Order html file</title>
     <link rel="stylesheet" href="Style.css"> 
+    <script type="module" src="/addressValidation/addressForm.js"></script>
 </head>
 <body>
     <p>Order contents</p>
@@ -30,6 +31,8 @@
               <!-- Table body content -->
               </tbody>
           </table>
+          <div id="addressInputForm"></div>
+          <p id="currentAddress">Current address: Unconfirmed</p>
           <div class="order-buttons">
             <button id="checkoutButton" name="checkoutButton">Checkout</button>
           </div>

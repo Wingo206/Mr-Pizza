@@ -178,7 +178,6 @@ function displayOrders(query, orders) {
 //send that in the body?? (arya)
 //you would also send like a confirmation number and order_id probably
 async function initialize() {
-     console.log('lol');
      const email = "pewdiepie285@gmail.com";
      const order_id = "9";
      const confirmationCode = "YEISBSU1298";
@@ -194,7 +193,6 @@ async function initialize() {
 
 //CHANGE THIS ASK BRANDON HOW TO GET CURRENT USER INFO AND BASED ON THAT WE PLUG IN TO QUERY DATABASE
 async function getOid() {
-    console.log('lol');
     const response = await fetch("/order/getOID", {
         method: "POST",
         headers: {

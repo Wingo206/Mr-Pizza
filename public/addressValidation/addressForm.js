@@ -87,7 +87,7 @@ window.addAddressForm = async (divId, onConfirmation) => {
             }
         } else if (result.validationResult == 'VERIFY_REQUIRED') {
             // small thing that allows you to check that the address is correct
-            document.getElementById(divId + "validationResult").innerHTML = "Address: " + result.formattedAddress;
+            document.getElementById(divId + "validationResult").innerHTML = "Is this your address? " + result.formattedAddress;
             document.getElementById(divId + "verify").classList.remove("hidden");
         } else {
             // we're good, calls onConfirmation

@@ -4,7 +4,7 @@ create database {{database}};
 
 use {{database}};
 
-create table customer_account(cid int primary key auto_increment, username varchar(30), default_delivery_address varchar(40), phone_num varchar(15), password_hash varchar(50), email varchar(40), default_credit_card varchar(20));
+create table customer_account(cid int primary key auto_increment, username varchar(30), default_delivery_address varchar(40), phone_num varchar(15), password_hash varchar(50), email varchar(40), default_credit_card varchar(20), rewards_points int);
 
 create table admin_account(aid int primary key auto_increment, email varchar(40), password_hash varchar(50));
 insert into admin_account(email, password_hash) values ('admin@mrpizza.com', 'admin');
