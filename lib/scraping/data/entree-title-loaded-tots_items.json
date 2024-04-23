@@ -1,0 +1,102 @@
+[
+    {
+        "category": "entree-title-loaded-tots",
+        "sectionName": "default",
+        "itemName": "Philly Cheese Steak Loaded Tots",
+        "description": "Golden brown potato tots topped with tender slices of steak, creamy Alfredo sauce, fresh onions, fresh green peppers, and a blend of cheese made with mozzarella and cheddar.",
+        "image": "https://cache.dominos.com/olo/6_130_2/assets/build/market/US/_en/images/img/products/larges/F_PHLLYSTK.jpg",
+        "price": "6.99",
+        "customizations": {
+            "toppings": {
+                "options": [
+                    {
+                        "optionName": "Cheddar Cheese Blend",
+                        "price": 0,
+                        "default": true
+                    },
+                    {
+                        "optionName": "Alfredo Sauce",
+                        "price": 0,
+                        "default": true
+                    },
+                    {
+                        "optionName": "Philly Steak",
+                        "price": 0,
+                        "default": true
+                    },
+                    {
+                        "optionName": "Green Peppers",
+                        "price": 0,
+                        "default": true
+                    },
+                    {
+                        "optionName": "Onions",
+                        "price": 0,
+                        "default": true
+                    }
+                ],
+                "mutually_exclusive": false
+            }
+        }
+    },
+    {
+        "category": "entree-title-loaded-tots",
+        "sectionName": "default",
+        "itemName": "Cheddar Bacon Loaded Tots",
+        "description": "Golden brown potato tots topped with smokey bacon, a blend of cheese made with mozzarella and melty cheddar, and garlic Parmesan sauce.",
+        "image": "https://cache.dominos.com/olo/6_130_2/assets/build/market/US/_en/images/img/products/larges/F_CHEDBCN.jpg",
+        "price": "6.99",
+        "customizations": {
+            "toppings": {
+                "options": [
+                    {
+                        "optionName": "Bacon",
+                        "price": 0,
+                        "default": true
+                    },
+                    {
+                        "optionName": "Cheddar Cheese Blend",
+                        "price": 0,
+                        "default": true
+                    },
+                    {
+                        "optionName": "Garlic Parmesan Sauce",
+                        "price": 0,
+                        "default": true
+                    }
+                ],
+                "mutually_exclusive": false
+            }
+        }
+    },
+    {
+        "category": "entree-title-loaded-tots",
+        "sectionName": "default",
+        "itemName": "Melty 3-Cheese Loaded Tots",
+        "description": "Golden brown potato tots topped with a melty blend of cheese made with mozzarella, cheddar, provolone, and creamy Alfredo sauce.",
+        "image": "https://cache.dominos.com/olo/6_130_2/assets/build/market/US/_en/images/img/products/larges/F_M3CHEESE.jpg",
+        "price": "6.99",
+        "customizations": {
+            "toppings": {
+                "options": [
+                    {
+                        "optionName": "Cheddar Cheese Blend",
+                        "price": 0,
+                        "default": true
+                    },
+                    {
+                        "optionName": "Shredded Provolone Cheese",
+                        "price": 0,
+                        "default": true
+                    },
+                    {
+                        "optionName": "Alfredo Sauce",
+                        "price": 0,
+                        "default": true
+                    }
+                ],
+                "mutually_exclusive": false
+            }
+        }
+    }
+]
