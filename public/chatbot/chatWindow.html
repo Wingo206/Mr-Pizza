@@ -5,9 +5,9 @@
       }
 
       #chatWindow {
-         position: absolute;
+         position: fixed;
          width: 300px;
-         height: 400px;
+         /*height: 400px;*/
          z-index: 10;
          bottom: 10px;
          right: 10px;
@@ -48,14 +48,26 @@
          flex-grow: 1;
       }
 
+      #contents {
+         display: flex;
+         flex-direction: column;
+         height: 450px;
+         transition: height 0.3s;
+         transition-timing-function: ease;
+      }
+
+      #contents.closed {
+         height: 0px;
+      }
+
       #chat {
          margin: 5px;
          background: rgba(255, 255, 255, 0.6);
-         flex-grow: 1;
+         flex: 1;
          border-radius: 5px;
          display: flex;
          flex-direction: column;
-         overflow-y: auto
+            overflow-y: scroll;
       }
 
       /* styling for chat boxes*/
@@ -107,6 +119,8 @@
          margin-bottom: 5px;
          background: rgba(255, 255, 255, 0.6);
          border-radius: 5px;
+         overflow-y: hidden;
+            height: max-content;
       }
 
       .chatInput {
@@ -121,7 +135,7 @@
          outline: none;
       }
 
-      .chatSubmit {
+      .imgButton {
          padding: 5px;
          background: 0;
          border: 0;
@@ -138,6 +152,25 @@
          filter: brightness(0) saturate(100%) invert(79%) sepia(35%) saturate(5228%) hue-rotate(326deg) brightness(101%) contrast(101%);
       }
 
+      /* toggle hide chat button*/
+      .toggleImg {
+         width: 25px;
+         height: 25px;
+         filter: brightness(0) saturate(100%) invert(96%) sepia(100%) saturate(14%) hue-rotate(247deg) brightness(103%) contrast(103%);
+         transform: rotate(0deg);
+         transition: transform 0.3;
+         transition-timing-function: ease;
+      }
+
+      .toggleImg.closed {
+         transform: rotate(180deg);
+      }
+
+      .toggleImg:hover {
+         transition: 0.2s;
+         filter: brightness(0) saturate(100%) invert(96%) sepia(100%) saturate(14%) hue-rotate(247deg) brightness(85%) contrast(103%);
+      }
+
    </style>
    <div id="chatWindow">
       <div id="chatTitleDiv">
@@ -146,28 +179,31 @@
          </div>
          <p id="chatTitle">Mr. Pizza</p>
          <div class="spacer"></div>
-
-         <button>V</button>
+         <button class="imgButton" onclick="toggleHideChat()">
+            <img id="toggleImg" class="toggleImg closed" , src="/chatbot/chevron-down.svg" />
+         </button>
       </div>
-      <div id="chat">
-         <!-- <div class="responseDiv"> -->
-         <!--    <div class="responseAvatarDiv"> -->
-         <!--       <img src="/favicon.ico" alt="Avatar" class="avatar"> -->
-         <!--    </div> -->
-         <!--    <div class="chatEntry response"> -->
-         <!--       <p class="chatText response">Hi! I'm Mr. Pizza. What would you like help with?</p> -->
-         <!--    </div> -->
-         <!-- </div> -->
-         <!-- <div class="chatEntry question"> -->
-         <!--    <p class="chatText question">How do I order a pizza?</p> -->
-         <!-- </div> -->
-         <!-- <div class="spacer"> </div> -->
+      <div id="contents" class="closed">
+         <div id="chat">
+            <!-- <div class="responseDiv"> -->
+            <!--    <div class="responseAvatarDiv"> -->
+            <!--       <img src="/favicon.ico" alt="Avatar" class="avatar"> -->
+            <!--    </div> -->
+            <!--    <div class="chatEntry response"> -->
+            <!--       <p class="chatText response">Hi! I'm Mr. Pizza. What would you like help with?</p> -->
+            <!--    </div> -->
+            <!-- </div> -->
+            <!-- <div class="chatEntry question"> -->
+            <!--    <p class="chatText question">How do I order a pizza?</p> -->
+            <!-- </div> -->
+            <!-- <div class="spacer"> </div> -->
          </div>
          <div class="inputDiv">
             <input id="chatInput" class="chatInput" type="text" placeholder="Type a message...">
-            <button class="chatSubmit" onclick="submitChatMessage()">
-               <img class="chatSubmitImg" , src="/chatbot/send.svg">
+            <button class="imgButton" onclick="submitChatMessage()">
+               <img class="chatSubmitImg" , src="/chatbot/send.svg" />
             </button>
+         </div>
       </div>
    </div>
 </div>
