@@ -15,6 +15,9 @@ window.addEventListener('load', displayOrders("#cart tbody", orders));
 //console.log(testingOID);
 
 //CHECK IF THE EMAIL HAS BEEN SENT ALREADY
+
+await displayReward();
+
 const savedEmailSent = getCookie("emailSent");
 const savedEmailOrder = getCookie("emailOrder");
 
@@ -271,5 +274,17 @@ async function checkStatus() {
     });
     const message = await response.json();
     console.log(message);
+    return message;
+}
+
+async function displayReward() {
+    const response = await fetch("/order/getRewards", {
+        method: "GET",
+        headers: {
+            "Content-Type": "application/json"
+        }
+    });
+    const message = await response.json();
+    console.log("Your Reward Points: " + JSON.stringify(message));
     return message;
 }
