@@ -138,3 +138,6 @@ models/temp/*
 
 # cache for webscraping
 lib/scraping/cache/*
+
+# chatbot models
+*.nlp
