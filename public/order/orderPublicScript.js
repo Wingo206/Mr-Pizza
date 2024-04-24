@@ -102,6 +102,18 @@ document.addEventListener('DOMContentLoaded', function() {
 
 //We wouldn't have the credit card and stuff so maybe we have to edit the order after the checkout, maybe a new route or a new query to the database 
 //same for made at, or well it needs to update when the status changes REMEMBER 
+
+let rewardText = await displayReward();
+const rewardsContainer = document.getElementById('rewardsContainer');
+rewardsContainer.textContent = "Your Reward Points: " + rewardText[0].rewards_points;
+
+document.getElementById('applyRewards').addEventListener('click', function() {
+  if (rewardText[0].rewards_points < 5) {
+    alert('Need 5 reward points to redeem free item!');
+  }
+
+});
+
 let orderData = [
   {
     made_at: 1,
@@ -309,4 +321,33 @@ async function fetchClientSecret() {
   });
   const { client_secret } = await response.json();
   return client_secret;
+}
+
+async function displayReward() {
+  const response = await fetch("/order/getRewards", {
+      method: "GET",
+      headers: {
+          "Content-Type": "application/json"
+      }
+  });
+  const message = await response.json();
+  console.log("Your Reward Points: " + JSON.stringify(message));
+  return message;
+}
+
+async function redeemReward() {
+  //check if certain mids that are elligble are in the order
+  //if they are find the greatest price
+  //make that one free send here to verify 
+  //One SQL query 
+  //Subtract 5 points which will be another query 
+  const response = await fetch("/order/redeemRewards", {
+      method: "POST",
+      headers: {
+          "Content-Type": "application/json"
+      }
+  });
+  const message = await response.json();
+  console.log("Your Reward Points: " + JSON.stringify(message));
+  return message;
 }

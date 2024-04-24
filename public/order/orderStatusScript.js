@@ -16,8 +16,6 @@ window.addEventListener('load', displayOrders("#cart tbody", orders));
 
 //CHECK IF THE EMAIL HAS BEEN SENT ALREADY
 
-await displayReward();
-
 const savedEmailSent = getCookie("emailSent");
 const savedEmailOrder = getCookie("emailOrder");
 
@@ -33,6 +31,10 @@ else {
     setCookie('emailSent', "Sent", 1); // dead in 1 days
     await initialize();
 }
+
+let rewardText = await displayReward();
+const rewardsContainer = document.getElementById('rewardsContainer');
+rewardsContainer.textContent = "Your Reward Points: " + rewardText[0].rewards_points;
 
 //depending on status the image will change 
 //so have a big check to see if it changed based on previous then have multiple chekcs inside what status to change to 
