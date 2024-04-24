@@ -57,15 +57,28 @@ window.submitChatMessage = async () => {
    }
    let resp = await fetch('/chatbot', {
       method: 'POST',
-         headers: {
-            "Content-type": 'application/json',
-         },
-         body: JSON.stringify(body)
+      headers: {
+         "Content-type": 'application/json',
+      },
+      body: JSON.stringify(body)
    })
    console.log(resp);
    if (resp.status == 200) {
       let respBody = await resp.json();
       console.log(respBody)
       window.addChatResponse(respBody.answer);
+   }
+}
+
+window.toggleHideChat = () => {
+   let contents = document.getElementById('contents');
+   let toggleImage = document.getElementById('toggleImg')
+   let closed = contents.classList.contains('closed')
+   if (closed) {
+      contents.classList.remove('closed');
+      toggleImage.classList.remove('closed');
+   } else {
+      contents.classList.add('closed');
+      toggleImage.classList.add('closed');
    }
 }
