@@ -49,5 +49,23 @@ window.submitChatMessage = async () => {
       return;
    }
    input.value = '';
+
    window.addChatQuestion(text);
+   // fetch response
+   let body = {
+      question: text,
+   }
+   let resp = await fetch('/chatbot', {
+      method: 'POST',
+         headers: {
+            "Content-type": 'application/json',
+         },
+         body: JSON.stringify(body)
+   })
+   console.log(resp);
+   if (resp.status == 200) {
+      let respBody = await resp.json();
+      console.log(respBody)
+      window.addChatResponse(respBody.answer);
+   }
 }
