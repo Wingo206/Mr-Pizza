@@ -116,8 +116,9 @@
          flex-grow: 1;
       }
 
-      .chatInput:focus {
-         border: 0;
+      textarea:focus,
+      input:focus {
+         outline: none;
       }
 
       .chatSubmit {
@@ -149,56 +150,24 @@
          <button>V</button>
       </div>
       <div id="chat">
-         <div class="responseDiv">
-            <div class="responseAvatarDiv">
-               <img src="/favicon.ico" alt="Avatar" class="avatar">
-            </div>
-            <div class="chatEntry response">
-               <p class="chatText response">Hi! I'm Mr. Pizza. What would you like help with?</p>
-            </div>
+         <!-- <div class="responseDiv"> -->
+         <!--    <div class="responseAvatarDiv"> -->
+         <!--       <img src="/favicon.ico" alt="Avatar" class="avatar"> -->
+         <!--    </div> -->
+         <!--    <div class="chatEntry response"> -->
+         <!--       <p class="chatText response">Hi! I'm Mr. Pizza. What would you like help with?</p> -->
+         <!--    </div> -->
+         <!-- </div> -->
+         <!-- <div class="chatEntry question"> -->
+         <!--    <p class="chatText question">How do I order a pizza?</p> -->
+         <!-- </div> -->
+         <!-- <div class="spacer"> </div> -->
          </div>
-         <div class="chatEntry question">
-            <p class="chatText question">How do I order a pizza?</p>
-         </div>
-         <div class="responseDiv">
-            <div class="responseAvatarDiv">
-               <img src="/favicon.ico" alt="Avatar" class="avatar">
-            </div>
-            <div class="chatEntry response">
-               <p class="chatText response">Hi! I'm Mr. Pizza. What would you like help with?</p>
-            </div>
-         </div>
-         <div class="chatEntry question">
-            <p class="chatText question">How do I order a pizza?</p>
-         </div>
-         <div class="responseDiv">
-            <div class="responseAvatarDiv">
-               <img src="/favicon.ico" alt="Avatar" class="avatar">
-            </div>
-            <div class="chatEntry response">
-               <p class="chatText response">Hi! I'm Mr. Pizza. What would you like help with?</p>
-            </div>
-         </div>
-         <div class="chatEntry question">
-            <p class="chatText question">How do I order a pizza?</p>
-         </div>
-         <div class="responseDiv">
-            <div class="responseAvatarDiv">
-               <img src="/favicon.ico" alt="Avatar" class="avatar">
-            </div>
-            <div class="chatEntry response">
-               <p class="chatText response">Hi! I'm Mr. Pizza. What would you like help with?</p>
-            </div>
-         </div>
-         <div class="chatEntry question">
-            <p class="chatText question">How do I order a pizza?</p>
-         </div>
-      </div>
-      <div class="inputDiv">
-         <input class="chatInput" type="text" placeholder="Type a message...">
-         <button class="chatSubmit">
-            <img class="chatSubmitImg" , src="/chatbot/send.svg">
-         </button>
+         <div class="inputDiv">
+            <input id="chatInput" class="chatInput" type="text" placeholder="Type a message...">
+            <button class="chatSubmit" onclick="submitChatMessage()">
+               <img class="chatSubmitImg" , src="/chatbot/send.svg">
+            </button>
       </div>
    </div>
 </div>
