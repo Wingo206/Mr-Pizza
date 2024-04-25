@@ -14,7 +14,16 @@ window.addEventListener("load", async (event) => {
    })
 })
 
+/**
+ * Converts newlines (\n) in the text into <br>
+ */
+function convertNewlines(text) {
+   // return text.replaceAll('\n','<br>').replace(/&/g, "&amp;").replace(/</g, "&lt;");
+   return text.replaceAll('\n','<br>');
+}
+
 window.addChatResponse = (text) => {
+   text = convertNewlines(text);
    let response = `<div class="responseDiv">
             <div class="responseAvatarDiv">
                <img src="/favicon.ico" alt="Avatar" class="avatar">
@@ -30,6 +39,7 @@ window.addChatResponse = (text) => {
 }
 
 window.addChatQuestion = (text) => {
+   text = convertNewlines(text);
    let question = `<div class="chatEntry question">
          <p class="chatText question">${text}</p>
          </div> `
