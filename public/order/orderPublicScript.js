@@ -31,74 +31,63 @@ Make status update in database
 
 import {cartEntry, populateCartTable, calculateTotalCost, displayCart} from './orderFunctions.js';
 
-document.addEventListener('DOMContentLoaded', function() {
-  const cartItems = JSON.parse(localStorage.getItem('cart')) || [];
-  const cartEntries = cartItems.map(item => new cartEntry(
+const cartItems = await getCartItems();
+
+//document.addEventListener('DOMContentLoaded', function() {
+  //console.log(cartItems);
+  console.log("Cart Items:");
+  let orderQuantity = 0;
+  let midList = [];
+  cartItems.forEach(item => {
+      orderQuantity += item.quantity;
+      midList.push({mid: item.mid, price: item.price});
+      //console.log("orderQuantity " + orderQuantity);
+      console.log("midList " + midList);
+      console.log(item);
+  });
+
+  const cartEntries2 = cartItems.map(item => new cartEntry(
     item.description, item.quantity, item.price, item.price * item.quantity
   ));
 
-  let realItems = [];
-  for (const entry of cartEntries) {
-    realItems.push(entry.itemName);
-  }
+  const orderItemData = [];
 
-  console.log("Real Items: " + JSON.stringify(realItems)); // Logging realItems array
+  let total = 0; 
+  cartItems.forEach((entry) => {
+    for (let j = 0; j < entry.quantity; j++) {
+      console.log("mid: " + entry.mid);
+      orderItemData.push({order_id: 0, mid: entry.mid});
+    }
+    total += entry.price * entry.quantity;
+  });
+  
 
-  populateCartTable('#cart tbody', cartEntries);
-  const totalCost = calculateTotalCost(cartEntries);
+  console.log("HELLLLLLLLLLLLLO");
+  populateCartTable('#cart tbody', cartEntries2);
+  const totalCost = calculateTotalCost(cartEntries2);
   console.log('Total cost:', totalCost);
-});
+
+
+console.log("THIS IS THE TOTAL " + total);
+//edit this stuff
+let orderData = [
+  {
+    made_at: 1,
+    credit_card: '1234567890123456',
+    status: 'Processing',
+    total_price: total,
+    delivery_address: undefined,
+    DT_created: '2024-03-25 10:00:00',
+    DT_delivered: null,
+    ordered_by: 1
+  }
+];
+
+
+//});
+
 //things i need are the 
 //menu id, store, delivery address, 
-
-
-// here instead of making the cart basically we would get it from a request body from the menu team
-// so they click a button then run some async function like this, which sends the cart, and we will parse it and go to this path 
-// ill put pseudo below
-
-//so this will be in the cart code
-// const button1 = document.getElementById("go to checkout");
-
-// button1.addEventListener("click", function() {
-//   
-// const fetchCart = async () => {
-//   console.log('lol');
-//   const response = await fetch("/order/goToCheckout", {
-//     method: "POST",
-//   });
-//     alert("in checkout now");
-// });
-
-//next code will be some backend js file referencing that path 
-// async function sendCart(req, res) {
-
-//   let body = await new Promise(resolve => {
-//       let data = '';
-//       req.on('data', chunk => {
-//           data += chunk;
-//       })
-//       req.on('end', () => {
-//           resolve(data);
-//       })
-//   });
-
-//   //let decodedData = JSON.parse(body);
-
-//   res.writeHead(200, {'Content-type': 'text/plain'});
-//   res.end(decodedData);
-//THAT WOULD BE THE CART
-// }
-// module.exports = {
-//   routes: [
-//       {
-//           method: 'POST',
-//           path: '/order/goToCheckout',
-//           handler: sendCart
-//       },
-//   ]
-// };
-
-//Then in this code we would basically retrieve it somehow 
 
 //We wouldn't have the credit card and stuff so maybe we have to edit the order after the checkout, maybe a new route or a new query to the database 
 //same for made at, or well it needs to update when the status changes REMEMBER 
@@ -107,49 +96,50 @@ let rewardText = await displayReward();
 const rewardsContainer = document.getElementById('rewardsContainer');
 rewardsContainer.textContent = "Your Reward Points: " + rewardText[0].rewards_points;
 
-document.getElementById('applyRewards').addEventListener('click', function() {
+document.getElementById('applyRewards').addEventListener('click', async function() {
   if (rewardText[0].rewards_points < 5) {
     alert('Need 5 reward points to redeem free item!');
+    return;
   }
+  if (orderQuantity < 1) {
+    alert('You need at least two items in your order to use rewards!');
+    return;
+  }
+  let priceUnder20 = false; 
+  let highestPriceMid = 0;
+  let highestPriceMidIndex = 0;
+  for (let i = 0; i < midList.length; i++) {
+    if (midList[i].price < 20) {
+      console.log("midList Prices: " + midList[i].price);
+      priceUnder20 = true;
+      if (highestPriceMid < midList[i].price) {
+        highestPriceMid = midList[i].price;
+        highestPriceMidIndex = i;
+      }
+    }
+  }
+  if (!priceUnder20) {
+    alert('You can only apply rewards to items that are under 20 dollars!')
+    return;
+  }
+  total = total - highestPriceMid;
 
+
+  //need sql to subtract the points 
+  //pick the highest amount here 
+  //subtract form the total 
+  //and then show that the item is 0???
+
+  let redeemText = await redeemReward();
+  
+  rewardText = await displayReward();
+  rewardsContainer.textContent = "Your Reward Points: " + rewardText[0].rewards_points;
+
+  console.log(JSON.stringify(redeemReward));
+  alert(JSON.stringify(redeemText));
+  //reward stuff here 
 });
 
-let orderData = [
-  {
-    made_at: 1,
-    credit_card: '1234567890123456',
-    status: 'Processing',
-    total_price: 9.99,
-    delivery_address: undefined,
-    DT_created: '2024-03-25 10:00:00',
-    DT_delivered: null,
-    ordered_by: 1
-  }
-];
-
-const menuItemData = [
-  {
-    price : 9.99,
-    image_url: 'https://example.com/image1.jpg',
-    description: 'Pizza Margherita'
-  },
-  {
-    price: 9.99,
-    image_url: 'https://example.com/image2.jpg',
-    description: 'Cheese Pizza'
-  }
-];
-
-const orderItemData = [
-  {order_id: 0, mid: 1},
-  {order_id: 0, mid: 2},
-  {order_id: 0, mid: 2},
-];
-
-let total = 0;
-for (let i = 0; i < orderItemData.length; i++) {
-  total += menuItemData[orderItemData[i].mid - 1].price; 
-}
 
 const cart = [new cartEntry("pizza", 2, 11.99, 11.99 * 2), new cartEntry('wings', 1, 6.99, 6.99)];
 const stripe = Stripe('pk_test_51OxFUuP5gIWmEZ1PniORZnxF5lBrVHSaZzQeI836MWHDsr2cjqRsiFOoolY5yP9zQse5Sar1T0s0hwpy6QwKbfhX00MVSoX1UQ')
@@ -158,25 +148,6 @@ const button1 = document.getElementById("checkoutButton");
 const button2 = document.getElementById("tipButton");
 //console.log(cart);
 
-// //replace conditionals with checking if user is employee or admin,
-// //for video just replace it to show customer and employee or admin 
-// if (true) {
-//   document.getElementById("pastOrderButton").removeAttribute("hidden");
-// }
-// else {
-//   document.getElementById("pastOrderButton").setAttribute("hidden", "hidden");
-// }
-
-// const cartDiv = document.getElementById('cartDiv');
-// const item1 = document.getElementById('item1');
-// const quantity1 = document.getElementById('quantity1');
-// const pricePerItem1 = document.getElementById('pricePerItem1');
-// const totalPrice1 = document.getElementById('totalPrice1');
-
-// item1.innerHTML = cart[0].itemName;
-// quantity1.innerHTML = cart[0].quantity;
-// pricePerItem1.innerHTML = cart[0].pricePerItem;
-// totalPrice1.innerHTML = cart[0].totalCostOfEntry;
 
 function newCartTable(query, orderData, menuItemData, orderItemData) {
   const tableBody = document.querySelector(query);
@@ -202,7 +173,12 @@ function capitalizeFirstLetter(string) {
   return string.charAt(0).toUpperCase() + string.slice(1);
 }
 
-window.addEventListener('load', newCartTable("#cart tbody", orderData, menuItemData, orderItemData));
+async function getCartItems() {
+  const cartItems = JSON.parse(localStorage.getItem('cart')) || [];
+  return cartItems;
+}
+
+//window.addEventListener('load', newCartTable("#cart tbody", orderData, menuItemData, orderItemData));
 
 window.addEventListener('load', () => {
   window.addAddressForm('addressInputForm', onAddressConfirm);
@@ -242,29 +218,6 @@ async function checkoutButtonOnClick() {
 
 // initialize();
 
-// // Fetch Checkout Session and retrieve the client secret
-// async function initialize() {
-//   const fetchClientSecret = async () => {
-//     const response = await fetch("/order/createCheckoutSession", {
-//       method: "POST",
-//       headers: {
-//         "Content-Type": "application/json" // Specify the content type as JSON
-//       },
-//       body: JSON.stringify({ total : total , tip : isThereTip}) 
-//     });
-//     const {client_secret} = await response.json();
-//     return client_secret;
-//   };
-
-//   // Initialize Checkout
-//   const checkout = await stripe.initEmbeddedCheckout({
-//     fetchClientSecret,
-//   });
-
-//   // Mount Checkout
-//   checkout.mount('#checkout');
-// }
-
 
 button2.addEventListener("click", function () {
   //document.getElementById("tip").removeAttribute("hidden");
@@ -291,7 +244,7 @@ button1.addEventListener("click", function () {
         headers: {
           "Content-Type": "application/json" // Specify the content type as JSON
         },
-        body: JSON.stringify({orderData, menuItemData, orderItemData})
+        body: JSON.stringify({orderData, orderItemData})
       });
       const responseData = await response.text();
       alert(JSON.stringify(responseData));
@@ -341,6 +294,14 @@ async function redeemReward() {
   //make that one free send here to verify 
   //One SQL query 
   //Subtract 5 points which will be another query 
+  //Quantity, all mids, 
+  //return 
+  //error not enough quantity
+  //nothing under 20 
+  //item that is free
+  //return price 
+  //subtract this from the total 
+  //repopulate the table and update the stripe 
   const response = await fetch("/order/redeemRewards", {
       method: "POST",
       headers: {
@@ -348,6 +309,6 @@ async function redeemReward() {
       }
   });
   const message = await response.json();
-  console.log("Your Reward Points: " + JSON.stringify(message));
+  console.log(JSON.stringify(message));
   return message;
 }
