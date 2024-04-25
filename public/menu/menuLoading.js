@@ -25,7 +25,7 @@ function displayMenuItems(menuItems) {
     menuItemsContainer.innerHTML = '';
     menuItems.forEach(item => {
         const button = document.createElement("button");
-        button.textContent = item.description;
+        button.textContent = item.item_name;
         button.addEventListener("click", async function() {
             if (item.available === 0) {
                 console.log(`Item with MID '${JSON.stringify(item.mid)}' is not available.`);
@@ -33,7 +33,7 @@ function displayMenuItems(menuItems) {
                 console.log("Clicked item:", JSON.stringify(item));
                 modalContainer.innerHTML = `
                     <div class="modal-content">
-                        <h2>${item.description}</h2>
+                        <h2>${item.item_name}</h2>
                         <img src="${item.image}" alt="${item.description}">
                         <p>Price: $${item.price}</p>
                         <div class="toppings-section">
@@ -108,6 +108,7 @@ function addToCart(item) {
     }
     else {
         cart.push({
+            item_name: item.item_name,
             mid: item.mid,
             description: item.description,
             quantity: 1,
@@ -122,8 +123,8 @@ function addToCart(item) {
     
     localStorage.setItem('cart', JSON.stringify(cart));
     modalContainer.classList.remove('show');
-    showPopup(`Item '${item.description}' added to cart`);
-    console.log(`Item '${item.description}' with MID '${item.mid}' added to cart.`);
+    showPopup(`Item '${item.item_name}' added to cart`);
+    console.log(`Item '${item.item_name}' with MID '${item.mid}' added to cart.`);
 }
 
 const cartIcon = document.querySelector('.fa-shopping-cart');
@@ -147,7 +148,7 @@ function displayCartItems() {
         const cartItemElement = document.createElement('div');
         cartItemElement.classList.add('cart-item');
         cartItemElement.innerHTML = `
-            <span>${item.description} - Qty:${item.quantity} - $${item.totalPrice}</span>
+            <span>${item.item_name} - Qty:${item.quantity} - $${item.totalPrice}</span>
             <span class="remove-item" onclick="removeFromCart(${index})">&times;</span>
         `;
         cartItemsElement.appendChild(cartItemElement);
