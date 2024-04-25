@@ -7,6 +7,9 @@ console.log(cart);
 console.log("FILL TABLE");
 let orders = await fillTable();
 
+let carryout = await checkDeliverable();
+console.log("CARRYOUTTTTT" + carryout[0].delivery_address);
+
 window.addEventListener('load', displayOrders("#cart tbody", orders));
 
 //at the start maybe even before load cart you want to query the database based on the user's login 
@@ -68,15 +71,30 @@ if (orderStatus != savedStatus) {
         window.location.reload(true);
     } else if (orderStatus === 'Processing') {
         pizzaStatus.src = "/order/orderedPizzaTrack.png";
-        setCookie('pizzaImageSrc', "/order/Statuses/Delivery/deliveryProcessing.png", 1); // dead in 1 days
+        if (carryout[0].delivery_address == null) {
+            setCookie('pizzaImageSrc', "/order/Statuses/Pickup/pickupProcessing.png", 1); // dead in 1 days
+        }
+        else {
+            setCookie('pizzaImageSrc', "/order/Statuses/Delivery/deliveryProcessing.png", 1); // dead in 1 days
+        }
         window.location.reload(true);
     } else if (orderStatus === 'Started') {
         pizzaStatus.src = "/order/orderedPizzaTrack.png";
-        setCookie('pizzaImageSrc', "/order/Statuses/Delivery/deliveryStarting.png", 1); // dead in 1 days
+        if (carryout[0].delivery_address == null) {
+            setCookie('pizzaImageSrc', "/order/Statuses/Pickup/pickupStarted.png", 1); // dead in 1 days
+        }
+        else {
+            setCookie('pizzaImageSrc', "/order/Statuses/Delivery/deliveryStarting.png", 1); // dead in 1 days
+        }
         window.location.reload(true);
     } else if (orderStatus === 'Ready (For Delivery)') {
         pizzaStatus.src = "/order/orderedPizzaTrack.png";
-        setCookie('pizzaImageSrc', "/order/Statuses/Delivery/deliveryReady.png", 1); // dead in 1 days
+        if (carryout[0].delivery_address == null) {
+            setCookie('pizzaImageSrc', "/order/Statuses/Pickup/pickupReady.png", 1); // dead in 1 days
+        }
+        else {
+            setCookie('pizzaImageSrc', "/order/Statuses/Delivery/deliveryReady.png", 1); // dead in 1 days
+        }
         window.location.reload(true);
     } else if (orderStatus === 'In-Transit') {
         pizzaStatus.src = "/order/orderedPizzaTrack.png";
@@ -101,7 +119,12 @@ if (orderStatus != savedStatus) {
     } 
     else if (orderStatus === 'Completed') {
         pizzaStatus.src = "/order/orderedPizzaTrack.png";
-        setCookie('pizzaImageSrc', "/order/Statuses/Delivery/deliveryComplete.png", 1); // dead in 1 days
+        if (carryout[0].delivery_address == null) {
+            setCookie('pizzaImageSrc', "/order/Statuses/Pickup/pickupComplete.png", 1); // dead in 1 days
+        }
+        else {
+            setCookie('pizzaImageSrc', "/order/Statuses/Delivery/deliveryComplete.png", 1); // dead in 1 days
+        }
         window.location.reload(true);
     }       
 }
@@ -281,6 +304,18 @@ async function checkStatus() {
 
 async function displayReward() {
     const response = await fetch("/order/getRewards", {
+        method: "GET",
+        headers: {
+            "Content-Type": "application/json"
+        }
+    });
+    const message = await response.json();
+    console.log("Your Reward Points: " + JSON.stringify(message));
+    return message;
+}
+
+async function checkDeliverable() {
+    const response = await fetch("/order/checkOption", {
         method: "GET",
         headers: {
             "Content-Type": "application/json"

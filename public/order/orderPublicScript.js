@@ -76,7 +76,6 @@ let orderData = [
     credit_card: '1234567890123456',
     status: 'Processing',
     total_price: total,
-    delivery_address: undefined,
     DT_created: '2024-03-25 10:00:00',
     DT_delivered: null,
     ordered_by: 1
@@ -195,6 +194,7 @@ function onAddressConfirm(formattedAddress, location) {
   currentAddress = formattedAddress;
   // update the current order as well
   orderData[0].delivery_address = currentAddress;
+  console.log(orderData[0]);
   document.getElementById('currentAddress').innerHTML = `Current address: ${currentAddress}`;
 
   refreshCheckoutButton();
