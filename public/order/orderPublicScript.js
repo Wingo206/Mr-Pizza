@@ -122,7 +122,9 @@ document.getElementById('applyRewards').addEventListener('click', async function
     return;
   }
   total = total - highestPriceMid;
-
+  console.log("ARYAAAAAA" + orderData[0].total_price);
+  orderData[0].total_price = total; 
+  console.log("VINEALLLLL" + orderData[0].total_price);
 
   //need sql to subtract the points 
   //pick the highest amount here 
@@ -260,7 +262,7 @@ async function initializeCheckout() {
   const checkout = await stripe.initEmbeddedCheckout({
     clientSecret,
   });
-
+  
   checkout.mount('#checkout');
 }
 

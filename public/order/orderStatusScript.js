@@ -188,7 +188,7 @@ function displayOrders(query, orders) {
         }
         row.insertCell().textContent = order.item_price.toFixed(2); // Price per Item
         row.insertCell().textContent = (1 * order.item_price).toFixed(2); // Total Price
-        row.insertCell().textContent = totals; // Order Price
+        row.insertCell().textContent = order.total_price; // Order Price
 
         //Need a total price
     });
