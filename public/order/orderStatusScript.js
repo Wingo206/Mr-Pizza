@@ -192,6 +192,13 @@ function displayOrders(query, orders) {
 
         //Need a total price
     });
+
+    console.log("THIS IS THE TOTAL PRICE " + orders[0].total_price + "THIS THE TOTAL" + totals);
+    if (orders[0].total_price.toFixed(2) < totals.toFixed(2)) {
+        document.getElementById("usedRewards").removeAttribute("hidden");
+        const usedRewards = document.getElementById('usedRewards');
+        usedRewards.textContent = "You used reward points! You saved a total of $" + (totals.toFixed(2) - orders[0].total_price.toFixed(2)).toFixed(2) + " dollars.";
+    }
 }
 
 
