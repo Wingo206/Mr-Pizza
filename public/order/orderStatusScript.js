@@ -1,5 +1,6 @@
 
 import {cartEntry, populateCartTable, calculateTotalCost, displayCart} from './orderFunctions.js';
+//import {orderId} from './orderPublicScript.js';
 const cart = [new cartEntry("pizza", 2, 11.99, 11.99 * 2), new cartEntry('wings', 1, 6.99, 6.99)];
 console.log(cart);
 
@@ -47,15 +48,14 @@ pizzaStatus.src = "/order/Statuses/Delivery/deliveryProcessing.png";
 const savedPizzaImageSrc = getCookie('pizzaImageSrc');
 pizzaStatus.src = savedPizzaImageSrc;
 setCookie('pizzaImageSrc', "/order/Statuses/Delivery/deliveryProcessing.png", 1); // dead in 1 days
-let cancelStatus;
 
 const checkStatusInterval = setInterval(async () => {
     
 //when it reload it needs to send back the status from before to check 
     let stat = await checkStatus();
-    console.log("Stat: " + stat[0].status);
+    // console.log("Stat: " + stat[0].status);
     const orderStatus = stat[0].status;
-    cancelStatus = orderStatus;
+    let cancelStatus = orderStatus;
 
     if (cancelStatus === 'Delivered') {
         document.getElementById("notReceivedButton").removeAttribute("hidden");
@@ -235,7 +235,6 @@ async function getOid() {
         },
     });
     const message = await response.json();
-    console.log(message);
     return message;
 }
 
@@ -263,24 +262,43 @@ button1.addEventListener("click", function() {
     alert("Going to check delivery/takeout");
 });
 
-const button2 = document.getElementById("cancelOrderButton");
+const button2 = document.getElementById("refundButton");
 
 button2.addEventListener("click", async function() {
-    //make a call to cancel from database and return home 
-
-    if (cancelStatus === 'Processing') {
-        alert("Cancel Order and return home");
-        let message = await removeOrder();
+    let status = await checkStatus();
+    let currentStatus = status[0].status;
+    if (currentStatus === 'Processing') {
+        alert("Order has been refunded! Please check your bank/credit card statement for the refund.");
+        async function requestRefund(orderId) {
+            fetch('/order/handleRefund', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({ orderId: orderId })
+            })
+            .then(response => response.json())
+            .then(data => console.log('Refund response:', data))
+            .catch(error => console.error('Error in refund:', error));
+        }        
+        //console.log("This is OID" + await getOid());
+        requestRefund(await getOid());  
+        //let message = await removeOrder();
         //after removing return home 
     }
     else {
        alert("Too late to cancel Order, submit help request");
     }
- 
+});
+
+const button3 = document.getElementById("cancelOrderButton");
+
+button3.addEventListener("click", async function() {
+    alert("Order has been canceled! It has been marked as canceled and will not be delivered/picked up.");
+    await removeOrder().catch(error => console.error('Error in cancel:', error));
 });
 
 async function removeOrder() {
-    console.log('lol');
     const requestBody = JSON.stringify({ order_id: 9 });
     const response = await fetch("/order/cancelOrder", {
        method: "POST",
@@ -295,7 +313,6 @@ async function removeOrder() {
 }
 
 async function checkStatus() {
-    console.log('lol');
     const requestBody = JSON.stringify({ order_id: 9});
     const response = await fetch("/order/checkStatus", {
         method: "POST",

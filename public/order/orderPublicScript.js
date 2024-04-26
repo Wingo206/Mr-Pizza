@@ -32,6 +32,7 @@ Make status update in database
 import {cartEntry, populateCartTable, calculateTotalCost, displayCart} from './orderFunctions.js';
 
 const cartItems = await getCartItems();
+let orderId = undefined;
 
 //document.addEventListener('DOMContentLoaded', function() {
   //console.log(cartItems);
@@ -228,10 +229,9 @@ button2.addEventListener("click", function () {
   alert("Tip added");
 });
 
-button1.addEventListener("click", function () {
+button1.addEventListener("click", async function () {
 
     document.getElementById("checkout").removeAttribute("hidden");
-    initializeCheckout();
     //if statement that checks if the time is within 9 am to 4:30 am, if it isnt then print we are closed, please order during opening hours and 30 minutes before the store closes
     
     // let currentTime = new Date();
@@ -248,12 +248,14 @@ button1.addEventListener("click", function () {
         },
         body: JSON.stringify({orderData, orderItemData})
       });
-      const responseData = await response.text();
+      const responseData = await response.json();
+      orderId = responseData.orderId;
       alert(JSON.stringify(responseData));
       
     }
   
-    fetchReponse();
+    await fetchReponse();
+    initializeCheckout();
   
 });
 
@@ -272,7 +274,7 @@ async function fetchClientSecret() {
     headers: {
       "Content-Type": "application/json"
     },
-    body: JSON.stringify({ total: total, tip: isThereTip })
+    body: JSON.stringify({ total: total, tip: isThereTip, orderId : orderId})
   });
   const { client_secret } = await response.json();
   return client_secret;
