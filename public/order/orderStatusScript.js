@@ -282,7 +282,8 @@ button2.addEventListener("click", async function() {
             .catch(error => console.error('Error in refund:', error));
         }        
         //console.log("This is OID" + await getOid());
-        requestRefund(await getOid());  
+        requestRefund(await getOid()); 
+        await sendRefundEmail(); 
         //let message = await removeOrder();
         //after removing return home 
     }
@@ -299,6 +300,7 @@ button3.addEventListener("click", async function() {
     if (stat2[0].status === 'Processing' || stat2[0].status === 'Started' || stat2[0].status === 'Ready') {
         alert("Order has been canceled! It has been marked as canceled and will not be delivered/picked up.");
         await removeOrder().catch(error => console.error('Error in cancel:', error));
+        await sendCancelEmail();
     }
     else {
         alert("Can not cancel since order has passed Ready phase!");
@@ -355,4 +357,24 @@ async function checkDeliverable() {
     const message = await response.json();
     console.log("Your Reward Points: " + JSON.stringify(message));
     return message;
+}
+
+async function sendCancelEmail() {
+     let response = await fetch("/order/emailOrderCancel", {
+        method: "POST",
+        headers: {
+            'Content-Type': 'application/json'
+        }
+      });
+     console.log(response);
+}
+
+async function sendRefundEmail() {
+    let response = await fetch("/order/emailOrderRefund", {
+       method: "POST",
+       headers: {
+           'Content-Type': 'application/json'
+       }
+     });
+    console.log(response);
 }
