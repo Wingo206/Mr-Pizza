@@ -83,16 +83,6 @@ let orderData = [
   }
 ];
 
-var form = document.getElementById("checkoutOption");
-
-if (form.elements["checkoutOption"] != undefined && form.elements["checkoutOption"].value == "delivery") {
-  console.log("Delivery selected. Processing delivery order...");
-
-
-} else if (form.elements["checkoutOption"] != undefined && form.elements["checkoutOption"].value == "carryout") {
-  console.log("Carryout selected. Preparing carryout order...");
-
-} 
 
 //});
 
