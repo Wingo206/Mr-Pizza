@@ -65,7 +65,7 @@ foreign key(eid) references employee_account(eid));
 create table item_availability(mid int, store_id int, available boolean not null,
 primary key(mid, store_id),
 foreign key(mid) references menu_item(mid) on delete cascade,
-foreign key(store_id) references store(store_id));
+foreign key(store_id) references store(store_id) on delete cascade);
 
 create table custom_availability(mid int, custom_name varchar(50), option_name varchar(50), store_id int, available boolean not null,
 primary key(mid, custom_name, option_name, store_id),
