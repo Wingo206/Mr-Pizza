@@ -4,14 +4,14 @@ create database {{database}};
 
 use {{database}};
 
-create table customer_account(cid int primary key auto_increment, username varchar(30), default_delivery_address varchar(40), phone_num varchar(15), password_hash varchar(50), email varchar(40), default_credit_card varchar(20), rewards_points int DEFAULT 0);
+create table customer_account(cid int primary key auto_increment, username varchar(30), default_delivery_address varchar(40), phone_num varchar(15), password_hash varchar(200), email varchar(40), default_credit_card varchar(20), rewards_points int DEFAULT 0);
 
-create table admin_account(aid int primary key auto_increment, email varchar(40), password_hash varchar(50));
+create table admin_account(aid int primary key auto_increment, email varchar(40), password_hash varchar(200));
 insert into admin_account(email, password_hash) values ('admin@mrpizza.com', 'admin');
 
 create table store (store_id int primary key auto_increment, name varchar(100), address varchar(200), latlng point not null, image_url varchar(1000));
 
-create table employee_account(eid int primary key auto_increment, name varchar(50), employee_type varchar(20), email varchar(50), password_hash varchar(50), status varchar(50), works_at int,
+create table employee_account(eid int primary key auto_increment, name varchar(50), employee_type varchar(20), email varchar(50), password_hash varchar(200), status varchar(50), works_at int,
 foreign key(works_at) references store(store_id) on delete set null);
 insert into employee_account(name, email, password_hash) values ('mr pizza', 'employee1@mrpizza.com', 'employee1');
 
