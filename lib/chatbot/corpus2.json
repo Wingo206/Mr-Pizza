@@ -165,6 +165,9 @@
     {
       "intent": "Menu Availability",
       "utterances": [
+        "How do I order?",
+        "Where do I place an order?",
+        "Where do I find the menu?",
         "Can I view the menu without creating an account?",
         "Are there any items exclusive to certain locations?",
         "How often is the menu updated?",
@@ -186,7 +189,6 @@
         "Is it possible to see the menu without signing up?",
         "Are there any items on the menu that are only available at certain locations?",
         "How often are new items added to the menu?",
-        "Is account creation required to view the menu?",
         "Do different locations have their own unique menu items?"
       ],
       "answers": [
@@ -227,6 +229,8 @@
     {
       "intent": "Account Features",
       "utterances": [
+        "Where do I sign in?",
+        "How do I sign up?",
         "What benefits do I get by registering for an account?",
         "Can I track my past orders and rewards with an account?",
         "What advantages come with creating an account?",
@@ -319,6 +323,7 @@
     {
       "intent": "Store Locations",
       "utterances": [
+        "where are the stores?",
         "How can I find the closest Mr. Pizza store to my current location?",
         "Do you have a feature on your website to locate nearby Mr. Pizza stores?",
         "Is there a way to see a list of Mr. Pizza locations near me?",

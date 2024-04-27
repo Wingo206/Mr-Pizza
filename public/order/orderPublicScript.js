@@ -32,9 +32,8 @@ Make status update in database
 import {cartEntry, populateCartTable, calculateTotalCost, displayCart} from './orderFunctions.js';
 
 const cartItems = await getCartItems();
+let orderId = undefined;
 
-//document.addEventListener('DOMContentLoaded', function() {
-  //console.log(cartItems);
   console.log("Cart Items:");
   let orderQuantity = 0;
   let midList = [];
@@ -69,28 +68,34 @@ const cartItems = await getCartItems();
 
 
 console.log("THIS IS THE TOTAL " + total);
+
+function formatDate(date) {
+  const year = date.getFullYear();
+  const month = String(date.getMonth() + 1).padStart(2, '0');
+  const day = String(date.getDate()).padStart(2, '0');
+  const hours = String(date.getHours()).padStart(2, '0');
+  const minutes = String(date.getMinutes()).padStart(2, '0');
+  const seconds = String(date.getSeconds()).padStart(2, '0');
+  
+  return `${year}-${month}-${day} ${hours}:${minutes}:${seconds}`;
+}
+
+const currentDate = new Date();
+const formattedDate = formatDate(currentDate);
+
 //edit this stuff
+//MADE AT NEEDS TO BE REPLACED WITH STORE ID 
 let orderData = [
   {
     made_at: 1,
-    credit_card: '1234567890123456',
     status: 'Processing',
+    delivery_address: null,
     total_price: total,
-    delivery_address: undefined,
-    DT_created: '2024-03-25 10:00:00',
+    DT_created: formattedDate,
     DT_delivered: null,
-    ordered_by: 1
+    ordered_by: null
   }
 ];
-
-
-//});
-
-//things i need are the 
-//menu id, store, delivery address, 
-
-//We wouldn't have the credit card and stuff so maybe we have to edit the order after the checkout, maybe a new route or a new query to the database 
-//same for made at, or well it needs to update when the status changes REMEMBER 
 
 let rewardText = await displayReward();
 const rewardsContainer = document.getElementById('rewardsContainer');
@@ -123,7 +128,9 @@ document.getElementById('applyRewards').addEventListener('click', async function
     return;
   }
   total = total - highestPriceMid;
-
+  console.log("ARYAAAAAA" + orderData[0].total_price);
+  orderData[0].total_price = total; 
+  console.log("VINEALLLLL" + orderData[0].total_price);
 
   //need sql to subtract the points 
   //pick the highest amount here 
@@ -179,10 +186,16 @@ async function getCartItems() {
 }
 
 //window.addEventListener('load', newCartTable("#cart tbody", orderData, menuItemData, orderItemData));
+const addressButton = document.getElementById("loadScriptButton");
+addressButton.addEventListener("click", function () {
+    // Assuming addAddressForm and refreshCheckoutButton are available and correctly defined elsewhere.
+    window.addAddressForm('addressInputForm', onAddressConfirm);
+    refreshCheckoutButton();
+});
 
-window.addEventListener('load', () => {
-  window.addAddressForm('addressInputForm', onAddressConfirm);
-  refreshCheckoutButton();
+const reloadButton = document.getElementById("unloadScriptButton");
+reloadButton.addEventListener("click", function () {
+  window.location.reload();
 })
 
 let currentAddress;
@@ -190,8 +203,6 @@ let currentAddress;
  * called once the address form is confirmed
  */
 function onAddressConfirm(formattedAddress, location) {
-  console.log(formattedAddress);
-  console.log(location);
   currentAddress = formattedAddress;
   // update the current order as well
   orderData[0].delivery_address = currentAddress;
@@ -221,15 +232,18 @@ async function checkoutButtonOnClick() {
 
 button2.addEventListener("click", function () {
   //document.getElementById("tip").removeAttribute("hidden");
-  isThereTip = true;
-  initializeCheckout(); // Reinitialize checkout whenever tip is toggled
-  alert("Tip added");
+  //isThereTip = true;
+  //initializeCheckout(); // Reinitialize checkout whenever tip is toggled
+  //alert("Tip added");
+  //document.getElementById("addressInputForm").removeAttribute("hidden");
+  //document.getElementById("addressInputForm").setAttribute("hidden");
+  element.setAttribute("hidden", "addressInputForm");
+
 });
 
-button1.addEventListener("click", function () {
+button1.addEventListener("click", async function () {
 
     document.getElementById("checkout").removeAttribute("hidden");
-    initializeCheckout();
     //if statement that checks if the time is within 9 am to 4:30 am, if it isnt then print we are closed, please order during opening hours and 30 minutes before the store closes
     
     // let currentTime = new Date();
@@ -246,12 +260,14 @@ button1.addEventListener("click", function () {
         },
         body: JSON.stringify({orderData, orderItemData})
       });
-      const responseData = await response.text();
+      const responseData = await response.json();
+      orderId = responseData.orderId;
       alert(JSON.stringify(responseData));
       
     }
   
-    fetchReponse();
+    await fetchReponse();
+    initializeCheckout();
   
 });
 
@@ -260,7 +276,7 @@ async function initializeCheckout() {
   const checkout = await stripe.initEmbeddedCheckout({
     clientSecret,
   });
-
+  
   checkout.mount('#checkout');
 }
 
@@ -270,7 +286,7 @@ async function fetchClientSecret() {
     headers: {
       "Content-Type": "application/json"
     },
-    body: JSON.stringify({ total: total, tip: isThereTip })
+    body: JSON.stringify({ total: total, tip: isThereTip, orderId : orderId})
   });
   const { client_secret } = await response.json();
   return client_secret;

@@ -1,0 +1,32 @@
+[
+    {
+        "category": "entree-title-desserts",
+        "sectionName": "default",
+        "itemName": "Cinnamon Bread Twists",
+        "description": "Handmade from fresh buttery-tasting dough and baked to a golden brown. Crusty on the outside and soft on the inside. Drizzled with a perfect blend of cinnamon and sugar, and best served with a side of sweet icing for dipping or drizzling.",
+        "orderButtonDataQuid": "F_CINNAT",
+        "image": "https://cache.dominos.com/olo/6_130_2/assets/build/market/US/_en/images/img/products/larges/F_CINNAT.jpg",
+        "price": "7.99",
+        "editButtonQuid": "edit-product-B8PCCT"
+    },
+    {
+        "category": "entree-title-desserts",
+        "sectionName": "default",
+        "itemName": "Mr. Pizza's Marbled Cookie Brownie™",
+        "description": "Satisfy your sweet tooth! Taste the decadent blend of gooey milk chocolate chunk cookie and delicious fudge brownie.  Oven-baked to perfection and cut into 9 pieces - this dessert is perfect to share with the whole group.",
+        "orderButtonDataQuid": "F_MRBRWNE",
+        "image": "https://cache.dominos.com/olo/6_130_2/assets/build/market/US/_en/images/img/products/larges/F_MRBRWNE.jpg",
+        "price": "8.99",
+        "editButtonQuid": "edit-product-MARBRWNE"
+    },
+    {
+        "category": "entree-title-desserts",
+        "sectionName": "default",
+        "itemName": "Chocolate Lava Crunch Cakes",
+        "description": "Indulge in three delectable oven-baked chocolate cakes with molten chocolate fudge on the inside. Perfectly topped with a dash of powdered sugar.",
+        "orderButtonDataQuid": "F_LAVA",
+        "image": "https://cache.dominos.com/olo/6_130_2/assets/build/market/US/_en/images/img/products/larges/F_LAVA.jpg",
+        "price": "8.99",
+        "editButtonQuid": "edit-product-B3PCLAVA"
+    }
+]

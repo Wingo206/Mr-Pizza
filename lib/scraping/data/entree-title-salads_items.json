@@ -1,0 +1,24 @@
+[
+    {
+        "category": "entree-title-salads",
+        "sectionName": "default",
+        "itemName": "Classic Garden",
+        "description": "A crisp and colorful combination of grape tomatoes, red onion, carrots, red cabbage, cheddar cheese and brioche garlic croutons, all atop a blend of romaine and iceberg lettuce.",
+        "orderButtonDataQuid": "F_GARDEN",
+        "image": "https://cache.dominos.com/olo/6_130_2/assets/build/market/US/_en/images/img/products/larges/F_GARDEN.jpg",
+        "price": "8.99",
+        "editButtonQuid": "edit-product-PPSGARSA",
+        "customizations": {}
+    },
+    {
+        "category": "entree-title-salads",
+        "sectionName": "default",
+        "itemName": "Chicken Caesar",
+        "description": "The makings of a classic: roasted white meat chicken, Parmesan cheese and brioche garlic croutons, all atop a blend of romaine and iceberg lettuce.",
+        "orderButtonDataQuid": "F_CCAESAR",
+        "image": "https://cache.dominos.com/olo/6_130_2/assets/build/market/US/_en/images/img/products/larges/F_CCAESAR.jpg",
+        "price": "8.99",
+        "editButtonQuid": "edit-product-PPSCSRSA",
+        "customizations": {}
+    }
+]

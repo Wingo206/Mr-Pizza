@@ -4,27 +4,25 @@ create database {{database}};
 
 use {{database}};
 
-create table customer_account(cid int primary key auto_increment, username varchar(30), default_delivery_address varchar(40), phone_num varchar(15), password_hash varchar(50), email varchar(40), default_credit_card varchar(20), rewards_points int DEFAULT 0);
+create table customer_account(cid int primary key auto_increment, username varchar(30), phone_num varchar(15), password_hash varchar(200), email varchar(40), rewards_points int DEFAULT 0);
 
-create table admin_account(aid int primary key auto_increment, email varchar(40), password_hash varchar(50));
-insert into admin_account(email, password_hash) values ('admin@mrpizza.com', 'admin');
+create table admin_account(aid int primary key auto_increment, email varchar(40), password_hash varchar(200));
 
-create table store (store_id int primary key auto_increment, address varchar(200), latlng point not null, image_url varchar(1000));
+create table store (store_id int primary key auto_increment, name varchar(100), address varchar(200), latlng point not null, image_url varchar(1000));
 
-create table employee_account(eid int primary key auto_increment, name varchar(50), employee_type varchar(20), email varchar(50), password_hash varchar(50), status varchar(50), works_at int,
+create table employee_account(eid int primary key auto_increment, name varchar(50), employee_type varchar(20), email varchar(50), password_hash varchar(200), status varchar(50), works_at int,
 foreign key(works_at) references store(store_id) on delete set null);
-insert into employee_account(name, email, password_hash) values ('mr pizza', 'employee1@mrpizza.com', 'employee1');
 
 create table help_ticket(tid int auto_increment primary key, asked_by int not null, answered_by int, date_created date, question varchar(200), answer varchar(200), quality_rating boolean, original_tid int, DTSTAMP datetime,
 foreign key(asked_by) references customer_account(cid),
 foreign key(answered_by) references employee_account(eid));
 alter table help_ticket add constraint original_tid_references_help_ticket foreign key(original_tid) references help_ticket(tid) on delete set null;
 
-create table customer_order(order_id int primary key auto_increment, credit_card varchar(20), status varchar(20), total_price float, delivery_address varchar(100), delivery_latlng point, DT_created datetime, DT_delivered datetime, ordered_by int not null, made_at int not null,
+create table customer_order(order_id int primary key auto_increment, status varchar(20), total_price float, delivery_address varchar(100), delivery_latlng point, DT_created datetime, DT_delivered datetime, ordered_by int not null, made_at int not null, stripe_checkout_id varchar(100), stripe_payment_intent_id varchar(100),
 foreign key(ordered_by) references customer_account(cid) on delete cascade,
 foreign key(made_at) references store(store_id) on delete cascade);
 
-create table menu_item(mid int primary key auto_increment, price float, image_url varchar(1000), description varchar(1000));
+create table menu_item(mid int primary key auto_increment, item_name varchar(100), price float, image_url varchar(1000), description varchar(1000), category varchar(100));
 
 create table order_item(item_num int auto_increment, order_id int not null, mid int not null,
 primary key(item_num, order_id),
@@ -35,7 +33,7 @@ create table custom(custom_name varchar(50), mid int, mutually_exclusive boolean
 primary key(mid, custom_name),
 foreign key(mid) references menu_item(mid) on delete cascade);
 
-create table custom_option(custom_name varchar(50), mid int, option_name varchar(50), price float not null,
+create table custom_option(custom_name varchar(50), mid int, option_name varchar(50), price float not null, isDefault boolean not null,
 primary key(mid, custom_name, option_name),
 foreign key(mid, custom_name) references custom(mid, custom_name) on delete cascade);
 
@@ -65,7 +63,7 @@ foreign key(eid) references employee_account(eid));
 create table item_availability(mid int, store_id int, available boolean not null,
 primary key(mid, store_id),
 foreign key(mid) references menu_item(mid) on delete cascade,
-foreign key(store_id) references store(store_id));
+foreign key(store_id) references store(store_id) on delete cascade);
 
 create table custom_availability(mid int, custom_name varchar(50), option_name varchar(50), store_id int, available boolean not null,
 primary key(mid, custom_name, option_name, store_id),
