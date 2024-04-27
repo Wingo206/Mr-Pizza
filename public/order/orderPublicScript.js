@@ -1,35 +1,4 @@
-/* 
- * This is an example front-end script to verify that when
- * an html file is loaded, front-end scripts can be run as well
- */
-
-/*
-To Do
-For Order Page
--Get items from the cart (from menu team) //WILL BE DONE WHEN CART IS FIXED 
--Make sure that stripe total cost is being retrieved from cart
--Make sure only customers can make orders
--Combine stripe checkout with the page checkout button 
--Add option to add rewards (will subtract from total)
-
-For Order Status
--Show contents of order
--Fix orderid increments
--The quantity needs to be fixed, read how many items there are then update quantity
--The table should display the current order's order id
--Link check delivery takeout to map page 
--Check When the Order Status is updated (loop/continously check) Reload the page if status changes
--make cancel order use runquery instead of new connection (and refund functionality)
--Show PP earned and total PP
--email fix for confirmation order
-
-For Past Order
-Make status a button or drop down
-For table, have the rows be order id, then split the rows further for each small item
-Make status update in database
-*/
-
-import {cartEntry, populateCartTable, calculateTotalCost, displayCart} from './orderFunctions.js';
+import {cartEntry, populateCartTable, calculateTotalCost} from './orderFunctions.js';
 
 const cartItems = await getCartItems();
 let orderId = undefined;

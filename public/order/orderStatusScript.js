@@ -229,7 +229,7 @@ async function initialize() {
 //CHANGE THIS ASK BRANDON HOW TO GET CURRENT USER INFO AND BASED ON THAT WE PLUG IN TO QUERY DATABASE
 async function getOid() {
     const response = await fetch("/order/getOID", {
-        method: "POST",
+        method: "GET",
         headers: {
             "Content-Type": "application/json"
         },
@@ -242,13 +242,11 @@ async function getOid() {
 // right now body is hardcoded but should retrieve from last page 
 async function fillTable() {
     console.log('lol');
-    const requestBody = JSON.stringify({ order_id: 11 });
     const response = await fetch("/order/getOrder", {
-       method: "POST",
+       method: "GET",
        headers: {
         "Content-Type": "application/json"
-        },
-        body: requestBody
+        }
      });
      const currentOrder = await response.json();
      console.log(currentOrder);
@@ -308,13 +306,11 @@ button3.addEventListener("click", async function() {
 });
 
 async function removeOrder() {
-    const requestBody = JSON.stringify({ order_id: 9 });
     const response = await fetch("/order/cancelOrder", {
-       method: "POST",
+       method: "DELETE",
        headers: {
         "Content-Type": "application/json"
-        },
-        body: requestBody
+        }
      });
      const message = await response.json();
      console.log(message);
@@ -322,13 +318,11 @@ async function removeOrder() {
 }
 
 async function checkStatus() {
-    const requestBody = JSON.stringify({ order_id: 9});
     const response = await fetch("/order/checkStatus", {
-        method: "POST",
+        method: "GET",
         headers: {
             "Content-Type": "application/json"
         },
-        body: requestBody
     });
     const message = await response.json();
     console.log(message);

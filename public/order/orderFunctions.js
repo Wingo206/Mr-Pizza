@@ -1,5 +1,3 @@
-// make an array or list of somekind where each entry has an item, quantity, price per item, and total per item
-
 export function cartEntry(itemName, quantity, pricePerItem, totalCostOfEntry) {
     this.itemName = itemName;
     this.quantity = quantity;
