@@ -34,8 +34,6 @@ import {cartEntry, populateCartTable, calculateTotalCost, displayCart} from './o
 const cartItems = await getCartItems();
 let orderId = undefined;
 
-//document.addEventListener('DOMContentLoaded', function() {
-  //console.log(cartItems);
   console.log("Cart Items:");
   let orderQuantity = 0;
   let midList = [];
@@ -70,27 +68,34 @@ let orderId = undefined;
 
 
 console.log("THIS IS THE TOTAL " + total);
+
+function formatDate(date) {
+  const year = date.getFullYear();
+  const month = String(date.getMonth() + 1).padStart(2, '0');
+  const day = String(date.getDate()).padStart(2, '0');
+  const hours = String(date.getHours()).padStart(2, '0');
+  const minutes = String(date.getMinutes()).padStart(2, '0');
+  const seconds = String(date.getSeconds()).padStart(2, '0');
+  
+  return `${year}-${month}-${day} ${hours}:${minutes}:${seconds}`;
+}
+
+const currentDate = new Date();
+const formattedDate = formatDate(currentDate);
+
 //edit this stuff
+//MADE AT NEEDS TO BE REPLACED WITH STORE ID 
 let orderData = [
   {
     made_at: 1,
-    credit_card: '1234567890123456',
     status: 'Processing',
+    delivery_address: null,
     total_price: total,
-    DT_created: '2024-03-25 10:00:00',
+    DT_created: formattedDate,
     DT_delivered: null,
-    ordered_by: 1
+    ordered_by: null
   }
 ];
-
-
-//});
-
-//things i need are the 
-//menu id, store, delivery address, 
-
-//We wouldn't have the credit card and stuff so maybe we have to edit the order after the checkout, maybe a new route or a new query to the database 
-//same for made at, or well it needs to update when the status changes REMEMBER 
 
 let rewardText = await displayReward();
 const rewardsContainer = document.getElementById('rewardsContainer');
