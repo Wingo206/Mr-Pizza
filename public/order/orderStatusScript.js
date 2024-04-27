@@ -294,8 +294,15 @@ button2.addEventListener("click", async function() {
 const button3 = document.getElementById("cancelOrderButton");
 
 button3.addEventListener("click", async function() {
-    alert("Order has been canceled! It has been marked as canceled and will not be delivered/picked up.");
-    await removeOrder().catch(error => console.error('Error in cancel:', error));
+    let stat2 = await checkStatus();
+
+    if (stat2[0].status === 'Processing' || stat2[0].status === 'Started' || stat2[0].status === 'Ready') {
+        alert("Order has been canceled! It has been marked as canceled and will not be delivered/picked up.");
+        await removeOrder().catch(error => console.error('Error in cancel:', error));
+    }
+    else {
+        alert("Can not cancel since order has passed Ready phase!");
+    }
 });
 
 async function removeOrder() {

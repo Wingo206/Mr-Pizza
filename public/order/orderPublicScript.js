@@ -83,6 +83,16 @@ let orderData = [
   }
 ];
 
+var form = document.getElementById("checkoutOption");
+
+if (form.elements["checkoutOption"] != undefined && form.elements["checkoutOption"].value == "delivery") {
+  console.log("Delivery selected. Processing delivery order...");
+
+
+} else if (form.elements["checkoutOption"] != undefined && form.elements["checkoutOption"].value == "carryout") {
+  console.log("Carryout selected. Preparing carryout order...");
+
+} 
 
 //});
 
@@ -227,9 +237,13 @@ async function checkoutButtonOnClick() {
 
 button2.addEventListener("click", function () {
   //document.getElementById("tip").removeAttribute("hidden");
-  isThereTip = true;
-  initializeCheckout(); // Reinitialize checkout whenever tip is toggled
-  alert("Tip added");
+  //isThereTip = true;
+  //initializeCheckout(); // Reinitialize checkout whenever tip is toggled
+  //alert("Tip added");
+  //document.getElementById("addressInputForm").removeAttribute("hidden");
+  //document.getElementById("addressInputForm").setAttribute("hidden");
+  element.setAttribute("hidden", "addressInputForm");
+
 });
 
 button1.addEventListener("click", async function () {
