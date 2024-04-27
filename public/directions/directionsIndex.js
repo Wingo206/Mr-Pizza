@@ -65,23 +65,23 @@ async function fetchWaypoints() {
 
     // render the directions
     displayRoute(waypoints);
-
 }
 
-// function is called when the confirm done button is clicked, clearing the map and sidebar and displaying a message
-window.confirmDone = async () => {
-    alert("Order has been delivered!");
-    document.getElementById("sidebar").style.display = "none";
+// function is called when the start delivery button is clicked that goes to the geolocation backend
+window.startDelivery = async () => {
+    console.log("updating the status of the driver...");
+    let resp = await fetch('/directions/updateDriver', {
+        method: 'POST'
+    })
 
-    // document.getElementById("sidebar").style.display = "block";
-    map = new google.maps.Map(document.getElementById("map"), {
-        center: { lat: 40.523421858838276, lng: -74.45823918823967 },
-        zoom: 15,
-        mapId: '5f088c2dddf9c012'
-    });
+    if (resp.status != 200) {
+        console.log(await resp.text());
+        return;
+    }
+
+    // starts tracking the location of the driver
+    console.log()
 }
-
-
 
 /**
  * fetches the assigned orders for the currently logged in driver,
