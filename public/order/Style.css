@@ -100,6 +100,12 @@ p {
     align-items: center; /* Center buttons horizontally */
     width:100%
   }
+
+  .order-buttons button:disabled {
+    background-color: #BBBBBB;
+    color: #000000;
+    pointer-events: none;
+  }
   
   .order-buttons button {
     margin-top: 15px; /* Space between the buttons */

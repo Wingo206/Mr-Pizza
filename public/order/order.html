@@ -10,6 +10,7 @@
     <meta charset="UTF-8">
     <title>Order html file</title>
     <link rel="stylesheet" href="Style.css"> 
+    <script type="module" src="/addressValidation/addressForm.js"></script>
 </head>
 <body>
     <p>Order contents</p>
@@ -30,6 +31,14 @@
               <!-- Table body content -->
               </tbody>
           </table>
+
+          <div id="rewardsContainer">Rewards Points: </div>
+          <button id="applyRewards">Apply</button>
+          <button id="loadScriptButton">Delivery</button>
+          <button id="unloadScriptButton">Carryout</button>
+
+          <div id="addressInputForm"></div>
+          <p id="currentAddress">Current address: Unconfirmed</p>
           <div class="order-buttons">
             <button id="checkoutButton" name="checkoutButton">Checkout</button>
           </div>
@@ -42,27 +51,7 @@
       </div>
     </div>
 
-    <!-- <div class="address-container">
-      <h2>Shipping Address</h2>
-      <form id="addressForm">
-          <label for="street">Street:</label>
-          <input type="text" id="street" name="street" required><br>
-
-          <label for="city">City:</label>
-          <input type="text" id="city" name="city" required><br>
-
-          <label for="state">State/Province:</label>
-          <input type="text" id="state" name="state" required><br>
-
-          <label for="zipcode">Zip/Postal Code:</label>
-          <input type="text" id="zipcode" name="zipcode" required><br>
-
-          <label for="country">Country:</label>
-          <input type="text" id="country" name="country" required><br>
-
-          <button type="submit">Submit Address</button>
-      </form> -->
-
+   
     <!-- very important: make sure you have: "/public/scripts/..." 
         instead of: "public/scripts/..."  -->
         <!--Right side of the page-->

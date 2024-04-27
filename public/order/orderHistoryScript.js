@@ -34,25 +34,7 @@ function displayOrders(query, orders) {
             previousOrderID = order.order_id;
 
             const statusCell = row.insertCell();
-            const statusSelect = document.createElement('select');
-            const statusOptions = ['Processing', 'Started', 'Ready (For Pickup)', 'Ready (For Delivery)', 'In-Transit', 'Delivered', 'Canceled', 'Rejected', 'Refunded'];
-            statusOptions.forEach(option => {
-                const optionElement = document.createElement('option');
-                optionElement.value = option;
-                optionElement.textContent = option;
-                statusSelect.appendChild(optionElement);
-            });
-            statusSelect.value = order.status;
-            statusSelect.addEventListener('change', function() {
-                const newStatus = this.value.trim();
-                if (newStatus !== order.status) {
-                    const changeMessage = "Changed status of " + order.item_description + " to " + newStatus;
-                    statusUpdated.push(changeMessage);
-                    order.status = newStatus;
-                }
-                updateStatus(order.order_id, newStatus);
-            });
-            statusCell.appendChild(statusSelect);
+            statusCell.textContent = order.status;
             statusCell.rowSpan = itemCountPerOrder[order.order_id];
 
             const dateCreatedCell = row.insertCell();
