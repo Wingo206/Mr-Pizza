@@ -80,7 +80,7 @@ window.startDelivery = async () => {
     }
 
     // starts tracking the location of the driver
-    console.log()
+    console.log("updating the location of the driver every 30 seconds...");
 }
 
 /**
