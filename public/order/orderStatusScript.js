@@ -1,22 +1,9 @@
-
-import {cartEntry, populateCartTable, calculateTotalCost, displayCart} from './orderFunctions.js';
-//import {orderId} from './orderPublicScript.js';
-const cart = [new cartEntry("pizza", 2, 11.99, 11.99 * 2), new cartEntry('wings', 1, 6.99, 6.99)];
-console.log(cart);
-
-//await initialize();
-console.log("FILL TABLE");
 let orders = await fillTable();
 
 let carryout = await checkDeliverable();
 console.log("CARRYOUTTTTT" + carryout[0].delivery_address);
 
 window.addEventListener('load', displayOrders("#cart tbody", orders));
-
-//at the start maybe even before load cart you want to query the database based on the user's login 
-//like using the cid get the order that is not completed and display it, even if there are multiple orders, prolly match it to cid and items ordered, for now cid
-//let testingOID = await getOid();
-//console.log(testingOID);
 
 //CHECK IF THE EMAIL HAS BEEN SENT ALREADY
 
@@ -133,8 +120,6 @@ setCookie('orderStatus', orderStatus, 1); // Set cookie to expire in 1 days
 
 }, 5000); //this runs every 5 seconds 
 
-//console.log(cancelStatus);
-
 // Function to set a cookie
 function setCookie(name, value, days) {
     const date = new Date();
@@ -158,8 +143,6 @@ function getCookie(name) {
     }
     return null;
 }
-
-//add order to database 
 
 function displayOrders(query, orders) {
     const tableBody = document.querySelector(query);
@@ -202,16 +185,7 @@ function displayOrders(query, orders) {
 }
 
 
-// window.addEventListener('load', populateCartTable("#cart tbody", cart));
-// //there would be calls to database here instead
-
-
-
-// Fetch SQL datbase order items
-//maybe add proper email when eamiling confirmation would basically have to query 
-//from the customer account connected into the database, then when calling email
-//send that in the body?? (arya)
-//you would also send like a confirmation number and order_id probably
+// Fetch SQL datbase order items and send email
 async function initialize() {
      const email = "pewdiepie285@gmail.com";
      const order_id = "9";
@@ -226,7 +200,6 @@ async function initialize() {
      console.log(response);
 }
 
-//CHANGE THIS ASK BRANDON HOW TO GET CURRENT USER INFO AND BASED ON THAT WE PLUG IN TO QUERY DATABASE
 async function getOid() {
     const response = await fetch("/order/getOID", {
         method: "GET",
@@ -239,7 +212,6 @@ async function getOid() {
 }
 
 // Fetch SQL datbase order items just ordered
-// right now body is hardcoded but should retrieve from last page 
 async function fillTable() {
     console.log('lol');
     const response = await fetch("/order/getOrder", {
@@ -279,10 +251,8 @@ button2.addEventListener("click", async function() {
             .then(data => console.log('Refund response:', data))
             .catch(error => console.error('Error in refund:', error));
         }        
-        //console.log("This is OID" + await getOid());
         requestRefund(await getOid()); 
         await sendRefundEmail(); 
-        //let message = await removeOrder();
         //after removing return home 
     }
     else {

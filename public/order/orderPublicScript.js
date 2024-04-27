@@ -3,15 +3,11 @@ import {cartEntry, populateCartTable, calculateTotalCost} from './orderFunctions
 const cartItems = await getCartItems();
 let orderId = undefined;
 
-  console.log("Cart Items:");
   let orderQuantity = 0;
   let midList = [];
   cartItems.forEach(item => {
       orderQuantity += item.quantity;
       midList.push({mid: item.mid, price: item.price});
-      //console.log("orderQuantity " + orderQuantity);
-      console.log("midList " + midList);
-      console.log(item);
   });
 
   const cartEntries2 = cartItems.map(item => new cartEntry(
@@ -23,14 +19,12 @@ let orderId = undefined;
   let total = 0; 
   cartItems.forEach((entry) => {
     for (let j = 0; j < entry.quantity; j++) {
-      console.log("mid: " + entry.mid);
       orderItemData.push({order_id: 0, mid: entry.mid});
     }
     total += entry.price * entry.quantity;
   });
   
 
-  console.log("HELLLLLLLLLLLLLO");
   populateCartTable('#cart tbody', cartEntries2);
   const totalCost = calculateTotalCost(cartEntries2);
   console.log('Total cost:', totalCost);
@@ -52,7 +46,6 @@ function formatDate(date) {
 const currentDate = new Date();
 const formattedDate = formatDate(currentDate);
 
-//edit this stuff
 //MADE AT NEEDS TO BE REPLACED WITH STORE ID 
 let orderData = [
   {
@@ -84,7 +77,6 @@ document.getElementById('applyRewards').addEventListener('click', async function
   let highestPriceMidIndex = 0;
   for (let i = 0; i < midList.length; i++) {
     if (midList[i].price < 20) {
-      console.log("midList Prices: " + midList[i].price);
       priceUnder20 = true;
       if (highestPriceMid < midList[i].price) {
         highestPriceMid = midList[i].price;
@@ -97,14 +89,7 @@ document.getElementById('applyRewards').addEventListener('click', async function
     return;
   }
   total = total - highestPriceMid;
-  console.log("ARYAAAAAA" + orderData[0].total_price);
   orderData[0].total_price = total; 
-  console.log("VINEALLLLL" + orderData[0].total_price);
-
-  //need sql to subtract the points 
-  //pick the highest amount here 
-  //subtract form the total 
-  //and then show that the item is 0???
 
   let redeemText = await redeemReward();
   
@@ -113,48 +98,14 @@ document.getElementById('applyRewards').addEventListener('click', async function
 
   console.log(JSON.stringify(redeemReward));
   alert(JSON.stringify(redeemText));
-  //reward stuff here 
 });
 
 
-const cart = [new cartEntry("pizza", 2, 11.99, 11.99 * 2), new cartEntry('wings', 1, 6.99, 6.99)];
 const stripe = Stripe('pk_test_51OxFUuP5gIWmEZ1PniORZnxF5lBrVHSaZzQeI836MWHDsr2cjqRsiFOoolY5yP9zQse5Sar1T0s0hwpy6QwKbfhX00MVSoX1UQ')
 let isThereTip = false;
 const button1 = document.getElementById("checkoutButton");
 const button2 = document.getElementById("tipButton");
-//console.log(cart);
 
-
-function newCartTable(query, orderData, menuItemData, orderItemData) {
-  const tableBody = document.querySelector(query);
-  tableBody.innerHTML = '';
-
-  // Assuming there's only one item in the cart
-  for (let i = 0; i < orderItemData.length; i++) {
-    const order = orderData[0];
-    const orderItem = orderItemData[i];
-    const menuItem = menuItemData[orderItem.mid-1];
-
-  
-    const row = tableBody.insertRow();
-    row.insertCell().textContent = capitalizeFirstLetter(menuItem.description);
-    row.insertCell().textContent = 1; // Assuming you have a quantity field in orderItemData
-    row.insertCell().textContent = menuItem.price;
-    row.insertCell().textContent = order.total_price;
-  }
-  
-}
-
-function capitalizeFirstLetter(string) {
-  return string.charAt(0).toUpperCase() + string.slice(1);
-}
-
-async function getCartItems() {
-  const cartItems = JSON.parse(localStorage.getItem('cart')) || [];
-  return cartItems;
-}
-
-//window.addEventListener('load', newCartTable("#cart tbody", orderData, menuItemData, orderItemData));
 const addressButton = document.getElementById("loadScriptButton");
 addressButton.addEventListener("click", function () {
     // Assuming addAddressForm and refreshCheckoutButton are available and correctly defined elsewhere.
@@ -192,22 +143,13 @@ function refreshCheckoutButton() {
   }
 }
 
-async function checkoutButtonOnClick() {
-  alert("Total cost of cart: " + calculateTotalCost(cart));
-}
-
-// initialize();
-
-
 button2.addEventListener("click", function () {
-  //document.getElementById("tip").removeAttribute("hidden");
-  //isThereTip = true;
-  //initializeCheckout(); // Reinitialize checkout whenever tip is toggled
-  //alert("Tip added");
-  //document.getElementById("addressInputForm").removeAttribute("hidden");
-  //document.getElementById("addressInputForm").setAttribute("hidden");
-  element.setAttribute("hidden", "addressInputForm");
-
+  document.getElementById("tip").removeAttribute("hidden");
+  isThereTip = true;
+  initializeCheckout(); // Reinitialize checkout whenever tip is toggled
+  alert("Tip added");
+  document.getElementById("addressInputForm").removeAttribute("hidden");
+  document.getElementById("addressInputForm").setAttribute("hidden");
 });
 
 button1.addEventListener("click", async function () {
@@ -239,6 +181,11 @@ button1.addEventListener("click", async function () {
     initializeCheckout();
   
 });
+
+async function getCartItems() {
+  const cartItems = JSON.parse(localStorage.getItem('cart')) || [];
+  return cartItems;
+}
 
 async function initializeCheckout() {
   const clientSecret = await fetchClientSecret();
@@ -274,19 +221,6 @@ async function displayReward() {
 }
 
 async function redeemReward() {
-  //check if certain mids that are elligble are in the order
-  //if they are find the greatest price
-  //make that one free send here to verify 
-  //One SQL query 
-  //Subtract 5 points which will be another query 
-  //Quantity, all mids, 
-  //return 
-  //error not enough quantity
-  //nothing under 20 
-  //item that is free
-  //return price 
-  //subtract this from the total 
-  //repopulate the table and update the stripe 
   const response = await fetch("/order/redeemRewards", {
       method: "POST",
       headers: {
