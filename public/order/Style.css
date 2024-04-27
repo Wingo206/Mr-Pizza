@@ -176,11 +176,12 @@ p {
     transition: background-color 0.3s; /* For a smooth hover effect */
     text-align: center; /* Ensures text is centered like in table cells */
     display: block; /* Ensures buttons stack on top of each other */
-    width: 15%; /* Adjust width as necessary, or set to auto for content-based width */
+    width: 20%; /* Adjust width as necessary, or set to auto for content-based width */
     height: 7%
 }
 
-.tip-apply-button {
+.tip-button {
+  justify-content: center;
   font-family: 'Montserrat', sans-serif; /* Matching the table's font family */
   background-color: #ffffff; /* Matching the table header background color */
   color: #000000; /* Matching the table header font color */
@@ -193,11 +194,51 @@ p {
   cursor: pointer;
   transition: background-color 0.3s; /* For a smooth hover effect */
   text-align: center; /* Ensures text is centered like in table cells */
-  display: block; /* Ensures buttons stack on top of each other */
+  display: flex; /* FLex*/
   width: 20%; /* Adjust width as necessary, or set to auto for content-based width */
-  height: 7%
+  height: 10%
 }
 
+.loadScript-button{
+  font-family: 'Montserrat', sans-serif; /* Matching the table's font family */
+    background-color: #ffffff; /* Matching the table header background color */
+    color: #000000; /* Matching the table header font color */
+    padding: 20px 20px; /* Similar padding to table cells for a uniform look */
+    margin-top: 5px; /* Space between buttons, adjust as needed */
+    border: none;
+    border-radius: 0; /* Creates a rectangle shape */
+    box-shadow: 0 2px 5px rgba(0,0,0,0.2); /* Optional: Adds depth like the table's box-shadow */
+    text-transform: uppercase; /* If the table headers are uppercase */
+    cursor: pointer;
+    transition: background-color 0.3s; /* For a smooth hover effect */
+    text-align: center; /* Ensures text is centered like in table cells */
+    display: block; /* Ensures buttons stack on top of each other */
+    width: 20%; /* Adjust width as necessary, or set to auto for content-based width */
+    height: 7%
   
+}
+
+.unloadScript-button{
+  font-family: 'Montserrat', sans-serif; /* Matching the table's font family */
+    background-color: #ffffff; /* Matching the table header background color */
+    color: #000000; /* Matching the table header font color */
+    padding: 20px 20px; /* Similar padding to table cells for a uniform look */
+    margin-top: 5px; /* Space between buttons, adjust as needed */
+    border: none;
+    border-radius: 0; /* Creates a rectangle shape */
+    box-shadow: 0 2px 5px rgba(0,0,0,0.2); /* Optional: Adds depth like the table's box-shadow */
+    text-transform: uppercase; /* If the table headers are uppercase */
+    cursor: pointer;
+    transition: background-color 0.3s; /* For a smooth hover effect */
+    text-align: center; /* Ensures text is centered like in table cells */
+    width: 20%; /* Adjust width as necessary, or set to auto for content-based width */
+    height: 7%
+}
+
+#buttonContainer {
+  display: flex;
+  justify-content: space-around; /* Optional: Adds space between the buttons */
+  align-items: center;
+}
 
   
