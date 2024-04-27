@@ -181,10 +181,16 @@ async function getCartItems() {
 }
 
 //window.addEventListener('load', newCartTable("#cart tbody", orderData, menuItemData, orderItemData));
+const addressButton = document.getElementById("loadScriptButton");
+addressButton.addEventListener("click", function () {
+    // Assuming addAddressForm and refreshCheckoutButton are available and correctly defined elsewhere.
+    window.addAddressForm('addressInputForm', onAddressConfirm);
+    refreshCheckoutButton();
+});
 
-window.addEventListener('load', () => {
-  window.addAddressForm('addressInputForm', onAddressConfirm);
-  refreshCheckoutButton();
+const reloadButton = document.getElementById("unloadScriptButton");
+reloadButton.addEventListener("click", function () {
+  window.location.reload();
 })
 
 let currentAddress;
@@ -192,12 +198,9 @@ let currentAddress;
  * called once the address form is confirmed
  */
 function onAddressConfirm(formattedAddress, location) {
-  console.log(formattedAddress);
-  console.log(location);
   currentAddress = formattedAddress;
   // update the current order as well
   orderData[0].delivery_address = currentAddress;
-  console.log(orderData[0]);
   document.getElementById('currentAddress').innerHTML = `Current address: ${currentAddress}`;
 
   refreshCheckoutButton();
