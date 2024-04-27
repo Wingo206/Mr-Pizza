@@ -1,12 +1,12 @@
 const menuItemsContainer = document.getElementById("menu-items-container");
 const modalContainer = document.getElementById('menu_item_container');
 
-document.addEventListener("DOMContentLoaded", function() {
+document.addEventListener("DOMContentLoaded", function () {
     window.addEventListener("load", refresh);
 
     async function refresh() {
         try {
-            const response = await fetch("/menu", {
+            const response = await fetch("/menu/1", {
                 method: 'GET',
                 headers: {
                     'Content-Type': 'application/json'
@@ -26,7 +26,7 @@ function displayMenuItems(menuItems) {
     menuItems.forEach(item => {
         const button = document.createElement("button");
         button.textContent = item.item_name;
-        button.addEventListener("click", async function() {
+        button.addEventListener("click", async function () {
             if (item.available === 0) {
                 console.log(`Item with MID '${JSON.stringify(item.mid)}' is not available.`);
             } else {
@@ -52,25 +52,25 @@ function displayMenuItems(menuItems) {
                         <button id="add-to-cart" style="float: right;">Add to Cart</button> <!-- Float to right -->
                     </div>`;
                 modalContainer.classList.add('show');
-        
+
                 const closeButton = document.getElementById("close");
-                closeButton.addEventListener("click", function() {
+                closeButton.addEventListener("click", function () {
                     modalContainer.classList.remove('show');
                 });
-        
+
                 const addButton = document.getElementById("add-to-cart");
-                addButton.addEventListener("click", async function() {
+                addButton.addEventListener("click", async function () {
                     addToCart(item);
                 });
-        
+
                 const toppingsSection = modalContainer.querySelector('.toppings-section');
                 const sizesSection = modalContainer.querySelector('.sizes-section');
-        
-                toppingsSection.addEventListener('click', function() {
+
+                toppingsSection.addEventListener('click', function () {
                     if (item.toppings.length === 0) {
                         console.log(`Item '${item.description}' with MID '${item.mid}' has no toppings.`);
                     }
-        
+
                     const toppingsList = toppingsSection.querySelector('.toppings-list');
                     if (toppingsList.style.display === 'none') {
                         toppingsList.style.display = 'block';
@@ -78,12 +78,12 @@ function displayMenuItems(menuItems) {
                         toppingsList.style.display = 'none';
                     }
                 });
-        
-                sizesSection.addEventListener('click', function() {
+
+                sizesSection.addEventListener('click', function () {
                     if (item.size.length === 0) {
                         console.log(`Item '${item.description}' with MID '${item.mid}' has no sizes.`);
                     }
-        
+
                     const sizesList = sizesSection.querySelector('.sizes-list');
                     if (sizesList.style.display === 'none') {
                         sizesList.style.display = 'block';
@@ -93,7 +93,7 @@ function displayMenuItems(menuItems) {
                 });
             }
         });
-        
+
         menuItemsContainer.appendChild(button);
     });
 }
@@ -120,7 +120,7 @@ function addToCart(item) {
             })),
         });
     }
-    
+
     localStorage.setItem('cart', JSON.stringify(cart));
     modalContainer.classList.remove('show');
     showPopup(`Item '${item.item_name}' added to cart`);
@@ -130,7 +130,7 @@ function addToCart(item) {
 const cartIcon = document.querySelector('.fa-shopping-cart');
 const cartContainer = document.getElementById('cart-container');
 
-cartIcon.addEventListener('click', function() {
+cartIcon.addEventListener('click', function () {
     const isVisible = cartContainer.style.display === 'block';
     cartContainer.style.display = isVisible ? 'none' : 'block';
     if (!isVisible) {
@@ -160,17 +160,17 @@ function removeFromCart(index) {
     let cart = JSON.parse(localStorage.getItem('cart')) || [];
     cart.splice(index, 1);
     localStorage.setItem('cart', JSON.stringify(cart));
-    displayCartItems(); 
+    displayCartItems();
     showPopup('Item removed from cart');
 }
 
 const backButton = document.getElementById('back-button');
-backButton.addEventListener('click', function() {
+backButton.addEventListener('click', function () {
     cartContainer.style.display = 'none';
 });
 
 const checkoutButton = document.getElementById('checkout-button');
-checkoutButton.addEventListener('click', function() {
+checkoutButton.addEventListener('click', function () {
     window.location.href = 'https://127.0.0.1:8080/order/order.html';
 });
 

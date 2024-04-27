@@ -9,7 +9,7 @@ create table customer_account(cid int primary key auto_increment, username varch
 create table admin_account(aid int primary key auto_increment, email varchar(40), password_hash varchar(50));
 insert into admin_account(email, password_hash) values ('admin@mrpizza.com', 'admin');
 
-create table store (store_id int primary key auto_increment, address varchar(200), latlng point not null, image_url varchar(1000));
+create table store (store_id int primary key auto_increment, name varchar(100), address varchar(200), latlng point not null, image_url varchar(1000));
 
 create table employee_account(eid int primary key auto_increment, name varchar(50), employee_type varchar(20), email varchar(50), password_hash varchar(50), status varchar(50), works_at int,
 foreign key(works_at) references store(store_id) on delete set null);
