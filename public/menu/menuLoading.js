@@ -1,32 +1,66 @@
 const menuItemsContainer = document.getElementById("menu-items-container");
 const modalContainer = document.getElementById('menu_item_container');
 
-document.addEventListener("DOMContentLoaded", function() {
-    window.addEventListener("load", refresh);
+let storeId;
 
-    async function refresh() {
-        try {
-            const response = await fetch("/menu", {
-                method: 'GET',
-                headers: {
-                    'Content-Type': 'application/json'
-                }
-            });
-            const menuItems = await response.json();
-            console.log("Menu items:", JSON.stringify(menuItems));
-            displayMenuItems(menuItems);
-        } catch (error) {
-            console.error("Error fetching menu items.", error);
+document.addEventListener("DOMContentLoaded", function () {
+    window.addEventListener("load", async () => {
+        // get the store id from the cookies
+        storeId = getCookie('menuStoreId')
+
+        // load store options
+        let resp = await fetch('/storeNames', {
+            method: 'GET'
+        })
+        let storeNames = await resp.json();
+        console.log(storeNames)
+
+        // populate dropdown
+        let select = document.getElementById('store-select');
+        select.innerHTML = storeNames.map(sn => `<option value="${sn.store_id}">${sn.name}</option>`)
+        select.onchange = (event) => {
+            storeId = Number(event.target.value);
+            console.log('changing store id to ' + storeId)
+            refresh();
         }
-    }
+
+        refresh();
+    });
 });
+
+async function refresh() {
+    // don't load if there's no selected store id
+    if (storeId == undefined) {
+        menuItemsContainer.innerHTML = `<p>No store selected.</p>`
+        return;
+    }
+
+    try {
+        const response = await fetch("/menu/" + storeId, {
+            method: 'GET',
+            headers: {
+                'Content-Type': 'application/json'
+            }
+        });
+        const menuItems = await response.json();
+        console.log("Menu items:", JSON.stringify(menuItems));
+        // no menu items
+        if (menuItems.length == 0) {
+            menuItemsContainer.innerHTML = `<p>No Available Items for this store.</p>`
+            return;
+        }
+        displayMenuItems(menuItems);
+    } catch (error) {
+        console.error("Error fetching menu items.", error);
+    }
+}
 
 function displayMenuItems(menuItems) {
     menuItemsContainer.innerHTML = '';
     menuItems.forEach(item => {
         const button = document.createElement("button");
         button.textContent = item.item_name;
-        button.addEventListener("click", async function() {
+        button.addEventListener("click", async function () {
             if (item.available === 0) {
                 console.log(`Item with MID '${JSON.stringify(item.mid)}' is not available.`);
             } else {
@@ -52,25 +86,25 @@ function displayMenuItems(menuItems) {
                         <button id="add-to-cart" style="float: right;">Add to Cart</button> <!-- Float to right -->
                     </div>`;
                 modalContainer.classList.add('show');
-        
+
                 const closeButton = document.getElementById("close");
-                closeButton.addEventListener("click", function() {
+                closeButton.addEventListener("click", function () {
                     modalContainer.classList.remove('show');
                 });
-        
+
                 const addButton = document.getElementById("add-to-cart");
-                addButton.addEventListener("click", async function() {
+                addButton.addEventListener("click", async function () {
                     addToCart(item);
                 });
-        
+
                 const toppingsSection = modalContainer.querySelector('.toppings-section');
                 const sizesSection = modalContainer.querySelector('.sizes-section');
-        
-                toppingsSection.addEventListener('click', function() {
+
+                toppingsSection.addEventListener('click', function () {
                     if (item.toppings.length === 0) {
                         console.log(`Item '${item.description}' with MID '${item.mid}' has no toppings.`);
                     }
-        
+
                     const toppingsList = toppingsSection.querySelector('.toppings-list');
                     if (toppingsList.style.display === 'none') {
                         toppingsList.style.display = 'block';
@@ -78,12 +112,12 @@ function displayMenuItems(menuItems) {
                         toppingsList.style.display = 'none';
                     }
                 });
-        
-                sizesSection.addEventListener('click', function() {
+
+                sizesSection.addEventListener('click', function () {
                     if (item.size.length === 0) {
                         console.log(`Item '${item.description}' with MID '${item.mid}' has no sizes.`);
                     }
-        
+
                     const sizesList = sizesSection.querySelector('.sizes-list');
                     if (sizesList.style.display === 'none') {
                         sizesList.style.display = 'block';
@@ -93,7 +127,7 @@ function displayMenuItems(menuItems) {
                 });
             }
         });
-        
+
         menuItemsContainer.appendChild(button);
     });
 }
@@ -120,7 +154,7 @@ function addToCart(item) {
             })),
         });
     }
-    
+
     localStorage.setItem('cart', JSON.stringify(cart));
     modalContainer.classList.remove('show');
     showPopup(`Item '${item.item_name}' added to cart`);
@@ -130,7 +164,7 @@ function addToCart(item) {
 const cartIcon = document.querySelector('.fa-shopping-cart');
 const cartContainer = document.getElementById('cart-container');
 
-cartIcon.addEventListener('click', function() {
+cartIcon.addEventListener('click', function () {
     const isVisible = cartContainer.style.display === 'block';
     cartContainer.style.display = isVisible ? 'none' : 'block';
     if (!isVisible) {
@@ -160,17 +194,17 @@ function removeFromCart(index) {
     let cart = JSON.parse(localStorage.getItem('cart')) || [];
     cart.splice(index, 1);
     localStorage.setItem('cart', JSON.stringify(cart));
-    displayCartItems(); 
+    displayCartItems();
     showPopup('Item removed from cart');
 }
 
 const backButton = document.getElementById('back-button');
-backButton.addEventListener('click', function() {
+backButton.addEventListener('click', function () {
     cartContainer.style.display = 'none';
 });
 
 const checkoutButton = document.getElementById('checkout-button');
-checkoutButton.addEventListener('click', function() {
+checkoutButton.addEventListener('click', function () {
     window.location.href = 'https://127.0.0.1:8080/order/order.html';
 });
 
@@ -190,4 +224,28 @@ function showPopup(message) {
     setTimeout(() => {
         document.body.removeChild(popup);
     }, 3000);
+}
+
+// cookie stuff for getting the store id
+function setCookie(name, value, days) {
+    var expires = "";
+    if (days) {
+        var date = new Date();
+        date.setTime(date.getTime() + (days * 24 * 60 * 60 * 1000));
+        expires = "; expires=" + date.toUTCString();
+    }
+    document.cookie = name + "=" + (value || "") + expires + "; path=/";
+}
+function getCookie(name) {
+    var nameEQ = name + "=";
+    var ca = document.cookie.split(';');
+    for (var i = 0; i < ca.length; i++) {
+        var c = ca[i];
+        while (c.charAt(0) == ' ') c = c.substring(1, c.length);
+        if (c.indexOf(nameEQ) == 0) return c.substring(nameEQ.length, c.length);
+    }
+    return null;
+}
+function eraseCookie(name) {
+    document.cookie = name + '=; Path=/; Expires=Thu, 01 Jan 1970 00:00:01 GMT;';
 }
