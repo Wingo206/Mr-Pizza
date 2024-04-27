@@ -1,25 +1,59 @@
 const menuItemsContainer = document.getElementById("menu-items-container");
 const modalContainer = document.getElementById('menu_item_container');
 
-document.addEventListener("DOMContentLoaded", function () {
-    window.addEventListener("load", refresh);
+let storeId;
 
-    async function refresh() {
-        try {
-            const response = await fetch("/menu/1", {
-                method: 'GET',
-                headers: {
-                    'Content-Type': 'application/json'
-                }
-            });
-            const menuItems = await response.json();
-            console.log("Menu items:", JSON.stringify(menuItems));
-            displayMenuItems(menuItems);
-        } catch (error) {
-            console.error("Error fetching menu items.", error);
+document.addEventListener("DOMContentLoaded", function () {
+    window.addEventListener("load", async () => {
+        // get the store id from the cookies
+        storeId = getCookie('menuStoreId')
+
+        // load store options
+        let resp = await fetch('/storeNames', {
+            method: 'GET'
+        })
+        let storeNames = await resp.json();
+        console.log(storeNames)
+
+        // populate dropdown
+        let select = document.getElementById('store-select');
+        select.innerHTML = storeNames.map(sn => `<option value="${sn.store_id}">${sn.name}</option>`)
+        select.onchange = (event) => {
+            storeId = Number(event.target.value);
+            console.log('changing store id to ' + storeId)
+            refresh();
         }
-    }
+
+        refresh();
+    });
 });
+
+async function refresh() {
+    // don't load if there's no selected store id
+    if (storeId == undefined) {
+        menuItemsContainer.innerHTML = `<p>No store selected.</p>`
+        return;
+    }
+
+    try {
+        const response = await fetch("/menu/" + storeId, {
+            method: 'GET',
+            headers: {
+                'Content-Type': 'application/json'
+            }
+        });
+        const menuItems = await response.json();
+        console.log("Menu items:", JSON.stringify(menuItems));
+        // no menu items
+        if (menuItems.length == 0) {
+            menuItemsContainer.innerHTML = `<p>No Available Items for this store.</p>`
+            return;
+        }
+        displayMenuItems(menuItems);
+    } catch (error) {
+        console.error("Error fetching menu items.", error);
+    }
+}
 
 function displayMenuItems(menuItems) {
     menuItemsContainer.innerHTML = '';
@@ -190,4 +224,28 @@ function showPopup(message) {
     setTimeout(() => {
         document.body.removeChild(popup);
     }, 3000);
+}
+
+// cookie stuff for getting the store id
+function setCookie(name, value, days) {
+    var expires = "";
+    if (days) {
+        var date = new Date();
+        date.setTime(date.getTime() + (days * 24 * 60 * 60 * 1000));
+        expires = "; expires=" + date.toUTCString();
+    }
+    document.cookie = name + "=" + (value || "") + expires + "; path=/";
+}
+function getCookie(name) {
+    var nameEQ = name + "=";
+    var ca = document.cookie.split(';');
+    for (var i = 0; i < ca.length; i++) {
+        var c = ca[i];
+        while (c.charAt(0) == ' ') c = c.substring(1, c.length);
+        if (c.indexOf(nameEQ) == 0) return c.substring(nameEQ.length, c.length);
+    }
+    return null;
+}
+function eraseCookie(name) {
+    document.cookie = name + '=; Path=/; Expires=Thu, 01 Jan 1970 00:00:01 GMT;';
 }
