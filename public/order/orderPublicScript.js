@@ -112,6 +112,7 @@ const button2 = document.getElementById("tipButton");
 
 const addressButton = document.getElementById("loadScriptButton");
 addressButton.addEventListener("click", function () {
+    isDelivery = true;
     // Assuming addAddressForm and refreshCheckoutButton are available and correctly defined elsewhere.
     window.addAddressForm('addressInputForm', onAddressConfirm);
     refreshCheckoutButton();
@@ -176,7 +177,7 @@ button1.addEventListener("click", async function () {
         headers: {
           "Content-Type": "application/json" // Specify the content type as JSON
         },
-        body: JSON.stringify({orderData, orderItemData}) //add isDelivery to this
+        body: JSON.stringify({orderData, orderItemData, isDelivery}) //add isDelivery to this
       });
       const responseData = await response.json();
       orderId = responseData.orderId;
