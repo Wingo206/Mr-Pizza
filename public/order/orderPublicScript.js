@@ -163,6 +163,7 @@ button1.addEventListener("click", async function () {
     //   return;
     // }
 
+  console.log(orderData)
     const fetchReponse = async () => {
       const response = await fetch("/order/postOrder", {
         method: "POST",
