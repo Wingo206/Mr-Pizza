@@ -243,7 +243,7 @@ button2.addEventListener("click", async function() {
         //after removing return home
     }
     else {
-       alert("Too late to cancel Order, submit help request");
+       alert("Too late to Refund Order, submit help request");
     }
 });
 
@@ -264,7 +264,7 @@ button3.addEventListener("click", async function() {
 
 async function removeOrder() {
     const response = await fetch("/order/cancelOrder", {
-       method: "DELETE",
+       method: "POST",
        headers: {
         "Content-Type": "application/json"
         }
