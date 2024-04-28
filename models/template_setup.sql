@@ -14,8 +14,8 @@ create table employee_account(eid int primary key auto_increment, name varchar(5
 foreign key(works_at) references store(store_id) on delete set null);
 
 create table help_ticket(tid int auto_increment primary key, asked_by int not null, answered_by int, date_created date, question varchar(200), answer varchar(200), quality_rating boolean, original_tid int, DTSTAMP datetime,
-foreign key(asked_by) references customer_account(cid),
-foreign key(answered_by) references employee_account(eid));
+foreign key(asked_by) references customer_account(cid) on delete cascade,
+foreign key(answered_by) references employee_account(eid) on delete cascade);
 alter table help_ticket add constraint original_tid_references_help_ticket foreign key(original_tid) references help_ticket(tid) on delete set null;
 
 create table customer_order(order_id int primary key auto_increment, credit_card varchar(20), status varchar(20), total_price float, delivery_address varchar(100), delivery_latlng point, DT_created datetime, DT_delivered datetime, ordered_by int not null, made_at int not null, stripe_checkout_id varchar(100), stripe_payment_intent_id varchar(100),
