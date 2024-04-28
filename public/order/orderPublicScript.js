@@ -2,16 +2,20 @@ import {cartEntry, populateCartTable, calculateTotalCost} from './orderFunctions
 
 const cartItems = await getCartItems();
 let orderId = undefined;
+let isDelivery = false;
+console.log("This is isDelivery: " + isDelivery);
 
   let orderQuantity = 0;
   let midList = [];
   cartItems.forEach(item => {
       orderQuantity += item.quantity;
       midList.push({mid: item.mid, price: item.price});
+      item.toppings.forEach(topping => {
+        console.log("Topping: " + topping.topping_name);
+    });
   });
-
   const cartEntries2 = cartItems.map(item => new cartEntry(
-    item.description, item.quantity, item.price, item.price * item.quantity
+    item.item_name, item.quantity, item.price, item.price * item.quantity, item.mid, item.toppings.map(topping => topping.topping_name).join(', ')
   ));
 
   const orderItemData = [];
@@ -115,6 +119,8 @@ addressButton.addEventListener("click", function () {
 
 const reloadButton = document.getElementById("unloadScriptButton");
 reloadButton.addEventListener("click", function () {
+  isDelivery = false;
+  console.log(isDelivery);
   window.location.reload();
 })
 
@@ -170,7 +176,7 @@ button1.addEventListener("click", async function () {
         headers: {
           "Content-Type": "application/json" // Specify the content type as JSON
         },
-        body: JSON.stringify({orderData, orderItemData})
+        body: JSON.stringify({orderData, orderItemData}) //add isDelivery to this
       });
       const responseData = await response.json();
       orderId = responseData.orderId;
