@@ -68,6 +68,8 @@ async function setDatesTotalRevenue(){
 async function setDatesMonthlyRevenue(){
     let startDate = document.getElementById("enterStartDateMonth").value;
     let endDate = document.getElementById("enterEndDateMonth").value;
+    console.log(startDate);
+    console.log(endDate);
     if (startDate == '' || endDate == ''){
         // console.log("In id");
         alert("Please complete date fields");

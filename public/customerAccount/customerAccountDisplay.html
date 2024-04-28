@@ -6,11 +6,18 @@
         <title>Customer Account Details</title>
         <script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
         <script src="/customerAccount/customerDisplay.js"></script>
+        <link rel="stylesheet" type="text/css" href="style.css"/>
 
         <!-- <link rel="stylesheet" type="text/css" href="./mapStyle.css" /> -->
     </head>
 
     <body>
+        <style type="text/css">
+            .fieldset-auto-width {
+                display: inline-block;
+            }
+        </style>
+
         <h1>Account Information</h1>
         <a href="/home/home.html">Back to Home</a>
 
@@ -36,12 +43,17 @@
         <br>
         <br>
 
-        <button onclick="fetchCustomerInfo()">Edit</button>
+        <a href="/customerAccount/customerAccount.html">Edit Information</a>
 
         <br>
         <br>
 
         <a href="/customerAccount/supportTicket.html">Need Help?</a>
+
+        <br>
+        <br>
+
+        <a href="/customerAccount/confirmDeleteAccount.html">Delete Account</a>
         
     </body>
 </html>

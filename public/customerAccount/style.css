@@ -1,0 +1,44 @@
+body {
+    background: linear-gradient(135deg, #ffecd2 0%, #fcb69f 100%); /* Warm tones resembling cheese and tomato sauce */
+    font-family: 'Georgia', serif; /* A more formal and classic font */
+    color: #333;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    text-align: center;
+  }
+  
+  h1 {
+    font-size: 2.5em;
+    color: #a23e48; /* A rich tomato red */
+    text-shadow: 2px 2px 0px #feca57; /* Golden shadow for a cheesy effect */
+    margin-bottom: 20px; /* More space below the h1 */
+  }
+  
+  p {
+    font-size: 1.2em; /* A bit smaller for a more formal look */
+    color: #264653; /* Deep green, reminiscent of basil */
+    letter-spacing: 0.5px; /* Slightly reduced letter-spacing */
+  }
+  
+  a {
+    font-size: 1em; /* More traditional link size */
+    color: #e76f51; /* Warm, inviting orange */
+    text-decoration: none;
+    margin: 15px;
+    padding: 10px 15px; /* Padding for a button-like appearance */
+    border: 2px solid #e76f51; /* Solid border for definition */
+    border-radius: 5px; /* Rounded corners for a soft, friendly look */
+    transition: background-color 0.3s, color 0.3s; /* Smooth transition for hover effects */
+  }
+  
+  a:hover {
+    text-decoration: none;
+    background-color: #e76f51; /* Fill color on hover */
+    color: #fff; /* White text on hover */
+  }
+  

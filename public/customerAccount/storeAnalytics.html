@@ -6,9 +6,16 @@
         <title>Store Analytics</title>
         <script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
         <script src="/customerAccount/storeAnalyticsScript.js"></script>
+        <link rel="stylesheet" type="text/css" href="style.css"/>
     </head>
 
     <body> 
+        <style type="text/css">
+            .fieldset-auto-width {
+                display: inline-block;
+            }
+        </style>
+        
         <h1>Store Analytics</h1>
         <a href="/home/home.html">Back to Home</a>
 
@@ -35,14 +42,14 @@
         <table id="totalCompanyRevenueTable" border="1" style='height: 50%; width: 75%; border-collapse: collapse;'></table>
         
         <h3>Monthly Company Revenue</h3>
-        <label for="startDate">Start Date:</label>
-        <input type="date" id="enterStartDateMonth">
+        <label for="startMonth">Start Date:</label>
+        <input type="month" id="enterStartDateMonth">
         
         <br>
         <br>
         
-        <label for="endDate">End Date</label>
-        <input type="date" id="enterEndDateMonth">
+        <label for="endMonth">End Date</label>
+        <input type="month" id="enterEndDateMonth">
 
         <br>
         <br>

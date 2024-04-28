@@ -1,24 +1,20 @@
-// let cid;
+async function deleteAccount(){
+    let resp = await fetch('/deleteAccount', {
+        method: 'DELETE'
+    });
+    console.log(resp);
+    if (resp.status == 500){
+        alert("Internal server error");
+    }
+    if (resp.status == 200){
+        window.location.href = '../login/customerLogin.html';
+        alert("Account successfully deleted");
+    }
+}
 
-// window.addEventListener("load", async (event) => {
-//     console.log("page is fully loaded");
-//     refresh();
-//  });
-
-//  async function refresh(){
-//     // let resp = await fetch('/customerInfo', {
-//     //     method: 'GET'
-//     // })
-//     // let caInfo = await resp.json();
-//     // console.log(caInfo);
-//     // cid = caInfo.cid;
-
-//     // resp = await fetch('/getCustomerInfo', {
-//     //     method: 'GET'
-//     // })
-//     // let caAccountInfo = await resp.json();
-//     // document.getElementById('customerInfoTable').innerHTML = tableFromJSONArray(caAccountInfo);
-//  }
+async function cancel(){
+    window.location.href = "customerAccountDisplay.html"
+}
 
 
 
