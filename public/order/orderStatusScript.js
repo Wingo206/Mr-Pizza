@@ -15,6 +15,7 @@ var pizzaStatus = document.getElementById('pizzaStatus');
 pizzaStatus.src = "/order/Statuses/Delivery/deliveryProcessing.png";
 
 const savedPizzaImageSrc = getCookie('pizzaImageSrc');
+console.log(savedPizzaImageSrc);
 pizzaStatus.src = savedPizzaImageSrc;
 setCookie('pizzaImageSrc', "/order/Statuses/Delivery/deliveryProcessing.png", 1); // dead in 1 days
 
@@ -34,11 +35,7 @@ const checkStatusInterval = setInterval(async () => {
     console.log(savedStatus);
 
 if (orderStatus != savedStatus) {
-    if (orderStatus === 'Ready (For Pickup)') {
-        pizzaStatus.src = "/order/orderedPizzaTrack2.png";
-        setCookie('pizzaImageSrc', "/order/Statuses/Pickup/pickupReady.png", 1); // dead in 1 days
-        window.location.reload(true);
-    } else if (orderStatus === 'Processing') {
+    if (orderStatus === 'Processing') {
         pizzaStatus.src = "/order/orderedPizzaTrack.png";
         if (carryout[0].delivery_address == null) {
             setCookie('pizzaImageSrc', "/order/Statuses/Pickup/pickupProcessing.png", 1); // dead in 1 days
@@ -56,7 +53,7 @@ if (orderStatus != savedStatus) {
             setCookie('pizzaImageSrc', "/order/Statuses/Delivery/deliveryStarting.png", 1); // dead in 1 days
         }
         window.location.reload(true);
-    } else if (orderStatus === 'Ready (For Delivery)') {
+    } else if (orderStatus === 'Ready') {
         pizzaStatus.src = "/order/orderedPizzaTrack.png";
         if (carryout[0].delivery_address == null) {
             setCookie('pizzaImageSrc', "/order/Statuses/Pickup/pickupReady.png", 1); // dead in 1 days
