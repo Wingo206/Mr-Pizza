@@ -27,7 +27,7 @@ console.log("This is isDelivery: " + isDelivery);
     }
     total += entry.price * entry.quantity;
   });
-  
+  total = total.toFixed(2);
 
   populateCartTable('#cart tbody', cartEntries2);
   const totalCost = calculateTotalCost(cartEntries2);
@@ -93,6 +93,7 @@ document.getElementById('applyRewards').addEventListener('click', async function
     return;
   }
   total = total - highestPriceMid;
+  total = total.toFixed(2);
   orderData[0].total_price = total; 
 
   let redeemText = await redeemReward();

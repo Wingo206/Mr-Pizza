@@ -5,24 +5,6 @@ console.log("CARRYOUTTTTT" + carryout[0].delivery_address);
 
 window.addEventListener('load', displayOrders("#cart tbody", orders));
 
-//CHECK IF THE EMAIL HAS BEEN SENT ALREADY
-
-const savedEmailSent = getCookie("emailSent");
-const savedEmailOrder = getCookie("emailOrder");
-
-if (savedEmailSent === 'Sent') {
-    let retrievedOID = await getOid();
-    if (savedEmailOrder != retrievedOID) {
-        setCookie('emailSent', "Sent", 1); // dead in 1 days
-        setCookie('emailOrder', retrievedOID, 1); // dead in 1 days
-        await initialize();
-    }
-}
-else {
-    setCookie('emailSent', "Sent", 1); // dead in 1 days
-    await initialize();
-}
-
 let rewardText = await displayReward();
 const rewardsContainer = document.getElementById('rewardsContainer');
 rewardsContainer.textContent = "Your Reward Points: " + rewardText[0].rewards_points;
@@ -203,22 +185,6 @@ console.log("THIS IS THE TOTAL PRICE " + orders[0].total_price + "THIS THE TOTAL
         const usedRewards = document.getElementById('usedRewards');
         usedRewards.textContent = "You used reward points! You saved a total of $" + (totals.toFixed(2) - orders[0].total_price.toFixed(2)).toFixed(2) + " dollars.";
     }
-}
-
-
-// Fetch SQL datbase order items and send email
-async function initialize() {
-     const email = "pewdiepie285@gmail.com";
-     const order_id = "9";
-     const confirmationCode = "YEISBSU1298";
-     let response = await fetch("/order/emailOrderConf", {
-        method: "POST",
-        headers: {
-            'Content-Type': 'application/json'
-        },
-        body: JSON.stringify({ email: email , order_id: order_id , confirmationCode: confirmationCode})
-      });
-     console.log(response);
 }
 
 async function getOid() {
