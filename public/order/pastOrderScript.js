@@ -32,7 +32,7 @@ function displayOrders(query, orders) {
 
             const statusCell = row.insertCell();
             const statusSelect = document.createElement('select');
-            const statusOptions = ['Processing', 'Started', 'Ready', 'In-Transit', 'Delivered', 'Canceled', 'Rejected', 'Refunded', 'Completed'];
+            const statusOptions = ['Processing', 'Paid', 'Started', 'Ready', 'In-Transit', 'Delivered', 'Canceled', 'Rejected', 'Refunded', 'Completed'];
             statusOptions.forEach(option => {
                 const optionElement = document.createElement('option');
                 optionElement.value = option;
