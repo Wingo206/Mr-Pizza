@@ -1,0 +1,106 @@
+<fieldset class="fieldset-auto-width">
+    <style type="text/css" scoped>
+        .outerStretch {
+            display: flex;
+            margin: 0;
+        }
+
+        .stretch {
+            padding: 10px;
+            flex-grow: 1;
+            border: 0;
+            background-color: rgba(255, 255, 255, 0.5);
+        }
+
+        .button {
+            padding: 10px;
+            flex-grow: 1;
+        }
+
+        .stretch:focus {
+            border: 0;
+        }
+
+        .dropdown {
+            padding: 10px;
+            flex-grow: 1;
+            border: 0;
+            background-color: rgba(255, 255, 255, 0.5);
+        }
+
+        /* .dropdown {
+            border:0;
+        } */
+
+        .horizontal {
+            display: flex;
+            flex-direction: row;
+            column-gap: 10px;
+        }
+
+        .horizOuterStretch {
+            display: flex;
+            flex-grow: 1;
+            margin: 0;
+        }
+
+        .warning {
+            border-color: red;
+            color: red;
+        }
+
+        .hidden {
+            display:none;
+        }
+    </style>
+    <legend>Validate Address</legend>
+    <!-- <label for="regionCode">Country</label> -->
+    <div class="horizontal">
+        <fieldset class="horizOuterStretch">
+            <legend>Country</legend>
+            <select class="dropdown" id="regionCode">
+                <option value="US" selected="selected">US</option>
+            </select>
+        </fieldset>
+
+        <fieldset class="horizOuterStretch">
+            <legend>State</legend>
+            <select class="dropdown" id="administrativeArea">
+                <option value="NJ" selected="selected">NJ</option>
+            </select>
+        </fieldset>
+    </div>
+
+    <fieldset class="outerStretch">
+        <legend>Address Line 1 *</legend>
+        <input type="text" class="stretch" id="addressLine1">
+    </fieldset>
+
+    <fieldset class="outerStretch">
+        <legend>Address Line 2</legend>
+        <input type="text" class="stretch" id="addressLine2">
+    </fieldset>
+
+    <fieldset class="outerStretch">
+        <legend>City</legend>
+        <input type="text" class="stretch" id="locality">
+    </fieldset>
+
+
+    <fieldset class="outerStretch">
+        <legend>Zip Code</legend>
+        <input type="text" class="stretch" id="postalCode">
+    </fieldset>
+    <br>
+
+    <div class="outerStretch">
+        <button class="button" onclick="runValidation()">Continue</button>
+    </div>
+    <div id="verify" class="hidden">
+        <p id="validationResult">Address:</p>
+        <div class="outerStretch">
+            <button class="button" onclick="runConfirm()">Confirm</button>
+        </div>
+    </div>
+</fieldset>
+<br>

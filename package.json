@@ -12,12 +12,16 @@
     "jasmine": "^5.1.0"
   },
   "dependencies": {
+    "@nlpjs/basic": "^4.27.0",
+    "bcrypt": "^5.1.1",
+    "cheerio": "^1.0.0-rc.12",
     "cookie": "^0.6.0",
     "jsonwebtoken": "^9.0.2",
     "mysql2": "^3.9.2",
     "nodemailer": "^6.9.13",
-    "superagent": "^8.1.2",
+    "puppeteer": "^22.6.3",
     "stripe": "^14.22.0",
+    "superagent": "^8.1.2",
     "supertest": "^6.3.4"
   }
 }

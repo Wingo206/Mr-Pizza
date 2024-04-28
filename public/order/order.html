@@ -10,6 +10,7 @@
     <meta charset="UTF-8">
     <title>Order html file</title>
     <link rel="stylesheet" href="Style.css"> 
+    <script type="module" src="/addressValidation/addressForm.js"></script>
 </head>
 <body>
     <p>Order contents</p>
@@ -30,16 +31,33 @@
               <!-- Table body content -->
               </tbody>
           </table>
-          <div class="order-buttons">
-            <button  id="checkoutButton" name="checkoutButton">Checkout</button>
-          </div>
-      </div>
 
+          <div id="rewardsContainer">Rewards Points: </div>
+          <button id="applyRewards">Apply</button>
+          <button id="loadScriptButton">Delivery</button>
+          <button id="unloadScriptButton">Carryout</button>
+
+          <div id="addressInputForm"></div>
+          <p id="currentAddress">Current address: Unconfirmed</p>
+          <div class="order-buttons">
+            <button id="checkoutButton" name="checkoutButton">Checkout</button>
+          </div>
+          <div class="tip-buttons">
+            <button id="tipButton" name="tipButton">Add 15% Tip</button>
+          </div>
+          <!-- <div class="delivery-buttons">
+            <button  id="checkoutButton" name="checkoutButton">Delivery</button>
+          </div> -->
+      </div>
+    </div>
+
+   
     <!-- very important: make sure you have: "/public/scripts/..." 
         instead of: "public/scripts/..."  -->
         <!--Right side of the page-->
         <div class="right-side">
           <div class="image-container">
+            <!-- <span>Order Summary</span> -->
             <img src="https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExeG92cDc5anh2eDV6cGM1bnR4Z3E3bWtyOHlxNmh5dWJxb2k1OHpnNCZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9cw/lmEkeRtZAj59tWYSqF/giphy.gif" alt="" style="width: 90%; height: 60%;"/>
           </div>
         </div>
@@ -49,7 +67,7 @@
   <script src="https://js.stripe.com/v3/"></script>
 </head>
 <body>
-  <div id="checkout">
+  <div id="checkout" hidden="hidden">
     <!-- Checkout will insert the payment form here -->
   </div>
 </body>

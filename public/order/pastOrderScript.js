@@ -57,32 +57,80 @@ window.addEventListener('load', displayOrders("#cart tbody", orders));
 // }
 
 function displayOrders(query, orders) {
-  const tableBody = document.querySelector(query); 
+    const tableBody = document.querySelector(query); 
+    tableBody.innerHTML = '';
+    let previousOrderID = null;
 
-  tableBody.innerHTML = '';
-  let orderStatusCell;
-  for (let i = 0; i < orders.length; i++) {
-       let j = -1;
-       const row = tableBody.insertRow();
-       const order = orders[i];
-       row.insertCell().textContent = order.order_id;
-        const statusCell = row.insertCell();
-        statusCell.textContent = order.status;
-        statusCell.setAttribute('contenteditable', 'true');
-        statusCell.addEventListener('blur', function() {
-            const newStatus = this.textContent.trim();
-            if (newStatus !== order.status) {
-                const changeMessage = "Changed status of " + order.item_description + " to " + newStatus;
-                statusUpdated.push(changeMessage);
-                order.status = newStatus;
+    const itemCountPerOrder = orders.reduce((acc, order) => {
+        if (acc[order.order_id]) {
+            acc[order.order_id]++;
+        } else {
+            acc[order.order_id] = 1;
+        }
+        return acc;
+    }, {});
+
+    for (let i = 0; i < orders.length; i++) {
+        const row = tableBody.insertRow();
+        const order = orders[i];
+        if (order.order_id !== previousOrderID) {
+            const orderIDCell = row.insertCell();
+            orderIDCell.textContent = order.order_id;
+            orderIDCell.rowSpan = itemCountPerOrder[order.order_id];
+            previousOrderID = order.order_id;
+
+            const storeIDCell = row.insertCell();
+            storeIDCell.textContent = order.made_at;
+            storeIDCell.rowSpan = itemCountPerOrder[order.order_id];
+
+            const statusCell = row.insertCell();
+            const statusSelect = document.createElement('select');
+            const statusOptions = ['Processing', 'Started', 'Ready', 'In-Transit', 'Delivered', 'Canceled', 'Rejected', 'Refunded', 'Completed'];
+            statusOptions.forEach(option => {
+                const optionElement = document.createElement('option');
+                optionElement.value = option;
+                optionElement.textContent = option;
+                statusSelect.appendChild(optionElement);
+            });
+            statusSelect.value = order.status;
+            statusSelect.addEventListener('change', function() {
+                const newStatus = this.value.trim();
+                if (newStatus !== order.status) {
+                    const changeMessage = "Changed status of " + order.item_description + " to " + newStatus;
+                    statusUpdated.push(changeMessage);
+                    order.status = newStatus;
+                }
+                updateStatus(order.order_id, newStatus);
+            });
+            statusCell.appendChild(statusSelect);
+            statusCell.rowSpan = itemCountPerOrder[order.order_id];
+
+            const dateCreatedCell = row.insertCell();
+            dateCreatedCell.textContent = order.date_created;
+            dateCreatedCell.rowSpan = itemCountPerOrder[order.order_id];;
+    
+            if (order.total_price == undefined) {
+                order.total_price = 0;
             }
-        });
-       row.insertCell().textContent = order.date_created;
-       row.insertCell().textContent = order.total_price.toFixed(2);
-       row.insertCell().textContent = order.item_num;
-       row.insertCell().textContent = order.item_price.toFixed(2);
-       row.insertCell().textContent = order.item_description;
-   }
+            
+            const totalPriceCell = row.insertCell();
+            totalPriceCell.textContent = order.total_price.toFixed(2);
+            totalPriceCell.rowSpan = itemCountPerOrder[order.order_id];;
+        }
+
+        if (order.item_price == undefined) {
+            order.item_price = 0;
+        }
+
+        const itemNumCell = row.insertCell();
+        itemNumCell.textContent = order.item_num;
+
+        const itemPriceCell = row.insertCell();
+        itemPriceCell.textContent = order.item_price.toFixed(2);
+
+        const itemDescCell = row.insertCell();
+        itemDescCell.textContent = order.item_description;
+    }
 }
 
 // Fetch SQL datbase order items
@@ -91,8 +139,22 @@ async function initialize() {
         method: "GET",
       });
       const past_orders = await response.json();
-      //console.log(past_orders);
       return past_orders;
+}
+
+async function updateStatus(orderId, newStatus) {
+    const response = await fetch("/order/setStatus", {
+        method: "POST",
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+            order_id: orderId,
+            newStatus: newStatus,
+        }),
+    });
+    const result = await response.json();
+    //console.log(result);
 }
 
 const button1 = document.getElementById("changeStatusButton");
@@ -100,8 +162,6 @@ const button1 = document.getElementById("changeStatusButton");
 button1.addEventListener("click", function() {
     //prolly have to make a call to the backend and call path back to this same page, just so we can quickly connect to the database and update the status of the order in the table
     //vineal do this pls
-    alert("Order Status Changed!");
-    console.log(statusUpdated);
-    statusUpdated = [];
-
+    // for(let i = 0;)
+    // updateStatus(orders[1].order_id, orders[1].status);
 });

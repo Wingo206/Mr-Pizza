@@ -1,0 +1,9 @@
+/home/brandon/Mr-Pizza/lib/scraping/loadMenu.js:22
+            items.splic(j, 1);
+                  ^
+
+TypeError: items.splic is not a function
+    at loadMenu (/home/brandon/Mr-Pizza/lib/scraping/loadMenu.js:22:19)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+
+Node.js v18.17.0

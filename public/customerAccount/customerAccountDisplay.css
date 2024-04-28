@@ -1,0 +1,116 @@
+@import url('https://fonts.googleapis.com/css?family=Montserrat|Open+Sans|Roboto');
+
+/* Reset default browser styles */
+* {
+  margin: 0;
+  padding: 0;
+  outline: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background: linear-gradient(135deg, #ffecd2 0%, #fcb69f 100%);
+  font-family: 'Georgia', serif;
+  color: #333;
+}
+
+h1 {
+  text-align: center;
+  font-size: 3.5em;
+  font-weight: bold;
+  padding-top: 20px;
+  color: #a23e48;
+  text-shadow: 2px 2px 0px #feca57
+}
+
+a {
+  font-family: 'Montserrat', sans-serif;
+  color: #e76f51;
+  text-decoration: none;
+  font-size: em;
+  margin: 10px;
+  display: inline-block;
+  
+}
+
+table {
+  margin: auto;
+  width: 75%;
+  border-collapse: collapse;
+  box-shadow: 0 2px 15px rgba(64,64,64,.7);
+}
+
+th, td {
+  padding: 20px;
+  text-align: center;
+  border: 1px solid #ddd;
+}
+
+th {
+  background-color: #e76f51;
+  color: #fafafa;
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 300;
+  text-transform: uppercase;
+}
+
+tr:nth-child(even) {
+  background-color: #f4f4f4;
+}
+
+button {
+  font-family: 'Montserrat', sans-serif;
+  background-color: #ffffff;
+  color: #000;
+  padding: 20px 40px;
+  border: none;
+  border-radius: 50px / 40px;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: background-color 0.3s;
+  display: block;
+  margin: 20px auto;
+  text-align: center;
+}
+
+button:hover {
+  background-color: #e76f51;
+  color: #fff;
+}
+
+/* Specific styles for 'Back to Home' button */
+.home-button {
+  display: flex;
+  align-items: center; /* Vertical centering */
+  justify-content: center; /* Horizontal centering */
+  background-color: #ffffff;
+  color: #000;
+  border-radius: 50px / 40px;
+  width: 200px;  /* Increasing the width */
+  height: 50px; /* Increasing the height */
+  
+}
+
+.home-button:hover {
+  background-color: #e76f51;
+  color: #fff;
+}
+
+/* Specific styles for 'Back to Login' button */
+.login-button {
+  display: flex;
+  align-items: center; /* Vertical centering */
+  justify-content: center; /* Horizontal centering */
+  background-color: #ffffff;
+  color: #000;
+  border-radius: 50px / 40px;
+  width: 200px;  /* Increasing the width */
+  height: 50px; /* Increasing the height */
+}
+
+.login-button:hover {
+  background-color: #e76f51;
+  color: #fff;
+}
+

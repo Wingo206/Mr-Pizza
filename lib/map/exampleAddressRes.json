@@ -1,0 +1,453 @@
+[
+    {
+        "result": {
+            "verdict": {
+                "inputGranularity": "PREMISE",
+                "validationGranularity": "PREMISE",
+                "geocodeGranularity": "PREMISE",
+                "addressComplete": true
+            },
+            "address": {
+                "formattedAddress": "220 Marvin Lane, Piscataway, NJ 08854, USA",
+                "postalAddress": {
+                    "regionCode": "US",
+                    "languageCode": "en",
+                    "postalCode": "08854",
+                    "administrativeArea": "NJ",
+                    "locality": "Piscataway",
+                    "addressLines": [
+                        "220 Marvin Ln"
+                    ]
+                },
+                "addressComponents": [
+                    {
+                        "componentName": {
+                            "text": "220"
+                        },
+                        "componentType": "street_number",
+                        "confirmationLevel": "CONFIRMED"
+                    },
+                    {
+                        "componentName": {
+                            "text": "Marvin Lane",
+                            "languageCode": "en"
+                        },
+                        "componentType": "route",
+                        "confirmationLevel": "CONFIRMED"
+                    },
+                    {
+                        "componentName": {
+                            "text": "Piscataway",
+                            "languageCode": "en"
+                        },
+                        "componentType": "locality",
+                        "confirmationLevel": "CONFIRMED"
+                    },
+                    {
+                        "componentName": {
+                            "text": "NJ",
+                            "languageCode": "en"
+                        },
+                        "componentType": "administrative_area_level_1",
+                        "confirmationLevel": "CONFIRMED"
+                    },
+                    {
+                        "componentName": {
+                            "text": "08854"
+                        },
+                        "componentType": "postal_code",
+                        "confirmationLevel": "CONFIRMED"
+                    },
+                    {
+                        "componentName": {
+                            "text": "USA",
+                            "languageCode": "en"
+                        },
+                        "componentType": "country",
+                        "confirmationLevel": "CONFIRMED"
+                    }
+                ]
+            },
+            "geocode": {
+                "location": {
+                    "latitude": 40.5187174,
+                    "longitude": -74.4553767
+                },
+                "plusCode": {
+                    "globalCode": "87G7GG9V+FR"
+                },
+                "bounds": {
+                    "low": {
+                        "latitude": 40.5187174,
+                        "longitude": -74.4553767
+                    },
+                    "high": {
+                        "latitude": 40.5187174,
+                        "longitude": -74.4553767
+                    }
+                },
+                "placeId": "ChIJ_Wf8MQrHw4kRTdGJ4vwJL9o",
+                "placeTypes": [
+                    "street_address"
+                ]
+            },
+            "metadata": {
+                "business": false,
+                "residential": true
+            },
+            "uspsData": {
+                "standardizedAddress": {
+                    "firstAddressLine": "220 MARVIN LN",
+                    "cityStateZipAddressLine": "PISCATAWAY NJ 08854",
+                    "city": "PISCATAWAY",
+                    "state": "NJ",
+                    "zipCode": "08854"
+                },
+                "dpvFootnote": "A1",
+                "postOfficeCity": "PISCATAWAY",
+                "postOfficeState": "NJ",
+                "cassProcessed": true
+            }
+        },
+        "responseId": "5a94413a-1b7d-423d-af80-f88f91ab4665"
+    },
+    {
+        "result": {
+            "verdict": {
+                "inputGranularity": "SUB_PREMISE",
+                "validationGranularity": "OTHER",
+                "geocodeGranularity": "OTHER",
+                "hasUnconfirmedComponents": true
+            },
+            "address": {
+                "formattedAddress": "#220, Piscataway, NJ 08854, USA",
+                "postalAddress": {
+                    "regionCode": "US",
+                    "languageCode": "en",
+                    "postalCode": "08854",
+                    "administrativeArea": "NJ",
+                    "locality": "Piscataway",
+                    "addressLines": [
+                        "#220"
+                    ]
+                },
+                "addressComponents": [
+                    {
+                        "componentName": {
+                            "text": "220",
+                            "languageCode": "en"
+                        },
+                        "componentType": "subpremise",
+                        "confirmationLevel": "UNCONFIRMED_BUT_PLAUSIBLE"
+                    },
+                    {
+                        "componentName": {
+                            "text": "Piscataway",
+                            "languageCode": "en"
+                        },
+                        "componentType": "locality",
+                        "confirmationLevel": "CONFIRMED"
+                    },
+                    {
+                        "componentName": {
+                            "text": "NJ",
+                            "languageCode": "en"
+                        },
+                        "componentType": "administrative_area_level_1",
+                        "confirmationLevel": "CONFIRMED"
+                    },
+                    {
+                        "componentName": {
+                            "text": "08854"
+                        },
+                        "componentType": "postal_code",
+                        "confirmationLevel": "CONFIRMED"
+                    },
+                    {
+                        "componentName": {
+                            "text": "USA",
+                            "languageCode": "en"
+                        },
+                        "componentType": "country",
+                        "confirmationLevel": "CONFIRMED"
+                    }
+                ],
+                "missingComponentTypes": [
+                    "route",
+                    "street_number"
+                ],
+                "unconfirmedComponentTypes": [
+                    "subpremise"
+                ]
+            },
+            "geocode": {
+                "location": {
+                    "latitude": 40.554887,
+                    "longitude": -74.4642861
+                },
+                "plusCode": {
+                    "globalCode": "87G7HG3P+X7"
+                },
+                "bounds": {
+                    "low": {
+                        "latitude": 40.506009,
+                        "longitude": -74.519503
+                    },
+                    "high": {
+                        "latitude": 40.5971879,
+                        "longitude": -74.4086819
+                    }
+                },
+                "featureSizeMeters": 7184.945,
+                "placeId": "ChIJ1UF7VIO4w4kReB1HYVDPmrY",
+                "placeTypes": [
+                    "locality",
+                    "political"
+                ]
+            },
+            "uspsData": {
+                "standardizedAddress": {
+                    "firstAddressLine": "220",
+                    "cityStateZipAddressLine": "PISCATAWAY NJ 08854",
+                    "city": "PISCATAWAY",
+                    "state": "NJ",
+                    "zipCode": "08854"
+                },
+                "dpvFootnote": "A1M1",
+                "postOfficeCity": "PISCATAWAY",
+                "postOfficeState": "NJ",
+                "cassProcessed": true
+            }
+        },
+        "responseId": "3f9062d3-ee03-40a6-970b-a8ad6107a16e"
+    },
+    {
+        "result": {
+            "verdict": {
+                "inputGranularity": "PREMISE",
+                "validationGranularity": "PREMISE",
+                "geocodeGranularity": "PREMISE",
+                "addressComplete": true,
+                "hasUnconfirmedComponents": true,
+                "hasReplacedComponents": true
+            },
+            "address": {
+                "formattedAddress": "220 Marvin Lane, Piscataway, NJ 08854, USA",
+                "postalAddress": {
+                    "regionCode": "US",
+                    "languageCode": "en",
+                    "postalCode": "08854",
+                    "administrativeArea": "NJ",
+                    "locality": "Piscataway",
+                    "addressLines": [
+                        "220 Marvin Ln"
+                    ]
+                },
+                "addressComponents": [
+                    {
+                        "componentName": {
+                            "text": "220"
+                        },
+                        "componentType": "street_number",
+                        "confirmationLevel": "CONFIRMED"
+                    },
+                    {
+                        "componentName": {
+                            "text": "Marvin Lane",
+                            "languageCode": "en"
+                        },
+                        "componentType": "route",
+                        "confirmationLevel": "CONFIRMED"
+                    },
+                    {
+                        "componentName": {
+                            "text": "Piscataway",
+                            "languageCode": "en"
+                        },
+                        "componentType": "locality",
+                        "confirmationLevel": "CONFIRMED"
+                    },
+                    {
+                        "componentName": {
+                            "text": "NJ",
+                            "languageCode": "en"
+                        },
+                        "componentType": "administrative_area_level_1",
+                        "confirmationLevel": "CONFIRMED"
+                    },
+                    {
+                        "componentName": {
+                            "text": "08854"
+                        },
+                        "componentType": "postal_code",
+                        "confirmationLevel": "UNCONFIRMED_BUT_PLAUSIBLE",
+                        "replaced": true
+                    },
+                    {
+                        "componentName": {
+                            "text": "USA",
+                            "languageCode": "en"
+                        },
+                        "componentType": "country",
+                        "confirmationLevel": "CONFIRMED"
+                    }
+                ],
+                "unconfirmedComponentTypes": [
+                    "postal_code"
+                ]
+            },
+            "geocode": {
+                "location": {
+                    "latitude": 40.5187174,
+                    "longitude": -74.4553767
+                },
+                "plusCode": {
+                    "globalCode": "87G7GG9V+FR"
+                },
+                "bounds": {
+                    "low": {
+                        "latitude": 40.5187174,
+                        "longitude": -74.4553767
+                    },
+                    "high": {
+                        "latitude": 40.5187174,
+                        "longitude": -74.4553767
+                    }
+                },
+                "placeId": "ChIJ_Wf8MQrHw4kRTdGJ4vwJL9o",
+                "placeTypes": [
+                    "street_address"
+                ]
+            },
+            "metadata": {
+                "business": false,
+                "residential": true
+            },
+            "uspsData": {
+                "standardizedAddress": {
+                    "firstAddressLine": "220 MARVIN LN",
+                    "cityStateZipAddressLine": "PISCATAWAY NJ 0885",
+                    "city": "PISCATAWAY",
+                    "state": "NJ"
+                },
+                "dpvFootnote": "A1",
+                "postOfficeCity": "PISCATAWAY",
+                "postOfficeState": "NJ",
+                "cassProcessed": true
+            }
+        },
+        "responseId": "194dc00c-ce6f-4bf7-9897-6374ea3b0876"
+    },
+    {
+        "result": {
+            "verdict": {
+                "inputGranularity": "PREMISE",
+                "validationGranularity": "PREMISE",
+                "geocodeGranularity": "PREMISE",
+                "addressComplete": true,
+                "hasUnconfirmedComponents": true,
+                "hasReplacedComponents": true
+            },
+            "address": {
+                "formattedAddress": "220 Marvin Lane, Piscataway, NJ 08854, USA",
+                "postalAddress": {
+                    "regionCode": "US",
+                    "languageCode": "en",
+                    "postalCode": "08854",
+                    "administrativeArea": "NJ",
+                    "locality": "Piscataway",
+                    "addressLines": [
+                        "220 Marvin Ln"
+                    ]
+                },
+                "addressComponents": [
+                    {
+                        "componentName": {
+                            "text": "220"
+                        },
+                        "componentType": "street_number",
+                        "confirmationLevel": "CONFIRMED"
+                    },
+                    {
+                        "componentName": {
+                            "text": "Marvin Lane",
+                            "languageCode": "en"
+                        },
+                        "componentType": "route",
+                        "confirmationLevel": "CONFIRMED"
+                    },
+                    {
+                        "componentName": {
+                            "text": "Piscataway",
+                            "languageCode": "en"
+                        },
+                        "componentType": "locality",
+                        "confirmationLevel": "CONFIRMED"
+                    },
+                    {
+                        "componentName": {
+                            "text": "08854"
+                        },
+                        "componentType": "postal_code",
+                        "confirmationLevel": "UNCONFIRMED_BUT_PLAUSIBLE",
+                        "replaced": true
+                    },
+                    {
+                        "componentName": {
+                            "text": "NJ",
+                            "languageCode": "en"
+                        },
+                        "componentType": "administrative_area_level_1",
+                        "confirmationLevel": "CONFIRMED"
+                    },
+                    {
+                        "componentName": {
+                            "text": "USA",
+                            "languageCode": "en"
+                        },
+                        "componentType": "country",
+                        "confirmationLevel": "CONFIRMED"
+                    }
+                ],
+                "unconfirmedComponentTypes": [
+                    "postal_code"
+                ]
+            },
+            "geocode": {
+                "location": {
+                    "latitude": 40.5187174,
+                    "longitude": -74.4553767
+                },
+                "plusCode": {
+                    "globalCode": "87G7GG9V+FR"
+                },
+                "bounds": {
+                    "low": {
+                        "latitude": 40.5187174,
+                        "longitude": -74.4553767
+                    },
+                    "high": {
+                        "latitude": 40.5187174,
+                        "longitude": -74.4553767
+                    }
+                },
+                "placeId": "ChIJ_Wf8MQrHw4kRTdGJ4vwJL9o",
+                "placeTypes": [
+                    "street_address"
+                ]
+            },
+            "metadata": {
+                "business": false,
+                "residential": true
+            },
+            "uspsData": {
+                "standardizedAddress": {
+                    "firstAddressLine": "220 MARVIN LN, PISCATAWAY, 07002"
+                },
+                "dpvFootnote": "A1",
+                "cassProcessed": true
+            }
+        },
+        "responseId": "d0d53859-8278-4436-bb50-1f901ff5abdd"
+    }
+]

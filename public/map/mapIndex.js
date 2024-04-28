@@ -4,10 +4,10 @@ let selectedStoreId = -1;
 let markers = [];
 
 async function initMap() {
-   const { Map } = await google.maps.importLibrary("maps");
+   const {Map} = await google.maps.importLibrary("maps");
 
    map = new Map(document.getElementById("map"), {
-      center: { lat: 40.523421858838276, lng: -74.45823918823967 },
+      center: {lat: 40.523421858838276, lng: -74.45823918823967},
       zoom: 15,
       mapId: '5f088c2dddf9c012'
    });
@@ -18,7 +18,7 @@ async function initMap() {
 }
 
 window.loadLocations = async () => {
-   const { AdvancedMarkerElement } = await google.maps.importLibrary("marker");
+   const {AdvancedMarkerElement} = await google.maps.importLibrary("marker");
 
    console.log("Loading locations");
 
@@ -67,7 +67,8 @@ async function updateStoreInfoDisplay(storeId) {
       let info = await resp.json();
       console.log("info:" + JSON.stringify(info));
       document.getElementById('storeInfo').className = "show";
-      document.getElementById('storeAddress').innerHTML = info.address;
+      document.getElementById('storeName').innerHTML = info.name;
+      document.getElementById('storeAddress').innerHTML = 'Address: ' + info.address;
       document.getElementById('storeId').innerHTML = 'Store id: ' + info.store_id;
       // update info for the edit form
       document.getElementById('editStoreAddress').value = info.address;
@@ -104,6 +105,12 @@ window.addEventListener("load", async (event) => {
       addStore.className = "show";
       editStore.className = "show";
    }
+
+   // add the address validation forms
+   window.addAddressForm('editAddressValidationForm', onEditValidationConfirm);
+   window.addAddressForm('addAddressValidationForm', onAddValidationConfirm);
+
+   await window.loadLocations();
 });
 
 let storeId = selectedStoreId;
@@ -152,7 +159,7 @@ window.editStore = async () => {
    }
 
    console.log("fetching from /stores/" + selectedStoreId + "/edit, body: " + JSON.stringify(body) + "...");
-   let resp = await fetch(`/stores/${selectedStoreId}/edit`, 
+   let resp = await fetch(`/stores/${selectedStoreId}/edit`,
       {
          method: 'POST',
          headers: {
@@ -173,6 +180,46 @@ window.editStore = async () => {
    }
 }
 
+function onEditValidationConfirm(formattedAddress, location) {
+   document.getElementById('editStoreAddress').value = formattedAddress;
+   document.getElementById('editStoreLatitude').value = location.latitude;
+   document.getElementById('editStoreLongitude').value = location.longitude;
+}
+
+function onAddValidationConfirm(formattedAddress, location) {
+   document.getElementById('addStoreAddress').value = formattedAddress;
+   document.getElementById('addStoreLatitude').value = location.latitude;
+   document.getElementById('addStoreLongitude').value = location.longitude;
+}
+
+
+window.goToMenu = () => {
+   setCookie('menuStoreId', selectedStoreId, 1);
+   window.location.href = '../menu/menuLoading.html';
+}
+
+function setCookie(name,value,days) {
+    var expires = "";
+    if (days) {
+        var date = new Date();
+        date.setTime(date.getTime() + (days*24*60*60*1000));
+        expires = "; expires=" + date.toUTCString();
+    }
+    document.cookie = name + "=" + (value || "")  + expires + "; path=/";
+}
+function getCookie(name) {
+    var nameEQ = name + "=";
+    var ca = document.cookie.split(';');
+    for(var i=0;i < ca.length;i++) {
+        var c = ca[i];
+        while (c.charAt(0)==' ') c = c.substring(1,c.length);
+        if (c.indexOf(nameEQ) == 0) return c.substring(nameEQ.length,c.length);
+    }
+    return null;
+}
+function eraseCookie(name) {   
+    document.cookie = name +'=; Path=/; Expires=Thu, 01 Jan 1970 00:00:01 GMT;';
+}
 
 initMap();
 

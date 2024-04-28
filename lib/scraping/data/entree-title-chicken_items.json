@@ -1,0 +1,334 @@
+[
+    {
+        "category": "entree-title-chicken",
+        "sectionName": "default",
+        "itemName": "Specialty Chicken – Crispy Bacon & Tomato",
+        "description": "Tender bites of breaded chicken made with 100% whole breast white meat topped with garlic Parmesan sauce, a blend of cheese made with mozzarella and cheddar, crispy bacon and tomato.",
+        "orderButtonDataQuid": "S_SCCBT",
+        "image": "https://cache.dominos.com/olo/6_130_2/assets/build/market/US/_en/images/img/products/larges/S_SCCBT.jpg",
+        "price": "10.99",
+        "editButtonQuid": "edit-product-CKRGCBT",
+        "customizations": {
+            "toppings": {
+                "options": [
+                    {
+                        "optionName": "Bacon",
+                        "price": 0,
+                        "default": true
+                    },
+                    {
+                        "optionName": "Diced Tomatoes",
+                        "price": 0,
+                        "default": true
+                    }
+                ],
+                "mutually_exclusive": false
+            }
+        }
+    },
+    {
+        "category": "entree-title-chicken",
+        "sectionName": "default",
+        "itemName": "Specialty Chicken – Classic Hot Buffalo",
+        "description": "Tender bites of breaded chicken made with 100% whole breast white meat topped with hot buffalo sauce, ranch, a blend of cheese made with mozzarella and cheddar, and feta.",
+        "orderButtonDataQuid": "S_SCCHB",
+        "image": "https://cache.dominos.com/olo/6_130_2/assets/build/market/US/_en/images/img/products/larges/S_SCCHB.jpg",
+        "price": "10.99",
+        "editButtonQuid": "edit-product-CKRGHTB",
+        "customizations": {}
+    },
+    {
+        "category": "entree-title-chicken",
+        "sectionName": "default",
+        "itemName": "Specialty Chicken – Spicy Jalapeno - Pineapple",
+        "description": "Tender bites of lightly breaded, 100% whole breast white meat chicken, topped with sweet and spicy mango-habanero sauce, a blend of cheese made with mozzarella and cheddar, jalapeno and pineapple.",
+        "orderButtonDataQuid": "S_SCSJP",
+        "image": "https://cache.dominos.com/olo/6_130_2/assets/build/market/US/_en/images/img/products/larges/S_SCSJP.jpg",
+        "price": "10.99",
+        "editButtonQuid": "edit-product-CKRGSJP",
+        "customizations": {
+            "toppings": {
+                "options": [
+                    {
+                        "optionName": "Jalapeno Peppers",
+                        "price": 0,
+                        "default": true
+                    },
+                    {
+                        "optionName": "Pineapple",
+                        "price": 0,
+                        "default": true
+                    }
+                ],
+                "mutually_exclusive": false
+            }
+        }
+    },
+    {
+        "category": "entree-title-chicken",
+        "sectionName": "default",
+        "itemName": "Specialty Chicken – Sweet BBQ Bacon",
+        "description": "Tender bites of breaded chicken made with 100% whole breast white meat topped with sweet and smoky honey BBQ sauce, a blend of cheese made with mozzarella and cheddar, and crispy bacon.",
+        "orderButtonDataQuid": "S_SCSBBQ",
+        "image": "https://cache.dominos.com/olo/6_130_2/assets/build/market/US/_en/images/img/products/larges/S_SCSBBQ.jpg",
+        "price": "10.99",
+        "editButtonQuid": "edit-product-CKRGSBQ",
+        "customizations": {
+            "toppings": {
+                "options": [
+                    {
+                        "optionName": "Bacon",
+                        "price": 0,
+                        "default": true
+                    }
+                ],
+                "mutually_exclusive": false
+            }
+        }
+    },
+    {
+        "category": "entree-title-chicken",
+        "sectionName": "default",
+        "itemName": "Hot Buffalo Wings",
+        "description": "Marinated and oven-baked, then smothered in hot buffalo sauce. Customize with your choice of dipping cup: ranch, blue cheese, hot buffalo, honey BBQ or sweet mango habanero.",
+        "orderButtonDataQuid": "S_HOTWINGS",
+        "image": "https://cache.dominos.com/olo/6_130_2/assets/build/market/US/_en/images/img/products/larges/S_HOTWINGS.jpg",
+        "price": "11.99",
+        "editButtonQuid": "edit-product-W08PHOTW",
+        "customizations": {
+            "servingOptions": {
+                "options": [
+                    {
+                        "optionName": "8-Piece",
+                        "price": 0,
+                        "default": true,
+                        "quid": "size-8PCW"
+                    },
+                    {
+                        "optionName": "16-Piece",
+                        "price": "12.00",
+                        "default": false,
+                        "quid": "size-16PCW"
+                    },
+                    {
+                        "optionName": "32-Piece",
+                        "price": "33.00",
+                        "default": false,
+                        "quid": "size-32PCW"
+                    }
+                ],
+                "mutually_exclusive": true
+            }
+        }
+    },
+    {
+        "category": "entree-title-chicken",
+        "sectionName": "default",
+        "itemName": "Honey BBQ Wings",
+        "description": "Marinated and oven-baked, then smothered in honey BBQ sauce. Customize with your choice of dipping cup: ranch, blue cheese, hot buffalo, honey BBQ or sweet mango habanero.",
+        "orderButtonDataQuid": "S_BBQW",
+        "image": "https://cache.dominos.com/olo/6_130_2/assets/build/market/US/_en/images/img/products/larges/S_BBQW.jpg",
+        "price": "11.99",
+        "editButtonQuid": "edit-product-W08PBBQW",
+        "customizations": {
+            "servingOptions": {
+                "options": [
+                    {
+                        "optionName": "8-Piece",
+                        "price": 0,
+                        "default": true,
+                        "quid": "size-8PCW"
+                    },
+                    {
+                        "optionName": "16-Piece",
+                        "price": "12.00",
+                        "default": false,
+                        "quid": "size-16PCW"
+                    },
+                    {
+                        "optionName": "32-Piece",
+                        "price": "33.00",
+                        "default": false,
+                        "quid": "size-32PCW"
+                    }
+                ],
+                "mutually_exclusive": true
+            }
+        }
+    },
+    {
+        "category": "entree-title-chicken",
+        "sectionName": "default",
+        "itemName": "Mild Buffalo Wings",
+        "description": "Marinated and oven-baked, then smothered in mild buffalo sauce. Customize with your choice of dipping cup: ranch, blue cheese, hot buffalo, honey BBQ or sweet mango habanero.",
+        "orderButtonDataQuid": "S_MILDWING",
+        "image": "https://cache.dominos.com/olo/6_130_2/assets/build/market/US/_en/images/img/products/larges/S_MILDWING.jpg",
+        "price": "11.99",
+        "editButtonQuid": "edit-product-W08PMLDW",
+        "customizations": {
+            "servingOptions": {
+                "options": [
+                    {
+                        "optionName": "8-Piece",
+                        "price": 0,
+                        "default": true,
+                        "quid": "size-8PCW"
+                    },
+                    {
+                        "optionName": "16-Piece",
+                        "price": "12.00",
+                        "default": false,
+                        "quid": "size-16PCW"
+                    },
+                    {
+                        "optionName": "32-Piece",
+                        "price": "33.00",
+                        "default": false,
+                        "quid": "size-32PCW"
+                    }
+                ],
+                "mutually_exclusive": true
+            }
+        }
+    },
+    {
+        "category": "entree-title-chicken",
+        "sectionName": "default",
+        "itemName": "Plain Wings",
+        "description": "Marinated and oven-baked. Customize with your choice of dipping cup: ranch, blue cheese, hot buffalo, honey BBQ or sweet mango habanero.",
+        "orderButtonDataQuid": "S_PLNWINGS",
+        "image": "https://cache.dominos.com/olo/6_130_2/assets/build/market/US/_en/images/img/products/larges/S_PLNWINGS.jpg",
+        "price": "11.99",
+        "editButtonQuid": "edit-product-W08PPLNW",
+        "customizations": {
+            "servingOptions": {
+                "options": [
+                    {
+                        "optionName": "8-Piece",
+                        "price": 0,
+                        "default": true,
+                        "quid": "size-8PCW"
+                    },
+                    {
+                        "optionName": "16-Piece",
+                        "price": "12.00",
+                        "default": false,
+                        "quid": "size-16PCW"
+                    },
+                    {
+                        "optionName": "32-Piece",
+                        "price": "33.00",
+                        "default": false,
+                        "quid": "size-32PCW"
+                    }
+                ],
+                "mutually_exclusive": true
+            }
+        }
+    },
+    {
+        "category": "entree-title-chicken",
+        "sectionName": "default",
+        "itemName": "Sweet Mango Habanero Wings",
+        "description": "Marinated and oven-baked, then smothered in sweet mango habanero sauce. Customize with your choice of dipping cup: ranch, blue cheese, hot buffalo, honey BBQ or sweet mango habanero.",
+        "orderButtonDataQuid": "S_SMANG",
+        "image": "https://cache.dominos.com/olo/6_130_2/assets/build/market/US/_en/images/img/products/larges/S_SMANG.jpg",
+        "price": "11.99",
+        "editButtonQuid": "edit-product-W08PMANW",
+        "customizations": {
+            "servingOptions": {
+                "options": [
+                    {
+                        "optionName": "8-Piece",
+                        "price": 0,
+                        "default": true,
+                        "quid": "size-8PCW"
+                    },
+                    {
+                        "optionName": "16-Piece",
+                        "price": "12.00",
+                        "default": false,
+                        "quid": "size-16PCW"
+                    },
+                    {
+                        "optionName": "32-Piece",
+                        "price": "33.00",
+                        "default": false,
+                        "quid": "size-32PCW"
+                    }
+                ],
+                "mutually_exclusive": true
+            }
+        }
+    },
+    {
+        "category": "entree-title-chicken",
+        "sectionName": "default",
+        "itemName": "Garlic Parmesan Wings",
+        "description": "Marinated and oven-baked, then smothered in garlic Parmesan sauce. Customize with your choice of dipping cup: ranch, blue cheese, hot buffalo, honey BBQ or sweet mango habanero.",
+        "orderButtonDataQuid": "S_GPRMWING",
+        "image": "https://cache.dominos.com/olo/6_130_2/assets/build/market/US/_en/images/img/products/larges/S_GPRMWING.jpg",
+        "price": "11.99",
+        "editButtonQuid": "edit-product-W08PGPMW",
+        "customizations": {
+            "servingOptions": {
+                "options": [
+                    {
+                        "optionName": "8-Piece",
+                        "price": 0,
+                        "default": true,
+                        "quid": "size-8PCW"
+                    },
+                    {
+                        "optionName": "16-Piece",
+                        "price": "12.00",
+                        "default": false,
+                        "quid": "size-16PCW"
+                    },
+                    {
+                        "optionName": "32-Piece",
+                        "price": "33.00",
+                        "default": false,
+                        "quid": "size-32PCW"
+                    }
+                ],
+                "mutually_exclusive": true
+            }
+        }
+    },
+    {
+        "category": "entree-title-chicken",
+        "sectionName": "default",
+        "itemName": "Boneless Chicken",
+        "description": "Breaded chicken made with 100% whole white breast meat. Customize with your choice of dipping cup: ranch, blue cheese, hot buffalo, honey BBQ or sweet mango habanero.",
+        "orderButtonDataQuid": "S_BONELESS",
+        "image": "https://cache.dominos.com/olo/6_130_2/assets/build/market/US/_en/images/img/products/larges/S_BONELESS.jpg",
+        "price": "11.99",
+        "editButtonQuid": "edit-product-W08PBNLW",
+        "customizations": {
+            "servingOptions": {
+                "options": [
+                    {
+                        "optionName": "8-Piece",
+                        "price": 0,
+                        "default": true,
+                        "quid": "size-8PCW"
+                    },
+                    {
+                        "optionName": "16-Piece",
+                        "price": "12.00",
+                        "default": false,
+                        "quid": "size-16PCW"
+                    },
+                    {
+                        "optionName": "32-Piece",
+                        "price": "33.00",
+                        "default": false,
+                        "quid": "size-32PCW"
+                    }
+                ],
+                "mutually_exclusive": true
+            }
+        }
+    }
+]

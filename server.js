@@ -17,6 +17,10 @@ for (let i = 0; i < files.length; i++) {
       files = files.concat(fs.readdirSync(file).map(f => path.join(file, f)));
       continue;
    }
+   // if not a js file, skip
+   if (!file.match(/.js$/)) {
+      continue;
+   }
    let fileExports = require(file);
 
    // check for routes export

@@ -1,0 +1,48 @@
+<html>
+<!DOCTYPE html>
+
+<html>
+    <style>
+        table, th, td {
+          border:1px solid black;
+        }
+        </style>
+<head>
+    <meta charset="UTF-8">
+    <title>Customer Order History</title>
+    <link rel="stylesheet" type="text/css" href="StylepastOrder.css"> 
+</head>
+<body>
+    <p>Orders</p>
+    <div id="cartDiv"></div>
+    <table id="cart" style="width:100%">
+        <thead>
+            <tr>
+                <th>Order ID</th>
+                <th>Status</th>
+                <th>Date Created</th>
+                <th>Total Price</th>
+                <th>Item Number</th>
+                <th>Item Price</th>
+                <th>Item Description</th>
+            </tr>
+        </thead>
+        <tbody>
+
+        </tbody>
+    </table>
+<div class="order-buttons">
+    <button id="submitReview" name="submitReview">Submit Review</button>
+    <button id="submitRequest" name="submitRequest">Submit Request</button>
+    <button id="homeButton" name="homeButton" onclick="window.location.href='/home/home.html'">Home</button>
+</div>
+
+
+    
+    <!-- very important: make sure you have: "/public/scripts/..." 
+        instead of: "public/scripts/..."  -->
+    <script type = "module" src="/order/orderHistoryScript.js"></script>
+</body>
+
+</html>
+

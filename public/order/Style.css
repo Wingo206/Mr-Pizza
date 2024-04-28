@@ -9,20 +9,21 @@
 }
 
 body { 
-    background: linear-gradient(90deg, rgba(2,0,36,1) 0%, rgba(255,255,255,1) 0%, rgba(255,71,77,1) 100%);
-    font-family: 'Roboto', sans-serif; /* Apply a default font for the body */
+    background:  linear-gradient(135deg, #ffecd2 0%, #fcb69f 100%);;
+    font-family: 'Georgia', serif; /* Apply a default font for the body */
 }
 
 
 /* Styling the "Order contents" text */
 p {
     text-align: center;
-    font-family: 'FLIX', sans-serif; /* Makes font consistent with the table */
+    font-family: 'Georgia', serif; /* Makes font consistent with the table */
     font-size: 3.5em; /* Adjust size as needed */
     font-weight: bold; /* Makes the text thicker */
-    text-shadow: 10px 10px 10px rgba(0,0,0,0.5); /* Gives the text a shadow */
+    text-shadow: 2px 2px 0px #feca57; /* Gives the text a shadow */
     padding-top: 20px; /* Add padding to space out from the top of the page */
-    color: #FFFFFF; /* Optional: Change text color if needed for better visibility */
+    color: #a23e48; /* Optional: Change text color if needed for better visibility */
+
   }
 
 /* Flex container for side-by-side layout of table and buttons */
@@ -53,9 +54,9 @@ p {
   }
   
   th {
-    background-color: #ba68c8;
+    background-color: #e76f51;
     color: #fafafa;
-    font-family: 'Open Sans', Sans-serif;
+    font-family: 'Montserrat', sans-serif;
     font-weight: 300;
     text-transform: uppercase;
   }
@@ -76,7 +77,7 @@ p {
     padding: 20px 20px; /* Similar padding to table cells for a uniform look */
     margin-top: 5px; /* Space between buttons, adjust as needed */
     border: none;
-    border-radius: 4px; /* Similar border-radius to table for consistent appearance */
+    border-radius: 50px / 40px; /* Creates an oval shape */
     box-shadow: 0 2px 5px rgba(0,0,0,0.2); /* Optional: Adds depth like the table's box-shadow */
     text-transform: uppercase; /* If the table headers are uppercase */
     cursor: pointer;
@@ -89,7 +90,8 @@ p {
   
   /* Hover effect for buttons to slightly change background color */
   .order-buttons button:hover {
-    background-color: #eec4ff; /* A lighter or darker shade for the hover state */
+    background-color: #e76f51; /* A lighter or darker shade for the hover state */
+    color: #fff
   }
 
   .order-buttons {
@@ -97,6 +99,12 @@ p {
     flex-direction: column;
     align-items: center; /* Center buttons horizontally */
     width:100%
+  }
+
+  .order-buttons button:disabled {
+    background-color: #BBBBBB;
+    color: #000000;
+    pointer-events: none;
   }
   
   .order-buttons button {

@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Edit/Add Menu</title>
+</head>
+<body>
+    <h1>Edit Menu</h1>
+    <form id="edit-menu-form">
+        <label for="edit-object">Object Type:</label>
+        <input type="text" id="edit-object" required><br>
+        
+        <label for="edit-action">Action:</label>
+        <select id="edit-action" required>
+            <option value="edit">Edit</option>
+            <option value="delete">Delete</option>
+        </select><br>
+        
+        <label for="edit-mid">Menu Item ID:</label>
+        <input type="number" id="edit-mid" required><br>
+        
+        <label for="edit-name">Name:</label>
+        <input type="text" id="edit-name" required><br>
+        
+        <div id="edit-property-container" style="display:none;">
+            <label for="edit-property">Property:</label>
+            <input type="text" id="edit-property"><br>
+            
+            <label for="edit-new-value">New Value:</label>
+            <input type="text" id="edit-new-value"><br>
+        </div>
+        
+        <button type="submit">Submit</button>
+    </form>
+    
+    <h1>Add to Menu</h1>
+    <form id="add-menu-form">
+        <label for="add-object">Object Type:</label>
+        <input type="text" id="add-object" required><br>
+        
+        <label for="add-description">Description:</label>
+        <input type="text" id="add-description" required><br>
+        
+        <label for="add-mid">Menu Item ID:</label>
+        <input type="number" id="add-mid" required><br>
+        
+        <label for="add-price">Price:</label>
+        <input type="number" id="add-price" step="0.01" required><br>
+        
+        <label for="add-image">Image URL:</label>
+        <input type="text" id="add-image" required><br>
+        
+        <label for="add-item-name">Item Name:</label>
+        <input type="text" id="add-item-name" required><br>
+        
+        <label for="add-category">Category:</label>
+        <input type="text" id="add-category" required><br>
+        
+        <label for="add-available">Available:</label>
+        <input type="checkbox" id="add-available" checked><br>
+        
+        <button type="submit">Submit</button>
+    </form>
+
+    <script src="AdminMenu.js"></script>
+</body>
+</html>
