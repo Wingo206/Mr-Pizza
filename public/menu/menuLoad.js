@@ -367,6 +367,14 @@ const displaySearch = (menuItems) => {
     });
     searchContent.appendChild(closeButton);
 
+    const resetButton = document.createElement('button');
+    resetButton.textContent = 'Original Menu';
+    resetButton.addEventListener('click', () => {
+        searchContainer.remove();
+        refresh();
+    });
+    searchContent.appendChild(resetButton);
+    
     searchContainer.appendChild(searchContent);
 
     document.body.appendChild(searchContainer);
