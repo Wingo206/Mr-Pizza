@@ -8,6 +8,7 @@ console.log("This is isDelivery: " + isDelivery);
   let orderQuantity = 0;
   let midList = [];
   cartItems.forEach(item => {
+      console.log(item);
       orderQuantity += item.quantity;
       midList.push({mid: item.mid, price: item.price});
       item.toppings.forEach(topping => {
@@ -26,6 +27,7 @@ console.log("This is isDelivery: " + isDelivery);
       orderItemData.push({order_id: 0, mid: entry.mid});
     }
     total += entry.price * entry.quantity;
+    //total += entry.size;
   });
   total = total.toFixed(2);
 
@@ -152,17 +154,13 @@ function refreshCheckoutButton() {
 }
 
 button2.addEventListener("click", function () {
-  document.getElementById("tip").removeAttribute("hidden");
   isThereTip = true;
   initializeCheckout(); // Reinitialize checkout whenever tip is toggled
   alert("Tip added");
-  document.getElementById("addressInputForm").removeAttribute("hidden");
-  document.getElementById("addressInputForm").setAttribute("hidden");
 });
 
 button1.addEventListener("click", async function () {
-
-    document.getElementById("checkout").removeAttribute("hidden");
+  document.getElementById("checkout").removeAttribute("hidden");
     //if statement that checks if the time is within 9 am to 4:30 am, if it isnt then print we are closed, please order during opening hours and 30 minutes before the store closes
     
     // let currentTime = new Date();
@@ -182,8 +180,9 @@ button1.addEventListener("click", async function () {
       });
       const responseData = await response.json();
       orderId = responseData.orderId;
-      alert(JSON.stringify(responseData));
-      
+      alert(responseData.message);
+      button1.disabled = true;
+
     }
   
     await fetchReponse();
@@ -197,6 +196,8 @@ async function getCartItems() {
 }
 
 async function initializeCheckout() {
+  button2.style.visibility = 'hidden';
+
   const clientSecret = await fetchClientSecret();
   const checkout = await stripe.initEmbeddedCheckout({
     clientSecret,

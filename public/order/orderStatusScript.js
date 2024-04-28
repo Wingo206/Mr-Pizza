@@ -224,7 +224,7 @@ const button2 = document.getElementById("refundButton");
 button2.addEventListener("click", async function() {
     let status = await checkStatus();
     let currentStatus = status[0].status;
-    if (currentStatus === 'Processing') {
+    if (currentStatus === 'Paid') {
         alert("Order has been refunded! Please check your bank/credit card statement for the refund.");
         async function requestRefund(orderId) {
             fetch('/order/handleRefund', {
@@ -252,7 +252,7 @@ const button3 = document.getElementById("cancelOrderButton");
 button3.addEventListener("click", async function() {
     let stat2 = await checkStatus();
 
-    if (stat2[0].status === 'Processing' || stat2[0].status === 'Started' || stat2[0].status === 'Ready') {
+    if (stat2[0].status === 'Processing' || stat2[0].status === 'Paid' || stat2[0].status === 'Started' || stat2[0].status === 'Ready') {
         alert("Order has been canceled! It has been marked as canceled and will not be delivered/picked up.");
         await removeOrder().catch(error => console.error('Error in cancel:', error));
         await sendCancelEmail();
