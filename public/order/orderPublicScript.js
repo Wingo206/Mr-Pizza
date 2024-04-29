@@ -207,12 +207,14 @@ async function initializeCheckout() {
 }
 
 async function fetchClientSecret() {
+  let newTotal = (parseFloat(total)).toFixed(2);
+  console.log(newTotal);
   const response = await fetch("/order/createCheckoutSession", {
     method: "POST",
     headers: {
       "Content-Type": "application/json"
     },
-    body: JSON.stringify({ total: total, tip: isThereTip, orderId : orderId})
+    body: JSON.stringify({ total: newTotal, tip: isThereTip, orderId : orderId})
   });
   const { client_secret } = await response.json();
   return client_secret;
