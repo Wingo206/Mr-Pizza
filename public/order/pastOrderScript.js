@@ -102,9 +102,3 @@ async function updateStatus(orderId, newStatus) {
     });
     const result = await response.json();
 }
-
-const button1 = document.getElementById("changeStatusButton");
-
-button1.addEventListener("click", function() {
-
-});
