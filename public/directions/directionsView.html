@@ -2,7 +2,6 @@
 
 <head>
     <title>Test Route Map</title>
-    <script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
 
     <link rel="stylesheet" type="text/css" href="./directionsStyle.css" />
     <script type="module" src="./directionsIndex.js"></script>
@@ -12,16 +11,15 @@
     <div id="outerDiv">
         <div id="floating-panel">
           <h1>Mr. Pizza Route Map</h1>
+          <div id="confirm">
+            <button onclick="startDelivery()">Start Delivery</button>
+          </div>
           <a href="/home/home.html">Back to Home</a>
           <br>
         </div>
         <div id="container">
             <div id="map"></div>
             <div id="sidebar"></div>
-        </div>
-        <br>
-        <div id="confirm">
-          <button onclick="startDelivery()">Start Delivery</button>
         </div>
     </div>
 
