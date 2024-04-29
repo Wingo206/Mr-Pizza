@@ -100,11 +100,11 @@ tr:nth-child(even) {
 .right-side-image {
   display: flex;
   justify-content: center; /* Center the image if needed, or use flex-start for left alignment */
-  width: 30%; /* Ensures the image container takes up half the horizontal space */
+  width: 40%; /* Ensures the image container takes up half the horizontal space */
 }
 
 .right-side-image img {
-  max-width: 120%; /* Corrected to ensure the image fits within its container */
+  max-width: 100%; /* Corrected to ensure the image fits within its container */
   height: 30%;
 }
 
