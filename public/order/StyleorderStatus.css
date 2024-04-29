@@ -104,10 +104,18 @@ tr:nth-child(even) {
 }
 
 .right-side-image img {
-  max-width: 120%; /* Corrected to ensure the image fits within its container */
+  max-width: 50%; /* Corrected to ensure the image fits within its container */
   height: 30%;
 }
 
+.rewards-style {
+  font-family: 'Georgia', serif; /* Makes font consistent with the table */
+  font-size: 1em; /* Adjust size as needed */
+  font-weight: bold; /* Makes the text thicker */
+  text-shadow: 2px 2px 0px #feca57; /* Gives the text a shadow */
+  padding-top: 20px; /* Add padding to space out from the top of the page */
+  color: #a23e48; /* Optional: Change text color if needed for better visibility */
+}
   
 
 

@@ -235,10 +235,56 @@ p {
     height: 7%
 }
 
+.menu-button{
+  font-family: 'Montserrat', sans-serif; /* Matching the table's font family */
+    background-color: #ffffff; /* Matching the table header background color */
+    color: #000000; /* Matching the table header font color */
+    padding: 20px 20px; /* Similar padding to table cells for a uniform look */
+    margin-top: 5px; /* Space between buttons, adjust as needed */
+    border: none;
+    border-radius: 0; /* Creates a rectangle shape */
+    box-shadow: 0 2px 5px rgba(0,0,0,0.2); /* Optional: Adds depth like the table's box-shadow */
+    text-transform: uppercase; /* If the table headers are uppercase */
+    cursor: pointer;
+    transition: background-color 0.3s; /* For a smooth hover effect */
+    text-align: center; /* Ensures text is centered like in table cells */
+    width: 20%; /* Adjust width as necessary, or set to auto for content-based width */
+    height: 7%
+}
+
+.home-button{
+  font-family: 'Montserrat', sans-serif; /* Matching the table's font family */
+    background-color: #ffffff; /* Matching the table header background color */
+    color: #000000; /* Matching the table header font color */
+    padding: 20px 20px; /* Similar padding to table cells for a uniform look */
+    margin-top: 5px; /* Space between buttons, adjust as needed */
+    border: none;
+    border-radius: 0; /* Creates a rectangle shape */
+    box-shadow: 0 2px 5px rgba(0,0,0,0.2); /* Optional: Adds depth like the table's box-shadow */
+    text-transform: uppercase; /* If the table headers are uppercase */
+    cursor: pointer;
+    transition: background-color 0.3s; /* For a smooth hover effect */
+    text-align: center; /* Ensures text is centered like in table cells */
+    width: 20%; /* Adjust width as necessary, or set to auto for content-based width */
+    height: 7%
+}
+
+.small-font {
+  font-size: 25px; /* Adjust as needed */
+}
+
 #buttonContainer {
   display: flex;
   justify-content: space-around; /* Optional: Adds space between the buttons */
   align-items: center;
 }
 
+.rewards-style {
+    font-family: 'Georgia', serif; /* Makes font consistent with the table */
+    font-size: 1em; /* Adjust size as needed */
+    font-weight: bold; /* Makes the text thicker */
+    text-shadow: 2px 2px 0px #feca57; /* Gives the text a shadow */
+    padding-top: 20px; /* Add padding to space out from the top of the page */
+    color: #a23e48; /* Optional: Change text color if needed for better visibility */
+}
   
