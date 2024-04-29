@@ -3,29 +3,28 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Edit Availability</title>
+    <title>Menu Availability Editor</title>
 </head>
 <body>
-    <h1>Edit Availability</h1>
-    <form id="availability-edit-form">
-        <label for="availability-object">Object Type:</label>
-        <input type="text" id="availability-object" required><br>
-        
-        <label for="availability-store-id">Store ID:</label>
-        <input type="number" id="availability-store-id" required><br>
-        
-        <label for="availability-mid">Menu Item ID:</label>
-        <input type="number" id="availability-mid" required><br>
-        
-        <label for="availability-option-name">Option Name:</label>
-        <input type="text" id="availability-option-name" required><br>
-        
-        <label for="availability-available">Available:</label>
-        <input type="checkbox" id="availability-available" checked><br>
-        
-        <button type="submit">Submit</button>
+    <h1>Menu Availability Editor</h1>
+
+    <form id="availabilityForm">
+        <label for="object">Object:</label>
+        <select id="object" name="object" required>
+            <option value="item">Item</option>
+            <option value="custom">Custom</option>
+        </select><br><br>
+        <label for="storeId">Store ID:</label>
+        <input type="text" id="storeId" name="storeId" required><br><br>
+        <label for="mid">Mid:</label>
+        <input type="text" id="mid" name="mid" required><br><br>
+        <label for="optionName">Option Name:</label>
+        <input type="text" id="optionName" name="optionName" required><br><br>
+        <label for="available">Available:</label>
+        <input type="checkbox" id="available" name="available" checked><br><br>
+        <button type="submit">Update Availability</button>
     </form>
 
-    <script src="employeeMenu.js"></script>
+    <script src="availability.js"></script>
 </body>
 </html>

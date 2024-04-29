@@ -1,21 +1,32 @@
-async function handleAvailabilityEditFormSubmit(event) {
-    event.preventDefault();
+document.addEventListener('DOMContentLoaded', function () {
+    const editAvailabilityForm = document.getElementById('editAvailabilityForm');
 
-    const object = document.getElementById('availability-object').value;
-    const storeId = parseInt(document.getElementById('availability-store-id').value);
-    const mid = parseInt(document.getElementById('availability-mid').value);
-    const option_name = document.getElementById('availability-option-name').value;
-    const available = document.getElementById('availability-available').checked;
+    editAvailabilityForm.addEventListener('submit', async function (event) {
+        event.preventDefault();
+        const formData = new FormData(editAvailabilityForm);
+        const requestBody = {
+            object: formData.get('object'),
+            storeId: formData.get('storeId'),
+            mid: formData.get('mid'),
+            option_name: formData.get('optionName'),
+            available: formData.get('available') === 'on' // Convert checkbox value to boolean
+        };
 
-    const employeeRequest = {
-        object,
-        storeId,
-        mid,
-        option_name,
-        available
-    };
-
-    await editAvailabilityRequest(employeeRequest);
-}
-
-document.getElementById('availability-edit-form').addEventListener('submit', handleAvailabilityEditFormSubmit);
+        try {
+            let resp = await fetch('/menu/availability', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(requestBody)
+            });
+            if (!resp.ok) {
+                throw new Error('Failed to update availability');
+            }
+            alert('Availability updated successfully!');
+        } catch (error) {
+            console.error('Error:', error);
+            alert('An error occurred while updating availability');
+        }
+    });
+});

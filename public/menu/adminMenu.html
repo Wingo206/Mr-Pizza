@@ -3,66 +3,85 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Edit/Add Menu</title>
+    <title>Menu Editor</title>
 </head>
 <body>
-    <h1>Edit Menu</h1>
-    <form id="edit-menu-form">
-        <label for="edit-object">Object Type:</label>
-        <input type="text" id="edit-object" required><br>
-        
-        <label for="edit-action">Action:</label>
-        <select id="edit-action" required>
-            <option value="edit">Edit</option>
-            <option value="delete">Delete</option>
-        </select><br>
-        
-        <label for="edit-mid">Menu Item ID:</label>
-        <input type="number" id="edit-mid" required><br>
-        
-        <label for="edit-name">Name:</label>
-        <input type="text" id="edit-name" required><br>
-        
-        <div id="edit-property-container" style="display:none;">
-            <label for="edit-property">Property:</label>
-            <input type="text" id="edit-property"><br>
-            
-            <label for="edit-new-value">New Value:</label>
-            <input type="text" id="edit-new-value"><br>
-        </div>
-        
-        <button type="submit">Submit</button>
-    </form>
+    <h1>Menu Editor</h1>
     
-    <h1>Add to Menu</h1>
-    <form id="add-menu-form">
-        <label for="add-object">Object Type:</label>
-        <input type="text" id="add-object" required><br>
-        
-        <label for="add-description">Description:</label>
-        <input type="text" id="add-description" required><br>
-        
-        <label for="add-mid">Menu Item ID:</label>
-        <input type="number" id="add-mid" required><br>
-        
-        <label for="add-price">Price:</label>
-        <input type="number" id="add-price" step="0.01" required><br>
-        
-        <label for="add-image">Image URL:</label>
-        <input type="text" id="add-image" required><br>
-        
-        <label for="add-item-name">Item Name:</label>
-        <input type="text" id="add-item-name" required><br>
-        
-        <label for="add-category">Category:</label>
-        <input type="text" id="add-category" required><br>
-        
-        <label for="add-available">Available:</label>
-        <input type="checkbox" id="add-available" checked><br>
-        
-        <button type="submit">Submit</button>
+    <h2>Add Item</h2>
+    <form id="addItemForm">
+        <label for="description">Description:</label>
+        <input type="text" id="description" name="description" required><br><br>
+        <label for="mid">Mid:</label>
+        <input type="text" id="mid" name="mid" required><br><br>
+        <label for="price">Price:</label>
+        <input type="text" id="price" name="price" required><br><br>
+        <label for="image">Image:</label>
+        <input type="text" id="image" name="image" required><br><br>
+        <label for="itemName">Item Name:</label>
+        <input type="text" id="itemName" name="itemName" required><br><br>
+        <label for="category">Category:</label>
+        <input type="text" id="category" name="category" required><br><br>
+        <label for="available">Available:</label>
+        <input type="checkbox" id="available" name="available" checked><br><br>
+        <button type="submit">Add Item</button>
     </form>
 
-    <script src="AdminMenu.js"></script>
+    <h2>Add Custom</h2>
+    <form id="addCustomForm">
+        <label for="customName">Custom Name:</label>
+        <input type="text" id="customName" name="customName" required><br><br>
+        <label for="mid">Mid:</label>
+        <input type="text" id="mid" name="mid" required><br><br>
+        <label for="optionName">Option Name:</label>
+        <input type="text" id="optionName" name="optionName" required><br><br>
+        <label for="price">Price:</label>
+        <input type="text" id="price" name="price" required><br><br>
+        <label for="isDefault">Is Default:</label>
+        <input type="checkbox" id="isDefault" name="isDefault"><br><br>
+        <label for="available">Available:</label>
+        <input type="checkbox" id="available" name="available" checked><br><br>
+        <label for="mutuallyExclusive">Mutually Exclusive:</label>
+        <input type="checkbox" id="mutuallyExclusive" name="mutuallyExclusive"><br><br>
+        <button type="submit">Add Custom</button>
+    </form>
+
+    <h2>Edit Item</h2>
+    <form id="editItemForm">
+        <label for="editMid">Mid:</label>
+        <input type="text" id="editMid" name="editMid" required><br><br>
+        <label for="editName">Name:</label>
+        <input type="text" id="editName" name="editName" required><br><br>
+        <label for="editValue">New Value:</label>
+        <input type="text" id="editValue" name="editValue" required><br><br>
+        <label for="editAction">Action:</label>
+        <select id="editAction" name="editAction" required>
+            <option value="edit">Edit</option>
+            <option value="delete">Delete</option>
+        </select><br><br>
+        <button type="submit">Edit Item</button>
+    </form>
+
+    <h2>Edit Custom</h2>
+    <form id="editCustomForm">
+        <label for="editCustomName">Custom Name:</label>
+        <input type="text" id="editCustomName" name="editCustomName" required><br><br>
+        <label for="editProperty">Property:</label>
+        <select id="editProperty" name="editProperty" required>
+            <option value="option_name">Option Name</option>
+            <option value="price">Price</option>
+            <option value="isDefault">Is Default</option>
+        </select><br><br>
+        <label for="editValue">New Value:</label>
+        <input type="text" id="editValue" name="editValue" required><br><br>
+        <label for="editAction">Action:</label>
+        <select id="editAction" name="editAction" required>
+            <option value="edit">Edit</option>
+            <option value="delete">Delete</option>
+        </select><br><br>
+        <button type="submit">Edit Custom</button>
+    </form>
+
+    <script src="frontend.js"></script>
 </body>
 </html>
