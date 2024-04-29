@@ -27,10 +27,6 @@ const checkStatusInterval = setInterval(async () => {
     const orderStatus = stat[0].status;
     let cancelStatus = orderStatus;
 
-    if (cancelStatus === 'Delivered') {
-        document.getElementById("notReceivedButton").removeAttribute("hidden");
-    }
-
     let savedStatus = getCookie('orderStatus');
     console.log(savedStatus);
 
