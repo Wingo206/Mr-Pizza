@@ -39,7 +39,7 @@ foreign key(mid, custom_name) references custom(mid, custom_name) on delete casc
 
 create table with_custom(order_id int, item_num int, mid int, custom_name varchar(50), option_name varchar(50),
 primary key(order_id, item_num, mid, custom_name, option_name),
-foreign key(order_id, item_num) references order_item(item_num, order_id) on delete cascade,
+foreign key(order_id, item_num) references order_item(order_id, item_num) on delete cascade,
 foreign key(mid, custom_name, option_name) references custom_option(mid, custom_name, option_name) on delete cascade);
 
 create table delivery_batch(batch_id int primary key auto_increment, location varchar(40), DT_stamp datetime, driver_status varchar(20), assignedToEmp int,

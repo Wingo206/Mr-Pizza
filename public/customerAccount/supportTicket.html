@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Support Tickets</title>
+    <style>
+        table {
+            border-collapse: collapse;
+            width: auto;
+            margin-left: 0;
+        }
+        th, td {
+            border: 1px solid black;
+            padding: 8px;
+            text-align: left;
+        }
+    </style>
+</head>
+<body>
+    <h1>Support Tickets</h1>
+    
+    <!-- Form to create a new support ticket -->
+    <h2>Create New Ticket</h2>
+    <form id="newTicketForm" onsubmit="event.preventDefault(); createTicket();">
+        <label for="description">Description:</label>
+        <input type="text" id="description" name="description" required>
+        <button type="submit">Submit</button>
+    </form>
+
+    <!-- Display past tickets -->
+    <h2>Past Tickets</h2>
+    <div id="pastTickets">
+        <table id="ticketsTable"></table>
+    </div>
+
+    <!-- Script to fetch and display tickets -->
+    <script src="ticketFrontend.js"></script>
+
+    <br>
+    <br>
+
+    <a href="customerAccountDisplay.html">Back to Account</a>
+</body>
+</html>
