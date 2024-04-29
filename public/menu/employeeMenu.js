@@ -1,5 +1,5 @@
 document.addEventListener('DOMContentLoaded', function () {
-    const editAvailabilityForm = document.getElementById('editAvailabilityForm');
+    const editAvailabilityForm = document.getElementById('availabilityForm');
 
     editAvailabilityForm.addEventListener('submit', async function (event) {
         event.preventDefault();

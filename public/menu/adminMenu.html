@@ -7,55 +7,55 @@
 </head>
 <body>
     <h1>Menu Editor</h1>
-    
+    <a href="/home/home.html">Back to Home</a>
     <h2>Add Item</h2>
     <form id="addItemForm">
         <label for="description">Description:</label>
-        <input type="text" id="description" name="description" required><br><br>
+        <input type="text" id="aidescription" name="description" required><br><br>
         <label for="mid">Mid:</label>
-        <input type="text" id="mid" name="mid" required><br><br>
+        <input type="text" id="aimid" name="mid" required><br><br>
         <label for="price">Price:</label>
-        <input type="text" id="price" name="price" required><br><br>
+        <input type="text" id="aiprice" name="price" required><br><br>
         <label for="image">Image:</label>
-        <input type="text" id="image" name="image" required><br><br>
+        <input type="text" id="aiimage" name="image" required><br><br>
         <label for="itemName">Item Name:</label>
-        <input type="text" id="itemName" name="itemName" required><br><br>
+        <input type="text" id="aiitemName" name="itemName" required><br><br>
         <label for="category">Category:</label>
-        <input type="text" id="category" name="category" required><br><br>
+        <input type="text" id="aicategory" name="category" required><br><br>
         <label for="available">Available:</label>
-        <input type="checkbox" id="available" name="available" checked><br><br>
+        <input type="checkbox" id="aiavailable" name="available" checked><br><br>
         <button type="submit">Add Item</button>
     </form>
 
     <h2>Add Custom</h2>
     <form id="addCustomForm">
         <label for="customName">Custom Name:</label>
-        <input type="text" id="customName" name="customName" required><br><br>
+        <input type="text" id="accustomName" name="customName" required><br><br>
         <label for="mid">Mid:</label>
-        <input type="text" id="mid" name="mid" required><br><br>
+        <input type="text" id="acmid" name="mid" required><br><br>
         <label for="optionName">Option Name:</label>
-        <input type="text" id="optionName" name="optionName" required><br><br>
+        <input type="text" id="acoptionName" name="optionName" required><br><br>
         <label for="price">Price:</label>
-        <input type="text" id="price" name="price" required><br><br>
+        <input type="text" id="acprice" name="price" required><br><br>
         <label for="isDefault">Is Default:</label>
-        <input type="checkbox" id="isDefault" name="isDefault"><br><br>
+        <input type="checkbox" id="acisDefault" name="isDefault"><br><br>
         <label for="available">Available:</label>
-        <input type="checkbox" id="available" name="available" checked><br><br>
+        <input type="checkbox" id="acavailable" name="available" checked><br><br>
         <label for="mutuallyExclusive">Mutually Exclusive:</label>
-        <input type="checkbox" id="mutuallyExclusive" name="mutuallyExclusive"><br><br>
+        <input type="checkbox" id="acmutuallyExclusive" name="mutuallyExclusive"><br><br>
         <button type="submit">Add Custom</button>
     </form>
 
     <h2>Edit Item</h2>
     <form id="editItemForm">
         <label for="editMid">Mid:</label>
-        <input type="text" id="editMid" name="editMid" required><br><br>
+        <input type="text" id="eieditMid" name="editMid" required><br><br>
         <label for="editName">Name:</label>
-        <input type="text" id="editName" name="editName" required><br><br>
+        <input type="text" id="eieditName" name="editName" required><br><br>
         <label for="editValue">New Value:</label>
-        <input type="text" id="editValue" name="editValue" required><br><br>
+        <input type="text" id="eieditValue" name="editValue" required><br><br>
         <label for="editAction">Action:</label>
-        <select id="editAction" name="editAction" required>
+        <select id="eieditAction" name="editAction" required>
             <option value="edit">Edit</option>
             <option value="delete">Delete</option>
         </select><br><br>
@@ -65,23 +65,23 @@
     <h2>Edit Custom</h2>
     <form id="editCustomForm">
         <label for="editCustomName">Custom Name:</label>
-        <input type="text" id="editCustomName" name="editCustomName" required><br><br>
+        <input type="text" id="eceditCustomName" name="editCustomName" required><br><br>
         <label for="editProperty">Property:</label>
-        <select id="editProperty" name="editProperty" required>
+        <select id="eceditProperty" name="editProperty" required>
             <option value="option_name">Option Name</option>
             <option value="price">Price</option>
             <option value="isDefault">Is Default</option>
         </select><br><br>
         <label for="editValue">New Value:</label>
-        <input type="text" id="editValue" name="editValue" required><br><br>
+        <input type="text" id="eceditValue" name="editValue" required><br><br>
         <label for="editAction">Action:</label>
-        <select id="editAction" name="editAction" required>
+        <select id="eceditAction" name="editAction" required>
             <option value="edit">Edit</option>
             <option value="delete">Delete</option>
         </select><br><br>
         <button type="submit">Edit Custom</button>
     </form>
 
-    <script src="frontend.js"></script>
+    <script src="adminMenu.js"></script>
 </body>
 </html>

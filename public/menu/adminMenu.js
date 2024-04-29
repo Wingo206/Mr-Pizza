@@ -9,13 +9,13 @@ document.addEventListener('DOMContentLoaded', function () {
         const formData = new FormData(addItemForm);
         const requestBody = {
             object: 'item',
-            description: formData.get('description'),
-            mid: formData.get('mid'),
-            price: formData.get('price'),
-            image: formData.get('image'),
-            item_name: formData.get('itemName'),
-            category: formData.get('category'),
-            available: formData.get('available') === 'on' // Convert checkbox value to boolean
+            description: formData.get('aidescription'),
+            mid: formData.get('aimid'),
+            price: formData.get('aiprice'),
+            image: formData.get('aiimage'),
+            item_name: formData.get('aiitemName'),
+            category: formData.get('aicategory'),
+            available: formData.get('aiavailable') === 'on' // Convert checkbox value to boolean
         };
 
         sendRequestAdd(requestBody);
@@ -26,13 +26,13 @@ document.addEventListener('DOMContentLoaded', function () {
         const formData = new FormData(addCustomForm);
         const requestBody = {
             object: 'custom',
-            custom_name: formData.get('customName'),
-            mid: formData.get('mid'),
-            option_name: formData.get('optionName'),
-            price: formData.get('price'),
-            isDefault: formData.get('isDefault') === 'on', // Convert checkbox value to boolean
-            available: formData.get('available') === 'on', // Convert checkbox value to boolean
-            mutually_exclusive: formData.get('mutuallyExclusive') === 'on' // Convert checkbox value to boolean
+            custom_name: formData.get('accustomName'),
+            mid: formData.get('acmid'),
+            option_name: formData.get('acoptionName'),
+            price: formData.get('acprice'),
+            isDefault: formData.get('acisDefault') === 'on', // Convert checkbox value to boolean
+            available: formData.get('acavailable') === 'on', // Convert checkbox value to boolean
+            mutually_exclusive: formData.get('acmutuallyExclusive') === 'on' // Convert checkbox value to boolean
         };
 
         sendRequestAdd(requestBody);
@@ -43,11 +43,11 @@ document.addEventListener('DOMContentLoaded', function () {
         const formData = new FormData(editItemForm);
         const requestBody = {
             object: 'item',
-            mid: formData.get('editMid'),
-            name: formData.get('editName'),
-            newValue: formData.get('editValue'),
-            property: formData.get('editProperty'),
-            action: formData.get('editAction')
+            mid: formData.get('eieditMid'),
+            name: formData.get('eieditName'),
+            newValue: formData.get('eieditValue'),
+            property: formData.get('eieditProperty'),
+            action: formData.get('eieditAction')
         };
 
         sendRequestEdit(requestBody);
@@ -58,10 +58,10 @@ document.addEventListener('DOMContentLoaded', function () {
         const formData = new FormData(editCustomForm);
         const requestBody = {
             object: 'custom',
-            custom_name: formData.get('editCustomName'),
-            newValue: formData.get('editValue'),
-            property: formData.get('editProperty'),
-            action: formData.get('editAction')
+            custom_name: formData.get('eceditCustomName'),
+            newValue: formData.get('eceditValue'),
+            property: formData.get('eceditProperty'),
+            action: formData.get('eceditAction')
         };
 
         sendRequestEdit(requestBody);
@@ -86,6 +86,7 @@ document.addEventListener('DOMContentLoaded', function () {
             alert('An error occurred while processing request');
         });
     }
+    
     function sendRequestAdd(requestBody) {
         fetch('/menu/add', {
             method: 'POST',
