@@ -45,7 +45,7 @@ foreign key(mid, custom_name, option_name) references custom_option(mid, custom_
 create table delivery_batch(batch_id int primary key auto_increment, current_latlng point, DT_stamp datetime, driver_status varchar(20), assignedToEmp int,
 foreign key(assignedToEmp) references employee_account(eid) on delete cascade);
 
-create table in_batch(order_id int, batch_id int, order_index int, time_rem int,
+create table in_batch(order_id int, batch_id int, order_index int,
 primary key(order_id, batch_id),
 foreign key(order_id) references customer_order(order_id) on delete cascade,
 foreign key(batch_id) references delivery_batch(batch_id) on delete cascade);
