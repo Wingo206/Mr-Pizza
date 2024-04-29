@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content ="width=device-width, initial-scale=1.0">
+        <title>Mr.Pizza's Menu</title>
+        <link rel="stylesheet" href="menuLoad.css">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    </head>
+    <body>
+        <div class="menu-header">
+            <h1>Welcome to Mr. Pizza's Menu</h1>
+            <p>Order now!</p>
+            <!-- Icons container -->
+            <div class="icons">
+                <i class="fas fa-search"></i> <!-- Search icon -->
+                <i class="fas fa-shopping-cart"></i> <!-- Cart icon -->
+            </div>
+        </div>
+        <div id="menu" class="menu">
+            <!-- Contents created by menuLoad.js function displayMenu -->
+        </div>
+        <div id="cart-container" class="cart-container">
+            <div class="cart-content">
+                <span id="back-button" class="back-button">&larr;</span>
+                <h2>Your Order</h2>
+                <div id="cart-items"></div>
+                <button id="checkout-button" class="checkout-button">Checkout</button>
+                <!-- This is the container for displaying the order in the cart -->
+            </div>
+        </div>
+        <script type = "module" src="searchTool.js"></script>
+        <script src="menuLoad.js"></script>
+    </body>
+</html>

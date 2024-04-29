@@ -17,7 +17,8 @@ document.addEventListener("DOMContentLoaded", function () {
 
         // populate dropdown
         let select = document.getElementById('store-select');
-        select.innerHTML = storeNames.map(sn => `<option value="${sn.store_id}">${sn.name}</option>`)
+        select.innerHTML = `<option value="" disabled selected>Select a store</option> `
+        select.innerHTML += storeNames.map(sn => `<option value="${sn.store_id}">${sn.name}</option>`)
         select.onchange = (event) => {
             storeId = Number(event.target.value);
             console.log('changing store id to ' + storeId)
