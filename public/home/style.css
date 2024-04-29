@@ -41,4 +41,121 @@ body {
     background-color: #e76f51; /* Fill color on hover */
     color: #fff; /* White text on hover */
   }
+
+  .top-column {
+    display: flex;
+    justify-content: space-between; /* This will space out your items on either end */
+    align-items: center; /* Centers the items vertically */
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    font-size: 1.2em; /* Increase the font size if needed */
+    padding: 15px 35px; /* Increase the padding to make the button larger */
+    background-color: #fff3e6; /* Light grey background */
+    z-index: 1000; /* Keeps the row above other content */
+    height: 50px; /* Increase the height to fit the larger logo */
+  }
+  
+  .top-column .text {
+    flex-grow: 2; /* Allows the logo to take up available space */
+    text-align: center; /* Centers the logo */
+  }
+  
+  .top-column a {
+    padding: 5px 10px; /* Adjust padding to change button size */
+    margin: 0 10px; /* Adjust margin to set distance from the logo */
+    font-size: 0.8em; /* Smaller font size for buttons */
+  }
+  
+  .top-column .login-group {
+    display: flex;
+    gap: 10px; /* Creates space between the two login buttons */
+  }
+
+  .second-row {
+    display: flex;
+    justify-content: space-between; /* Maintain the space between items */
+    align-items: center;
+    position: fixed;
+    top: 60px; /* Adjust to the height of the top row */
+    left: 0;
+    right: 0;
+    padding: 10px;
+    background-color: #e4d1c0;
+    z-index: 999;
+    box-shadow: 0px 2px 5px rgba(0,0,0,0.1); /* Optional shadow for depth */
+    height: 80px;
+  }
+  
+  .second-row .right-group {
+    display: flex;
+    gap: 10px;
+    margin-left: auto; /* This will push the buttons to the right side */
+  }
+ 
+  .content-container {
+    display: flex; /* Sets up a flex container to hold the text box and GIF side by side */
+    align-items: center; /* Aligns items vertically in the middle */
+    justify-content: space-between; /* Ensures space between the text box and the GIF */
+    max-width: 1200px; /* Restricts maximum width for better control over layout */
+    margin: 40px auto; /* Centers the container horizontally and adds vertical spacing */
+    padding: 20px; /* Padding inside the container */
+  }
+  
+  .text-box {
+    width: 45%; /* Takes up less than half of the container for text */
+    padding: 20px; /* Padding inside the text box */
+    background-color: rgba(255, 255, 255, 0.8); /* Semi-transparent white background */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
+    font-family: 'Georgia', serif; /* Keeping font consistent */
+    font-size: 1.5em; /* Appropriately large font size */
+    color: #842422; /* Dark reddish-brown that complements the background */
+  }
+  
+  .right-gif {
+    width: 50%; /* Half of the container for the GIF */
+    display: flex; /* Makes this a flex container to center the GIF */
+    justify-content: center; /* Centers the GIF horizontally */
+    align-items: center; /* Centers the GIF vertically */
+  }
+  
+  .right-gif img {
+    max-width: 100%; /* Ensures the GIF is not larger than its container */
+    height: auto; /* Keeps the GIF's aspect ratio */
+  }
+
+  .last-row {
+    display: flex; /* Flex container to hold the buttons */
+    justify-content: space-around; /* Evenly spaces the children (buttons) across the width */
+    align-items: center; /* Centers the items vertically */
+    padding: 20px; /* Padding inside the row for some breathing room */
+    background-color: #f5f5f5; /* Consistent light background similar to the other rows */
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1); /* Subtle shadow for visual separation */
+    margin-top: 20px; /* Separation from the previous content */
+  }
+  
+  .last-row a {
+    padding: 10px 20px; /* Padding to make buttons larger */
+    font-family: 'Georgia', serif; /* Consistent with your overall theme */
+    font-size: 1em; /* Appropriate text size */
+    color: #5a3b32; /* Dark brown for text */
+    background-color: #fcb69f; /* Warm orange to match the gradient theme */
+    text-decoration: none; /* Removes underline from links */
+    border-radius: 5px; /* Rounded corners for a softer look */
+    border: 2px solid #842422; /* Border color to complement the button color */
+    transition: background-color 0.3s, color 0.3s; /* Smooth transition for hover effects */
+  }
+  
+  .last-row a:hover {
+    background-color: #842422; /* Dark reddish-brown on hover */
+    color: #fff; /* White text on hover */
+  }
+  
+  
+  
+
+  
+  
+  
   
