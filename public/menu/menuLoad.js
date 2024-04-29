@@ -126,7 +126,7 @@ const createPopup = (item) => {
     description.textContent = item.description;
     popupContent.appendChild(description);
 
-    if (item.toppings && item.toppings.length > 0) {
+    if (item.toppings && item.toppings.length > 0){
         const toppingsTitle = document.createElement('h3');
         toppingsTitle.textContent = 'Toppings:';
         popupContent.appendChild(toppingsTitle);
@@ -134,13 +134,20 @@ const createPopup = (item) => {
         const toppingList = document.createElement('ul');
         item.toppings.forEach(topping => {
             const toppingItem = document.createElement('li');
-            toppingItem.textContent = `${topping.topping_name}: $${topping.price}`;
+            const checkbox = document.createElement('input');
+            checkbox.type = 'checkbox';
+            checkbox.value = topping.price;
+            checkbox.dataset.toppingName = topping.topping_name;
+
+            toppingItem.appendChild(checkbox);
+            toppingItem.appendChild(document.createTextNode(` ${topping.topping_name}: $${topping.price}`));
+            //toppingItem.textContent = `${topping.topping_name}: $${topping.price}`;
             toppingList.appendChild(toppingItem);
         });
         popupContent.appendChild(toppingList);
     }
 
-    if (item.size && item.size.length > 0) {
+    if (item.size && item.size.length > 0){
         const sizeTitle = document.createElement('h3');
         sizeTitle.textContent = 'Sizes:';
         popupContent.appendChild(sizeTitle);
@@ -148,13 +155,21 @@ const createPopup = (item) => {
         const sizeList = document.createElement('ul');
         item.size.forEach(size => {
             const sizeItem = document.createElement('li');
-            sizeItem.textContent = `${size.topping_name}: $${size.price}`;
+            const radio = document.createElement('input');
+            radio.type = 'radio';
+            radio.name = 'size';
+            radio.value = size.price;
+            radio.dataset.sizeName = size.topping_name;
+
+            sizeItem.appendChild(radio);
+            sizeItem.appendChild(document.createTextNode(` ${size.topping_name}: $${size.price}`));
+            //sizeItem.textContent = `${size.topping_name}: $${size.price}`;
             sizeList.appendChild(sizeItem);
         });
         popupContent.appendChild(sizeList);
     }
 
-    if (item.servingOptions && item.servingOptions.length > 0) {
+    if (item.servingOptions && item.servingOptions.length > 0){
         const servingOptionsTitle = document.createElement('h3');
         servingOptionsTitle.textContent = 'Serving Options:';
         popupContent.appendChild(servingOptionsTitle);
@@ -162,13 +177,21 @@ const createPopup = (item) => {
         const servingOptionsList = document.createElement('ul');
         item.servingOptions.forEach(option => {
             const servingOptionItem = document.createElement('li');
-            servingOptionItem.textContent = `${option.topping_name}: $${option.price}`;
+            const radio = document.createElement('input');
+            radio.type = 'radio';
+            radio.name = 'servingOption';
+            radio.value = option.price;
+            radio.dataset.servingOptionName = option.topping_name;
+
+            servingOptionItem.appendChild(radio);
+            servingOptionItem.appendChild(document.createTextNode(` ${option.topping_name}: $${option.price}`));
+            //servingOptionItem.textContent = `${option.topping_name}: $${option.price}`;
             servingOptionsList.appendChild(servingOptionItem);
         });
         popupContent.appendChild(servingOptionsList);
     }
 
-    if (item.sauces && item.sauces.length > 0) {
+    if (item.sauces && item.sauces.length > 0){
         const saucesTitle = document.createElement('h3');
         saucesTitle.textContent = 'Types of Sauces:';
         popupContent.appendChild(saucesTitle);
@@ -176,13 +199,21 @@ const createPopup = (item) => {
         const saucesList = document.createElement('ul');
         item.sauces.forEach(sauce => {
             const sauceItem = document.createElement('li');
-            sauceItem.textContent = `${sauce.topping_name}: $${sauce.price}`;
+            const radio = document.createElement('input');
+            radio.type = 'radio';
+            radio.name = 'sauce';
+            radio.value = sauce.price;
+            radio.dataset.sauceName = sauce.topping_name;
+
+            sauceItem.appendChild(radio);
+            sauceItem.appendChild(document.createTextNode(` ${sauce.topping_name}: $${sauce.price}`));
+            //sauceItem.textContent = `${sauce.topping_name}: $${sauce.price}`;
             saucesList.appendChild(sauceItem);
         });
         popupContent.appendChild(saucesList);
     }
 
-    if (item.crust && item.crust.length > 0) {
+    if (item.crust && item.crust.length > 0){
         const crustTitle = document.createElement('h3');
         crustTitle.textContent = 'Types of Crust:';
         popupContent.appendChild(crustTitle);
@@ -190,13 +221,21 @@ const createPopup = (item) => {
         const crustList = document.createElement('ul');
         item.crust.forEach(type => {
             const crustItem = document.createElement('li');
-            crustItem.textContent = `${type.topping_name}: $${type.price}`;
+            const radio = document.createElement('input');
+            radio.type = 'radio';
+            radio.name = 'crust';
+            radio.value = type.price;
+            radio.dataset.crustName = type.topping_name;
+
+            crustItem.appendChild(radio);
+            crustItem.appendChild(document.createTextNode(` ${type.topping_name}: $${type.price}`));
+            //crustItem.textContent = `${type.topping_name}: $${type.price}`;
             crustList.appendChild(crustItem);
         });
         popupContent.appendChild(crustList);
     }
 
-    if (item.meats && item.meats.length > 0) {
+    if (item.meats && item.meats.length > 0){
         const meatTitle = document.createElement('h3');
         meatTitle.textContent = 'Types of Meats:';
         popupContent.appendChild(meatTitle);
@@ -204,13 +243,20 @@ const createPopup = (item) => {
         const meatList = document.createElement('ul');
         item.meats.forEach(meat => {
             const meatItem = document.createElement('li');
-            meatItem.textContent = `${meat.topping_name}: $${meat.price}`;
+            const checkbox = document.createElement('input');
+            checkbox.type = 'checkbox';
+            checkbox.value = meat.price;
+            checkbox.dataset.meatName = meat.topping_name;
+
+            meatItem.appendChild(checkbox);
+            meatItem.appendChild(document.createTextNode(` ${meat.topping_name}: $${meat.price}`));
+            //meatItem.textContent = `${meat.topping_name}: $${meat.price}`;
             meatList.appendChild(meatItem);
         });
         popupContent.appendChild(meatList);
     }
 
-    if (item.nonMeats && item.nonMeats.length > 0) {
+    if (item.nonMeats && item.nonMeats.length > 0){
         const nonMeatTitle = document.createElement('h3');
         nonMeatTitle.textContent = 'Types of Non-Meats:';
         popupContent.appendChild(nonMeatTitle);
@@ -218,13 +264,20 @@ const createPopup = (item) => {
         const nonMeatList = document.createElement('ul');
         item.nonMeats.forEach(nonMeat => {
             const noMeatItem = document.createElement('li');
-            noMeatItem.textContent = `${nonMeat.topping_name}: $${nonMeat.price}`;
+            const checkbox = document.createElement('input');
+            checkbox.type = 'checkbox';
+            checkbox.value = nonMeat.price;
+            checkbox.dataset.nonMeatName = nonMeat.topping_name;
+
+            noMeatItem.appendChild(checkbox);
+            noMeatItem.appendChild(document.createTextNode(` ${nonMeat.topping_name}: $${nonMeat.price}`));
+            //noMeatItem.textContent = `${nonMeat.topping_name}: $${nonMeat.price}`;
             nonMeatList.appendChild(noMeatItem);
         });
         popupContent.appendChild(nonMeatList);
     }
 
-    if (item.cheese && item.cheese.length > 0) {
+    if (item.cheese && item.cheese.length > 0){
         const cheeseTitle = document.createElement('h3');
         cheeseTitle.textContent = 'Types of Cheese:';
         popupContent.appendChild(cheeseTitle);
@@ -232,7 +285,14 @@ const createPopup = (item) => {
         const cheeseList = document.createElement('ul');
         item.cheese.forEach(cheese => {
             const cheeseItem = document.createElement('li');
-            cheeseItem.textContent = `${cheese.topping_name}: $${cheese.price}`;
+            const checkbox = document.createElement('input');
+            checkbox.type = 'checkbox';
+            checkbox.value = cheese.price;
+            checkbox.dataset.cheeseName = cheese.topping_name;
+
+            cheeseItem.appendChild(checkbox);
+            cheeseItem.appendChild(document.createTextNode(` ${cheese.topping_name}: $${cheese.price}`));
+            //cheeseItem.textContent = `${cheese.topping_name}: $${cheese.price}`;
             cheeseList.appendChild(cheeseItem);
         });
         popupContent.appendChild(cheeseList);
@@ -245,13 +305,30 @@ const createPopup = (item) => {
     });
     popupContent.appendChild(cancelButton);
 
+    const quantityContainer = document.createElement('div');
+    const quantityLabel = document.createElement('label');
+    quantityLabel.textContent = 'Quantity:';
+    const quantityInput = document.createElement('input');
+    quantityInput.type = 'number';
+    quantityInput.value = 1;
+    quantityInput.min = 1;
+    quantityInput.className = 'item-quantity-input';
+    quantityInput.style.width = '40px'; 
+    quantityInput.style.height = '30px';
+    quantityContainer.appendChild(quantityLabel);
+    quantityContainer.appendChild(quantityInput);
+    popupContent.appendChild(quantityContainer);
+
     const addButton = document.createElement('button');
     addButton.textContent = 'Add to Cart';
     addButton.addEventListener('click', () => {
-        addToCart(item)
+        const quantity = parseInt(quantityInput.value, 10);
+        addToCart(item, collectSelectedOptions(popupContent), quantity);
+        popupContainer.remove();
+        showPopup(`Item '${item.item_name}' added to cart`);
     });
     popupContent.appendChild(addButton);
-
+    
     popupContainer.appendChild(popupContent);
 
     document.body.appendChild(popupContainer);
@@ -269,32 +346,43 @@ cartIcon.addEventListener('click', function () {
     }
 });
 
-const addToCart = (item) => {
+const collectSelectedOptions = (popupContent) => {
+    const selectedOptions = [];
+    const inputs = popupContent.querySelectorAll('input[type="checkbox"]:checked, input[type="radio"]:checked');
+    inputs.forEach(input => {
+        selectedOptions.push({
+            name: input.dataset.toppingName || input.dataset.sizeName || input.dataset.servingOptionName || input.dataset.sauceName || input.dataset.crustName || input.dataset.meatName || input.dataset.nonMeatName || input.dataset.cheeseName,
+            price: parseFloat(input.value)
+        });
+    });
+    return selectedOptions;
+};
+
+const addToCart = (item, selectedOptions, quantity) => {
     let cart = JSON.parse(localStorage.getItem('cart')) || [];
-    let alreadyInCart = cart.find(cartItem => cartItem.mid === item.mid);
+    let optionsPrice = selectedOptions.reduce((sum, option) => sum + option.price, 0);
+    let initialTotalPrice = item.price + optionsPrice;
+    let totalCost = initialTotalPrice * quantity;
+    let alreadyInCart = cart.find(cartItem => cartItem.mid === item.mid && JSON.stringify(cartItem.selectedOptions) === JSON.stringify(selectedOptions));
 
     if (alreadyInCart) {
-        alreadyInCart.quantity += 1;
-        alreadyInCart.totalPrice = alreadyInCart.quantity * item.price;
+        alreadyInCart.quantity += quantity;
+        alreadyInCart.totalPrice = parseFloat((alreadyInCart.quantity * initialTotalPrice).toFixed(2));
     }
     else {
         cart.push({
             item_name: item.item_name,
             mid: item.mid,
             description: item.description,
-            quantity: 1,
+            quantity: quantity,
             price: item.price,
-            totalPrice: item.price,
-            toppings: item.toppings.map(topping => ({
-                topping_name: topping.topping_name,
-                price: topping.price
-            })),
+            optionsPrice: optionsPrice,
+            totalPrice: parseFloat(totalCost.toFixed(2)),
+            selectedOptions: selectedOptions
         });
     }
-
+    
     localStorage.setItem('cart', JSON.stringify(cart));
-    menuContainer.classList.remove('show');
-    showPopup(`Item '${item.item_name}' added to cart`);
     console.log(`Item '${item.item_name}' with MID '${item.mid}' added to cart.`);
 }
 
