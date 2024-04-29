@@ -1,0 +1,67 @@
+<html>
+<!DOCTYPE html>
+
+
+
+<head>
+    <meta charset="UTF-8">
+    <title>Employee Manager</title>
+    <link rel="stylesheet" type="text/css" href="style.css"/>
+
+</head>
+
+<body>
+    <script src="/empAdmin/manageEmployees.js"></script>
+
+    <style type="text/css">
+            .fieldset-auto-width {
+                display: inline-block;
+            }
+        </style>
+
+    <h1>Manage Employees</h1>
+    <a href="/home/home.html">Back to Home</a>
+    
+    <br>
+    
+    <a href="/login/adminLoginSuccess.html">Back to Admin Account</a>
+
+    <br>
+
+    <fieldset class="fieldset-auto-width">
+        <legend>Add New Employee</legend>
+        <label for="employeeFirstName">First Name of Employee</label>
+        <input type="text" id="employeeFirstName">
+        <br>
+        <br>
+        <laebl for="employeeLastName">Last Name of Employee</laebl>
+        <input type="text" id="employeeLastName">
+        <br>
+        <br>
+        <label for="employeeStoreId">ID of Store to Assign Employee</label>
+        <input type="text" id="employeeStoreId">
+        <br>
+        <br>
+        <button onclick="addNewEmployee()">Submit</button>
+
+    </fieldset>
+    <br>
+    <br>
+
+    <fieldset class="fieldset-auto-width">
+        <legend>Assign Store to Existing Employee</legend>
+        <label for="employeeId">Employee ID</label>
+        <input type="text" id="employeeId">
+        <br>
+        <br>
+        <label for="newEmployeeStoreId">ID of Store to Assign Employee</label>
+        <input type="text" id="newEmployeeStoreId">
+        <br>
+        <br>
+        <button onclick="assignEmployee()">Submit</button>
+
+    </fieldset>
+    
+</body>
+
+</html>

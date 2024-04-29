@@ -14,11 +14,6 @@
 </head>
 <body>
     <p>Order Summary</p>
-
-    <!-- Make the image based on the status of the order on the page, later thing to do like how you load into the table when the window open something like that
-    then reload page when it is updated automatically-->
-    
-
         <div class="container">
             <div class="table-container">
             <table id="cart" style="width:120%">
@@ -27,8 +22,7 @@
             <td>Item</td>
             <td>Quantity</td>
             <td>Price per Item</td>
-            <td>Total Price</td>
-            <td>Order Price</td>
+            <td>Total Item Price</td>
             </tr>
         </thead>
         <tbody>
@@ -36,12 +30,16 @@
         </table>
       </table> 
 
+      <div id="rewardsContainer" class="rewards-style">Rewards Points: </div>
+      <div id="usedRewards" hidden="hidden">You used reward points</div>
+
       <div class="order-buttons">
         <button id="checkMapsButton" name="checkMapsButton" onclick="window.location.href='/directions/directionsView.html'">Check Delivery/TakeOut</button>
         <button id="cancelOrderButton" name="cancelOrderButton">Cancel Order</button>
-        <button id="notReceivedButton" name="notReceivedButton" hidden="hidden">Order Not Received</button>
+        <button id="refundButton" name="refundButton">Refund Order</button>
         <button id="homeButton" name="homeButton" onclick="window.location.href='/home/home.html'">Home</button>
       </div>
+
     </div>
 
     <div class="right-side-image">
@@ -49,8 +47,6 @@
       </div>
     </div>
     
-    <!-- very important: make sure you have: "/public/scripts/..." 
-        instead of: "public/scripts/..."  -->
     <script type = "module" src="/order/orderStatusScript.js"></script>
 
 </body>

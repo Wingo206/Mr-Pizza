@@ -1,222 +1,166 @@
-/* 
- * This is an example front-end script to verify that when
- * an html file is loaded, front-end scripts can be run as well
- */
+import {cartEntry, populateCartTable, calculateTotalCost} from './orderFunctions.js';
 
-/*
-To Do
-For Order Page
--Get items from the cart (from menu team) //WILL BE DONE WHEN CART IS FIXED 
--Make sure that stripe total cost is being retrieved from cart
--Make sure only customers can make orders
--Combine stripe checkout with the page checkout button 
--Add option to add rewards (will subtract from total)
+const cartItems = await getCartItems();
+let orderId = undefined;
+let isDelivery = false;
+console.log("This is isDelivery: " + isDelivery);
 
-For Order Status
--Show contents of order
--Fix orderid increments
--The quantity needs to be fixed, read how many items there are then update quantity
--The table should display the current order's order id
--Link check delivery takeout to map page 
--Check When the Order Status is updated (loop/continously check) Reload the page if status changes
--make cancel order use runquery instead of new connection (and refund functionality)
--Show PP earned and total PP
--email fix for confirmation order
-
-For Past Order
-Make status a button or drop down
-For table, have the rows be order id, then split the rows further for each small item
-Make status update in database
-*/
-
-import {cartEntry, populateCartTable, calculateTotalCost, displayCart} from './orderFunctions.js';
-document.addEventListener('DOMContentLoaded', function() {
-  const cartItems = JSON.parse(localStorage.getItem('cart')) || [];
-  const cartEntries = cartItems.map(item => new cartEntry(
-    item.description, item.quantity, item.price, item.price * item.quantity
+  let orderQuantity = 0;
+  let midList = [];
+  cartItems.forEach(item => {
+      console.log(item);
+      orderQuantity += item.quantity;
+      midList.push({mid: item.mid, price: item.price});
+      item.toppings.forEach(topping => {
+        console.log("Topping: " + topping.topping_name);
+    });
+  });
+  const cartEntries2 = cartItems.map(item => new cartEntry(
+    item.item_name, item.quantity, item.price, item.price * item.quantity, item.mid, item.toppings.map(topping => topping.topping_name).join(', ')
   ));
 
-  populateCartTable('#cart tbody', cartEntries);
-  const totalCost = calculateTotalCost(cartEntries);
+  const orderItemData = [];
+
+  let total = 0; 
+  cartItems.forEach((entry) => {
+    for (let j = 0; j < entry.quantity; j++) {
+      orderItemData.push({order_id: 0, mid: entry.mid});
+    }
+    total += entry.price * entry.quantity;
+    //total += entry.size;
+  });
+  total = total.toFixed(2);
+
+  populateCartTable('#cart tbody', cartEntries2);
+  const totalCost = calculateTotalCost(cartEntries2);
   console.log('Total cost:', totalCost);
-});
 
-// here instead of making the cart basically we would get it from a request body from the menu team
-// so they click a button then run some async function like this, which sends the cart, and we will parse it and go to this path 
-// ill put pseudo below
 
-//so this will be in the cart code
-// const button1 = document.getElementById("go to checkout");
+console.log("THIS IS THE TOTAL " + total);
 
-// button1.addEventListener("click", function() {
-//   
-// const fetchCart = async () => {
-//   console.log('lol');
-//   const response = await fetch("/order/goToCheckout", {
-//     method: "POST",
-//   });
-//     alert("in checkout now");
-// });
+function formatDate(date) {
+  const year = date.getFullYear();
+  const month = String(date.getMonth() + 1).padStart(2, '0');
+  const day = String(date.getDate()).padStart(2, '0');
+  const hours = String(date.getHours()).padStart(2, '0');
+  const minutes = String(date.getMinutes()).padStart(2, '0');
+  const seconds = String(date.getSeconds()).padStart(2, '0');
+  
+  return `${year}-${month}-${day} ${hours}:${minutes}:${seconds}`;
+}
 
-//next code will be some backend js file referencing that path 
-// async function sendCart(req, res) {
+const currentDate = new Date();
+const formattedDate = formatDate(currentDate);
 
-//   let body = await new Promise(resolve => {
-//       let data = '';
-//       req.on('data', chunk => {
-//           data += chunk;
-//       })
-//       req.on('end', () => {
-//           resolve(data);
-//       })
-//   });
-
-//   //let decodedData = JSON.parse(body);
-
-//   res.writeHead(200, {'Content-type': 'text/plain'});
-//   res.end(decodedData);
-//THAT WOULD BE THE CART
-// }
-// module.exports = {
-//   routes: [
-//       {
-//           method: 'POST',
-//           path: '/order/goToCheckout',
-//           handler: sendCart
-//       },
-//   ]
-// };
-
-//Then in this code we would basically retrieve it somehow 
-
-const orderData = [
+//MADE AT NEEDS TO BE REPLACED WITH STORE ID 
+let orderData = [
   {
     made_at: 1,
-    credit_card: '1234567890123456',
     status: 'Processing',
-    total_price: 9.99,
-    delivery_address: '123 Main St, City, Country',
-    DT_created: '2024-03-25 10:00:00',
+    delivery_address: null,
+    total_price: total,
+    DT_created: formattedDate,
     DT_delivered: null,
-    ordered_by: 1
+    ordered_by: null
   }
 ];
 
-const menuItemData = [
-  {
-    price : 9.99,
-    image_url: 'https://example.com/image1.jpg',
-    description: 'Pizza Margherita'
-  },
-  {
-    price: 9.99,
-    image_url: 'https://example.com/image2.jpg',
-    description: 'Cheese Pizza'
+let rewardText = await displayReward();
+const rewardsContainer = document.getElementById('rewardsContainer');
+rewardsContainer.textContent = "Your Reward Points: " + rewardText[0].rewards_points;
+
+document.getElementById('applyRewards').addEventListener('click', async function() {
+  if (rewardText[0].rewards_points < 5) {
+    alert('Need 5 reward points to redeem free item!');
+    return;
   }
-];
+  if (orderQuantity < 1) {
+    alert('You need at least two items in your order to use rewards!');
+    return;
+  }
+  let priceUnder20 = false; 
+  let highestPriceMid = 0;
+  let highestPriceMidIndex = 0;
+  for (let i = 0; i < midList.length; i++) {
+    if (midList[i].price < 20) {
+      priceUnder20 = true;
+      if (highestPriceMid < midList[i].price) {
+        highestPriceMid = midList[i].price;
+        highestPriceMidIndex = i;
+      }
+    }
+  }
+  if (!priceUnder20) {
+    alert('You can only apply rewards to items that are under 20 dollars!')
+    return;
+  }
+  total = total - highestPriceMid;
+  total = total.toFixed(2);
+  orderData[0].total_price = total; 
 
-const orderItemData = [
-  {order_id: 0, mid: 1},
-  {order_id: 0, mid: 2},
-  {order_id: 0, mid: 2},
-];
+  let redeemText = await redeemReward();
+  
+  rewardText = await displayReward();
+  rewardsContainer.textContent = "Your Reward Points: " + rewardText[0].rewards_points;
 
-let total = 0;
-for (let i = 0; i < orderItemData.length; i++) {
-  total += menuItemData[orderItemData[i].mid - 1].price; 
-}
+  console.log(JSON.stringify(redeemReward));
+  alert(JSON.stringify(redeemText));
+});
 
-const cart = [new cartEntry("pizza", 2, 11.99, 11.99 * 2), new cartEntry('wings', 1, 6.99, 6.99)];
+
 const stripe = Stripe('pk_test_51OxFUuP5gIWmEZ1PniORZnxF5lBrVHSaZzQeI836MWHDsr2cjqRsiFOoolY5yP9zQse5Sar1T0s0hwpy6QwKbfhX00MVSoX1UQ')
 let isThereTip = false;
-console.log(cart);
-
-// //replace conditionals with checking if user is employee or admin,
-// //for video just replace it to show customer and employee or admin 
-// if (true) {
-//   document.getElementById("pastOrderButton").removeAttribute("hidden");
-// }
-// else {
-//   document.getElementById("pastOrderButton").setAttribute("hidden", "hidden");
-// }
-
-// const cartDiv = document.getElementById('cartDiv');
-// const item1 = document.getElementById('item1');
-// const quantity1 = document.getElementById('quantity1');
-// const pricePerItem1 = document.getElementById('pricePerItem1');
-// const totalPrice1 = document.getElementById('totalPrice1');
-
-// item1.innerHTML = cart[0].itemName;
-// quantity1.innerHTML = cart[0].quantity;
-// pricePerItem1.innerHTML = cart[0].pricePerItem;
-// totalPrice1.innerHTML = cart[0].totalCostOfEntry;
-
-function newCartTable(query, orderData, menuItemData, orderItemData) {
-  const tableBody = document.querySelector(query);
-  tableBody.innerHTML = '';
-
-  // Assuming there's only one item in the cart
-  for (let i = 0; i < orderItemData.length; i++) {
-    const order = orderData[0];
-    const orderItem = orderItemData[i];
-    const menuItem = menuItemData[orderItem.mid-1];
-
-  
-    const row = tableBody.insertRow();
-    row.insertCell().textContent = capitalizeFirstLetter(menuItem.description);
-    row.insertCell().textContent = 1; // Assuming you have a quantity field in orderItemData
-    row.insertCell().textContent = menuItem.price;
-    row.insertCell().textContent = order.total_price;
-  }
-  
-}
-
-function capitalizeFirstLetter(string) {
-  return string.charAt(0).toUpperCase() + string.slice(1);
-}
-
-window.addEventListener('load', newCartTable("#cart tbody", orderData, menuItemData, orderItemData));
-
-async function checkoutButtonOnClick() {
-  alert("Total cost of cart: " + calculateTotalCost(cart));
-}
-
-initialize();
-
-// Fetch Checkout Session and retrieve the client secret
-async function initialize() {
-  const fetchClientSecret = async () => {
-    const response = await fetch("/order/createCheckoutSession", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json" // Specify the content type as JSON
-      },
-      body: JSON.stringify({ total : total , tip : isThereTip}) 
-    });
-    const {client_secret} = await response.json();
-    return client_secret;
-  };
-
-  // Initialize Checkout
-  const checkout = await stripe.initEmbeddedCheckout({
-    fetchClientSecret,
-  });
-
-  // Mount Checkout
-  checkout.mount('#checkout');
-}
-
 const button1 = document.getElementById("checkoutButton");
 const button2 = document.getElementById("tipButton");
+
+const addressButton = document.getElementById("loadScriptButton");
+addressButton.addEventListener("click", function () {
+    isDelivery = true;
+    // Assuming addAddressForm and refreshCheckoutButton are available and correctly defined elsewhere.
+    window.addAddressForm('addressInputForm', onAddressConfirm);
+    refreshCheckoutButton();
+});
+
+const reloadButton = document.getElementById("unloadScriptButton");
+reloadButton.addEventListener("click", function () {
+  isDelivery = false;
+  console.log(isDelivery);
+  window.location.reload();
+})
+
+let currentAddress;
+/**
+ * called once the address form is confirmed
+ */
+function onAddressConfirm(formattedAddress, location) {
+  currentAddress = formattedAddress;
+  // update the current order as well
+  orderData[0].delivery_address = currentAddress;
+  document.getElementById('currentAddress').innerHTML = `Current address: ${currentAddress}`;
+
+  refreshCheckoutButton();
+}
+
+/**
+ * disable the checkout button if the address is not confirmed
+ * called once on window load
+ */
+function refreshCheckoutButton() {
+  if (currentAddress == undefined) {
+    button1.disabled = true;
+  } else  {
+    button1.disabled = false;
+  }
+}
+
 button2.addEventListener("click", function () {
-  //document.getElementById("tip").removeAttribute("hidden");
   isThereTip = true;
+  initializeCheckout(); // Reinitialize checkout whenever tip is toggled
   alert("Tip added");
 });
 
-button1.addEventListener("click", function () {
-
-    document.getElementById("checkout").removeAttribute("hidden");
+button1.addEventListener("click", async function () {
+  document.getElementById("checkout").removeAttribute("hidden");
     //if statement that checks if the time is within 9 am to 4:30 am, if it isnt then print we are closed, please order during opening hours and 30 minutes before the store closes
     
     // let currentTime = new Date();
@@ -225,20 +169,77 @@ button1.addEventListener("click", function () {
     //   return;
     // }
 
+  console.log(orderData)
     const fetchReponse = async () => {
       const response = await fetch("/order/postOrder", {
         method: "POST",
         headers: {
           "Content-Type": "application/json" // Specify the content type as JSON
         },
-        body: JSON.stringify({orderData, menuItemData, orderItemData})
+        body: JSON.stringify({orderData, orderItemData, isDelivery}) //add isDelivery to this
       });
-      const responseData = await response.text();
-      alert(JSON.stringify(responseData));
-      
+      const responseData = await response.json();
+      orderId = responseData.orderId;
+      alert(responseData.message);
+      button1.disabled = true;
+
     }
   
-    fetchReponse();
+    await fetchReponse();
+    initializeCheckout();
   
 });
 
+async function getCartItems() {
+  const cartItems = JSON.parse(localStorage.getItem('cart')) || [];
+  return cartItems;
+}
+
+async function initializeCheckout() {
+  button2.style.visibility = 'hidden';
+
+  const clientSecret = await fetchClientSecret();
+  const checkout = await stripe.initEmbeddedCheckout({
+    clientSecret,
+  });
+  
+  checkout.mount('#checkout');
+}
+
+async function fetchClientSecret() {
+  let newTotal = (parseFloat(total)).toFixed(2);
+  console.log(newTotal);
+  const response = await fetch("/order/createCheckoutSession", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json"
+    },
+    body: JSON.stringify({ total: newTotal, tip: isThereTip, orderId : orderId})
+  });
+  const { client_secret } = await response.json();
+  return client_secret;
+}
+
+async function displayReward() {
+  const response = await fetch("/order/getRewards", {
+      method: "GET",
+      headers: {
+          "Content-Type": "application/json"
+      }
+  });
+  const message = await response.json();
+  console.log("Your Reward Points: " + JSON.stringify(message));
+  return message;
+}
+
+async function redeemReward() {
+  const response = await fetch("/order/redeemRewards", {
+      method: "POST",
+      headers: {
+          "Content-Type": "application/json"
+      }
+  });
+  const message = await response.json();
+  console.log(JSON.stringify(message));
+  return message;
+}

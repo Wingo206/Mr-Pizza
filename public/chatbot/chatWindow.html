@@ -1,47 +1,210 @@
 <div>
    <style type="text/css" scoped>
+      p {
+         font-size: 1em;
+         text-align: start;
+      }
+
       #chatWindow {
-         position: absolute;
+         position: fixed;
          width: 300px;
-         height: 400px;
+         /*height: 400px;*/
          z-index: 10;
          bottom: 10px;
          right: 10px;
          border: 2px solid #e76f51;
          border-radius: 5px;
-         background: rgba(150, 73, 54, 0.2);
          display: flex;
          flex-direction: column;
+         align-items: stretch;
+         background: linear-gradient(135deg, hsla(27, 92%, 68%, 1) 0%, hsla(0, 81%, 69%, 1) 100%);
       }
 
       #chatTitleDiv {
          display: flex;
          flex-direction: row;
-         gap: 5px;
+         gap: 10px;
          padding-left: 10px;
          padding-right: 10px;
+         object-fit: cover;
+         align-items: center;
+      }
+
+      .avatarDiv {
+         align-self: center;
+      }
+
+      .avatar {
+         border-radius: 50%;
+         /*border: 1px solid #e76f51;*/
+         background: #ffffff;
+         padding: 7px;
+      }
+
+      #chatTitle {
+         color: #ffffff;
       }
 
       .spacer {
          flex-grow: 1;
       }
 
+      #contents {
+         display: flex;
+         flex-direction: column;
+         height: 450px;
+         transition: height 0.3s;
+         transition-timing-function: ease;
+      }
+
+      #contents.closed {
+         height: 0px;
+      }
+
       #chat {
-         width: 100%;
-         background: linear-gradient(135deg, #fcb69f 0%, #fcb69f 100%);
+         margin: 5px;
+         background: rgba(255, 255, 255, 0.6);
+         flex: 1;
+         border-radius: 5px;
+         display: flex;
+         flex-direction: column;
+            overflow-y: scroll;
+      }
+
+      /* styling for chat boxes*/
+      .responseDiv {
+         display: flex;
+         flex-direction: row;
+      }
+
+      .responseAvatarDiv {
+         align-self: flex-end;
+         margin-bottom: 5px;
+         margin-left: 5px;
+      }
+
+      .chatEntry {
+         max-width: 75%;
+         margin: 5px;
+         padding: 5px;
+         border-radius: 5px;
+      }
+
+      .chatEntry.response {
+         align-self: flex-start;
+         background: rgba(255, 255, 255, 1);
+      }
+
+      .chatEntry.question {
+         align-self: flex-end;
+         background: linear-gradient(135deg, hsla(22, 100%, 65%, 1) 1%, hsla(7, 91%, 66%, 1) 100%);
+      }
+
+      .chatText {
+         margin-top: 0px;
+         margin-bottom: 0px;
+      }
+
+      .chatText.response {}
+
+      .chatText.question {
+         color: #ffffff;
+      }
+
+      /* styling for chat input */
+      .inputDiv {
+         display: flex;
+         flex-direction: row;
+         margin-left: 5px;
+         margin-right: 5px;
+         margin-bottom: 5px;
+         background: rgba(255, 255, 255, 0.6);
+         border-radius: 5px;
+         overflow-y: hidden;
+            height: max-content;
+      }
+
+      .chatInput {
+         padding: 5px;
+         border: 0;
+         background: 0;
          flex-grow: 1;
+      }
+
+      textarea:focus,
+      input:focus {
+         outline: none;
+      }
+
+      .imgButton {
+         padding: 5px;
+         background: 0;
+         border: 0;
+      }
+
+      .chatSubmitImg {
+         width: 25px;
+         height: 25px;
+         filter: brightness(0) saturate(100%) invert(63%) sepia(32%) saturate(5122%) hue-rotate(324deg) brightness(100%) contrast(95%);
+      }
+
+      .chatSubmitImg:hover {
+         transition: 0.2s;
+         filter: brightness(0) saturate(100%) invert(79%) sepia(35%) saturate(5228%) hue-rotate(326deg) brightness(101%) contrast(101%);
+      }
+
+      /* toggle hide chat button*/
+      .toggleImg {
+         width: 25px;
+         height: 25px;
+         filter: brightness(0) saturate(100%) invert(96%) sepia(100%) saturate(14%) hue-rotate(247deg) brightness(103%) contrast(103%);
+         transform: rotate(0deg);
+         transition: transform 0.3;
+         transition-timing-function: ease;
+      }
+
+      .toggleImg.closed {
+         transform: rotate(180deg);
+      }
+
+      .toggleImg:hover {
+         transition: 0.2s;
+         filter: brightness(0) saturate(100%) invert(96%) sepia(100%) saturate(14%) hue-rotate(247deg) brightness(85%) contrast(103%);
       }
 
    </style>
    <div id="chatWindow">
       <div id="chatTitleDiv">
-         <p>hello test</p>
+         <div class="avatarDiv">
+            <img src="/favicon.ico" alt="Avatar" class="avatar">
+         </div>
+         <p id="chatTitle">Mr. Pizza</p>
          <div class="spacer"></div>
-
-         <button>V</button>
+         <button class="imgButton" onclick="toggleHideChat()">
+            <img id="toggleImg" class="toggleImg closed" , src="/chatbot/chevron-down.svg" />
+         </button>
       </div>
-      <div id="chat">
-         <p>hello test</p>
+      <div id="contents" class="closed">
+         <div id="chat">
+            <!-- <div class="responseDiv"> -->
+            <!--    <div class="responseAvatarDiv"> -->
+            <!--       <img src="/favicon.ico" alt="Avatar" class="avatar"> -->
+            <!--    </div> -->
+            <!--    <div class="chatEntry response"> -->
+            <!--       <p class="chatText response">Hi! I'm Mr. Pizza. What would you like help with?</p> -->
+            <!--    </div> -->
+            <!-- </div> -->
+            <!-- <div class="chatEntry question"> -->
+            <!--    <p class="chatText question">How do I order a pizza?</p> -->
+            <!-- </div> -->
+            <!-- <div class="spacer"> </div> -->
+         </div>
+         <div class="inputDiv">
+            <input id="chatInput" class="chatInput" type="text" placeholder="Type a message...">
+            <button class="imgButton" onclick="submitChatMessage()">
+               <img class="chatSubmitImg" , src="/chatbot/send.svg" />
+            </button>
+         </div>
       </div>
    </div>
 </div>

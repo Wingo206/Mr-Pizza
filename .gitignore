@@ -138,3 +138,7 @@ models/temp/*
 
 # cache for webscraping
 lib/scraping/cache/*
+
+# chatbot models
+*.nlp
+lib/chatbot/menuCorpus.json

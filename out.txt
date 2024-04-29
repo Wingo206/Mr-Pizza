@@ -1,0 +1,355 @@
+Loading routes
+/customer/register
+/customer/login
+/employee/login
+/admin/login
+/authRole
+/logout
+/loggedInTest
+/employeeStoreInfo
+/getCustomerInfo
+/example
+/^\/example\/[\d]+$/
+/addressValidation/addressForm.html
+/addressValidation/addressForm.js
+/chatbot/chatWindow.html
+/chatbot/chatbot.js
+/chatbot/chevron-down.svg
+/chatbot/send.svg
+/customerAccount/customerAccount.html
+/customerAccount/customerAccountDisplay.css
+/customerAccount/customerAccountDisplay.html
+/customerAccount/customerAccountScript.js
+/customerAccount/customerDisplay.js
+/customerAccount/customerUpdateSuccess.html
+/directions/directionsIndex.js
+/directions/directionsStyle.css
+/directions/directionsView.html
+/email/emailIndex.js
+/email/emailView.html
+/example/authProtectedExample.html
+/example/example.html
+/example/examplePublicScript.js
+/favicon.ico
+/geolocation/geolocationIndex.js
+/home/home.html
+/home/homeScript.js
+/home/style.css
+/login/customerLogin.html
+/login/customerLoginScript.js
+/login/empAdminLogin.html
+/login/empAdminLoginScript.js
+/login/loginSuccess.html
+/login/style.css
+/map/assign.js
+/map/assignDeliveries.html
+/map/assignStyle.css
+/map/mapIndex.js
+/map/mapStyle.css
+/map/mapView.html
+/menu/adminMenu.html
+/menu/adminMenu.js
+/menu/employeeMenu.html
+/menu/employeeMenu.js
+/menu/menuLoading.css
+/menu/menuLoading.html
+/menu/menuLoading.js
+/order/Statuses/Delivery/deliveryComplete.png
+/order/Statuses/Delivery/deliveryDelivered.png
+/order/Statuses/Delivery/deliveryInTransit.png
+/order/Statuses/Delivery/deliveryProcessing.png
+/order/Statuses/Delivery/deliveryReady.png
+/order/Statuses/Delivery/deliveryStarting.png
+/order/Statuses/Misc/miscCancelled.png
+/order/Statuses/Misc/miscRefunded.png
+/order/Statuses/Misc/miscRejected.png
+/order/Statuses/Pickup/pickupComplete.png
+/order/Statuses/Pickup/pickupProcessing.png
+/order/Statuses/Pickup/pickupReady.png
+/order/Statuses/Pickup/pickupStarted.png
+/order/Style.css
+/order/StyleorderStatus.css
+/order/StylepastOrder.css
+/order/order.html
+/order/orderFunctions.js
+/order/orderHistory.html
+/order/orderHistoryScript.js
+/order/orderPublicScript.js
+/order/orderStatus.html
+/order/orderStatusScript.js
+/order/orderedPizzaTrack.png
+/order/orderedPizzaTrack2.png
+/order/pastOrder.html
+/order/pastOrderScript.js
+/order/test.html
+/chatbot
+/customerAccounts
+/^\/customerAccounts\/[\d]+$/
+/customer/accountInfo
+/validateAddress
+/^\/optimalAssignment\/[\d]+$/
+/^\/unassigned\/[\d]+$/
+/^\/availableDrivers\/[\d]+$/
+/^\/assignOrders\/[\d]+$/
+/directions/assignedOrder
+/^\/directions\/waypoints\/[\d]$/
+/email/sendDefault
+/stores
+/^\/stores\/[\d]+$/
+/storeNames
+/^\/stores\/[\d]+\/edit$/
+/stores/add
+/menu/edit
+/menu/add
+/menu/availability
+/^\/menu\/[\d]+$/
+/cart
+/order/emailOrderConf
+/order/emailOrderCancel
+/order/emailOrderRefund
+/order/postOrder
+/order/getOrder
+/order/cancelOrder
+/order/checkStatus
+/order/getOID
+/order/getRewards
+/order/redeemRewards
+/order/checkOption
+/order/getPastOrders
+/order/getCustomerOrder
+/order/setStatus
+/order/createCheckoutSession
+/order/handleRefund
+/order/stripeWebhook
+Loaded 122 routes from 478 files.
+Listening on port 8080
+mrPizzaAuth connected successfully
+mrPizzaVisitor connected successfully
+mrPizzaCustomer connected successfully
+mrPizzaEmployee connected successfully
+mrPizzaAdmin connected successfully
+/order/order.html
+/order/Style.css
+/order/orderPublicScript.js
+/addressValidation/addressForm.js
+/order/orderFunctions.js
+/order/getRewards
+/addressValidation/addressForm.html
+/validateAddress
+Request body: {"address":{"regionCode":"US","locality":"","administrativeArea":"NJ","postalCode":"","addressLines":["50 goldenrod drive belle mead nj",""]},"enableUspsCass":true}
+
+{
+  address: {
+    regionCode: 'US',
+    locality: '',
+    administrativeArea: 'NJ',
+    postalCode: '',
+    addressLines: [ '50 goldenrod drive belle mead nj', '' ]
+  },
+  enableUspsCass: true
+}
+Response body: {"result":{"verdict":{"inputGranularity":"PREMISE","validationGranularity":"PREMISE","geocodeGranularity":"PREMISE","addressComplete":true,"hasInferredComponents":true},"address":{"formattedAddress":"50 Goldenrod Drive, Belle Mead, NJ 08502-4121, USA","postalAddress":{"regionCode":"US","languageCode":"en","postalCode":"08502-4121","administrativeArea":"NJ","locality":"Belle Mead","addressLines":["50 Goldenrod Dr"]},"addressComponents":[{"componentName":{"text":"50"},"componentType":"street_number","confirmationLevel":"CONFIRMED"},{"componentName":{"text":"Goldenrod Drive","languageCode":"en"},"componentType":"route","confirmationLevel":"CONFIRMED"},{"componentName":{"text":"Belle Mead","languageCode":"en"},"componentType":"neighborhood","confirmationLevel":"CONFIRMED"},{"componentName":{"text":"NJ","languageCode":"en"},"componentType":"administrative_area_level_1","confirmationLevel":"CONFIRMED"},{"componentName":{"text":"USA","languageCode":"en"},"componentType":"country","confirmationLevel":"CONFIRMED"},{"componentName":{"text":"08502"},"componentType":"postal_code","confirmationLevel":"CONFIRMED","inferred":true},{"componentName":{"text":"4121"},"componentType":"postal_code_suffix","confirmationLevel":"CONFIRMED","inferred":true}]},"geocode":{"location":{"latitude":40.4674595,"longitude":-74.6524401},"plusCode":{"globalCode":"87G7F88X+X2"},"bounds":{"low":{"latitude":40.4673855,"longitude":-74.6525042},"high":{"latitude":40.4675355,"longitude":-74.6523437}},"featureSizeMeters":11.743885,"placeId":"ChIJt1M2DRLpw4kRiCHH1qwxFj4","placeTypes":["premise"]},"metadata":{"business":false,"poBox":false,"residential":true},"uspsData":{"standardizedAddress":{"firstAddressLine":"50 GOLDENROD DRIVE BELLE MEAD NJ"},"dpvFootnote":"A1","carrierRoute":"R016","cassProcessed":true}},"responseId":"d8d98fba-e43d-418e-a974-bc14e4da588a"}
+/order/postOrder
+{
+  address: {
+    addressLines: [ '50 Goldenrod Drive, Belle Mead, NJ 08502-4121, USA' ]
+  },
+  enableUspsCass: true
+}
+Response body: {"result":{"verdict":{"inputGranularity":"PREMISE","validationGranularity":"PREMISE","geocodeGranularity":"PREMISE","addressComplete":true},"address":{"formattedAddress":"50 Goldenrod Drive, Belle Mead, NJ 08502-4121, USA","postalAddress":{"regionCode":"US","languageCode":"en","postalCode":"08502-4121","administrativeArea":"NJ","locality":"Belle Mead","addressLines":["50 Goldenrod Dr"]},"addressComponents":[{"componentName":{"text":"50"},"componentType":"street_number","confirmationLevel":"CONFIRMED"},{"componentName":{"text":"Goldenrod Drive","languageCode":"en"},"componentType":"route","confirmationLevel":"CONFIRMED"},{"componentName":{"text":"Belle Mead","languageCode":"en"},"componentType":"neighborhood","confirmationLevel":"CONFIRMED"},{"componentName":{"text":"NJ","languageCode":"en"},"componentType":"administrative_area_level_1","confirmationLevel":"CONFIRMED"},{"componentName":{"text":"08502"},"componentType":"postal_code","confirmationLevel":"CONFIRMED"},{"componentName":{"text":"4121","languageCode":"en"},"componentType":"postal_code_suffix","confirmationLevel":"CONFIRMED"},{"componentName":{"text":"USA","languageCode":"en"},"componentType":"country","confirmationLevel":"CONFIRMED"}]},"geocode":{"location":{"latitude":40.4674595,"longitude":-74.6524401},"plusCode":{"globalCode":"87G7F88X+X2"},"bounds":{"low":{"latitude":40.4673855,"longitude":-74.6525042},"high":{"latitude":40.4675355,"longitude":-74.6523437}},"featureSizeMeters":11.743885,"placeId":"ChIJt1M2DRLpw4kRiCHH1qwxFj4","placeTypes":["premise"]},"metadata":{"business":false,"poBox":false,"residential":true},"uspsData":{"standardizedAddress":{"firstAddressLine":"50 GOLDENROD DRIVE, BELLE MEAD, NJ 08502-4121, USA"},"dpvFootnote":"A1","carrierRoute":"R016","cassProcessed":true}},"responseId":"576ae325-c6ec-4d61-9292-634cc1b605f2"}
+{
+  validationResult: 'ACCEPTED',
+  formattedAddress: '50 Goldenrod Drive, Belle Mead, NJ 08502-4121, USA',
+  location: { latitude: 40.4674595, longitude: -74.6524401 }
+}
+Inserted 464 into customer_order: ResultSetHeader {
+  fieldCount: 0,
+  affectedRows: 1,
+  insertId: 464,
+  info: '',
+  serverStatus: 2,
+  warningStatus: 0,
+  changedRows: 0
+}
+[ [ 464, 2 ] ]
+Inserted into order_item: ResultSetHeader {
+  fieldCount: 0,
+  affectedRows: 1,
+  insertId: 899,
+  info: '',
+  serverStatus: 2,
+  warningStatus: 0,
+  changedRows: 0
+}
+/order/createCheckoutSession
+Session ID:  cs_test_a1Qvh0hOmeEarQV8FwrZEHV82ET5CS8tOX3WfiKrrSLzW1Dc4dhKzFr4qM
+Session Payment Intent:  null
+Order ID:  464
+Entire Session:  {
+  id: 'cs_test_a1Qvh0hOmeEarQV8FwrZEHV82ET5CS8tOX3WfiKrrSLzW1Dc4dhKzFr4qM',
+  object: 'checkout.session',
+  after_expiration: null,
+  allow_promotion_codes: null,
+  amount_subtotal: 899,
+  amount_total: 899,
+  automatic_tax: { enabled: false, liability: null, status: null },
+  billing_address_collection: null,
+  cancel_url: null,
+  client_reference_id: null,
+  client_secret: 'cs_test_a1Qvh0hOmeEarQV8FwrZEHV82ET5CS8tOX3WfiKrrSLzW1Dc4dhKzFr4qM_secret_fidwbEhqYWAnPydgaGdgYWFgYScpJ2lkfGpwcVF8dWAnPyd2bGtiaWBabHFgaCcpJ3dgYWx3YGZxSmtGamh1aWBxbGprJz8nZGlyZHx2J3gl',
+  consent: null,
+  consent_collection: null,
+  created: 1714293189,
+  currency: 'usd',
+  currency_conversion: null,
+  custom_fields: [],
+  custom_text: {
+    after_submit: null,
+    shipping_address: null,
+    submit: null,
+    terms_of_service_acceptance: null
+  },
+  customer: null,
+  customer_creation: 'if_required',
+  customer_details: null,
+  customer_email: null,
+  expires_at: 1714379589,
+  invoice: null,
+  invoice_creation: {
+    enabled: false,
+    invoice_data: {
+      account_tax_ids: null,
+      custom_fields: null,
+      description: null,
+      footer: null,
+      issuer: null,
+      metadata: {},
+      rendering_options: null
+    }
+  },
+  livemode: false,
+  locale: null,
+  metadata: {},
+  mode: 'payment',
+  payment_intent: null,
+  payment_link: null,
+  payment_method_collection: 'if_required',
+  payment_method_configuration_details: null,
+  payment_method_options: { card: { request_three_d_secure: 'automatic' } },
+  payment_method_types: [ 'card' ],
+  payment_status: 'unpaid',
+  phone_number_collection: { enabled: false },
+  recovered_from: null,
+  redirect_on_completion: 'always',
+  return_url: 'https://127.0.0.1:8080/order/orderStatus.html',
+  saved_payment_method_options: null,
+  setup_intent: null,
+  shipping_address_collection: null,
+  shipping_cost: null,
+  shipping_details: null,
+  shipping_options: [],
+  status: 'open',
+  submit_type: null,
+  subscription: null,
+  success_url: null,
+  total_details: { amount_discount: 0, amount_shipping: 0, amount_tax: 0 },
+  ui_mode: 'embedded',
+  url: null
+}
+/order/stripeWebhook
+Beginning Stripe Confirmation
+BRURAJSD[object Object]
+BRUHHHHHHpayment_intent.created
+hello1
+/order/stripeWebhook
+Beginning Stripe Confirmation
+BRURAJSD[object Object]
+BRUHHHHHHcharge.succeeded
+hello1
+/order/stripeWebhook
+Beginning Stripe Confirmation
+BRURAJSD[object Object]
+BRUHHHHHHcheckout.session.completed
+hello1
+hello2
+/order/stripeWebhook
+Beginning Stripe Confirmation
+BRURAJSD[object Object]
+BRUHHHHHHpayment_intent.succeeded
+hello1
+ResultSetHeader {
+  fieldCount: 0,
+  affectedRows: 1,
+  insertId: 0,
+  info: 'Rows matched: 1  Changed: 1  Warnings: 0',
+  serverStatus: 34,
+  warningStatus: 0,
+  changedRows: 1
+}
+{
+  id: 'evt_1PATAuP5gIWmEZ1PZeFA9Bs0',
+  object: 'event',
+  api_version: '2023-10-16',
+  created: 1714293212,
+  data: {
+    object: {
+      id: 'cs_test_a1Qvh0hOmeEarQV8FwrZEHV82ET5CS8tOX3WfiKrrSLzW1Dc4dhKzFr4qM',
+      object: 'checkout.session',
+      after_expiration: null,
+      allow_promotion_codes: null,
+      amount_subtotal: 899,
+      amount_total: 899,
+      automatic_tax: [Object],
+      billing_address_collection: null,
+      cancel_url: null,
+      client_reference_id: null,
+      client_secret: null,
+      consent: null,
+      consent_collection: null,
+      created: 1714293189,
+      currency: 'usd',
+      currency_conversion: null,
+      custom_fields: [],
+      custom_text: [Object],
+      customer: null,
+      customer_creation: 'if_required',
+      customer_details: [Object],
+      customer_email: null,
+      expires_at: 1714379589,
+      invoice: null,
+      invoice_creation: [Object],
+      livemode: false,
+      locale: null,
+      metadata: {},
+      mode: 'payment',
+      payment_intent: 'pi_3PATAtP5gIWmEZ1P1OcmoklV',
+      payment_link: null,
+      payment_method_collection: 'if_required',
+      payment_method_configuration_details: null,
+      payment_method_options: [Object],
+      payment_method_types: [Array],
+      payment_status: 'paid',
+      phone_number_collection: [Object],
+      recovered_from: null,
+      redirect_on_completion: 'always',
+      return_url: 'https://127.0.0.1:8080/order/orderStatus.html',
+      saved_payment_method_options: null,
+      setup_intent: null,
+      shipping_address_collection: null,
+      shipping_cost: null,
+      shipping_details: null,
+      shipping_options: [],
+      status: 'complete',
+      submit_type: null,
+      subscription: null,
+      success_url: null,
+      total_details: [Object],
+      ui_mode: 'embedded',
+      url: null
+    }
+  },
+  livemode: false,
+  pending_webhooks: 2,
+  request: { id: null, idempotency_key: null },
+  type: 'checkout.session.completed'
+}

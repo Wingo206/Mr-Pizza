@@ -10,7 +10,7 @@ async function fetchEmployeeLogin() {
    })
    console.log(resp);
    if (resp.status == 200) {
-      window.location.href = 'loginSuccess.html'
+      window.location.href = 'employeeLoginSuccess.html'
    } else if (resp.status == 401) {
       alert(await resp.text())
    } else {
@@ -30,7 +30,7 @@ async function fetchAdminLogin() {
    })
    console.log(resp);
    if (resp.status == 200) {
-      window.location.href = 'loginSuccess.html'
+      window.location.href = 'adminLoginSuccess.html'
    } else if (resp.status == 401) {
       alert(await resp.text())
    } else {
