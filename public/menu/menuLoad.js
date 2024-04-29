@@ -1,7 +1,16 @@
 // extract from server
+let storeId;
+
 const refresh = async () => {
+    // don't load if there's no selected store id
+    if (storeId == undefined) {
+        const menuContainer = document.getElementById('menu');
+        menuContainer.innerHTML = `<p>No store selected.</p>`
+        return;
+    }
+
     try {
-        const response = await fetch("/menu", {
+        const response = await fetch("/menu/" + storeId, {
             method: 'GET',
             headers: {
                 'Content-Type': 'application/json'
@@ -63,7 +72,7 @@ const displayMenu = (menuItems) => {
     // event when clicking the search icon
     const searchIcon = document.querySelector('.fa-search');
     searchIcon.addEventListener('click', () => displaySearch(menuItems));
-    
+
 }
 
 // create menu item's buttons
@@ -117,7 +126,7 @@ const createPopup = (item) => {
     description.textContent = item.description;
     popupContent.appendChild(description);
 
-    if (item.toppings && item.toppings.length > 0){
+    if (item.toppings && item.toppings.length > 0) {
         const toppingsTitle = document.createElement('h3');
         toppingsTitle.textContent = 'Toppings:';
         popupContent.appendChild(toppingsTitle);
@@ -131,7 +140,7 @@ const createPopup = (item) => {
         popupContent.appendChild(toppingList);
     }
 
-    if (item.size && item.size.length > 0){
+    if (item.size && item.size.length > 0) {
         const sizeTitle = document.createElement('h3');
         sizeTitle.textContent = 'Sizes:';
         popupContent.appendChild(sizeTitle);
@@ -145,7 +154,7 @@ const createPopup = (item) => {
         popupContent.appendChild(sizeList);
     }
 
-    if (item.servingOptions && item.servingOptions.length > 0){
+    if (item.servingOptions && item.servingOptions.length > 0) {
         const servingOptionsTitle = document.createElement('h3');
         servingOptionsTitle.textContent = 'Serving Options:';
         popupContent.appendChild(servingOptionsTitle);
@@ -159,7 +168,7 @@ const createPopup = (item) => {
         popupContent.appendChild(servingOptionsList);
     }
 
-    if (item.sauces && item.sauces.length > 0){
+    if (item.sauces && item.sauces.length > 0) {
         const saucesTitle = document.createElement('h3');
         saucesTitle.textContent = 'Types of Sauces:';
         popupContent.appendChild(saucesTitle);
@@ -173,7 +182,7 @@ const createPopup = (item) => {
         popupContent.appendChild(saucesList);
     }
 
-    if (item.crust && item.crust.length > 0){
+    if (item.crust && item.crust.length > 0) {
         const crustTitle = document.createElement('h3');
         crustTitle.textContent = 'Types of Crust:';
         popupContent.appendChild(crustTitle);
@@ -187,7 +196,7 @@ const createPopup = (item) => {
         popupContent.appendChild(crustList);
     }
 
-    if (item.meats && item.meats.length > 0){
+    if (item.meats && item.meats.length > 0) {
         const meatTitle = document.createElement('h3');
         meatTitle.textContent = 'Types of Meats:';
         popupContent.appendChild(meatTitle);
@@ -201,7 +210,7 @@ const createPopup = (item) => {
         popupContent.appendChild(meatList);
     }
 
-    if (item.nonMeats && item.nonMeats.length > 0){
+    if (item.nonMeats && item.nonMeats.length > 0) {
         const nonMeatTitle = document.createElement('h3');
         nonMeatTitle.textContent = 'Types of Non-Meats:';
         popupContent.appendChild(nonMeatTitle);
@@ -215,7 +224,7 @@ const createPopup = (item) => {
         popupContent.appendChild(nonMeatList);
     }
 
-    if (item.cheese && item.cheese.length > 0){
+    if (item.cheese && item.cheese.length > 0) {
         const cheeseTitle = document.createElement('h3');
         cheeseTitle.textContent = 'Types of Cheese:';
         popupContent.appendChild(cheeseTitle);
@@ -242,7 +251,7 @@ const createPopup = (item) => {
         addToCart(item)
     });
     popupContent.appendChild(addButton);
-    
+
     popupContainer.appendChild(popupContent);
 
     document.body.appendChild(popupContainer);
@@ -252,7 +261,7 @@ const createPopup = (item) => {
 const cartIcon = document.querySelector('.fa-shopping-cart');
 const cartContainer = document.getElementById('cart-container');
 
-cartIcon.addEventListener('click', function() {
+cartIcon.addEventListener('click', function () {
     const isVisible = cartContainer.style.display === 'block';
     cartContainer.style.display = isVisible ? 'none' : 'block';
     if (!isVisible) {
@@ -282,7 +291,7 @@ const addToCart = (item) => {
             })),
         });
     }
-    
+
     localStorage.setItem('cart', JSON.stringify(cart));
     menuContainer.classList.remove('show');
     showPopup(`Item '${item.item_name}' added to cart`);
@@ -290,7 +299,7 @@ const addToCart = (item) => {
 }
 
 const backButton = document.getElementById('back-button');
-backButton.addEventListener('click', function() {
+backButton.addEventListener('click', function () {
     cartContainer.style.display = 'none';
 });
 
@@ -298,12 +307,12 @@ const removeFromCart = (index) => {
     let cart = JSON.parse(localStorage.getItem('cart')) || [];
     cart.splice(index, 1);
     localStorage.setItem('cart', JSON.stringify(cart));
-    displayCartItems(); 
+    displayCartItems();
     showPopup('Item removed from cart');
 }
 
 const checkoutButton = document.getElementById('checkout-button');
-checkoutButton.addEventListener('click', function() {
+checkoutButton.addEventListener('click', function () {
     window.location.href = 'https://127.0.0.1:8080/order/order.html';
 });
 
@@ -374,7 +383,7 @@ const displaySearch = (menuItems) => {
         refresh();
     });
     searchContent.appendChild(resetButton);
-    
+
     searchContainer.appendChild(searchContent);
 
     document.body.appendChild(searchContainer);
@@ -392,4 +401,51 @@ const searchHandler = async (searchText, menuItems) => {
 // Run menu
 document.addEventListener('DOMContentLoaded', () => {
     refresh();
+    window.addEventListener("load", async () => {
+        // get the store id from the cookies
+        storeId = getCookie('menuStoreId')
+
+        // load store options
+        let resp = await fetch('/storeNames', {
+            method: 'GET'
+        })
+        let storeNames = await resp.json();
+        console.log(storeNames)
+
+        // populate dropdown
+        let select = document.getElementById('store-select');
+        select.innerHTML = `<option value="" disabled selected>Select a store</option> `
+        select.innerHTML += storeNames.map(sn => `<option value="${sn.store_id}">${sn.name}</option>`)
+        select.onchange = (event) => {
+            storeId = Number(event.target.value);
+            console.log('changing store id to ' + storeId)
+            refresh();
+        }
+
+        refresh();
+    });
 });
+
+// cookie stuff for getting the store id
+function setCookie(name, value, days) {
+    var expires = "";
+    if (days) {
+        var date = new Date();
+        date.setTime(date.getTime() + (days * 24 * 60 * 60 * 1000));
+        expires = "; expires=" + date.toUTCString();
+    }
+    document.cookie = name + "=" + (value || "") + expires + "; path=/";
+}
+function getCookie(name) {
+    var nameEQ = name + "=";
+    var ca = document.cookie.split(';');
+    for (var i = 0; i < ca.length; i++) {
+        var c = ca[i];
+        while (c.charAt(0) == ' ') c = c.substring(1, c.length);
+        if (c.indexOf(nameEQ) == 0) return c.substring(nameEQ.length, c.length);
+    }
+    return null;
+}
+function eraseCookie(name) {
+    document.cookie = name + '=; Path=/; Expires=Thu, 01 Jan 1970 00:00:01 GMT;';
+}
