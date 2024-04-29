@@ -98,25 +98,5 @@
         "image": "https://cache.dominos.com/olo/6_130_2/assets/build/market/US/_en/images/img/products/larges/P_MARPAIR.jpg",
         "price": "10.99",
         "editButtonQuid": "edit-product-CHEMARPT"
-    },
-    {
-        "category": "entree-title-breadandovenbakeddips",
-        "sectionName": "Oven-Baked Dips",
-        "itemName": "Cheesy Marinara Dip",
-        "description": "Layers of flavorful marinara sauce and creamy melted cheeses.",
-        "orderButtonDataQuid": "F_MARDIP",
-        "image": "https://cache.dominos.com/olo/6_130_2/assets/build/market/US/_en/images/img/products/larges/F_MARDIP.jpg",
-        "price": "4.99",
-        "editButtonQuid": "edit-product-CHEMARDIP"
-    },
-    {
-        "category": "entree-title-breadandovenbakeddips",
-        "sectionName": "Oven-Baked Dips",
-        "itemName": "Five Cheese Dip",
-        "description": "A combination of Cheddar, Asiago, Parmesan, American and Pizza Cheeses baked to perfection.",
-        "orderButtonDataQuid": "F_FVCHEDIP",
-        "image": "https://cache.dominos.com/olo/6_130_2/assets/build/market/US/_en/images/img/products/larges/F_FVCHEDIP.jpg",
-        "price": "4.99",
-        "editButtonQuid": "edit-product-5CHEDIP"
     }
 ]

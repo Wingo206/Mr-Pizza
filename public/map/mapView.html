@@ -8,21 +8,25 @@
     <link rel="stylesheet" type="text/css" href="/home/style.css" />
     <script type="module" src="./mapIndex.js"></script>
     <script type="module" src="/addressValidation/addressForm.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/js-cookie@3.0.1/src/js.cookie.min.js"></script>
+
 
 </head>
 
 <body>
     <div id="outerDiv">
         <div id="controlPanel">
-            <h1>Mr Pizza Map</h1>
+            <h1>Mr. Pizza Map</h1>
             <a href="/home/home.html">Back to Home</a>
             <br>
             <br>
             <button onclick="loadLocations()">Load map locations</button>
             <br>
             <div id="storeInfo" class="hide">
+                <h1 id="storeName"></h1>
                 <h2 id="storeAddress"></h2>
                 <p id="storeId"></p>
+                <button onclick="goToMenu()">View the Menu at this store</button>
                 <div id="editStore" class="hide">
                     <fieldset>
                         <legend>Edit Store Information</legend>
@@ -70,8 +74,8 @@
     </div>
 
     <!-- prettier-ignore -->
-    <script>(g => { var h, a, k, p = "The Google Maps JavaScript API", c = "google", l = "importLibrary", q = "__ib__", m = document, b = window; b = b[c] || (b[c] = {}); var d = b.maps || (b.maps = {}), r = new Set, e = new URLSearchParams, u = () => h || (h = new Promise(async (f, n) => { await (a = m.createElement("script")); e.set("libraries", [...r] + ""); for (k in g) e.set(k.replace(/[A-Z]/g, t => "_" + t[0].toLowerCase()), g[k]); e.set("callback", c + ".maps." + q); a.src = `https://maps.${c}apis.com/maps/api/js?` + e; d[q] = f; a.onerror = () => h = n(Error(p + " could not load.")); a.nonce = m.querySelector("script[nonce]")?.nonce || ""; m.head.append(a) })); d[l] ? console.warn(p + " only loads once. Ignoring:", g) : d[l] = (f, ...n) => r.add(f) && u().then(() => d[l](f, ...n)) })
-            ({ key: "AIzaSyB41DRUbKWJHPxaFjMAwdrzWzbVKartNGg", v: "weekly" });</script>
+    <script>(g => {var h, a, k, p = "The Google Maps JavaScript API", c = "google", l = "importLibrary", q = "__ib__", m = document, b = window; b = b[c] || (b[c] = {}); var d = b.maps || (b.maps = {}), r = new Set, e = new URLSearchParams, u = () => h || (h = new Promise(async (f, n) => {await (a = m.createElement("script")); e.set("libraries", [...r] + ""); for (k in g) e.set(k.replace(/[A-Z]/g, t => "_" + t[0].toLowerCase()), g[k]); e.set("callback", c + ".maps." + q); a.src = `https://maps.${c}apis.com/maps/api/js?` + e; d[q] = f; a.onerror = () => h = n(Error(p + " could not load.")); a.nonce = m.querySelector("script[nonce]")?.nonce || ""; m.head.append(a)})); d[l] ? console.warn(p + " only loads once. Ignoring:", g) : d[l] = (f, ...n) => r.add(f) && u().then(() => d[l](f, ...n))})
+            ({key: "AIzaSyB41DRUbKWJHPxaFjMAwdrzWzbVKartNGg", v: "weekly"});</script>
 </body>
 
 </html>

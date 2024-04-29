@@ -34,7 +34,3 @@ function tableFromJSONArray(caAccountInfo){
     // console.log("Hello");
     return output;    
 }
-
-async function fetchCustomerInfo(){
-    window.location.href = "customerAccount.html";
-}
