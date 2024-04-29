@@ -9,7 +9,7 @@
 <head>
     <meta charset="UTF-8">
     <title>Order html file</title>
-    <link rel="stylesheet" href="Style.css"> 
+    <link rel="stylesheet" href="Style.css">
     <script type="module" src="/addressValidation/addressForm.js"></script>
 </head>
 <body>
@@ -22,6 +22,7 @@
               <thead>
                   <tr>
                       <td>Item</td>
+                      <td>Toppings/Extras</td>
                       <td>Quantity</td>
                       <td>Price per Item</td>
                       <td>Total Price</td>
@@ -32,28 +33,26 @@
               </tbody>
           </table>
 
-          <div id="rewardsContainer">Rewards Points: </div>
-          <button id="applyRewards">Apply</button>
-          <button id="loadScriptButton">Delivery</button>
-          <button id="unloadScriptButton">Carryout</button>
+          <div id="rewardsContainer" class="rewards-style">Rewards Points: </div>
+          <div id="buttonContainer">
+            <button id="applyRewards" class="button-style apply-button">Apply</button>
+            <button id="loadScriptButton" class="button-style loadScript-button">Delivery</button>
+            <button id="unloadScriptButton" class="button-style unloadScript-button">Carryout</button>
+            <button id="menu" name="menuButton" class = "button-style menu-button" onclick="window.location.href='/menu/menuLoading.html'">Menu</button>
+            <button id="homeButton" name="homeButton" class = "button-style home-button" onclick="window.location.href='/home/home.html'">Home</button>
+          </div>
 
           <div id="addressInputForm"></div>
-          <p id="currentAddress">Current address: Unconfirmed</p>
+          <p id="currentAddress" class="small-font">Current address: Unconfirmed</p>
           <div class="order-buttons">
-            <button id="checkoutButton" name="checkoutButton">Checkout</button>
+            <button id="checkoutButton" name="button-style checkoutButton">Checkout</button>
           </div>
           <div class="tip-buttons">
-            <button id="tipButton" name="tipButton">Add 15% Tip</button>
+            <button id="tipButton" name="tipButton" class="button-style tip-button">Add 15% Tip</button>
           </div>
-          <!-- <div class="delivery-buttons">
-            <button  id="checkoutButton" name="checkoutButton">Delivery</button>
-          </div> -->
       </div>
     </div>
 
-   
-    <!-- very important: make sure you have: "/public/scripts/..." 
-        instead of: "public/scripts/..."  -->
         <!--Right side of the page-->
         <div class="right-side">
           <div class="image-container">
