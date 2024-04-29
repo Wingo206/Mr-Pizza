@@ -65,10 +65,10 @@ async function assignEmployee(){
     else if (resp.status == 500){
         alert("Internal server error");
     }
-    else if (resp.status == 404){
+    else if (resp.status == 400){
         alert("Either employee with id " + employeeId + " does not exist or employee already assigned to store with id " + newEmployeeStoreId);
     }
-    else if (resp.status == 400){
+    else if (resp.status == 404){
         alert("No stores with id " + newEmployeeStoreId + " exists");
     }
 
