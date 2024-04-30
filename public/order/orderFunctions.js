@@ -1,10 +1,10 @@
-export function cartEntry(itemName, quantity, pricePerItem, totalCostOfEntry, mid, toppings) { 
+export function cartEntry(itemName, quantity, pricePerItem, totalCostOfEntry, mid, options) { 
     this.itemName = itemName; 
     this.quantity = quantity;  
     this.pricePerItem = pricePerItem; 
-    this.totalCostOfEntry = this.quantity * this.pricePerItem; 
+    this.totalCostOfEntry = totalCostOfEntry; 
     this.mid = mid; 
-    this.toppings = toppings; 
+    this.options = options; 
  } 
 
 export function calculateTotalCost(cart) { 
@@ -33,7 +33,7 @@ export function populateCartTable(query, cart) {
          const row = tableBody.insertRow(); 
          console.log(cart[i]); 
          row.insertCell().textContent = capitalizeFirstLetter(cart[i].itemName); 
-         row.insertCell().textContent = cart[i].toppings; 
+         row.insertCell().textContent = cart[i].options; 
          row.insertCell().textContent = cart[i].quantity; 
          row.insertCell().textContent = cart[i].pricePerItem; 
          row.insertCell().textContent = cart[i].totalCostOfEntry; 

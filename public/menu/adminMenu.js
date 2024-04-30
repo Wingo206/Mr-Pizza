@@ -1,53 +1,110 @@
-async function handleEditMenuFormSubmit(event) {
-    event.preventDefault();
+document.addEventListener('DOMContentLoaded', function () {
+    const addItemForm = document.getElementById('addItemForm');
+    const addCustomForm = document.getElementById('addCustomForm');
+    const editItemForm = document.getElementById('editItemForm');
+    const editCustomForm = document.getElementById('editCustomForm');
 
-    const object = document.getElementById('edit-object').value;
-    const action = document.getElementById('edit-action').value;
-    const mid = parseInt(document.getElementById('edit-mid').value);
-    const name = document.getElementById('edit-name').value;
-    let property, newValue;
-    if (action === 'edit') {
-        property = document.getElementById('edit-property').value;
-        newValue = document.getElementById('edit-new-value').value;
+    addItemForm.addEventListener('submit', function (event) {
+        event.preventDefault();
+        const formData = new FormData(addItemForm);
+        const requestBody = {
+            object: 'item',
+            description: formData.get('aidescription'),
+            mid: formData.get('aimid'),
+            price: formData.get('aiprice'),
+            image: formData.get('aiimage'),
+            item_name: formData.get('aiitemName'),
+            category: formData.get('aicategory'),
+            available: formData.get('aiavailable') === 'on' // Convert checkbox value to boolean
+        };
+        sendRequestAdd(requestBody);
+    });
+
+    addCustomForm.addEventListener('submit', function (event) {
+        event.preventDefault();
+        const formData = new FormData(addCustomForm);
+        const requestBody = {
+            object: 'custom',
+            custom_name: formData.get('accustomName'),
+            mid: formData.get('acmid'),
+            option_name: formData.get('acoptionName'),
+            price: formData.get('acprice'),
+            isDefault: formData.get('acisDefault') === 'on', // Convert checkbox value to boolean
+            available: formData.get('acavailable') === 'on', // Convert checkbox value to boolean
+            mutually_exclusive: formData.get('acmutuallyExclusive') === 'on' // Convert checkbox value to boolean
+        };
+
+        sendRequestAdd(requestBody);
+    });
+
+    editItemForm.addEventListener('submit', function (event) {
+        event.preventDefault();
+        const formData = new FormData(editItemForm);
+        const requestBody = {
+            object: 'item',
+            mid: formData.get('eieditMid'),
+            name: formData.get('eieditName'),
+            newValue: formData.get('eieditValue'),
+            property: formData.get('eieditProperty'),
+            action: formData.get('eieditAction')
+        };
+
+        sendRequestEdit(requestBody);
+    });
+
+    editCustomForm.addEventListener('submit', function (event) {
+        event.preventDefault();
+        const formData = new FormData(editCustomForm);
+        const requestBody = {
+            object: 'custom',
+            custom_name: formData.get('eceditCustomName'),
+            name: formData.get('eceditOptionName'),
+            mid: formData.get('eceditMid'),
+            newValue: formData.get('eceditValue'),
+            property: formData.get('eceditProperty'),
+            action: formData.get('eceditAction')
+        };
+
+        sendRequestEdit(requestBody);
+    });
+
+    function sendRequestEdit(requestBody) {
+        fetch('/menu/edit', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(requestBody)
+        })
+        .then(response => {
+            if (!response.ok) {
+                throw new Error('Failed to process request');
+            }
+            alert('Request processed successfully!');
+        })
+        .catch(error => {
+            console.error('Error:', error);
+            alert('An error occurred while processing request');
+        });
     }
-
-    const adminRequest = {
-        object,
-        property,
-        action,
-        mid,
-        name,
-        newValue
-    };
-
-    await editMenuRequest(adminRequest);
-}
-
-async function handleAddMenuFormSubmit(event) {
-    event.preventDefault();
-
-    const object = document.getElementById('add-object').value;
-    const description = document.getElementById('add-description').value;
-    const mid = parseInt(document.getElementById('add-mid').value);
-    const price = parseFloat(document.getElementById('add-price').value);
-    const image = document.getElementById('add-image').value;
-    const item_name = document.getElementById('add-item-name').value;
-    const category = document.getElementById('add-category').value;
-    const available = document.getElementById('add-available').checked;
-
-    const adminRequest = {
-        object,
-        description,
-        mid,
-        price,
-        image,
-        item_name,
-        category,
-        available
-    };
-
-    await addToMenuRequest(adminRequest);
-}
-
-document.getElementById('edit-menu-form').addEventListener('submit', handleEditMenuFormSubmit);
-document.getElementById('add-menu-form').addEventListener('submit', handleAddMenuFormSubmit);
+    
+    function sendRequestAdd(requestBody) {
+        fetch('/menu/add', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(requestBody)
+        })
+        .then(response => {
+            if (!response.ok) {
+                throw new Error('Failed to process request');
+            }
+            alert('Request processed successfully!');
+        })
+        .catch(error => {
+            console.error('Error:', error);
+            alert('An error occurred while processing request');
+        });
+    }
+});
