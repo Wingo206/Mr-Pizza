@@ -32,6 +32,14 @@ console.log("This is isDelivery: " + isDelivery);
   total = total.toFixed(2);
 
   populateCartTable('#cart tbody', cartEntries2);
+
+  // Optionally, add a final row for the total price of all items
+  const tableBody = document.querySelector("#cart tbody");
+  const totalRow = tableBody.insertRow();
+  const totalCell = totalRow.insertCell();
+  totalCell.textContent = "Order Price: " + total;
+  totalCell.colSpan = 5; // Span across all columns
+
   const totalCost = calculateTotalCost(cartEntries2);
   console.log('Total cost:', totalCost);
 
@@ -155,7 +163,6 @@ function refreshCheckoutButton() {
 
 button2.addEventListener("click", function () {
   isThereTip = true;
-  initializeCheckout(); // Reinitialize checkout whenever tip is toggled
   alert("Tip added");
 });
 

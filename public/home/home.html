@@ -11,23 +11,58 @@
 </head>
 
 <body>
-    <h1>Home Page</h1>
     <p>Welcome to Mr. Pizza!</p>
 
-    <a href="/login/customerLogin.html">Customer Login</a>
-    <a href="/login/empAdminLogin.html">Employee & Admin Login</a>
-    <a href="/map/mapView.html">View Store Locations</a>
-    <a href="/menu/menuLoad.html">View the Menu</a>
-    <a href="/menu/adminMenu.html">Admin Menu Tool</a>
-    <a href="/menu/employeeMenu.html">Employee Menu Tool</a>
-    <a href="/map/assignDeliveries.html">Assign Deliveries to Drivers</a>
-    <a href="/directions/directionsView.html">View Assigned Directions (Driver)</a>
-    <a href="/order/order.html">Order Checkout Page</a>
-    <a href="/order/pastOrder.html">Current/Past Orders Page</a>
-    <a href="/order/orderHistory.html">Customer Order History</a>
-    <a href="/customerAccount/answerTicket.html">Answer Support Tickets</a>
-    <a href="/customerAccount/storeAnalytics.html">Store Analytics</a>
+    <div class="top-column">
+        <!-- Customer things on the left -->
+        <div class="login-group">
+            <a href="/login/customerLogin.html">Customer Login</a>
+            <a href="/order/orderHistory.html">Customer Order History</a>  
+        </div>
+        
+        <!-- Center Logo -->
+        <div class="text">
+            <h1>Home Page</h1>
+        </div>
+        
+        <!-- Employee Login on the right -->
+        <div class="login-group">
+            <a href="/login/empAdminLogin.html">Employee & Admin Login</a>
+            <a href="/map/assignDeliveries.html">Assign Deliveries to Drivers</a>
+            <a href="/directions/directionsView.html">View Assigned Directions (Driver)</a>
+            <a href="/order/pastOrder.html">Current/Past Orders Page</a>
+        </div>
+    </div>
+    <div class="second-row">
+         <!-- Left-aligned Logo -->
+         <div class="left-logo">
+            <a href="/map/mapView.html">View Locations</a>
+            <a href="/menu/menuLoad.html">View the Menu</a>
+            <a href="/order/order.html">Order Checkout</a>
+            
+        </div>
 
+        <!-- Right-aligned Buttons -->
+        <div class="right-group">
+            <img src="/favicon.ico" alt="Mr. Pizza Logo" style="height: 40px;"> <!-- Adjust height as needed -->
+        </div>
+        
+    </div>
+
+    <div class="content-container">
+        <div class="text-box">
+           <h1>Welcome To Mr. Pizza! Enjoy The Best Pizza In Town With Ingredients Fresh From The Market.</h1> 
+        </div>
+        <div class="right-gif">
+            <img src="https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExeG92cDc5anh2eDV6cGM1bnR4Z3E3bWtyOHlxNmh5dWJxb2k1OHpnNCZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9cw/lmEkeRtZAj59tWYSqF/giphy.gif" alt="" style="width: 90%; height: 60%;"/>
+        </div>
+    </div>
+
+    <div class="last-row">
+        <a href="/customerAccount/answerTicket.html">Answer Support Tickets</a>
+        <a href="/customerAccount/storeAnalytics.html">Store Analytics</a>
+    </div>
+    
     <script src="homeScript.js"></script>
     <script src="/chatbot/chatbot.js"></script>
 </body>
