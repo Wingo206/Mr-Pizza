@@ -16,7 +16,7 @@ console.log("This is isDelivery: " + isDelivery);
     });
   });
   const cartEntries2 = cartItems.map(item => new cartEntry(
-    item.item_name, item.quantity, item.price + item.optionsPrice, item.totalPrice, item.mid, item.selectedOptions.map(option => `${option.name}: $${option.price}`).join(', ')
+    item.item_name, item.quantity, (item.price + item.optionsPrice).toFixed(2), item.totalPrice, item.mid, item.selectedOptions.map(option => `${option.name}: $${option.price}`).join(', ')
   ));
 
   const orderItemData = [];
@@ -250,3 +250,4 @@ async function redeemReward() {
   console.log(JSON.stringify(message));
   return message;
 }
+
