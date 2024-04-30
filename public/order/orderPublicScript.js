@@ -163,7 +163,6 @@ function refreshCheckoutButton() {
 
 button2.addEventListener("click", function () {
   isThereTip = true;
-  initializeCheckout(); // Reinitialize checkout whenever tip is toggled
   alert("Tip added");
 });
 
