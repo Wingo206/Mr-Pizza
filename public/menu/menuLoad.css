@@ -44,6 +44,8 @@
 
 .popup-content {
     text-align: center;
+    max-height: 80vh;
+    overflow-y: auto;
 }
 
 .popup button {

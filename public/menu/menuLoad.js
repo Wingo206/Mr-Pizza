@@ -160,6 +160,7 @@ const createPopup = (item) => {
             radio.name = 'size';
             radio.value = size.price;
             radio.dataset.sizeName = size.topping_name;
+            if (size.topping_name === '14" Large') radio.checked = true;
 
             sizeItem.appendChild(radio);
             sizeItem.appendChild(document.createTextNode(` ${size.topping_name}: $${size.price}`));
@@ -182,6 +183,8 @@ const createPopup = (item) => {
             radio.name = 'servingOption';
             radio.value = option.price;
             radio.dataset.servingOptionName = option.topping_name;
+            if (option.topping_name === '8-Piece' ||option.topping_name === '2-Liter Bottle' || option.topping_name === 'Dish')
+                radio.checked = true;
 
             servingOptionItem.appendChild(radio);
             servingOptionItem.appendChild(document.createTextNode(` ${option.topping_name}: $${option.price}`));
@@ -204,6 +207,8 @@ const createPopup = (item) => {
             radio.name = 'sauce';
             radio.value = sauce.price;
             radio.dataset.sauceName = sauce.topping_name;
+            if (sauce.topping_name === 'Hearty Marinara Sauce' || sauce.topping_name === 'Alfredo Sauce')
+                radio.checked = true;
 
             sauceItem.appendChild(radio);
             sauceItem.appendChild(document.createTextNode(` ${sauce.topping_name}: $${sauce.price}`));
@@ -226,6 +231,7 @@ const createPopup = (item) => {
             radio.name = 'crust';
             radio.value = type.price;
             radio.dataset.crustName = type.topping_name;
+            if (type.topping_name === 'Hand Tossed') radio.checked = true;
 
             crustItem.appendChild(radio);
             crustItem.appendChild(document.createTextNode(` ${type.topping_name}: $${type.price}`));
@@ -285,12 +291,14 @@ const createPopup = (item) => {
         const cheeseList = document.createElement('ul');
         item.cheese.forEach(cheese => {
             const cheeseItem = document.createElement('li');
-            const checkbox = document.createElement('input');
-            checkbox.type = 'checkbox';
-            checkbox.value = cheese.price;
-            checkbox.dataset.cheeseName = cheese.topping_name;
+            const radio = document.createElement('input');
+            radio.type = 'radio';
+            radio.name = 'cheese';
+            radio.value = cheese.price;
+            radio.dataset.cheeseName = cheese.topping_name;
+            if (cheese.topping_name === 'Normal') radio.checked = true;
 
-            cheeseItem.appendChild(checkbox);
+            cheeseItem.appendChild(radio);
             cheeseItem.appendChild(document.createTextNode(` ${cheese.topping_name}: $${cheese.price}`));
             //cheeseItem.textContent = `${cheese.topping_name}: $${cheese.price}`;
             cheeseList.appendChild(cheeseItem);
