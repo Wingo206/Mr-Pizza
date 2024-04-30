@@ -193,7 +193,6 @@ async function getOid() {
 
 // Fetch SQL datbase order items just ordered
 async function fillTable() {
-    console.log('lol');
     const response = await fetch("/order/getOrder", {
        method: "GET",
        headers: {
@@ -251,7 +250,7 @@ button3.addEventListener("click", async function() {
         await sendCancelEmail();
     }
     else {
-        alert("Can not cancel since order has passed Ready phase!");
+        alert("Cannot cancel order! Order has already started/been cancelled. Please submit a help request if you need further assistance.");
     }
 });
 
