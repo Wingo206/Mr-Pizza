@@ -3,12 +3,11 @@
 <html>
     <head>
         <meta charset="UTF-8">
-        <title>Edit Customer Account Information</title>
+        <title>Edit Employee Account Information</title>
         <link rel="stylesheet" type="text/css" href="style.css"/>
     </head>
 
     <body>
-
         <style type="text/css">
             .fieldset-auto-width {
                 display: inline-block;
@@ -21,29 +20,29 @@
         <br>
         <br>
 
-        <a href="/customerAccount/customerAccountDisplay.html">Back to Account</a>
-    
-        <br>
-        <br>
+        <a href="/empAdmin/employeeInfo.html">Back to Account</a>
 
+        <br>
+        <br>
+        
         <fieldset class="field-auto-width">
-            <label for="phoneNumber"> Phone Number:</label>
-            <input type="text" id="addPhoneNumber">
-
-            <br>
-            <br>
-
-            <label for="email">Email:</label>
+            <label for="email">Email: </label>
             <input type="text" id="addEmail">
 
             <br>
             <br>
 
-            <button onclick="addAccountInfo()">Submit</button>
+            <label for="password">Password: </label>
+            <input type="text" id="addPassword">
 
+            <br>
+            <br>
+
+            <button onclick="addAccountInfo()">Submit</button>
         </fieldset>
-        
-        <script src="/customerAccount/customerAccountScript.js"></script>
+
+        <script src="/empAdmin/employeeEdit.js"></script>
 
     </body>
+
 </html>

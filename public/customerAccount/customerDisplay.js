@@ -24,13 +24,20 @@ window.addEventListener("load", async (event) => {
  }
 
 function tableFromJSONArray(caAccountInfo){
-    let output = '<th>Username</th><th>Delivery Address</th><th>Phone Number</th><th>Email</th>';
+    let output = '<th>Username</th><th>Delivery Address</th><th>Phone Number</th><th>Email</th><th>Rewards Points</th>';
     output += '<tr>';
     output += `<td>${JSON.stringify(caAccountInfo.username)}</td>`;
     output += `<td>${JSON.stringify(caAccountInfo.default_delivery_address)}</td>`;
     output += `<td>${JSON.stringify(caAccountInfo.phone_num)}</td>`;
     output += `<td>${JSON.stringify(caAccountInfo.email)}</td>`;
+    output += `<td>${JSON.stringify(caAccountInfo.rewards_points)}</td>`;
     output += '</tr>';
     // console.log("Hello");
     return output;    
 }
+
+
+async function fetchCustomerInfo(){
+    window.location.href = "customerAccount.html";
+}
+
