@@ -50,7 +50,7 @@ body {
     top: 0;
     left: 0;
     right: 0;
-    font-size: 1.2em; /* Increase the font size if needed */
+    font-size: 1.5em; /* Increase the font size if needed */
     padding: 15px 35px; /* Increase the padding to make the button larger */
     background-color: #fff3e6; /* Light grey background */
     z-index: 1000; /* Keeps the row above other content */
@@ -60,7 +60,7 @@ body {
   .top-column .text {
     flex-grow: 2; /* Allows the logo to take up available space */
     text-align: center; /* Centers the logo */
-    font-size: .7em;
+    font-size: .5em;
   }
   
   .top-column a {
@@ -91,9 +91,15 @@ body {
   
   .second-row .right-group {
     display: flex;
+    align-items: center; /* Centers items vertically within the container */
+    justify-content: center; /* Centers items horizontally within the container */
     gap: 20px;
-    margin-left: 60px; /* This will push the buttons to the right side */
   }
+
+  .second-row .right-group img {
+    height: 100%; /* Sets the image height to match the container */
+  }
+
  
   .content-container {
     display: flex; /* Sets up a flex container to hold the text box and GIF side by side */
@@ -126,33 +132,7 @@ body {
     height: auto; /* Keeps the GIF's aspect ratio */
   }
 
-  .last-row {
-    display: flex; /* Flex container to hold the buttons */
-    justify-content: space-around; /* Evenly spaces the children (buttons) across the width */
-    align-items: center; /* Centers the items vertically */
-    padding: 20px; /* Padding inside the row for some breathing room */
-    background-color: #f5f5f5; /* Consistent light background similar to the other rows */
-    box-shadow: 0 4px 6px rgba(0,0,0,0.1); /* Subtle shadow for visual separation */
-    margin-top: 20px; /* Separation from the previous content */
-  }
-  
-  .last-row a {
-    padding: 10px 20px; /* Padding to make buttons larger */
-    font-family: 'Georgia', serif; /* Consistent with your overall theme */
-    font-size: 1em; /* Appropriate text size */
-    color: #5a3b32; /* Dark brown for text */
-    background-color: #fcb69f; /* Warm orange to match the gradient theme */
-    text-decoration: none; /* Removes underline from links */
-    border-radius: 5px; /* Rounded corners for a softer look */
-    border: 2px solid #842422; /* Border color to complement the button color */
-    transition: background-color 0.3s, color 0.3s; /* Smooth transition for hover effects */
-  }
-  
-  .last-row a:hover {
-    background-color: #842422; /* Dark reddish-brown on hover */
-    color: #fff; /* White text on hover */
-  }
-  
+ 
   
   
 
