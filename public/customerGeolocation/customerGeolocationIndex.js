@@ -63,9 +63,9 @@ async function updateOrderMap() {
 }
 
 initMap();
-// set to 10 seconds for now
+// set to 5 seconds for now
 
 window.addEventListener("load", async (event) => {
-    setInterval(updateOrderMap, 10000);
-    updateOrderMap()
+    setInterval(updateOrderMap, 5000);
+    updateOrderMap();
 })

@@ -1,10 +1,11 @@
 let map;
 let assignedOrders = [];
 let markers = [];
+let order = undefined
 
 // debug variables
 let count = 0;
-let offset = 0.001;
+let offset = 0.05;
 
 async function initMap() {
     const { Map } = await google.maps.importLibrary("maps");
@@ -67,6 +68,7 @@ async function fetchWaypoints() {
         return;
     }
     let waypoints = await resp.json();
+    order = waypoints[1];
 
     // render the directions
     displayRoute(waypoints);
@@ -109,19 +111,23 @@ async function displayRoute(waypoints) {
 
 // function is called when the start delivery button is clicked that goes to the geolocation backend
 window.startDelivery = async () => {
-    console.log("updating the status of the driver...");
-    let resp = await fetch('/directions/updateDriver', {
-        method: 'POST'
-    })
+    // // checks if waypoints are null or empty
+    // if (waypoints == null || waypoints.length == 0) {
+    //     return;
+    // }
 
-    if (resp.status != 200) {
-        console.log(await resp.text());
-        return;
-    }
+    // // gets rid of the origin and destination from waypoints
+    // waypoints.shift();
+    // waypoints.pop();
+    
+    console.log("updating the status of the driver...");
+    
+    // let order = waypoints.shift();
 
     // starts tracking the location of the driver
-    console.log("updating the location of the driver every 30 seconds...");
-    setInterval(updateLocation, 10000);
+    console.log("updating the location of the driver every 5 seconds...");
+    setInterval(updateLocation, 5000);
+    updateLocation();
 }
 
 /**
@@ -141,8 +147,8 @@ async function updateLocation() {
             async (position) => {
                 const pos = {
                     // NOTE: REMOVE WHEN NOT TESTING
-                    lat: (position.coords.latitude + count*offset),
-                    lng: (position.coords.longitude + count*offset)
+                    lat: (position.coords.latitude + (order.x - position.coords.latitude)*offset*count),
+                    lng: (position.coords.longitude + (order.y - position.coords.longitude)*offset*count)
                 };
 
                 // debug
@@ -156,7 +162,7 @@ async function updateLocation() {
                 markers.push(marker);
 
                 // NOTE: REMOVE WHEN NOT TESTING
-                count--;
+                count++;
 
                 let resp = await fetch('/geolocation/updatePos', {
                     method: 'POST',
