@@ -17,7 +17,6 @@ document.addEventListener('DOMContentLoaded', function () {
             category: formData.get('aicategory'),
             available: formData.get('aiavailable') === 'on' // Convert checkbox value to boolean
         };
-
         sendRequestAdd(requestBody);
     });
 

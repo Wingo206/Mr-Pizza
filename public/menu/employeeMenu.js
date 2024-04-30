@@ -5,11 +5,11 @@ document.addEventListener('DOMContentLoaded', function () {
         event.preventDefault();
         const formData = new FormData(editAvailabilityForm);
         const requestBody = {
-            object: formData.get('object'),
-            storeId: formData.get('storeId'),
-            mid: formData.get('mid'),
-            option_name: formData.get('optionName'),
-            available: formData.get('available') === 'on' // Convert checkbox value to boolean
+            object: formData.get('eobject'),
+            storeId: formData.get('estoreId'),
+            mid: formData.get('emid'),
+            option_name: formData.get('eoptionName'),
+            available: formData.get('eavailable') === 'on' // Convert checkbox value to boolean
         };
 
         try {

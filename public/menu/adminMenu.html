@@ -10,72 +10,80 @@
     <a href="/home/home.html">Back to Home</a>
     <h2>Add Item</h2>
     <form id="addItemForm">
-        <label for="description">Description:</label>
-        <input type="text" id="aidescription" name="description" required><br><br>
-        <label for="mid">Mid:</label>
-        <input type="text" id="aimid" name="mid" required><br><br>
-        <label for="price">Price:</label>
-        <input type="text" id="aiprice" name="price" required><br><br>
-        <label for="image">Image:</label>
-        <input type="text" id="aiimage" name="image" required><br><br>
-        <label for="itemName">Item Name:</label>
-        <input type="text" id="aiitemName" name="itemName" required><br><br>
-        <label for="category">Category:</label>
-        <input type="text" id="aicategory" name="category" required><br><br>
-        <label for="available">Available:</label>
-        <input type="checkbox" id="aiavailable" name="available" checked><br><br>
+        <label for="aidescription">Description:</label>
+        <input type="text" id="aidescription" name="aidescription" required><br><br>
+        <label for="aimid">Mid:</label>
+        <input type="text" id="aimid" name="aimid" required><br><br>
+        <label for="aiprice">Price:</label>
+        <input type="text" id="aiprice" name="aiprice" required><br><br>
+        <label for="aiimage">Image:</label>
+        <input type="text" id="aiimage" name="aiimage" required><br><br>
+        <label for="aiitemName">Item Name:</label>
+        <input type="text" id="aiitemName" name="aiitemName" required><br><br>
+        <label for="aicategory">Category:</label>
+        <input type="text" id="aicategory" name="aicategory" required><br><br>
+        <label for="aiavailable">Available:</label>
+        <input type="checkbox" id="aiavailable" name="aiavailable" checked><br><br>
         <button type="submit">Add Item</button>
     </form>
 
-    <h2>Add Custom</h2>
+    <h2>Add Customization Option</h2>
     <form id="addCustomForm">
-        <label for="customName">Custom Name:</label>
-        <input type="text" id="accustomName" name="customName" required><br><br>
-        <label for="mid">Mid:</label>
-        <input type="text" id="acmid" name="mid" required><br><br>
-        <label for="optionName">Option Name:</label>
-        <input type="text" id="acoptionName" name="optionName" required><br><br>
-        <label for="price">Price:</label>
-        <input type="text" id="acprice" name="price" required><br><br>
-        <label for="isDefault">Is Default:</label>
-        <input type="checkbox" id="acisDefault" name="isDefault"><br><br>
-        <label for="available">Available:</label>
-        <input type="checkbox" id="acavailable" name="available" checked><br><br>
-        <label for="mutuallyExclusive">Mutually Exclusive:</label>
-        <input type="checkbox" id="acmutuallyExclusive" name="mutuallyExclusive"><br><br>
+        <label for="accustomName">Custom Name:</label>
+        <input type="text" id="accustomName" name="accustomName" required><br><br>
+        <label for="acmid">Mid:</label>
+        <input type="text" id="acmid" name="acmid" required><br><br>
+        <label for="acoptionName">Option Name:</label>
+        <input type="text" id="acoptionName" name="acoptionName" required><br><br>
+        <label for="acprice">Price:</label>
+        <input type="text" id="acprice" name="acprice" required><br><br>
+        <label for="acisDefault">Is Default:</label>
+        <input type="checkbox" id="acisDefault" name="acisDefault"><br><br>
+        <label for="acavailable">Available:</label>
+        <input type="checkbox" id="acavailable" name="acavailable" checked><br><br>
+        <label for="acmutuallyExclusive">Mutually Exclusive:</label>
+        <input type="checkbox" id="acmutuallyExclusive" name="acmutuallyExclusive"><br><br>
         <button type="submit">Add Custom</button>
     </form>
 
     <h2>Edit Item</h2>
     <form id="editItemForm">
-        <label for="editMid">Mid:</label>
-        <input type="text" id="eieditMid" name="editMid" required><br><br>
-        <label for="editName">Name:</label>
-        <input type="text" id="eieditName" name="editName" required><br><br>
-        <label for="editValue">New Value:</label>
-        <input type="text" id="eieditValue" name="editValue" required><br><br>
-        <label for="editAction">Action:</label>
-        <select id="eieditAction" name="editAction" required>
+        <label for="eieditMid">Mid:</label>
+        <input type="text" id="eieditMid" name="eieditMid" required><br><br>
+        <label for="eieditName">Name:</label>
+        <input type="text" id="eieditName" name="eieditName" required><br><br>
+        <label for="eieditValue">New Value:</label>
+        <input type="text" id="eieditValue" name="eieditValue" required><br><br>
+        <label for="eieditProperty">Property:</label>
+        <select id="eieditProperty" name="eieditProperty" required>
+            <option value="item_name">Item Name</option>
+            <option value="price">Price</option>
+            <option value="image">Image</option>
+            <option value="description">Description</option>
+            <option value="category">Category</option>
+        </select><br><br>
+        <label for="eieditAction">Action:</label>
+        <select id="eieditAction" name="eieditAction" required>
             <option value="edit">Edit</option>
             <option value="delete">Delete</option>
         </select><br><br>
         <button type="submit">Edit Item</button>
     </form>
 
-    <h2>Edit Custom</h2>
+    <h2>Edit Customization Option</h2>
     <form id="editCustomForm">
-        <label for="editCustomName">Custom Name:</label>
-        <input type="text" id="eceditCustomName" name="editCustomName" required><br><br>
-        <label for="editProperty">Property:</label>
-        <select id="eceditProperty" name="editProperty" required>
+        <label for="eceditCustomName">Custom Name:</label>
+        <input type="text" id="eceditCustomName" name="eceditCustomName" required><br><br>
+        <label for="eceditProperty">Property:</label>
+        <select id="eceditProperty" name="eceditProperty" required>
             <option value="option_name">Option Name</option>
             <option value="price">Price</option>
             <option value="isDefault">Is Default</option>
         </select><br><br>
-        <label for="editValue">New Value:</label>
-        <input type="text" id="eceditValue" name="editValue" required><br><br>
-        <label for="editAction">Action:</label>
-        <select id="eceditAction" name="editAction" required>
+        <label for="eceditValue">New Value:</label>
+        <input type="text" id="eceditValue" name="eceditValue" required><br><br>
+        <label for="eceditAction">Action:</label>
+        <select id="eceditAction" name="eceditAction" required>
             <option value="edit">Edit</option>
             <option value="delete">Delete</option>
         </select><br><br>
