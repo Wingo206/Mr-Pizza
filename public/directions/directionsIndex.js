@@ -1,5 +1,10 @@
 let map;
 let assignedOrders = [];
+let markers = [];
+
+// debug variables
+let count = 0;
+let offset = 0.001;
 
 async function initMap() {
     const { Map } = await google.maps.importLibrary("maps");
@@ -50,7 +55,7 @@ async function fetchWaypoints() {
     console.log('fetching waypoints from /directions/waypoints/' + esInfo.store_id + '...');
     resp = await fetch('/directions/waypoints/' + esInfo.store_id,
         {
-            method: 'GET',
+            method: 'POST',
             headers: {
                 "Content-type": 'application/json',
             },
@@ -65,23 +70,7 @@ async function fetchWaypoints() {
 
     // render the directions
     displayRoute(waypoints);
-
 }
-
-// function is called when the confirm done button is clicked, clearing the map and sidebar and displaying a message
-window.confirmDone = async () => {
-    alert("Order has been delivered!");
-    document.getElementById("sidebar").style.display = "none";
-
-    // document.getElementById("sidebar").style.display = "block";
-    map = new google.maps.Map(document.getElementById("map"), {
-        center: { lat: 40.523421858838276, lng: -74.45823918823967 },
-        zoom: 15,
-        mapId: '5f088c2dddf9c012'
-    });
-}
-
-
 
 /**
  * fetches the assigned orders for the currently logged in driver,
@@ -116,7 +105,74 @@ async function displayRoute(waypoints) {
             directionsRenderer.setDirections(result);
         }
     });
+}
 
+// function is called when the start delivery button is clicked that goes to the geolocation backend
+window.startDelivery = async () => {
+    console.log("updating the status of the driver...");
+    let resp = await fetch('/directions/updateDriver', {
+        method: 'POST'
+    })
+
+    if (resp.status != 200) {
+        console.log(await resp.text());
+        return;
+    }
+
+    // starts tracking the location of the driver
+    console.log("updating the location of the driver every 30 seconds...");
+    setInterval(updateLocation, 10000);
+}
+
+/**
+ * (currently) centers the map to a changing current position and places a marker there
+ * 
+ * TODO: make a call to the backend that updates the current_latlng in delivery batch each time it updates depending on the order
+ */
+async function updateLocation() {
+    const { AdvancedMarkerElement } = await google.maps.importLibrary("marker");
+
+    if(navigator.geolocation) {
+        for (let i = 0; i < markers.length; i++) {
+            markers[i].setMap(null);
+        }
+        
+        navigator.geolocation.getCurrentPosition(
+            async (position) => {
+                const pos = {
+                    // NOTE: REMOVE WHEN NOT TESTING
+                    lat: (position.coords.latitude + count*offset),
+                    lng: (position.coords.longitude + count*offset)
+                };
+
+                // debug
+                console.log(pos);
+
+                let marker = new AdvancedMarkerElement({
+                    map,
+                    position: { lat: Number(pos.lat), lng: Number(pos.lng) },
+                });
+
+                markers.push(marker);
+
+                // NOTE: REMOVE WHEN NOT TESTING
+                count--;
+
+                let resp = await fetch('/geolocation/updatePos', {
+                    method: 'POST',
+                    headers: {
+                        "Content-type": 'application/json',
+                     },
+                    body: JSON.stringify({ latlng: pos })
+                })
+
+                if (resp.status != 200) {
+                    console.log(await resp.text());
+                    return;
+                }
+            }
+        );
+    }
 }
 
 initMap();

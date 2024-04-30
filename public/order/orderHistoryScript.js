@@ -1,13 +1,5 @@
-
-import {cartEntry, populateCartTable, calculateTotalCost, displayCart} from './orderFunctions.js';
-// const cart = [new cartEntry("pizza", 2, 11.99, 11.99 * 2), new cartEntry('wings', 1, 6.99, 6.99)];
-// console.log(cart);
-let statusUpdated = new Array();
-
-// window.addEventListener('load', populateCartTable("#cart tbody", cart));
-// //there would be calls to database here instead
 let orders = await initialize();
-// console.log(orders);
+
 window.addEventListener('load', displayOrders("#cart tbody", orders));
 
 function displayOrders(query, orders) {

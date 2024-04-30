@@ -1,11 +1,3 @@
-
-import {cartEntry, populateCartTable, calculateTotalCost, displayCart} from './orderFunctions.js';
-//import {orderId} from './orderPublicScript.js';
-const cart = [new cartEntry("pizza", 2, 11.99, 11.99 * 2), new cartEntry('wings', 1, 6.99, 6.99)];
-console.log(cart);
-
-//await initialize();
-console.log("FILL TABLE");
 let orders = await fillTable();
 
 let carryout = await checkDeliverable();
@@ -13,63 +5,33 @@ console.log("CARRYOUTTTTT" + carryout[0].delivery_address);
 
 window.addEventListener('load', displayOrders("#cart tbody", orders));
 
-//at the start maybe even before load cart you want to query the database based on the user's login 
-//like using the cid get the order that is not completed and display it, even if there are multiple orders, prolly match it to cid and items ordered, for now cid
-//let testingOID = await getOid();
-//console.log(testingOID);
-
-//CHECK IF THE EMAIL HAS BEEN SENT ALREADY
-
-const savedEmailSent = getCookie("emailSent");
-const savedEmailOrder = getCookie("emailOrder");
-
-if (savedEmailSent === 'Sent') {
-    let retrievedOID = await getOid();
-    if (savedEmailOrder != retrievedOID) {
-        setCookie('emailSent', "Sent", 1); // dead in 1 days
-        setCookie('emailOrder', retrievedOID, 1); // dead in 1 days
-        await initialize();
-    }
-}
-else {
-    setCookie('emailSent', "Sent", 1); // dead in 1 days
-    await initialize();
-}
-
 let rewardText = await displayReward();
 const rewardsContainer = document.getElementById('rewardsContainer');
 rewardsContainer.textContent = "Your Reward Points: " + rewardText[0].rewards_points;
 
-//depending on status the image will change 
-//so have a big check to see if it changed based on previous then have multiple chekcs inside what status to change to 
+//depending on status the image will change
+//so have a big check to see if it changed based on previous then have multiple chekcs inside what status to change to
 var pizzaStatus = document.getElementById('pizzaStatus');
 pizzaStatus.src = "/order/Statuses/Delivery/deliveryProcessing.png";
 
 const savedPizzaImageSrc = getCookie('pizzaImageSrc');
+console.log(savedPizzaImageSrc);
 pizzaStatus.src = savedPizzaImageSrc;
 setCookie('pizzaImageSrc', "/order/Statuses/Delivery/deliveryProcessing.png", 1); // dead in 1 days
 
 const checkStatusInterval = setInterval(async () => {
-    
-//when it reload it needs to send back the status from before to check 
+
+//when it reload it needs to send back the status from before to check
     let stat = await checkStatus();
     // console.log("Stat: " + stat[0].status);
     const orderStatus = stat[0].status;
     let cancelStatus = orderStatus;
 
-    if (cancelStatus === 'Delivered') {
-        document.getElementById("notReceivedButton").removeAttribute("hidden");
-    }
-
     let savedStatus = getCookie('orderStatus');
     console.log(savedStatus);
-    
+
 if (orderStatus != savedStatus) {
-    if (orderStatus === 'Ready (For Pickup)') {
-        pizzaStatus.src = "/order/orderedPizzaTrack2.png";
-        setCookie('pizzaImageSrc', "/order/Statuses/Pickup/pickupReady.png", 1); // dead in 1 days
-        window.location.reload(true);
-    } else if (orderStatus === 'Processing') {
+    if (orderStatus === 'Processing') {
         pizzaStatus.src = "/order/orderedPizzaTrack.png";
         if (carryout[0].delivery_address == null) {
             setCookie('pizzaImageSrc', "/order/Statuses/Pickup/pickupProcessing.png", 1); // dead in 1 days
@@ -87,7 +49,7 @@ if (orderStatus != savedStatus) {
             setCookie('pizzaImageSrc', "/order/Statuses/Delivery/deliveryStarting.png", 1); // dead in 1 days
         }
         window.location.reload(true);
-    } else if (orderStatus === 'Ready (For Delivery)') {
+    } else if (orderStatus === 'Ready') {
         pizzaStatus.src = "/order/orderedPizzaTrack.png";
         if (carryout[0].delivery_address == null) {
             setCookie('pizzaImageSrc', "/order/Statuses/Pickup/pickupReady.png", 1); // dead in 1 days
@@ -116,7 +78,7 @@ if (orderStatus != savedStatus) {
         pizzaStatus.src = "/order/orderedPizzaTrack.png";
         setCookie('pizzaImageSrc', "/order/Statuses/Misc/miscRefunded.png", 1); // dead in 1 days
         window.location.reload(true);
-    } 
+    }
     else if (orderStatus === 'Completed') {
         pizzaStatus.src = "/order/orderedPizzaTrack.png";
         if (carryout[0].delivery_address == null) {
@@ -126,14 +88,12 @@ if (orderStatus != savedStatus) {
             setCookie('pizzaImageSrc', "/order/Statuses/Delivery/deliveryComplete.png", 1); // dead in 1 days
         }
         window.location.reload(true);
-    }       
+    }
 }
 
 setCookie('orderStatus', orderStatus, 1); // Set cookie to expire in 1 days
 
-}, 5000); //this runs every 5 seconds 
-
-//console.log(cancelStatus);
+}, 5000); //this runs every 5 seconds
 
 // Function to set a cookie
 function setCookie(name, value, days) {
@@ -159,8 +119,6 @@ function getCookie(name) {
     return null;
 }
 
-//add order to database 
-
 function displayOrders(query, orders) {
     const tableBody = document.querySelector(query);
 
@@ -173,27 +131,48 @@ function displayOrders(query, orders) {
     }
 
     // Iterate over each order
-    orders.forEach(order => {
-        // Create a new row for each order
-        const row = tableBody.insertRow();
+let orderSummary = {};
 
-        // Insert the order details into the table cells
-        row.insertCell().textContent = order.item_description; // Item
-        row.insertCell().textContent = 1; // Quantity WE DONT ACTUALLY STORE QUANTITY
-        if (order.item_price == undefined) {
-            order.item_price = 0;
-        }
-        if (order.item_num == undefined) {
-            order.item_num = 0;
-        }
-        row.insertCell().textContent = order.item_price.toFixed(2); // Price per Item
-        row.insertCell().textContent = (1 * order.item_price).toFixed(2); // Total Price
-        row.insertCell().textContent = order.total_price; // Order Price
+// Aggregate orders by item_name
+orders.forEach(order => {
+    if (order.item_price === undefined) order.item_price = 0; // Default to 0 if undefined
 
-        //Need a total price
-    });
+    if (orderSummary[order.item_name]) {
+        // If the item already exists, increment the quantity and update the total price
+        orderSummary[order.item_name].quantity += 1;
+        orderSummary[order.item_name].totalPrice += order.item_price;
+    } else {
+        // Otherwise, add the new item to the summary
+        orderSummary[order.item_name] = {
+            item_price: order.item_price,
+            quantity: 1,
+            totalPrice: order.item_price
+        };
+    }
+});
 
-    console.log("THIS IS THE TOTAL PRICE " + orders[0].total_price + "THIS THE TOTAL" + totals);
+// Now, insert the aggregated orders into the table
+Object.keys(orderSummary).forEach(itemName => {
+    const order = orderSummary[itemName];
+    const row = tableBody.insertRow();
+
+    row.insertCell().textContent = itemName; // Item
+    row.insertCell().textContent = order.quantity; // Quantity
+
+    row.insertCell().textContent = order.item_price.toFixed(2); // Price per Item
+    row.insertCell().textContent = order.totalPrice.toFixed(2); // Total Price for the item
+});
+
+// Optionally, add a final row for the total price of all items
+const totalRow = tableBody.insertRow();
+const totalCell = totalRow.insertCell();
+let grandTotal = Object.values(orderSummary).reduce((acc, cur) => acc + cur.totalPrice, 0);
+totalCell.textContent = "Total Price: " + grandTotal.toFixed(2);
+totalCell.colSpan = 4; // Span across all columns
+
+
+
+console.log("THIS IS THE TOTAL PRICE " + orders[0].total_price + "THIS THE TOTAL" + totals);
     if (orders[0].total_price.toFixed(2) < totals.toFixed(2)) {
         document.getElementById("usedRewards").removeAttribute("hidden");
         const usedRewards = document.getElementById('usedRewards');
@@ -201,35 +180,9 @@ function displayOrders(query, orders) {
     }
 }
 
-
-// window.addEventListener('load', populateCartTable("#cart tbody", cart));
-// //there would be calls to database here instead
-
-
-
-// Fetch SQL datbase order items
-//maybe add proper email when eamiling confirmation would basically have to query 
-//from the customer account connected into the database, then when calling email
-//send that in the body?? (arya)
-//you would also send like a confirmation number and order_id probably
-async function initialize() {
-     const email = "pewdiepie285@gmail.com";
-     const order_id = "9";
-     const confirmationCode = "YEISBSU1298";
-     let response = await fetch("/order/emailOrderConf", {
-        method: "POST",
-        headers: {
-            'Content-Type': 'application/json'
-        },
-        body: JSON.stringify({ email: email , order_id: order_id , confirmationCode: confirmationCode})
-      });
-     console.log(response);
-}
-
-//CHANGE THIS ASK BRANDON HOW TO GET CURRENT USER INFO AND BASED ON THAT WE PLUG IN TO QUERY DATABASE
 async function getOid() {
     const response = await fetch("/order/getOID", {
-        method: "POST",
+        method: "GET",
         headers: {
             "Content-Type": "application/json"
         },
@@ -239,16 +192,12 @@ async function getOid() {
 }
 
 // Fetch SQL datbase order items just ordered
-// right now body is hardcoded but should retrieve from last page 
 async function fillTable() {
-    console.log('lol');
-    const requestBody = JSON.stringify({ order_id: 11 });
     const response = await fetch("/order/getOrder", {
-       method: "POST",
+       method: "GET",
        headers: {
         "Content-Type": "application/json"
-        },
-        body: requestBody
+        }
      });
      const currentOrder = await response.json();
      console.log(currentOrder);
@@ -258,7 +207,7 @@ async function fillTable() {
 const button1 = document.getElementById("checkMapsButton");
 
 button1.addEventListener("click", function() {
-    //make a call to switch paths 
+    //make a call to switch paths
     alert("Going to check delivery/takeout");
 });
 
@@ -267,7 +216,7 @@ const button2 = document.getElementById("refundButton");
 button2.addEventListener("click", async function() {
     let status = await checkStatus();
     let currentStatus = status[0].status;
-    if (currentStatus === 'Processing') {
+    if (currentStatus === 'Paid') {
         alert("Order has been refunded! Please check your bank/credit card statement for the refund.");
         async function requestRefund(orderId) {
             fetch('/order/handleRefund', {
@@ -280,14 +229,13 @@ button2.addEventListener("click", async function() {
             .then(response => response.json())
             .then(data => console.log('Refund response:', data))
             .catch(error => console.error('Error in refund:', error));
-        }        
-        //console.log("This is OID" + await getOid());
-        requestRefund(await getOid());  
-        //let message = await removeOrder();
-        //after removing return home 
+        }
+        requestRefund(await getOid());
+        await sendRefundEmail();
+        //after removing return home
     }
     else {
-       alert("Too late to cancel Order, submit help request");
+       alert("Too late to Refund Order, submit help request");
     }
 });
 
@@ -296,23 +244,22 @@ const button3 = document.getElementById("cancelOrderButton");
 button3.addEventListener("click", async function() {
     let stat2 = await checkStatus();
 
-    if (stat2[0].status === 'Processing' || stat2[0].status === 'Started' || stat2[0].status === 'Ready') {
+    if (stat2[0].status === 'Processing' || stat2[0].status === 'Paid' || stat2[0].status === 'Started' || stat2[0].status === 'Ready') {
         alert("Order has been canceled! It has been marked as canceled and will not be delivered/picked up.");
         await removeOrder().catch(error => console.error('Error in cancel:', error));
+        await sendCancelEmail();
     }
     else {
-        alert("Can not cancel since order has passed Ready phase!");
+        alert("Cannot cancel order! Order has already started/been cancelled. Please submit a help request if you need further assistance.");
     }
 });
 
 async function removeOrder() {
-    const requestBody = JSON.stringify({ order_id: 9 });
     const response = await fetch("/order/cancelOrder", {
        method: "POST",
        headers: {
         "Content-Type": "application/json"
-        },
-        body: requestBody
+        }
      });
      const message = await response.json();
      console.log(message);
@@ -320,13 +267,11 @@ async function removeOrder() {
 }
 
 async function checkStatus() {
-    const requestBody = JSON.stringify({ order_id: 9});
     const response = await fetch("/order/checkStatus", {
-        method: "POST",
+        method: "GET",
         headers: {
             "Content-Type": "application/json"
         },
-        body: requestBody
     });
     const message = await response.json();
     console.log(message);
@@ -355,4 +300,24 @@ async function checkDeliverable() {
     const message = await response.json();
     console.log("Your Reward Points: " + JSON.stringify(message));
     return message;
+}
+
+async function sendCancelEmail() {
+     let response = await fetch("/order/emailOrderCancel", {
+        method: "POST",
+        headers: {
+            'Content-Type': 'application/json'
+        }
+      });
+     console.log(response);
+}
+
+async function sendRefundEmail() {
+    let response = await fetch("/order/emailOrderRefund", {
+       method: "POST",
+       headers: {
+           'Content-Type': 'application/json'
+       }
+     });
+    console.log(response);
 }

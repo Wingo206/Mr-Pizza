@@ -32,7 +32,7 @@ async function updateLocation() {
         }
         
         navigator.geolocation.getCurrentPosition(
-            (position) => {
+            async (position) => {
                 const pos = {
                     lat: (position.coords.latitude + count*offset),
                     lng: (position.coords.longitude + count*offset)
@@ -50,6 +50,16 @@ async function updateLocation() {
                 });
                 markers.push(marker);
                 count++;
+
+                let resp = await fetch('/geolocation/updatePos', {
+                    method: 'POST',
+                    latlng: pos
+                })
+
+                if (resp.status != 200) {
+                    console.log(await resp.text());
+                    return;
+                }
             }
         );
     }
@@ -86,7 +96,6 @@ initMap();
  * this setInterval function can be hidden inside of a function that is called when a button is pressed
  * and turned off when another button is pressed?
  * 
- * 
+ * 30000 = 30 sec || 10000 = 10 sec
  */
-// 30000 = 30 sec || 10000 = 10 sec
 setInterval(updateLocation, 10000)

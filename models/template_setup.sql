@@ -18,7 +18,7 @@ foreign key(asked_by) references customer_account(cid) on delete cascade,
 foreign key(answered_by) references employee_account(eid) on delete cascade);
 alter table help_ticket add constraint original_tid_references_help_ticket foreign key(original_tid) references help_ticket(tid) on delete set null;
 
-create table customer_order(order_id int primary key auto_increment, credit_card varchar(20), status varchar(20), total_price float, delivery_address varchar(100), delivery_latlng point, DT_created datetime, DT_delivered datetime, ordered_by int not null, made_at int not null, stripe_checkout_id varchar(100), stripe_payment_intent_id varchar(100),
+create table customer_order(order_id int primary key auto_increment, status varchar(20), total_price float, delivery_address varchar(100), delivery_latlng point, DT_created datetime, DT_delivered datetime, ordered_by int not null, made_at int not null, stripe_checkout_id varchar(100), stripe_payment_intent_id varchar(100),
 foreign key(ordered_by) references customer_account(cid) on delete cascade,
 foreign key(made_at) references store(store_id) on delete cascade);
 
@@ -42,7 +42,7 @@ primary key(order_id, item_num, mid, custom_name, option_name),
 foreign key(order_id, item_num) references order_item(order_id, item_num) on delete cascade,
 foreign key(mid, custom_name, option_name) references custom_option(mid, custom_name, option_name) on delete cascade);
 
-create table delivery_batch(batch_id int primary key auto_increment, location varchar(40), DT_stamp datetime, driver_status varchar(20), assignedToEmp int,
+create table delivery_batch(batch_id int primary key auto_increment, current_latlng point, DT_stamp datetime, driver_status varchar(20), assignedToEmp int,
 foreign key(assignedToEmp) references employee_account(eid) on delete cascade);
 
 create table in_batch(order_id int, batch_id int, order_index int,

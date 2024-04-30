@@ -195,7 +195,7 @@ function onAddValidationConfirm(formattedAddress, location) {
 
 window.goToMenu = () => {
    setCookie('menuStoreId', selectedStoreId, 1);
-   window.location.href = '../menu/menuLoading.html';
+   window.location.href = '../menu/menuLoad.html';
 }
 
 function setCookie(name,value,days) {
