@@ -58,6 +58,8 @@ document.addEventListener('DOMContentLoaded', function () {
         const requestBody = {
             object: 'custom',
             custom_name: formData.get('eceditCustomName'),
+            name: formData.get('eceditOptionName'),
+            mid: formData.get('eceditMid'),
             newValue: formData.get('eceditValue'),
             property: formData.get('eceditProperty'),
             action: formData.get('eceditAction')
