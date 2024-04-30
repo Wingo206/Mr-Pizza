@@ -24,7 +24,7 @@ foreign key(made_at) references store(store_id) on delete cascade);
 
 create table menu_item(mid int primary key auto_increment, item_name varchar(100), price float, image_url varchar(1000), description varchar(1000), category varchar(100));
 
-create table order_item(item_num int auto_increment, order_id int not null, mid int not null,
+create table order_item(item_num int auto_increment, order_id int not null, mid int not null, reviewDescription varchar(1000),
 primary key(item_num, order_id),
 foreign key(mid) references menu_item(mid) on delete cascade,
 foreign key(order_id) references customer_order(order_id));

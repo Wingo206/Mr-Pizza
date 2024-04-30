@@ -2,7 +2,32 @@ let orders = await initialize();
 
 window.addEventListener('load', displayOrders("#cart tbody", orders));
 
-function displayOrders(query, orders) {
+function addReviewButton(row, reviewInput, item_num) {
+    const reviewCell = row.insertCell();
+    const submitButton = document.createElement('button');
+    submitButton.textContent = 'Submit';
+    submitButton.addEventListener('click', async () => {
+        const review = reviewInput.value;
+        if (review.trim() !== '') {
+            const response = await fetch("/order/createReview", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json"
+                  },
+                body: JSON.stringify({item_num: item_num, description: review })
+            });
+            const message = await response;
+            return JSON.stringify(message);
+            //await review(928, "HElLO");
+        } else {
+            alert('Please enter a review before submitting.');
+        }
+    });
+    reviewCell.appendChild(submitButton);
+}
+
+async function displayOrders(query, orders) {
+    console.log(JSON.stringify(orders));
     const tableBody = document.querySelector(query); 
     tableBody.innerHTML = '';
     let previousOrderID = null;
@@ -54,8 +79,24 @@ function displayOrders(query, orders) {
 
         const itemDescCell = row.insertCell();
         itemDescCell.textContent = order.item_description;
+
+        const reviewCell = row.insertCell();
+        const reviewInput = document.createElement('input');
+        reviewInput.type = 'text';
+        let placeHold = await getDescription(order.item_num);
+        if (placeHold === null) {
+            reviewInput.placeholder = 'Type your review here';
+        }
+        else {
+            reviewInput.placeholder = placeHold;
+        }
+        reviewCell.appendChild(reviewInput);
+
+        addReviewButton(row, reviewInput, order.item_num);
     }
 }
+
+
 
 // Fetch SQL datbase order items
 async function initialize() {
@@ -64,4 +105,17 @@ async function initialize() {
       });
       const past_orders = await response.json();
       return past_orders;
+}
+
+async function getDescription(item_num) {
+    const response = await fetch("/order/getReview", {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json"
+          },
+        body: JSON.stringify({ item_num: item_num })
+    });
+    const message = await response.json();
+    console.log("HELLO" + JSON.stringify(message));
+    return message;
 }
