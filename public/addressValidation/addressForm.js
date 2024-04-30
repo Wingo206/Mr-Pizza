@@ -72,6 +72,7 @@ window.addAddressForm = async (divId, onConfirmation) => {
             body: JSON.stringify(body),
         })
         result = await resp.json();
+        console.log(result)
         if (resp.status != 200) {
             console.log(result);
         }
