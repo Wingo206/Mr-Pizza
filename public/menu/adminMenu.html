@@ -3,66 +3,96 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Edit/Add Menu</title>
+    <title>Menu Editor</title>
 </head>
 <body>
-    <h1>Edit Menu</h1>
-    <form id="edit-menu-form">
-        <label for="edit-object">Object Type:</label>
-        <input type="text" id="edit-object" required><br>
-        
-        <label for="edit-action">Action:</label>
-        <select id="edit-action" required>
-            <option value="edit">Edit</option>
-            <option value="delete">Delete</option>
-        </select><br>
-        
-        <label for="edit-mid">Menu Item ID:</label>
-        <input type="number" id="edit-mid" required><br>
-        
-        <label for="edit-name">Name:</label>
-        <input type="text" id="edit-name" required><br>
-        
-        <div id="edit-property-container" style="display:none;">
-            <label for="edit-property">Property:</label>
-            <input type="text" id="edit-property"><br>
-            
-            <label for="edit-new-value">New Value:</label>
-            <input type="text" id="edit-new-value"><br>
-        </div>
-        
-        <button type="submit">Submit</button>
-    </form>
-    
-    <h1>Add to Menu</h1>
-    <form id="add-menu-form">
-        <label for="add-object">Object Type:</label>
-        <input type="text" id="add-object" required><br>
-        
-        <label for="add-description">Description:</label>
-        <input type="text" id="add-description" required><br>
-        
-        <label for="add-mid">Menu Item ID:</label>
-        <input type="number" id="add-mid" required><br>
-        
-        <label for="add-price">Price:</label>
-        <input type="number" id="add-price" step="0.01" required><br>
-        
-        <label for="add-image">Image URL:</label>
-        <input type="text" id="add-image" required><br>
-        
-        <label for="add-item-name">Item Name:</label>
-        <input type="text" id="add-item-name" required><br>
-        
-        <label for="add-category">Category:</label>
-        <input type="text" id="add-category" required><br>
-        
-        <label for="add-available">Available:</label>
-        <input type="checkbox" id="add-available" checked><br>
-        
-        <button type="submit">Submit</button>
+    <h1>Menu Editor</h1>
+    <a href="/home/home.html">Back to Home</a>
+    <h2>Add Item</h2>
+    <form id="addItemForm">
+        <label for="aidescription">Description:</label>
+        <input type="text" id="aidescription" name="aidescription" required><br><br>
+        <label for="aimid">Mid:</label>
+        <input type="text" id="aimid" name="aimid" required><br><br>
+        <label for="aiprice">Price:</label>
+        <input type="text" id="aiprice" name="aiprice" required><br><br>
+        <label for="aiimage">Image:</label>
+        <input type="text" id="aiimage" name="aiimage" required><br><br>
+        <label for="aiitemName">Item Name:</label>
+        <input type="text" id="aiitemName" name="aiitemName" required><br><br>
+        <label for="aicategory">Category:</label>
+        <input type="text" id="aicategory" name="aicategory" required><br><br>
+        <label for="aiavailable">Available:</label>
+        <input type="checkbox" id="aiavailable" name="aiavailable" checked><br><br>
+        <button type="submit">Add Item</button>
     </form>
 
-    <script src="AdminMenu.js"></script>
+    <h2>Add Customization Option</h2>
+    <form id="addCustomForm">
+        <label for="accustomName">Custom Name:</label>
+        <input type="text" id="accustomName" name="accustomName" required><br><br>
+        <label for="acmid">Mid:</label>
+        <input type="text" id="acmid" name="acmid" required><br><br>
+        <label for="acoptionName">Option Name:</label>
+        <input type="text" id="acoptionName" name="acoptionName" required><br><br>
+        <label for="acprice">Price:</label>
+        <input type="text" id="acprice" name="acprice" required><br><br>
+        <label for="acisDefault">Is Default:</label>
+        <input type="checkbox" id="acisDefault" name="acisDefault"><br><br>
+        <label for="acavailable">Available:</label>
+        <input type="checkbox" id="acavailable" name="acavailable" checked><br><br>
+        <label for="acmutuallyExclusive">Mutually Exclusive:</label>
+        <input type="checkbox" id="acmutuallyExclusive" name="acmutuallyExclusive"><br><br>
+        <button type="submit">Add Custom</button>
+    </form>
+
+    <h2>Edit Item</h2>
+    <form id="editItemForm">
+        <label for="eieditMid">Mid:</label>
+        <input type="text" id="eieditMid" name="eieditMid" required><br><br>
+        <label for="eieditName">Name:</label>
+        <input type="text" id="eieditName" name="eieditName" required><br><br>
+        <label for="eieditValue">New Value:</label>
+        <input type="text" id="eieditValue" name="eieditValue" required><br><br>
+        <label for="eieditProperty">Property:</label>
+        <select id="eieditProperty" name="eieditProperty" required>
+            <option value="item_name">Item Name</option>
+            <option value="price">Price</option>
+            <option value="image">Image</option>
+            <option value="description">Description</option>
+            <option value="category">Category</option>
+        </select><br><br>
+        <label for="eieditAction">Action:</label>
+        <select id="eieditAction" name="eieditAction" required>
+            <option value="edit">Edit</option>
+            <option value="delete">Delete</option>
+        </select><br><br>
+        <button type="submit">Edit Item</button>
+    </form>
+
+    <h2>Edit Customization Option</h2>
+    <form id="editCustomForm">
+        <label for="eceditCustomName">Custom Name:</label>
+        <input type="text" id="eceditCustomName" name="eceditCustomName" required><br><br>
+        <label for="eceditOptionName">Option Name:</label>
+        <input type="text" id="eceditOptionName" name="eceditOptionName" required><br><br>
+        <label for="eceditMid">Mid:</label>
+        <input type="text" id="eceditMid" name="eceditMid" required><br><br>
+        <label for="eceditProperty">Property:</label>
+        <select id="eceditProperty" name="eceditProperty" required>
+            <option value="price">Price</option>
+            <option value="isDefault">Is Default</option>
+        </select><br><br>
+        <label for="eceditValue">New Value:</label>
+        <input type="text" id="eceditValue" name="eceditValue" required><br><br>
+        <label for="eceditAction">Action:</label>
+        <select id="eceditAction" name="eceditAction" required>
+            <option value="edit">Edit</option>
+            <option value="delete">Delete</option>
+        </select><br><br>
+        <button type="submit">Edit Custom</button>
+    </form>
+
+    <script src="adminMenu.js"></script>
 </body>
 </html>

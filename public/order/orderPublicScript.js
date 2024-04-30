@@ -11,12 +11,12 @@ console.log("This is isDelivery: " + isDelivery);
       console.log(item);
       orderQuantity += item.quantity;
       midList.push({mid: item.mid, price: item.price});
-      item.toppings.forEach(topping => {
-        console.log("Topping: " + topping.topping_name);
+      item.selectedOptions.forEach(option => {
+        console.log("Option: " + option.name + ": $" + option.price);
     });
   });
   const cartEntries2 = cartItems.map(item => new cartEntry(
-    item.item_name, item.quantity, item.price, item.price * item.quantity, item.mid, item.toppings.map(topping => topping.topping_name).join(', ')
+    item.item_name, item.quantity, item.price + item.optionsPrice, item.totalPrice, item.mid, item.selectedOptions.map(option => `${option.name}: $${option.price}`).join(', ')
   ));
 
   const orderItemData = [];
@@ -26,7 +26,7 @@ console.log("This is isDelivery: " + isDelivery);
     for (let j = 0; j < entry.quantity; j++) {
       orderItemData.push({order_id: 0, mid: entry.mid});
     }
-    total += entry.price * entry.quantity;
+    total += entry.totalPrice;
     //total += entry.size;
   });
   total = total.toFixed(2);
@@ -163,7 +163,6 @@ function refreshCheckoutButton() {
 
 button2.addEventListener("click", function () {
   isThereTip = true;
-  initializeCheckout(); // Reinitialize checkout whenever tip is toggled
   alert("Tip added");
 });
 

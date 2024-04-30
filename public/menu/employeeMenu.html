@@ -3,27 +3,36 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Edit Availability</title>
+    <title>Menu Availability Editor</title>
 </head>
 <body>
-    <h1>Edit Availability</h1>
-    <form id="availability-edit-form">
-        <label for="availability-object">Object Type:</label>
-        <input type="text" id="availability-object" required><br>
-        
-        <label for="availability-store-id">Store ID:</label>
-        <input type="number" id="availability-store-id" required><br>
-        
-        <label for="availability-mid">Menu Item ID:</label>
-        <input type="number" id="availability-mid" required><br>
-        
-        <label for="availability-option-name">Option Name:</label>
-        <input type="text" id="availability-option-name" required><br>
-        
-        <label for="availability-available">Available:</label>
-        <input type="checkbox" id="availability-available" checked><br>
-        
-        <button type="submit">Submit</button>
+    <h1>Menu Availability Editor</h1>
+    <a href="/home/home.html">Back to Home</a>
+
+    <h2>Edit Item Availability</h2>
+    <form id="availabilityFormItem">
+        <label for="estoreId">Store ID:</label>
+        <input type="text" id="estoreId" name="estoreId" required><br><br>
+        <label for="emid">Mid:</label>
+        <input type="text" id="emid" name="emid" required><br><br>
+        <label for="eavailable">Available:</label>
+        <input type="checkbox" id="eavailable" name="eavailable" checked><br><br>
+        <button type="submit">Update Availability</button>
+    </form>
+
+    <h2>Edit Customization Availability</h2>
+    <form id="availabilityFormCustom">
+        <label for="estoreId">Store ID:</label>
+        <input type="text" id="estoreId" name="estoreId" required><br><br>
+        <label for="emid">Mid:</label>
+        <input type="text" id="emid" name="emid" required><br><br>
+        <label for="eCustomName">Custom Name:</label>
+        <input type="text" id="eCustomName" name="eCustomName" required><br><br>
+        <label for="eoptionName">Option Name:</label>
+        <input type="text" id="eoptionName" name="eoptionName" required><br><br>
+        <label for="eavailable">Available:</label>
+        <input type="checkbox" id="eavailable" name="eavailable" checked><br><br>
+        <button type="submit">Update Availability</button>
     </form>
 
     <script src="employeeMenu.js"></script>

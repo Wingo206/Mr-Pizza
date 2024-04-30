@@ -1,7 +1,16 @@
 // extract from server
+let storeId;
+
 const refresh = async () => {
+    // don't load if there's no selected store id
+    if (storeId == undefined) {
+        const menuContainer = document.getElementById('menu');
+        menuContainer.innerHTML = `<p>No store selected.</p>`
+        return;
+    }
+
     try {
-        const response = await fetch("/menu", {
+        const response = await fetch("/menu/" + storeId, {
             method: 'GET',
             headers: {
                 'Content-Type': 'application/json'
@@ -63,7 +72,7 @@ const displayMenu = (menuItems) => {
     // event when clicking the search icon
     const searchIcon = document.querySelector('.fa-search');
     searchIcon.addEventListener('click', () => displaySearch(menuItems));
-    
+
 }
 
 // create menu item's buttons
@@ -125,7 +134,14 @@ const createPopup = (item) => {
         const toppingList = document.createElement('ul');
         item.toppings.forEach(topping => {
             const toppingItem = document.createElement('li');
-            toppingItem.textContent = `${topping.topping_name}: $${topping.price}`;
+            const checkbox = document.createElement('input');
+            checkbox.type = 'checkbox';
+            checkbox.value = topping.price;
+            checkbox.dataset.toppingName = topping.topping_name;
+
+            toppingItem.appendChild(checkbox);
+            toppingItem.appendChild(document.createTextNode(` ${topping.topping_name}: $${topping.price}`));
+            //toppingItem.textContent = `${topping.topping_name}: $${topping.price}`;
             toppingList.appendChild(toppingItem);
         });
         popupContent.appendChild(toppingList);
@@ -139,7 +155,15 @@ const createPopup = (item) => {
         const sizeList = document.createElement('ul');
         item.size.forEach(size => {
             const sizeItem = document.createElement('li');
-            sizeItem.textContent = `${size.topping_name}: $${size.price}`;
+            const radio = document.createElement('input');
+            radio.type = 'radio';
+            radio.name = 'size';
+            radio.value = size.price;
+            radio.dataset.sizeName = size.topping_name;
+
+            sizeItem.appendChild(radio);
+            sizeItem.appendChild(document.createTextNode(` ${size.topping_name}: $${size.price}`));
+            //sizeItem.textContent = `${size.topping_name}: $${size.price}`;
             sizeList.appendChild(sizeItem);
         });
         popupContent.appendChild(sizeList);
@@ -153,7 +177,15 @@ const createPopup = (item) => {
         const servingOptionsList = document.createElement('ul');
         item.servingOptions.forEach(option => {
             const servingOptionItem = document.createElement('li');
-            servingOptionItem.textContent = `${option.topping_name}: $${option.price}`;
+            const radio = document.createElement('input');
+            radio.type = 'radio';
+            radio.name = 'servingOption';
+            radio.value = option.price;
+            radio.dataset.servingOptionName = option.topping_name;
+
+            servingOptionItem.appendChild(radio);
+            servingOptionItem.appendChild(document.createTextNode(` ${option.topping_name}: $${option.price}`));
+            //servingOptionItem.textContent = `${option.topping_name}: $${option.price}`;
             servingOptionsList.appendChild(servingOptionItem);
         });
         popupContent.appendChild(servingOptionsList);
@@ -167,7 +199,15 @@ const createPopup = (item) => {
         const saucesList = document.createElement('ul');
         item.sauces.forEach(sauce => {
             const sauceItem = document.createElement('li');
-            sauceItem.textContent = `${sauce.topping_name}: $${sauce.price}`;
+            const radio = document.createElement('input');
+            radio.type = 'radio';
+            radio.name = 'sauce';
+            radio.value = sauce.price;
+            radio.dataset.sauceName = sauce.topping_name;
+
+            sauceItem.appendChild(radio);
+            sauceItem.appendChild(document.createTextNode(` ${sauce.topping_name}: $${sauce.price}`));
+            //sauceItem.textContent = `${sauce.topping_name}: $${sauce.price}`;
             saucesList.appendChild(sauceItem);
         });
         popupContent.appendChild(saucesList);
@@ -181,7 +221,15 @@ const createPopup = (item) => {
         const crustList = document.createElement('ul');
         item.crust.forEach(type => {
             const crustItem = document.createElement('li');
-            crustItem.textContent = `${type.topping_name}: $${type.price}`;
+            const radio = document.createElement('input');
+            radio.type = 'radio';
+            radio.name = 'crust';
+            radio.value = type.price;
+            radio.dataset.crustName = type.topping_name;
+
+            crustItem.appendChild(radio);
+            crustItem.appendChild(document.createTextNode(` ${type.topping_name}: $${type.price}`));
+            //crustItem.textContent = `${type.topping_name}: $${type.price}`;
             crustList.appendChild(crustItem);
         });
         popupContent.appendChild(crustList);
@@ -195,7 +243,14 @@ const createPopup = (item) => {
         const meatList = document.createElement('ul');
         item.meats.forEach(meat => {
             const meatItem = document.createElement('li');
-            meatItem.textContent = `${meat.topping_name}: $${meat.price}`;
+            const checkbox = document.createElement('input');
+            checkbox.type = 'checkbox';
+            checkbox.value = meat.price;
+            checkbox.dataset.meatName = meat.topping_name;
+
+            meatItem.appendChild(checkbox);
+            meatItem.appendChild(document.createTextNode(` ${meat.topping_name}: $${meat.price}`));
+            //meatItem.textContent = `${meat.topping_name}: $${meat.price}`;
             meatList.appendChild(meatItem);
         });
         popupContent.appendChild(meatList);
@@ -209,7 +264,14 @@ const createPopup = (item) => {
         const nonMeatList = document.createElement('ul');
         item.nonMeats.forEach(nonMeat => {
             const noMeatItem = document.createElement('li');
-            noMeatItem.textContent = `${nonMeat.topping_name}: $${nonMeat.price}`;
+            const checkbox = document.createElement('input');
+            checkbox.type = 'checkbox';
+            checkbox.value = nonMeat.price;
+            checkbox.dataset.nonMeatName = nonMeat.topping_name;
+
+            noMeatItem.appendChild(checkbox);
+            noMeatItem.appendChild(document.createTextNode(` ${nonMeat.topping_name}: $${nonMeat.price}`));
+            //noMeatItem.textContent = `${nonMeat.topping_name}: $${nonMeat.price}`;
             nonMeatList.appendChild(noMeatItem);
         });
         popupContent.appendChild(nonMeatList);
@@ -223,7 +285,14 @@ const createPopup = (item) => {
         const cheeseList = document.createElement('ul');
         item.cheese.forEach(cheese => {
             const cheeseItem = document.createElement('li');
-            cheeseItem.textContent = `${cheese.topping_name}: $${cheese.price}`;
+            const checkbox = document.createElement('input');
+            checkbox.type = 'checkbox';
+            checkbox.value = cheese.price;
+            checkbox.dataset.cheeseName = cheese.topping_name;
+
+            cheeseItem.appendChild(checkbox);
+            cheeseItem.appendChild(document.createTextNode(` ${cheese.topping_name}: $${cheese.price}`));
+            //cheeseItem.textContent = `${cheese.topping_name}: $${cheese.price}`;
             cheeseList.appendChild(cheeseItem);
         });
         popupContent.appendChild(cheeseList);
@@ -236,10 +305,27 @@ const createPopup = (item) => {
     });
     popupContent.appendChild(cancelButton);
 
+    const quantityContainer = document.createElement('div');
+    const quantityLabel = document.createElement('label');
+    quantityLabel.textContent = 'Quantity:';
+    const quantityInput = document.createElement('input');
+    quantityInput.type = 'number';
+    quantityInput.value = 1;
+    quantityInput.min = 1;
+    quantityInput.className = 'item-quantity-input';
+    quantityInput.style.width = '40px'; 
+    quantityInput.style.height = '30px';
+    quantityContainer.appendChild(quantityLabel);
+    quantityContainer.appendChild(quantityInput);
+    popupContent.appendChild(quantityContainer);
+
     const addButton = document.createElement('button');
     addButton.textContent = 'Add to Cart';
     addButton.addEventListener('click', () => {
-        addToCart(item)
+        const quantity = parseInt(quantityInput.value, 10);
+        addToCart(item, collectSelectedOptions(popupContent), quantity);
+        popupContainer.remove();
+        showPopup(`Item '${item.item_name}' added to cart`);
     });
     popupContent.appendChild(addButton);
     
@@ -252,7 +338,7 @@ const createPopup = (item) => {
 const cartIcon = document.querySelector('.fa-shopping-cart');
 const cartContainer = document.getElementById('cart-container');
 
-cartIcon.addEventListener('click', function() {
+cartIcon.addEventListener('click', function () {
     const isVisible = cartContainer.style.display === 'block';
     cartContainer.style.display = isVisible ? 'none' : 'block';
     if (!isVisible) {
@@ -260,37 +346,48 @@ cartIcon.addEventListener('click', function() {
     }
 });
 
-const addToCart = (item) => {
+const collectSelectedOptions = (popupContent) => {
+    const selectedOptions = [];
+    const inputs = popupContent.querySelectorAll('input[type="checkbox"]:checked, input[type="radio"]:checked');
+    inputs.forEach(input => {
+        selectedOptions.push({
+            name: input.dataset.toppingName || input.dataset.sizeName || input.dataset.servingOptionName || input.dataset.sauceName || input.dataset.crustName || input.dataset.meatName || input.dataset.nonMeatName || input.dataset.cheeseName,
+            price: parseFloat(input.value)
+        });
+    });
+    return selectedOptions;
+};
+
+const addToCart = (item, selectedOptions, quantity) => {
     let cart = JSON.parse(localStorage.getItem('cart')) || [];
-    let alreadyInCart = cart.find(cartItem => cartItem.mid === item.mid);
+    let optionsPrice = selectedOptions.reduce((sum, option) => sum + option.price, 0);
+    let initialTotalPrice = item.price + optionsPrice;
+    let totalCost = initialTotalPrice * quantity;
+    let alreadyInCart = cart.find(cartItem => cartItem.mid === item.mid && JSON.stringify(cartItem.selectedOptions) === JSON.stringify(selectedOptions));
 
     if (alreadyInCart) {
-        alreadyInCart.quantity += 1;
-        alreadyInCart.totalPrice = alreadyInCart.quantity * item.price;
+        alreadyInCart.quantity += quantity;
+        alreadyInCart.totalPrice = parseFloat((alreadyInCart.quantity * initialTotalPrice).toFixed(2));
     }
     else {
         cart.push({
             item_name: item.item_name,
             mid: item.mid,
             description: item.description,
-            quantity: 1,
+            quantity: quantity,
             price: item.price,
-            totalPrice: item.price,
-            toppings: item.toppings.map(topping => ({
-                topping_name: topping.topping_name,
-                price: topping.price
-            })),
+            optionsPrice: optionsPrice,
+            totalPrice: parseFloat(totalCost.toFixed(2)),
+            selectedOptions: selectedOptions
         });
     }
     
     localStorage.setItem('cart', JSON.stringify(cart));
-    menuContainer.classList.remove('show');
-    showPopup(`Item '${item.item_name}' added to cart`);
     console.log(`Item '${item.item_name}' with MID '${item.mid}' added to cart.`);
 }
 
 const backButton = document.getElementById('back-button');
-backButton.addEventListener('click', function() {
+backButton.addEventListener('click', function () {
     cartContainer.style.display = 'none';
 });
 
@@ -298,12 +395,12 @@ const removeFromCart = (index) => {
     let cart = JSON.parse(localStorage.getItem('cart')) || [];
     cart.splice(index, 1);
     localStorage.setItem('cart', JSON.stringify(cart));
-    displayCartItems(); 
+    displayCartItems();
     showPopup('Item removed from cart');
 }
 
 const checkoutButton = document.getElementById('checkout-button');
-checkoutButton.addEventListener('click', function() {
+checkoutButton.addEventListener('click', function () {
     window.location.href = 'https://127.0.0.1:8080/order/order.html';
 });
 
@@ -374,7 +471,7 @@ const displaySearch = (menuItems) => {
         refresh();
     });
     searchContent.appendChild(resetButton);
-    
+
     searchContainer.appendChild(searchContent);
 
     document.body.appendChild(searchContainer);
@@ -392,4 +489,51 @@ const searchHandler = async (searchText, menuItems) => {
 // Run menu
 document.addEventListener('DOMContentLoaded', () => {
     refresh();
+    window.addEventListener("load", async () => {
+        // get the store id from the cookies
+        storeId = getCookie('menuStoreId')
+
+        // load store options
+        let resp = await fetch('/storeNames', {
+            method: 'GET'
+        })
+        let storeNames = await resp.json();
+        console.log(storeNames)
+
+        // populate dropdown
+        let select = document.getElementById('store-select');
+        select.innerHTML = `<option value="" disabled selected>Select a store</option> `
+        select.innerHTML += storeNames.map(sn => `<option value="${sn.store_id}">${sn.name}</option>`)
+        select.onchange = (event) => {
+            storeId = Number(event.target.value);
+            console.log('changing store id to ' + storeId)
+            refresh();
+        }
+
+        refresh();
+    });
 });
+
+// cookie stuff for getting the store id
+function setCookie(name, value, days) {
+    var expires = "";
+    if (days) {
+        var date = new Date();
+        date.setTime(date.getTime() + (days * 24 * 60 * 60 * 1000));
+        expires = "; expires=" + date.toUTCString();
+    }
+    document.cookie = name + "=" + (value || "") + expires + "; path=/";
+}
+function getCookie(name) {
+    var nameEQ = name + "=";
+    var ca = document.cookie.split(';');
+    for (var i = 0; i < ca.length; i++) {
+        var c = ca[i];
+        while (c.charAt(0) == ' ') c = c.substring(1, c.length);
+        if (c.indexOf(nameEQ) == 0) return c.substring(nameEQ.length, c.length);
+    }
+    return null;
+}
+function eraseCookie(name) {
+    document.cookie = name + '=; Path=/; Expires=Thu, 01 Jan 1970 00:00:01 GMT;';
+}
