@@ -18,9 +18,6 @@
         <h1>Store Analytics</h1>
         <a href="/home/home.html">Back to Home</a>
 
-        <br>
-        <br>
-
         <p id="storeAnalytics"></p>
         
         <h3>Total Company Revenue</h3>
@@ -29,40 +26,42 @@
         <input type="date" id="enterStartDateTotal">
         
         <br>
-        <br>
-        
         <label for="endDate">End Date</label>
         <input type="date" id="enterEndDateTotal">
         
         <br>
-        <br> 
-
         <button onclick="setDatesTotalRevenue()">Submit</button>
         <table id="totalCompanyRevenueTable" border="1" style='height: 50%; width: 75%; border-collapse: collapse;'></table>
-        
-        <h3>Monthly Company Revenue</h3>
-        <label for="startMonth">Start Date:</label>
-        <input type="month" id="enterStartDateMonth">
-        
-        <br>
-        <br>
-        
-        <label for="endMonth">End Date</label>
-        <input type="month" id="enterEndDateMonth">
-
-        <br>
-        <br>
-
-        <button onclick="setDatesMonthlyRevenue()">Submit</button>
-
-        <table id="monthlyCompanyRevenueTable" border="1" style='height: 50%; width: 75%; border-collapse: collapse;'></table>
        
         <h3>Employee Count by Store</h3>
+        <button onclick="setEmployeesByStore()">Submit</button>
         <table id="employeeCountByStore" border="1" style='height: 50%; width: 75%; border-collapse: collapse;'></table>
-        
-        <br>
         <br>
         
+        <h3>Total Customers</h3>
+        <button onclick="setTotalCustomers()">Submit</button>
+        <table id="totalCustomers" border="1" style='height: 50%; width: 75%; border-collapse: collapse;'></table>
+        <br>
+
+        <h3>Total Employees</h3>
+        <button onclick="setTotalEmployees()">Submit</button>
+        <table id="totalEmployees" border="1" style='height: 50%; width: 75%; border-collapse: collapse;'></table>
+        <br>
+
+        <h3>Menu Sorted by Popularity</h3>
+        <button onclick="setMenuPop()">Submit</button>
+        <table id="menuPop" border="1" style='height: 50%; width: 75%; border-collapse: collapse;'></table>
+        <br>
+
+        <h3>Menu Sorted by Revenue</h3>
+        <button onclick="setMenuRev()">Submit</button>
+        <table id="menuRev" border="1" style='height: 50%; width: 75%; border-collapse: collapse;'></table>
+        <br>
+
+        <h3>Most Popular Toppings</h3>
+        <button onclick="setPopToppings()">Submit</button>
+        <table id="popToppings" border="1" style='height: 50%; width: 75%; border-collapse: collapse;'></table>
+        <br>
     </body>
 
 </html>

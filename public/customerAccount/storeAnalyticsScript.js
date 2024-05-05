@@ -1,44 +1,7 @@
 window.addEventListener("load", async (event) => {
     console.log("page is fully loaded");
-    await refresh();
  });
 
- async function refresh(){
-    let resp = await fetch("/getEmployeeCountByStore", {
-        method: 'GET'
-    })
-    
-    let employeeCount = await resp.json();
-    console.log(employeeCount);
-    document.getElementById('employeeCountByStore').innerHTML = tableFromJSONArrayEmployee(employeeCount);
- } 
-
-function tableFromJSONArrayEmployee(employeeCount){
-    let output = '';
-    if (employeeCount == "No data found"){
-        output = '<tr><td>No data found</td></tr>';
-        return output;
-    }
-    return output;
-}
-
-function tableFromJSONArrayTotalRevnue(totalRevenue){
-    let output = '';
-    if (totalRevenue == 'No data found'){
-        output = '<tr><td>No data found</td></tr>';
-        return output;
-    }
-    return output;
-}
-
-function tableFromJSONArrayMonthlyRevenue(monthlyRevenue){
-    let output = '';
-    if (monthlyRevenue == 'No data found'){
-        output = '<tr><td>No data found</td></tr>';
-        return output;
-    }
-    return output;
-}
 
 async function setDatesTotalRevenue(){
     let startDate = document.getElementById("enterStartDateTotal").value;
@@ -62,29 +25,99 @@ async function setDatesTotalRevenue(){
     let totalRevenue = await response.json();
     console.log(totalRevenue);
 
-    document.getElementById('totalCompanyRevenueTable').innerHTML = tableFromJSONArrayTotalRevnue(totalRevenue);
+    document.getElementById('totalCompanyRevenueTable').innerHTML = tableFromJSONArray([totalRevenue]);
 }
 
-async function setDatesMonthlyRevenue(){
-    let startDate = document.getElementById("enterStartDateMonth").value;
-    let endDate = document.getElementById("enterEndDateMonth").value;
-    console.log(startDate);
-    console.log(endDate);
-    if (startDate == '' || endDate == ''){
-        // console.log("In id");
-        alert("Please complete date fields");
-        return;
-    }
-    let response = await fetch('/getTotalCompanyRevenueByMonth', {
-        method: "POST",
-        headers: {
-            'Content-Type': 'application/json'
-        },
-        body: JSON.stringify({startDate: startDate, endDate: endDate})
-    })
+async function setEmployeesByStore(){
+    let response = await fetch("/getEmployeeCountByStore", {
+        method: 'GET',
+    });
+    
+    let data = await response.json();
+    console.log(data);
 
-    let monthlyRevenue = await response.json();
-    console.log(monthlyRevenue);
+    document.getElementById('employeeCountByStore').innerHTML = tableFromJSONArray(data);
+}
 
-    document.getElementById("monthlyCompanyRevenueTable").innerHTML = tableFromJSONArrayMonthlyRevenue(monthlyRevenue);
+async function setTotalCustomers(){
+    let response = await fetch("/getTotalCustomers", {
+        method: 'GET',
+    });
+    
+    let data = await response.json();
+    console.log(data);
+
+    document.getElementById('totalCustomers').innerHTML = tableFromJSONArray([ data ]);
+}
+async function setTotalEmployees(){
+    let response = await fetch("/getTotalEmployees", {
+        method: 'GET',
+    });
+    
+    let data = await response.json();
+    console.log(data);
+
+    document.getElementById('totalEmployees').innerHTML = tableFromJSONArray([ data ]);
+}
+async function setMenuPop(){
+    let response = await fetch("/getMenuItemsSortedByPopularity", {
+        method: 'GET',
+    });
+    
+    let data = await response.json();
+    console.log(data);
+
+    document.getElementById('menuPop').innerHTML = tableFromJSONArray(data);
+}
+async function setMenuRev(){
+    let response = await fetch("/getRevenueTotalByMenuItem", {
+        method: 'GET',
+    });
+    
+    let data = await response.json();
+    console.log(data);
+
+    document.getElementById('menuRev').innerHTML = tableFromJSONArray(data);
+}
+async function setPopToppings(){
+    let response = await fetch("/getMostPopularToppings", {
+        method: 'GET',
+    });
+    
+    let data = await response.json();
+    console.log(data);
+
+    document.getElementById('popToppings').innerHTML = tableFromJSONArray(data);
+}
+/**
+ * generates the contents of a table given an array of json objects
+ */
+function tableFromJSONArray(array) {
+    console.log(array)
+   if (array.length == 0) {
+      return '';
+   }
+   let output = '';
+   let keys = Object.keys(array[0]);
+   output += `<tr>`
+   for (let i = 0; i < keys.length; i++) {
+      output += `<th>`
+      output += `${keys[i]}`
+      output += `</th>`
+   }
+   output += `</tr>`
+   for (let i = 0; i < array.length; i++) {
+      output += `<tr>`
+      let entry = array[i];
+      for (let j = 0; j < keys.length; j++) {
+         output += `<td>`
+         let str = JSON.stringify(entry[keys[j]]);
+         str = str.replace(/^"/, '');
+         str = str.replace(/"$/, '');
+         output += `${str}`
+         output += `</td>`
+      }
+      output += `</tr>`
+   }
+   return output;
 }
